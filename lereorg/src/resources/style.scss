@@ -1,0 +1,116 @@
+p{
+    margin-bottom: 0;
+}
+// Header
+header{
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+   height: 80px;
+}
+.header-scroll{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.header-logo-title{
+    font-weight : bold;
+    font-size : 24px;
+    padding-left : 12px;
+    color: white;
+}
+.header-contain-scroll{
+    color: black !important;
+}
+.header-contain{
+    position: absolute;
+    z-index: 1;
+    right: 80px;
+}
+.header-wrap-logo{
+    position: absolute;
+    z-index: 9999;
+    top : 20px;
+    left: 80px;
+    display:flex;
+    align-items: center
+}
+.header-logo{
+    background: url("../assets/img/logo.png") no-repeat  center;
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+}
+.featured_container .featured_image {
+    position:relative;
+    background-size: cover !important;
+    background-position: center left !important;
+}
+.black-color{
+    color: black !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal; 
+}
+
+.img-background{
+    max-height: 640px;
+    min-height: 320px;
+}
+.search-body{
+    position: absolute;
+    left: calc(50% - 667px/2 + 0.5px);
+    top: 316px;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 56px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+.search-input-body{
+    width:  80%;
+    max-height: 56px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.search-title{
+    padding-bottom: 36px;
+}
+.search-input{
+    font-size: 16px;
+    line-height: 22px;
+    border-radius: 8px;
+    width: 72%;
+
+    
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #C3C7C5;
+    opacity: 1; /* Firefox */
+    text-align: left;
+  }
+  .form-control{
+      line-height: 2.6;
+  }
+.search-btn{
+    display: flex;
+    background-color: #2FAF62;
+    border-radius: 8px;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 17px 18px;
+    font-size: 16px;
+}
+.search-btn :hover {
+    cursor: pointer;
+}
+.search-icon{
+   padding-right: 10px; 
+}
+
