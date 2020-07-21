@@ -1,9 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import {makeStyles} from '@material-ui/core/styles';
+import zIndex from "@material-ui/core/styles/zIndex";
+const useStyles = makeStyles((theme) => ({
+  header_contain : {
+    position : "absolute",
+    zIndex : 1,
+    right : 80,
+    [theme.breakpoints.down("xs")] :{
+      right : 0
+    }
+  },
+}))
 const HeaderNav = (props) => {
+  const classes = useStyles();
   return (
-    <div className="header-contain">
+    <div className={classes.header_contain}>
       <div className="header-nav">
         <nav className="navbar navbar-expand-lg navbar-light ">
           <button
@@ -20,7 +32,7 @@ const HeaderNav = (props) => {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav" style={{ alignItems: "center" }}>
               <li className="nav-item">
-                <Link className={`nav-link ${props.scroll ? "black-color" : ""}`} to="/about">
+                <Link className={`nav-link ${props.scroll ? "black-color" : ""}`} to="/contact">
                   Liên hệ
                 </Link>
               </li>
@@ -39,7 +51,6 @@ const HeaderNav = (props) => {
                 className="nav-item"
                 style={{
                   display: "flex",
-
                   paddingLeft: "56px",
                   paddingRight: "56px",
                 }}
