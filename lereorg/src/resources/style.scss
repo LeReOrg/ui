@@ -369,7 +369,7 @@ p{
 // Header
 header{
     position: relative;
-    z-index: 10;
+    
 }
 .header{
     position:absolute;
@@ -390,7 +390,7 @@ header{
     z-index: 100;
     left: 0;
     right: 0;
-
+    height: 80px;
 }
 
 .header-contain-scroll{
