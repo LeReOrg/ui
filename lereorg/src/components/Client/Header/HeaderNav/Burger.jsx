@@ -10,7 +10,7 @@ const StyledBurger = styled.div`
     right : 15px;
     z-index : 4;
     display : none;
-    @media (max-width : 768px) {
+    @media (max-width: 599.95px) {
         display : flex;
         justify-content : space-around;
         flex-flow : column nowrap;
@@ -19,12 +19,12 @@ const StyledBurger = styled.div`
         width : 2rem;
         height : 0.25rem;
         border-radius : 5px;
-        background-color : #fff;
+        background-color : ${({scroll}) => scroll ? "black"  : "#fff" };
         transform-origin : 1px;
         transition : all 0.2s linear;
         &:nth-child(1){
             transform : ${({open}) => open ? "rotate(45deg)" : "rotate(0)"};
-            background-color : ${({open}) => open ? "black" : "#fff"};
+            background-color : ${({open}) => open  ? "black" : ""};
         }
         &:nth-child(2){
             transform : ${({open}) => open ? "translateX(100%)" : "translateX(0)"};
@@ -33,7 +33,7 @@ const StyledBurger = styled.div`
         }
         &:nth-child(3){
             transform : ${({open}) => open ? "rotate(-45deg)" : "rotate(0)"};
-            background-color : ${({open}) => open ? "black" : "#fff"}
+            background-color : ${({open}) => open   ? "black" : ""}
         }
     }
 `;
@@ -42,7 +42,7 @@ const Burger = (props) => {
     const [open,setIOpen] = useState(false)
     return (
         <>
-        <StyledBurger open={open} onClick={() => setIOpen(!open)} >
+        <StyledBurger open={open} scroll = {props.scroll} onClick={() => setIOpen(!open)} >
             <div />
             <div />
             <div />

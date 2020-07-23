@@ -4,7 +4,7 @@ import {update} from '../../../utils/FormAction';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { makeStyles } from '@material-ui/core/styles';
 import faSearch from '@fortawesome/fontawesome-free-solid/faSearch';
-import { Grid, Typography, Box, CardMedia, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const Search = () => {
     const searchInfos = {
@@ -42,7 +42,7 @@ const Search = () => {
             alignItems : "center",
             letterSpacing : "-0.01em",
             color : "#FFF",
-            [theme.breakpoints.down("sm")] :{
+            [theme.breakpoints.down("xs")] :{
                 fontSize : "24px",
                 left : 0,
                 top : "42%"
@@ -50,13 +50,13 @@ const Search = () => {
         },search_contain:{
            width : "100%",
             textAlign: "center",
-            [theme.breakpoints.down("sm")] : {
+            [theme.breakpoints.down("xs")] : {
 
             }
         },
         search_title :{
             paddingBottom : "36px",
-            [theme.breakpoints.down("sm")] : {
+            [theme.breakpoints.down("xs")] : {
                 paddingBottom : "16px"
             }
         },

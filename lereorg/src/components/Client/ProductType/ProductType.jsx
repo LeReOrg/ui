@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import MediaCard from "../../../utils/Card";
+import CartProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
@@ -61,16 +61,16 @@ const ProductType = () => {
         }}
       >
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -93,16 +93,16 @@ const ProductType = () => {
         }}
       >
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <MediaCard />
+          <CartProductType />
         </SwiperSlide>
       </Swiper>
     </div>

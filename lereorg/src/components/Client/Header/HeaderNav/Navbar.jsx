@@ -10,10 +10,13 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   position: absolute;
+  @media (max-width: 599.95px) {
+    height: 60px;
+  }
 `;
 const Navbar = (props) => {
   return (
-    <Nav>
+    <Nav id="header_nav">
       <HeaderLogo scroll = {props.scroll} />
       <Burger scroll = {props.scroll}/>
     </Nav>

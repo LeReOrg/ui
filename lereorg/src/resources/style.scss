@@ -11,7 +11,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0 ;
+    margin: 0 ;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
@@ -35,7 +35,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-
+html,
+body {
+ height: 100%;
+ position: relative;
+}
 body {
     overflow: auto;
     line-height: 1;
@@ -355,6 +359,9 @@ textarea {
     padding-left: 0 !important;
     padding-right: 0 !important;
     max-width: 1200px;
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
 }
 
 .col-md-2,.col-md-6,.col-md-3,.col-6{
@@ -369,16 +376,16 @@ p{
 // Header
 header{
     position: relative;
-    
 }
 .page_container{
-    height: 100%;
+    padding-bottom: 80px;
     width: 100%;
 }
+
 .header{
     position:absolute;
     width : 100%;
-    height:80px
+   
 }
 .container {
     padding-left: unset;

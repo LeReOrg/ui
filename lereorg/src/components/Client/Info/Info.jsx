@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Box, CardMedia, Button } from "@material-ui/core";
+import { Typography, Box, CardMedia, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import imageTest2 from "../../../assets/img/background/info.jpg";
 import { green, purple } from "@material-ui/core/colors";
@@ -8,16 +8,16 @@ import { withStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   info_main: {
     marginTop : 80,
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("xs")]: {
       marginTop: 32,
     },
   },
   media: {
     height: 280,
-    borderRadius: "0 16px 16px 0",
+    borderRadius: 16,
     border: "none",
-    [theme.breakpoints.down("md")]: {
-      height: 100,
+    [theme.breakpoints.down("xs")]: {
+      height: 240,
     },
   },
   imageInfo: {
@@ -26,20 +26,23 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0 16px 16px 0",
   },
   typography: {
-    [theme.breakpoints.down("md")]: {
+    position : "absolute",
+    top: 0,
+    left: 0,
+    width : "50%",
+    [theme.breakpoints.down("xs")]: {
       fontSize: 20,
+      width : "80%"
     },
   },
   box: {
     paddingLeft: 72,
     paddingRight: 120,
     paddingTop: 56,
-    paddingRight: 56,
-    [theme.breakpoints.down("md")]: {
-      paddingLeft: 9,
-      paddingRight: 15,
-      paddingTop: 7,
-      paddingRight: 7,
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: 16,
+      paddingTop: 26,
+      paddingRight : 0
     },
   },
 
@@ -52,6 +55,19 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
   },
+  background_info : {
+    position : "relative"
+  },
+  info_tittle : {
+    [theme.breakpoints.down("xs")]  :{
+      fontSize : 20
+    }
+  },
+  more_info : {
+    [theme.breakpoints.down("xs")] : {
+      paddingTop : 20
+    }
+  }
 }));
 
 const StyledButton = withStyles((theme) => ({
@@ -77,35 +93,30 @@ const Info = () => {
   const classes = useStyles();
   return (
     <div className={classes.info_main}>
-      <Grid container>
-        <Grid item lg={6} md={6} xs={6}>
-          <Typography
+      <div className={classes.background_info}>
+        <CardMedia className={classes.media} image={imageTest2} />
+        <div className={classes.image_gradient}></div>
+        <Typography
             component={"div"}
             className={classes.typography}
             variant={"body2"}
           >
             <Box className={classes.box}>
-              <Box fontSize={30} fontWeight="fontWeightBold">
+              <Box fontSize={30} className={classes.info_tittle} fontWeight="fontWeightBold">
                 Bạn có đồ cần thuê ?
               </Box>
-              <Box>
-                {" "}
+              <Box fontSize={16}>
                 Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản
                 phẩm bạn không dùng tới, tại sao không nhỉ?
               </Box>
-              <Box pt={4}>
+              <Box pt={4} className={classes.more_info}>
                 <StyledButton variant="contained" color="primary">
                   Tìm hiểu thêm
                 </StyledButton>
               </Box>
             </Box>
           </Typography>
-        </Grid>
-        <Grid item lg={6} md={6} xs={6} className={classes.imageInfo}>
-          <CardMedia className={classes.media} image={imageTest2} />
-          <div className={classes.image_gradient}></div>
-        </Grid>
-      </Grid>
+      </div>
     </div>
   );
 };
