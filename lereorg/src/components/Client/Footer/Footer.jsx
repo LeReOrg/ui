@@ -8,8 +8,8 @@ const Footer = () => {
         footer_main : {
             backgroundColor : "#F3F4F3",
             position : "absolute",
-            bottom : 0,
-            width : "100%"
+            width : "100%",
+            bottom : 0
         },
         footer_content : {
             display : "flex",

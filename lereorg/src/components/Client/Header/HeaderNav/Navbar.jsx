@@ -5,13 +5,11 @@ import Burger from "./Burger";
 
 const Nav = styled.nav`
   width: 100%;
-  height: 80px;
-  padding: 20px 80px 0 20px;
+  padding: 10px 80px 18px 80px;
   display: flex;
   justify-content: space-between;
-  position: absolute;
   @media (max-width: 599.95px) {
-    height: 60px;
+    
   }
 `;
 const Navbar = (props) => {

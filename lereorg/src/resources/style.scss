@@ -37,7 +37,6 @@ footer, header, hgroup, menu, nav, section {
 }
 html,
 body {
- height: 100%;
  position: relative;
 }
 body {
@@ -354,11 +353,9 @@ textarea {
     padding: 0.2em 0;
 }
 
-
-.container{
+.container-fluid{
     padding-left: 0 !important;
     padding-right: 0 !important;
-    max-width: 1200px;
     min-height: 100vh; /* will cover the 100% of viewport */
     overflow: hidden;
     display: block;
@@ -373,46 +370,21 @@ textarea {
 p{
     margin-bottom: 0;
 }
-// Header
-header{
-    position: relative;
-}
+
 .page_container{
     padding-bottom: 80px;
     width: 100%;
 }
 
-.header{
-    position:absolute;
-    width : 100%;
-   
-}
-.container {
-    padding-left: unset;
-    padding-right: unset;
-    position: relative;
-}
+
 .header-scroll{
     position: fixed;
-    width: 100%;
-    margin: 0 auto;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
     z-index: 100;
     left: 0;
     right: 0;
-    height: 80px;
 }
 
-.header-contain-scroll{
-    color: black !important;
-}
-
-
-
-.black-color{
-    color: black !important;
-}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #C3C7C5;
     opacity: 1; /* Firefox */

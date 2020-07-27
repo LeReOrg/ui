@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme) => ({
   header_wrap_logo: {
     display: "flex",
     alignItems: "center",
-    paddingLeft: 60,
     [theme.breakpoints.down("xs")]: {
       paddingLeft: 0,
       alignItems: "flex-start",
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: 24,
     paddingLeft: 24,
-    color: "#FFF",
+    color: "black",
     [theme.breakpoints.down("xs")]: {
       fontSize: 16,
       paddingLeft: 7,
@@ -36,15 +35,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HeaderLogo = React.memo((props) => {
   const classes = useStyles();
-
   return (
     <div className={classes.header_wrap_logo} id="header-logo">
       <div className={classes.header_logo}></div>
       <div
-        className={`${classes.header_logo_title} ${
-          props.scroll ? "header-contain-scroll" : ""
-        } `}
-      >
+        className={classes.header_logo_title} >
         <p>Hichi kachi</p>
       </div>
     </div>

@@ -3,7 +3,9 @@ import Search from "../Search/Search";
 import { makeStyles } from "@material-ui/core/styles";
 import BackGround from "../../../assets/img/background/background1.png";
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    position  : "relative"
+  },
   background: {
     backgroundImage: `url(${BackGround})`,
     backgroundRepeat: "no-repeat",

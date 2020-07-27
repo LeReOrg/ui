@@ -1,32 +1,37 @@
-import React from "react";
+import React, {useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CartProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
-
-const useStyles = makeStyles((theme) => ({
-  type_product_title: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 20,
-      paddingBottom: 16,
-    },
-  },
-  type_product_main: {
-    marginTop: 40,
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 24,
-    },
-  },
-  spaceBetweenTwoSwipe :{ 
-    marginTop : 40,
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 14,
-    },
-  }
-}));
+import SwiperCore, { Controller } from 'swiper';
+import 'swiper/swiper.scss';
 
 const ProductType = () => {
+  const useStyles = makeStyles((theme) => ({
+  
+    type_product_title: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: 20,
+        paddingBottom: 16,
+      },
+    },
+    type_product_main: {
+      marginTop: 40,
+      [theme.breakpoints.down("xs")]: {
+        marginTop: 24,
+      },
+    },
+    spaceBetweenTwoSwipe :{ 
+      marginTop : 40,
+      [theme.breakpoints.down("xs")]: {
+        marginTop: 14,
+      },
+    }
+  }));
+
+  SwiperCore.use([Controller]);
+  const [firstSwiper, setFirstSwiper] = useState(null);
+  const [secondSwiper, setSecondSwiper] = useState(null);
   const classes = useStyles();
   return (
     <div className={classes.type_product_main}>
@@ -45,6 +50,7 @@ const ProductType = () => {
       <Swiper
         spaceBetween={50}
         slidesPerView={4}
+        onSwiper={setFirstSwiper} controller={{ control: secondSwiper }}
         breakpoints={{
           320: {
             slidesPerView: 2.5,
@@ -60,6 +66,15 @@ const ProductType = () => {
           },
         }}
       >
+        <SwiperSlide>
+          <CartProductType />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CartProductType />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CartProductType />
+        </SwiperSlide>
         <SwiperSlide>
           <CartProductType />
         </SwiperSlide>
@@ -77,6 +92,7 @@ const ProductType = () => {
         className= {classes.spaceBetweenTwoSwipe}
         spaceBetween={50}
         slidesPerView={4}
+        onSwiper={setSecondSwiper} controller={{ control: firstSwiper }}
         breakpoints={{
           320: {
             slidesPerView: 2.5,
@@ -92,6 +108,12 @@ const ProductType = () => {
           },
         }}
       >
+        <SwiperSlide>
+          <CartProductType />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CartProductType />
+        </SwiperSlide>
         <SwiperSlide>
           <CartProductType />
         </SwiperSlide>

@@ -3,6 +3,7 @@ import ProductType from "../ProductType/ProductType";
 import Info from "../Info/Info";
 import InterestedItem from "../InterestedItem/InterestedItem";
 import LoadMoreItem from "../InterestedItem/LoadMoreItem";
+import SlideBackground from "../SlideBackground/SlideBackground";
 
 const Home = (props) => {
   const loadMore = () => {
@@ -22,7 +23,9 @@ const Home = (props) => {
 }
   return (
     <>
+     <SlideBackground />
       <div style={{ width: "90%", margin: "0 auto" }}>
+       
         <ProductType />
         <Info /> 
         <InterestedItem />

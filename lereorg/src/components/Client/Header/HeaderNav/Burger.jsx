@@ -19,12 +19,11 @@ const StyledBurger = styled.div`
         width : 2rem;
         height : 0.25rem;
         border-radius : 5px;
-        background-color : ${({scroll}) => scroll ? "black"  : "#fff" };
+        background-color : black;
         transform-origin : 1px;
         transition : all 0.2s linear;
         &:nth-child(1){
             transform : ${({open}) => open ? "rotate(45deg)" : "rotate(0)"};
-            background-color : ${({open}) => open  ? "black" : ""};
         }
         &:nth-child(2){
             transform : ${({open}) => open ? "translateX(100%)" : "translateX(0)"};
@@ -33,7 +32,7 @@ const StyledBurger = styled.div`
         }
         &:nth-child(3){
             transform : ${({open}) => open ? "rotate(-45deg)" : "rotate(0)"};
-            background-color : ${({open}) => open   ? "black" : ""}
+          
         }
     }
 `;
@@ -42,7 +41,7 @@ const Burger = (props) => {
     const [open,setIOpen] = useState(false)
     return (
         <>
-        <StyledBurger open={open} scroll = {props.scroll} onClick={() => setIOpen(!open)} >
+        <StyledBurger open={open}  onClick={() => setIOpen(!open)} >
             <div />
             <div />
             <div />

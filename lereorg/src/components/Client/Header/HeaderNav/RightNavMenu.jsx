@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import HeaderCart from '../HeaderCart/HeaderCart';
 const RightNav = styled.ul`
         list-style: none;
         display : flex;
         flex-flow  : row nowrap;
+        margin-bottom : 0 ;
         align-items: center;
         li {
-            padding : 18px 23px;
-            &:nth-child(4){
+            padding : 0px 23px;
+            &:nth-child(3){
                 display: flex;
                 background-color: rgb(47, 175, 98);
                 border-radius: 4px;
@@ -17,12 +19,16 @@ const RightNav = styled.ul`
                 margin-left: 25px;
             }
             a {
-                color : #fff;
+                color : black;
                 font-style: normal;
                 font-weight: bold;
                 font-size: 16px;
                 line-height: 22px;
+                &:nth-child(3){
+                    color : #FFFFFF;
+                }
             }
+            
         }
         @media (max-width : 768px){
             flex-flow : column nowrap;
@@ -52,24 +58,22 @@ const RightNavMenu = ({...props}) => {
     return (
              <RightNav open ={props.open} >
                 <li>
-                    <Link className={` ${props.scroll ? "black-color" : ""}`} to="/contact">
+                    <Link to="/contact">
                         Liên hệ
                     </Link>
                 </li>
                 <li>
-                    <Link className={`${props.scroll ? "black-color" : ""}`} to="/login">
-                    Đăng nhập
+                    <Link  to="/login">
+                        Tài khoản
                     </Link> 
                 </li>
                 <li>
-                <Link className={`${props.scroll ? "black-color" : ""}`} to="/register">
-                  Đăng ký
+                <Link  to="/register">
+                    Đăng sản phẩm
                 </Link>
                 </li>
                 <li>
-                <Link to="/register">
-                  Đăng sản phẩm
-                </Link>
+                    <HeaderCart />
                 </li>
             </RightNav>
     );
