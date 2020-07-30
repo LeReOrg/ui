@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
 import Navbar from "./HeaderNav/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   header: {
     position: "relative",
-    background : "#FFFFFF",
-    boxShadow : "0px 4px 8px rgba(0, 0, 0, 0.1)",
-    
+    background: "#FFFFFF",
   },
 }));
 const Header = (props) => {
@@ -23,7 +20,7 @@ const Header = (props) => {
         setScroll(false);
       }
     };
-  },[])
+  }, []);
   return (
     <header className={classes.header}>
       <div className={`${scroll ? "header-scroll" : ""} `}>
@@ -33,4 +30,4 @@ const Header = (props) => {
   );
 };
 
-export default withRouter(Header);
+export default Header;

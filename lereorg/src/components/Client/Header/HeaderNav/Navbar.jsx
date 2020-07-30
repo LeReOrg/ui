@@ -8,8 +8,8 @@ const Nav = styled.nav`
   padding: 10px 80px 18px 80px;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 599.95px) {
-    
+  @media (max-width: 599.95px) { 
+    padding: 18px 0 18px 20px;
   }
 `;
 const Navbar = (props) => {
