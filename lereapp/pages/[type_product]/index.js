@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import BreadCrumb from "../../components/Client/BreadCrumb/BreadCrumb";
 import { Grid } from "@material-ui/core";
+import FilterItem from "../../components/Client/FilterItem/FilterItem";
 
 const ListProductByType = (props) => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const ListProductByType = (props) => {
       />
       <div style={{ width: "92%", margin: "40px auto" }}>
         <Grid container>
-          <Grid item lg={3} md={3}>Left</Grid>
+          <Grid item lg={3} md={3}><FilterItem /></Grid>
           <Grid item lg={9} md={9}>Right</Grid>
         </Grid>
       </div>
