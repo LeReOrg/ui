@@ -9,6 +9,7 @@ import Collapse from "@material-ui/core/Collapse";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Box } from "@material-ui/core";
 const CollapseRadio = ({ ...props }) => {
   const [radioState, setRadioState] = useState({
     open: false,
@@ -55,12 +56,19 @@ const CollapseRadio = ({ ...props }) => {
       : null;
   return (
     <div>
-      <List style={{ borderBottom: "1px soled #dbdbdb" }}>
+      <List>
         <ListItem
           onClick={() => handleClick()}
           style={{ padding: "10px 23px 10px 0", width: "60%" }}
         >
-          <ListItemText primary={props.title} className="collapse_title" />
+          <ListItemText
+            primary={
+              <Box fontWeight="bold" fontSize={16}>
+                {props.title}
+              </Box>
+            }
+            className="collapse_title"
+          />
           {handleAngle()}
         </ListItem>
         <Collapse in={radioState.open} timeout="auto" unmountOnExit>

@@ -38,7 +38,7 @@ const FilterItem = (props) => {
     }
     return array;
   };
-  console.log(filter)
+  
 //   const showFilteredResults = (filter) => {
 //     props.dispatch(getProductToShop(0, layout.limit, filter)).then(() => {
 //       setLayout((preState) => ({
@@ -55,12 +55,14 @@ const FilterItem = (props) => {
         list={price}
         handleFilters={(filters) => handleFilters(filters, "price")}
       />
+      <div style={{height : 1,width : "55%",background: "#E7E9E8" }}></div>
       <CollapseCheckbox
         initState={true}
         title="Địa điểm"
         list={places}
         handleFilters={(filters) => handleFilters(filters, "places")}
       />
+      
     </div>
   );
 };

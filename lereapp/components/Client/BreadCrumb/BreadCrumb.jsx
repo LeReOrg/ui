@@ -1,8 +1,9 @@
 import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "next/link";
-import {makeStyles} from '@material-ui/styles';
+import { makeStyles } from "@material-ui/styles";
 import LinkStyle from "@material-ui/core/Link";
+import { capitalize } from "../../../utils/FunctionUses";
 
 const useStyled = makeStyles((theme) => ({
   breadcrumb_main: {
@@ -18,13 +19,10 @@ const useStyled = makeStyles((theme) => ({
       color: "#2FAF62 !important",
     },
   },
-}));    
+}));
 
-function capitalize(s) {
-  return s[0].toUpperCase() + s.slice(1);
-}
- const BreadCrumb = (props) => {
-     const classes = useStyled();
+const BreadCrumb = (props) => {
+  const classes = useStyled();
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb_main}>
       <Link href="/" as="/">
@@ -38,10 +36,10 @@ function capitalize(s) {
           aria-current="page"
           className={classes.breadcrumb_main_link}
         >
-          {props.activeBread ? capitalize(props.activeBread) : null}
+          {props.activeBread && capitalize(props.activeBread)}
         </LinkStyle>
       </Link>
     </Breadcrumbs>
   );
-}
+};
 export default BreadCrumb;

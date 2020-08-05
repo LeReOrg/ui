@@ -48,4 +48,25 @@ const price = [
     array: [500000, 200000000],
   }
 ];
-export { places, price };
+
+const sort = [
+  {
+    _id: 0,
+    name: "Mặc định",
+   
+  },
+  {
+    _id: 1,
+    name: "Giá Thấp",
+   
+  },
+  {
+    _id: 2,
+    name: "Giá cao",
+   
+  },
+  
+];
+
+
+export { places, price, sort };

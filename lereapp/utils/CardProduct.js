@@ -5,27 +5,32 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import imageTest from "../assets/Img.jpg";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  content: {
-    paddingTop: 16,
-    fontSize: 16,
-    fontWeight : "normal",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 14,
-      paddingTop: 4,
-    },
-  },
-  price_item : {
-    color: "#2F80ED",
-    fontSize : 16,
-    fontWeight : "bold",
-  }
-}));
+
 
 const CardProduct = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      maxWidth: 345,
+    },
+    content: {
+      paddingTop: 16,
+      fontSize: 16,
+      fontWeight: "normal",
+      [theme.breakpoints.down("xs")]: {
+        fontSize: 14,
+        paddingTop: 4,
+      },
+    },
+    price_item: {
+      color: "#2F80ED",
+      fontSize: 16,
+      fontWeight: "bold",
+    },
+    media: {
+      height: `${props.itemByType ? "160px" : "215px"}`,
+      objectFit : "fill"
+    },
+  }));
   const classes = useStyles();
   return (
     <>
