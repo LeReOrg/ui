@@ -35,7 +35,7 @@ const ListProductByType = (props) => {
       />
       <div className={classes.main_list}>
         <Grid container>
-          <Grid item lg={3} md={3}  className={classes.main_filter}>
+          <Grid item lg={3} md={3} className={classes.main_filter}>
             <FilterItem />
           </Grid>
           <Grid item lg={9} md={9} xs={12}>
@@ -48,6 +48,7 @@ const ListProductByType = (props) => {
             />
           </Grid>
         </Grid>
+        
       </div>
     </>
   );

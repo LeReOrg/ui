@@ -62,9 +62,10 @@ const SortProduct = ({ ...props }) => {
           ref={anchorRef}
           aria-haspopup="true"
           onClick={handleToggle}
+          style={{textTransform : "none",letterSpacing : 0}}
           aria-controls={open ? "menu-list-grow" : undefined}
         >
-          {`SẮP XẾP :  ${title}`}
+          {`Sắp xếp :  ${title}`}
           <FontAwesomeIcon
             icon={faAngleDown}
             className="icon"

@@ -24,7 +24,7 @@ const RightNav = styled.ul`
       }
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 890px) {
     flex-flow: column nowrap;
     background-color: #ffffff;
     position: fixed;
@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) =>({
     right_nav_main : {
         display : "flex",
         
-    }
+    },
+
 }))
 
 const RightNavMenu = ({...props}) => {

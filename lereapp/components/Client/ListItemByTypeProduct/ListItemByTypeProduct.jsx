@@ -8,12 +8,13 @@ import PaginationRounded from "../../../utils/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
+import FilterItemMobile from "../FilterItem/FilterItemMobile";
 
 const useStyles = makeStyles((theme) => ({
   interested_main: {
     marginTop: 64,
     [theme.breakpoints.down("sm")]: {
-      marginTop: 30,
+      marginTop: 20,
     },
   },
   interested_title: {
@@ -28,7 +29,10 @@ const useStyles = makeStyles((theme) => ({
   title_main: {
     display: "flex",
     justifyContent: "space-between",
-   alignItems : "center"
+   alignItems : "center",
+   [theme.breakpoints.down("sm")] : {
+     paddingBottom : 15
+   }
   },
   mobile_mode_filter: {
     display: "none",
@@ -40,9 +44,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+ 
 const ListItemByTypeProduct = (props) => {
   const classes = useStyles();
+ 
   const [test, setTest] = useState(false);
+  const [displayFilter, setDisplayFilter] = useState(false);
+  const showFilter = () => {
+   
+    console.log('eee')
+    setDisplayFilter(true);
+  };
+  const onChangeDisplay = () =>{
+    setDisplayFilter(false);
+  }
   return (
     <div className={classes.interested_main}>
       <Typography component="div">
@@ -50,7 +65,10 @@ const ListItemByTypeProduct = (props) => {
           <Box className={classes.interested_title}>
             {props.typeProduct && capitalize(props.typeProduct)}
           </Box>
-          <Box className={classes.mobile_mode_filter}>
+          <Box
+            className={classes.mobile_mode_filter}
+            onClick={() => showFilter()}
+          >
             <FontAwesomeIcon icon={faSlidersH} className="icon" />
             <span>Lọc</span>
           </Box>
@@ -87,6 +105,10 @@ const ListItemByTypeProduct = (props) => {
         </Grid>
       </Typography>
       <PaginationRounded />
+      <FilterItemMobile
+        onChangeDisplay={onChangeDisplay}
+        display={displayFilter}
+      />
     </div>
   );
 };

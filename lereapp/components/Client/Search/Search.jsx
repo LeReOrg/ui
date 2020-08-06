@@ -60,6 +60,12 @@ const Search = () => {
     search_input_body: {
       width: "30%",
       margin: "0 auto",
+      [theme.breakpoints.between("sm", "md")]: {
+        width: "70%",
+      },
+      [theme.breakpoints.between("md", "lg")]: {
+        width: "50%",
+      },
       [theme.breakpoints.down("xs")]: {
         width: "100%",
       },
@@ -84,7 +90,6 @@ const Search = () => {
     },
     search_icon: {
       paddingRight: "10px",
-     
     },
     search_icon_title: {},
   }));
@@ -111,7 +116,7 @@ const Search = () => {
         </Grid>
 
         <Grid container spacing={2} className={classes.search_input_body}>
-          <Grid item xs={12} lg={9}>
+          <Grid item xs={12} lg={9} md={8} sm={8}>
             <div className={classes.search_input}>
               <FormField
                 id={"search"}
@@ -120,7 +125,7 @@ const Search = () => {
               />
             </div>
           </Grid>
-          <Grid item xs={12} lg={3}>
+          <Grid item xs={12} lg={3} md={4} sm={4}>
             <div onClick={searchKeyWord} className={classes.search_btn}>
               <div className={classes.search_icon}>
                 <FontAwesomeIcon icon={faSearch} className="icon" />
