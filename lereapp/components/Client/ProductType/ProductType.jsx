@@ -1,11 +1,21 @@
-import React, {useState } from "react";
+import React, {useState,useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CartProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Controller } from 'swiper';
+import { wrapper } from "../../../store/store";
+import { useDispatch } from "react-redux";
+import { getCategories } from "../../../store/action/categories_action";
+import { useSelector } from 'react-redux'
 
-const ProductType = () => {
+const ProductType = (props) => {
+  const categories = useSelector((state) => state.categories)
+  const test = categories.categories
+  console.log(test)
+  for(const property in test){
+    console.log(property);
+  }
   const useStyles = makeStyles((theme) => ({
   
     type_product_title: {
@@ -131,5 +141,8 @@ const ProductType = () => {
     </div>
   );
 };
-
+// export const getStaticProps = wrapper.getStaticProps(async({store}) => {
+//   store.dispatch(getCategories())
+//   await store.sagaTask.toPromise()
+// })
 export default ProductType;

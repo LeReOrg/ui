@@ -1,2 +1,2 @@
-export const LOGIN_USER = "login_user";
-export const REGISTER_USER = "register_user";
+export const GET_CATEGORIES = "GET_CATEGORIES"
+export const LOAD_DATA_SUCCESS = "LOAD_DATA_SUCCESS"

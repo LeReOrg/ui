@@ -46,7 +46,7 @@ const MyApp = (props) => {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        {/* <Provider store={store}> */}
+        
           <div className="container-fluid">
             <Header />
             <div className={classes.page_container}>
@@ -54,7 +54,7 @@ const MyApp = (props) => {
             </div>
             <Footer />
           </div>
-        {/* </Provider> */}
+        
       </ThemeProvider>
     </React.Fragment>
   );
