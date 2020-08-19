@@ -51,8 +51,7 @@ const ListItemByTypeProduct = (props) => {
   const [test, setTest] = useState(false);
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
-   
-    console.log('eee')
+
     setDisplayFilter(true);
   };
   const onChangeDisplay = () =>{

@@ -10,9 +10,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "./theme";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "swiper/swiper.scss";
-import store from "../store/store";
 import withRedux from "next-redux-wrapper";
-
+import { wrapper } from "../store/store";
+// import store from "../store/store";
 import Footer from "../components/Client/Footer/Footer";
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -46,26 +46,23 @@ const MyApp = (props) => {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Provider store={store}>
+        {/* <Provider store={store}> */}
           <div className="container-fluid">
             <Header />
             <div className={classes.page_container}>
               <Component {...pageProps} />
             </div>
-
             <Footer />
           </div>
-        </Provider>
+        {/* </Provider> */}
       </ThemeProvider>
     </React.Fragment>
   );
 }
-//makeStore function that returns a new store for every request
-const makeStore = () => store;
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
-
-export default withRedux(makeStore)(MyApp);
+// export default withRedux(makeStore)(MyApp);
+export default wrapper.withRedux(MyApp);
