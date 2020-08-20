@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartProductType = () => {
+const CardProductType = (props) => {
   const classes = useStyles();
-
+  
   return (
     <>
-      <Link as="/tivi" href="/[type_product]">
+      <Link as='/1' href="/[type_product]">
         <a>
           <Card className={classes.root}>
             <CardActionArea>
@@ -50,4 +50,4 @@ const CartProductType = () => {
     </>
   );
 };
-export default CartProductType;
+export default CardProductType;

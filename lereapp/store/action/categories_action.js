@@ -9,6 +9,7 @@ export function loadDataSuccess(data) {
 export function getCategories() {
     return { type: GET_CATEGORIES }
 }
-export function getProductByCategory() {
-  return { type: GET_PRODUCT_BY_CATEGORY };
+export function getProductByCategory(params) {
+  
+  return { type: GET_PRODUCT_BY_CATEGORY,params: params };
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CartProductType from "../../../utils/CardProductType";
+import CardProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Controller } from "swiper";
@@ -69,25 +69,25 @@ const ProductType = (props) => {
         }}
       >
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -112,22 +112,22 @@ const ProductType = (props) => {
         }}
       >
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
         <SwiperSlide>
-          <CartProductType />
+          <CardProductType />
         </SwiperSlide>
       </Swiper>
     </div>

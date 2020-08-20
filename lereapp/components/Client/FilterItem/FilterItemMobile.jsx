@@ -21,7 +21,6 @@ const FilterItemMobile = (props) => {
       setDisplay(true);
     }
   }, [props.display]);
-  console.log(display);
 
   const useStyled = makeStyles((theme) => ({
     filter_main_mobile: {
