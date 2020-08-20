@@ -1,23 +1,14 @@
-import React, {useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CartProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Controller } from 'swiper';
-import { wrapper } from "../../../store/store";
-import { useDispatch } from "react-redux";
+import SwiperCore, { Controller } from "swiper";
+import { useSelector, connect } from "react-redux";
 import { getCategories } from "../../../store/action/categories_action";
-import { useSelector } from 'react-redux'
-
 const ProductType = (props) => {
-  const categories = useSelector((state) => state.categories)
-  // const test = categories.categories
-  console.log(categories);
-  // for(const property in test){
-  //   console.log(property);
-  // }
+  const categories = useSelector((state) => state.categories);
   const useStyles = makeStyles((theme) => ({
-  
     type_product_title: {
       [theme.breakpoints.down("xs")]: {
         fontSize: 20,
@@ -27,17 +18,17 @@ const ProductType = (props) => {
     type_product_main: {
       marginTop: 40,
       width: "90%",
-      margin : "0 auto",
+      margin: "0 auto",
       [theme.breakpoints.down("xs")]: {
         marginTop: 24,
       },
     },
-    spaceBetweenTwoSwipe :{ 
-      marginTop : 40,
+    spaceBetweenTwoSwipe: {
+      marginTop: 40,
       [theme.breakpoints.down("xs")]: {
         marginTop: 14,
       },
-    }
+    },
   }));
 
   SwiperCore.use([Controller]);
@@ -59,9 +50,9 @@ const ProductType = (props) => {
         </Box>
       </Typography>
       <Swiper
-        
         slidesPerView={4}
-        onSwiper={setFirstSwiper} controller={{ control: secondSwiper }}
+        onSwiper={setFirstSwiper}
+        controller={{ control: secondSwiper }}
         breakpoints={{
           320: {
             slidesPerView: 2.5,
@@ -100,10 +91,11 @@ const ProductType = (props) => {
         </SwiperSlide>
       </Swiper>
       <Swiper
-        className= {classes.spaceBetweenTwoSwipe}
+        className={classes.spaceBetweenTwoSwipe}
         spaceBetween={50}
         slidesPerView={4}
-        onSwiper={setSecondSwiper} controller={{ control: firstSwiper }}
+        onSwiper={setSecondSwiper}
+        controller={{ control: firstSwiper }}
         breakpoints={{
           320: {
             slidesPerView: 2.5,
@@ -141,8 +133,9 @@ const ProductType = (props) => {
     </div>
   );
 };
-// export const getStaticProps = wrapper.getStaticProps(async({store}) => {
-//   store.dispatch(getCategories())
-//   await store.sagaTask.toPromise()
-// })
-export default ProductType;
+const mapStateToProps = (state) => {
+  return {
+    categories : state.categories
+  }
+}
+export default connect(mapStateToProps)(ProductType);
