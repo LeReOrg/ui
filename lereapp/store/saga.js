@@ -6,18 +6,14 @@ import { loadDataSuccess } from './action/categories_action'
 function* getCategories() {
     try {
         const res = yield axios(`${config.api}/categories`)
-        
-        const data =  res.data
-        yield put(loadDataSuccess(data))
+        yield put(loadDataSuccess(res.data))
     } catch (error) {
        console.log(error)
     }
 }
-
-
 function* rootSaga(){
     yield all([
-        takeEvery(GET_CATEGORIES,getCategories)
+        takeLatest(GET_CATEGORIES,getCategories)
     ])
 }
 

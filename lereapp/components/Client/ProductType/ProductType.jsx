@@ -11,11 +11,11 @@ import { useSelector } from 'react-redux'
 
 const ProductType = (props) => {
   const categories = useSelector((state) => state.categories)
-  const test = categories.categories
-  console.log(test)
-  for(const property in test){
-    console.log(property);
-  }
+  // const test = categories.categories
+  console.log(categories);
+  // for(const property in test){
+  //   console.log(property);
+  // }
   const useStyles = makeStyles((theme) => ({
   
     type_product_title: {

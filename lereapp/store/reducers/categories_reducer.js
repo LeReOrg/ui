@@ -3,7 +3,7 @@ import { GET_CATEGORIES, LOAD_DATA_SUCCESS } from "../action/types";
 const initialState = {
   categories: null
 }
-export default function categories(state=initialState, action) {
+export default function categories(state={}, action) {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };
