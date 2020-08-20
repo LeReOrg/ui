@@ -8,23 +8,25 @@ import Header from "../components/Client/Header/Header";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "./theme";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/swiper.scss";
-import { wrapper } from "../store/store";
-// import store from "../store/store";
+import { wrapper, useStore } from "../store/store";
+import { PersistGate } from "redux-persist/integration/react";
 import Footer from "../components/Client/Footer/Footer";
-const MyApp = (props) => {
-  const { Component, pageProps } = props;
+import { persistStore } from "redux-persist";
+
+const MyApp = ({ Component, pageProps }) => {
   const useStyles = makeStyles((theme) => ({
     page_container: {
-       paddingBottom : 80,
+      paddingBottom: 80,
       width: "100%",
       [theme.breakpoints.down("sm")]: {
-        paddingBottom : 130
+        paddingBottom: 130,
       },
     },
   }));
-   const classes = useStyles();
+
+  const classes = useStyles();
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -32,7 +34,8 @@ const MyApp = (props) => {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
-
+  const store = useStore(pageProps.initialReduxState);
+  const persistor = persistStore(store);
   return (
     <React.Fragment>
       <Head>
@@ -43,21 +46,25 @@ const MyApp = (props) => {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        
-          <div className="container-fluid">
-            <Header />
-            <div className={classes.page_container}>
-              <Component {...pageProps} />
+        <Provider store={store}>
+          <PersistGate
+            persistor={persistor}
+            loading={<Component {...pageProps} />}
+          >
+            <div className="container-fluid">
+              <Header />
+              <div className={classes.page_container}>
+                <Component {...pageProps} />
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        
+          </PersistGate>
+        </Provider>
       </ThemeProvider>
     </React.Fragment>
   );
-}
+};
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,

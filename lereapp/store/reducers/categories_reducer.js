@@ -1,9 +1,9 @@
 import { HYDRATE } from "next-redux-wrapper";
-import { GET_CATEGORIES, LOAD_DATA_SUCCESS } from "../action/types";
+import {  LOAD_DATA_SUCCESS } from "../action/types";
 const initialState = {
-  categories: null
-}
-export default function categories(state={}, action) {
+  categories: null,
+};
+export default function categories(state = initialState, action) {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };
@@ -11,7 +11,7 @@ export default function categories(state={}, action) {
       return {
         ...state,
         ...{ categories: action.data },
-      }
+      };
     default:
       return state;
   }
