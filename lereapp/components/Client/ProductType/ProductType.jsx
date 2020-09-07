@@ -4,32 +4,50 @@ import CardProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Controller } from "swiper";
-import { useSelector, connect } from "react-redux";
+import { useSelector, connect, useDispatch } from "react-redux";
 import { getCategories } from "../../../store/action/categories_action";
+import { wrapper } from "../../../store/store";
 const ProductType = (props) => {
-  const categories = useSelector((state) => state.categories);
-  const useStyles = makeStyles((theme) => ({
-    type_product_title: {
-      [theme.breakpoints.down("xs")]: {
-        fontSize: 20,
-        paddingBottom: 16,
+    const categoriesItem = useSelector((state) => state.categories.categories.categories);
+    const numberCategories = categoriesItem.length;
+    const numberCategoriesbySlide = Math.round(numberCategories/2);
+    const [categories, setcategories] = useState(categoriesItem);
+      let getFirstCategoriesItems = categories
+        .slice(0, numberCategoriesbySlide)
+        .map((item, index) => (
+          <SwiperSlide key={index}>
+            <CardProductType info={item} />
+          </SwiperSlide>
+        ));
+         let getSecondCategoriesItems = categories
+           .slice(numberCategoriesbySlide)
+           .map((item, index) => (
+             <SwiperSlide key={index}>
+               <CardProductType info={item} />
+             </SwiperSlide>
+           ));
+    const useStyles = makeStyles((theme) => ({
+      type_product_title: {
+        [theme.breakpoints.down("xs")]: {
+          fontSize: 20,
+          paddingBottom: 16,
+        },
       },
-    },
-    type_product_main: {
-      marginTop: 40,
-      width: "90%",
-      margin: "0 auto",
-      [theme.breakpoints.down("xs")]: {
-        marginTop: 24,
+      type_product_main: {
+        marginTop: 40,
+        width: "90%",
+        margin: "0 auto",
+        [theme.breakpoints.down("xs")]: {
+          marginTop: 24,
+        },
       },
-    },
-    spaceBetweenTwoSwipe: {
-      marginTop: 40,
-      [theme.breakpoints.down("xs")]: {
-        marginTop: 14,
+      spaceBetweenTwoSwipe: {
+        marginTop: 40,
+        [theme.breakpoints.down("xs")]: {
+          marginTop: 14,
+        },
       },
-    },
-  }));
+    }));
 
   SwiperCore.use([Controller]);
   const [firstSwiper, setFirstSwiper] = useState(null);
@@ -68,27 +86,7 @@ const ProductType = (props) => {
           },
         }}
       >
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
+        {getFirstCategoriesItems}
       </Swiper>
       <Swiper
         className={classes.spaceBetweenTwoSwipe}
@@ -111,31 +109,19 @@ const ProductType = (props) => {
           },
         }}
       >
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardProductType />
-        </SwiperSlide>
+        {getSecondCategoriesItems}
       </Swiper>
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    categories : state.categories
-  }
-}
-export default connect(mapStateToProps)(ProductType);
+// const mapStateToProps = (state) => {
+//   return {
+//     categoriesItem: state.categories,
+//   };
+// };
+export default ProductType;
+// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+//   store.dispatch(getCategories());
+//   store.dispatch(END);
+//   await store.sagaTask.toPromise();
+// });

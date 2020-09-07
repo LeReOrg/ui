@@ -1,4 +1,8 @@
-import { LOAD_DATA_SUCCESS, GET_CATEGORIES,GET_PRODUCT_BY_CATEGORY } from "./types";
+import {
+  LOAD_DATA_SUCCESS,
+  GET_CATEGORIES,
+  GET_PRODUCT_BY_CATEGORY,
+} from "./types";
 
 export function loadDataSuccess(data) {
     return {

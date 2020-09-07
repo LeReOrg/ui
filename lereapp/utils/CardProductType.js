@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -20,9 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardProductType = (props) => {
+const CardProductType = ({info}) => {
   const classes = useStyles();
-
   return (
     <>
       <Link as="/1" href="/[type_product]">
@@ -43,7 +42,7 @@ const CardProductType = (props) => {
             align="center"
             variant="subtitle1"
           >
-            Giay dep
+            {info && info.name}
           </Typography>
         </a>
       </Link>
