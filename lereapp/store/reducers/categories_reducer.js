@@ -9,7 +9,8 @@ export default function categoriesRoot(state = initialState, action) {
       return { ...state, ...action.payload };
     case LOAD_DATA_SUCCESS:
       return {
-        categories: [...action.data],
+        ...state,
+        categories : [...action.data],
       };
     default:
       return state;

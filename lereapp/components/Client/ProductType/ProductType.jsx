@@ -8,24 +8,35 @@ import { useSelector, connect, useDispatch } from "react-redux";
 import { getCategories } from "../../../store/action/categories_action";
 import { wrapper } from "../../../store/store";
 const ProductType = (props) => {
-    const categoriesItem = useSelector((state) => state.categories.categories.categories);
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(getCategories())
+    },[])
+    const categoriesItem = useSelector((state) => state.categories.categories);
+    // console.log(categoriesItem)
     const numberCategories = categoriesItem.length;
+    let getFirstCategoriesItems = [];
+    let getSecondCategoriesItems = [];   
     const numberCategoriesbySlide = Math.round(numberCategories/2);
-    const [categories, setcategories] = useState(categoriesItem);
-      let getFirstCategoriesItems = categories
-        .slice(0, numberCategoriesbySlide)
-        .map((item, index) => (
-          <SwiperSlide key={index}>
-            <CardProductType info={item} />
-          </SwiperSlide>
-        ));
-         let getSecondCategoriesItems = categories
-           .slice(numberCategoriesbySlide)
-           .map((item, index) => (
-             <SwiperSlide key={index}>
-               <CardProductType info={item} />
-             </SwiperSlide>
-           ));
+    if(categoriesItem.length > 0){
+       getFirstCategoriesItems = categoriesItem
+      .slice(0, numberCategoriesbySlide)
+      .map((item, index) => (
+        <SwiperSlide key={index}>
+          <CardProductType info={item} />
+        </SwiperSlide>
+      ));
+      getSecondCategoriesItems = categoriesItem
+      .slice(numberCategoriesbySlide)
+      .map((item, index) => (
+        <SwiperSlide key={index}>
+          <CardProductType info={item} />
+        </SwiperSlide>
+      ));
+    }
+    
+  
+       
     const useStyles = makeStyles((theme) => ({
       type_product_title: {
         [theme.breakpoints.down("xs")]: {
@@ -114,14 +125,5 @@ const ProductType = (props) => {
     </div>
   );
 };
-// const mapStateToProps = (state) => {
-//   return {
-//     categoriesItem: state.categories,
-//   };
-// };
+
 export default ProductType;
-// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-//   store.dispatch(getCategories());
-//   store.dispatch(END);
-//   await store.sagaTask.toPromise();
-// });
