@@ -6,14 +6,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Controller } from "swiper";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { getCategories } from "../../../store/action/categories_action";
-import { wrapper } from "../../../store/store";
 const ProductType = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getCategories())
     },[])
     const categoriesItem = useSelector((state) => state.categories.categories);
-    // console.log(categoriesItem)
     const numberCategories = categoriesItem.length;
     let getFirstCategoriesItems = [];
     let getSecondCategoriesItems = [];   

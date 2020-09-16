@@ -5,6 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import imageTest from "../assets/Img.jpg";
+import Link from "next/link";
 
 
 const CardProduct = (props) => {
@@ -34,7 +35,9 @@ const CardProduct = (props) => {
   const classes = useStyles();
   return (
     <>
-      <Card className={classes.root}>
+    <Link as='/test' href="/[product]" >
+      <a>
+    <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -60,6 +63,9 @@ const CardProduct = (props) => {
       >
        30,000đ/ngày
       </Typography>
+      </a>
+    </Link>
+    
     </>
   );
 };

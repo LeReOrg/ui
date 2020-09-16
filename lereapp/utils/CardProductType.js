@@ -22,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
 const CardProductType = ({info}) => {
   const classes = useStyles();
+  const link = `/type_product/${info.name}`
   return (
     <>
-      <Link as="/1" href="/[type_product]">
+      <Link as={link} href="/type_product/[index]">
         <a>
           <Card className={classes.root}>
             <CardActionArea>

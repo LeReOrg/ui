@@ -27,16 +27,14 @@ const ListProductByType = () => {
   }));
   const classes = useStyled();
   const router = useRouter();
+  console.log(router)
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch.getProductByCategory(router.query.type_product)
-  // },[dispatch])
   return (
     <>
       <BreadCrumb
         activeBread={
-          router.query.type_product !== "undefined"
-            ? router.query.type_product
+          router.query.index !== "undefined"
+            ? router.query.index
             : null
         }
       />
@@ -48,8 +46,8 @@ const ListProductByType = () => {
           <Grid item lg={9} md={9} xs={12}>
             <ListItemByTypeProduct
               typeProduct={
-                router.query.type_product !== "undefined"
-                  ? router.query.type_product
+                router.query.index !== "undefined"
+                  ? router.query.index
                   : null
               }
             />
@@ -69,10 +67,7 @@ export const getStaticProps = wrapper.getStaticProps(
 );
 export async function getStaticPaths() {
   return {
-    // Only `/posts/1` and `/posts/2` are generated at build time
-    paths: [{ params: { type_product: "1" } }],
-    // Enable statically generating additional pages
-    // For example: `/posts/3`
+    paths: [{ params: { index: "1" } }],
     fallback: true,
   };
 }
