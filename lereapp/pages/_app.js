@@ -14,6 +14,7 @@ import { wrapper, useStore } from "../store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Footer from "../components/Client/Footer/Footer";
 import { persistStore } from "redux-persist";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 const MyApp = ({ Component, pageProps }) => {
   const useStyles = makeStyles((theme) => ({

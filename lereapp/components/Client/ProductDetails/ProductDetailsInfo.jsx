@@ -6,26 +6,8 @@ import { green, purple } from "@material-ui/core/colors";
 import { Typography, Box, Button } from "@material-ui/core";
 import AddCircleOutlineSharpIcon from '@material-ui/icons/AddCircleOutlineSharp';
 import RemoveCircleOutlineSharpIcon from '@material-ui/icons/RemoveCircleOutlineSharp';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import { sizing } from '@material-ui/system';
-import SwiperCore, { Swiper, Autoplay, Navigation, Pagination, Controller, Control } from 'swiper';
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
-import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
-
-import FormField from "../../../utils/FormField";
+import ImageGallery from 'react-image-gallery';
 import imageTest1 from "../../../assets/Tent.jpg";
 import imageTest2 from "../../../assets/Img1.jpg";
 import imageTest3 from "../../../assets/Img2.jpg";
@@ -100,13 +82,6 @@ const ProductDetailsInfo = ({...props}) => {
         hire_time_width: {
             width: "70%",
         },
-        appBar: {
-            position: 'relative',
-          },
-        title: {
-            marginLeft: theme.spacing(2),
-            flex: 1,
-        },
     }));
     const classes = useStyled()
 
@@ -146,87 +121,32 @@ const ProductDetailsInfo = ({...props}) => {
             setQuantity(newState)
         }
     }
-    // Hire Time
-    // const [hireTime, setHireTime] = useState('');
 
-    // const handleChangeHireTime = (event) => {
-    //     setHireTime(event.target.value);
-    // };
-
-    // Image Change
-    const [imageSrc, setImageSrc] = useState(imageTest1)
-
-    const handleChangeImage = (src) => {
-        console.log(src)
-        setImageSrc(src)
-    }
-    
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-        spaceBetween: 10,
-        slidesPerView: 5,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-        centerInsufficientSlides: true,
-        slideToClickedSlide: true,
-      });
-    var galleryTop = new Swiper('.gallery-top', {
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+    // Image
+    const images = [
+        {
+            original: imageTest1,
+            thumbnail: imageTest1,
         },
-        thumbs: {
-            swiper: galleryThumbs
+        {
+            original: imageTest1,
+            thumbnail: imageTest1,
         },
-    });
-
-    const [open, setOpen] = React.useState(false);
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
-
-    const Transition = React.forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props} />;
-    });
+        {
+            original: imageTest1,
+            thumbnail: imageTest1,
+        },
+        {
+            original: imageTest1,
+            thumbnail: imageTest1,
+        },
+    ];
 
     return(
         <div className={classes.main_list}>
             <Grid container spacing={8}>
                 <Grid item lg={6} md={6} xs={12}>
-                    <div className="swiper-container gallery-top">
-                        <div class="swiper-wrapper">
-                            <div className="swiper-slide">
-                                <img src={imageSrc} onClick={handleClickOpen} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="swiper-container gallery-thumbs">
-                        <div className="swiper-wrapper">
-                            <div className="swiper-slide">
-                                <img src={imageTest1} onClick={() => handleChangeImage(imageTest1)} />
-                            </div>
-                            <div className="swiper-slide">
-                                <img src={imageTest2} onClick={() => handleChangeImage(imageTest2)} />
-                            </div>
-                            <div className="swiper-slide">
-                                <img src={imageTest3} onClick={() => handleChangeImage(imageTest3)} />
-                            </div>
-                            <div className="swiper-slide">
-                                <img src={imageTest4} onClick={() => handleChangeImage(imageTest4)} />
-                            </div>
-                            <div className="swiper-slide">
-                                <img src={imageTest5} onClick={() => handleChangeImage(imageTest5)} />
-                            </div>
-                            <div className="swiper-slide">
-                                <img src={imageTest5} onClick={() => handleChangeImage(imageTest5)} />
-                            </div>
-                        </div>
-                    </div>
+                    <ImageGallery items={images} />
                 </Grid>
                 <Grid item lg={6} md={6} xs={12}>
                     <Typography
@@ -280,7 +200,6 @@ const ProductDetailsInfo = ({...props}) => {
                             </div>
                         </Grid>
                     </Grid>
-                    {/* <Button color="success" className={classes.button_cart}>Chọn vào giỏ hàng</Button> */}
                     <Box>
                         <StyledButton variant="contained" color="primary">
                             Chọn vào giỏ hàng
@@ -288,31 +207,6 @@ const ProductDetailsInfo = ({...props}) => {
                     </Box>
                 </Grid>
             </Grid>
-
-        {/* <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-            <AppBar className={classes.appBar}>
-            <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                <CloseIcon />
-                </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                Sound
-                </Typography>
-                <Button autoFocus color="inherit" onClick={handleClose}>
-                save
-                </Button>
-            </Toolbar>
-            </AppBar>
-            <List>
-            <ListItem button>
-                <ListItemText primary="Phone ringtone" secondary="Titania" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-                <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-            </ListItem>
-            </List>
-        </Dialog> */}
         </div>
     )
 }
