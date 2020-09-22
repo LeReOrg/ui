@@ -31,7 +31,10 @@ const ProductDetailsInfo = ({...props}) => {
             color: "#111E16",
             fontSize: 24,
             fontWeight: "bold",
-            marginRight: "25%"
+            marginRight: "25%",
+            [theme.breakpoints.down("sm")]: {
+                marginRight: "0px",
+            },
         },
         prices: {
             color: "#2FAF62",
@@ -81,7 +84,15 @@ const ProductDetailsInfo = ({...props}) => {
         },
         hire_time_width: {
             width: "70%",
+            [theme.breakpoints.down("sm")]: {
+                width: "100%",
+            },
         },
+        button_cart: {
+            [theme.breakpoints.down("sm")]: {
+                margin: "10 auto",
+            },
+        }
     }));
     const classes = useStyled()
 
@@ -93,6 +104,9 @@ const ProductDetailsInfo = ({...props}) => {
             color: theme.palette.getContrastText(purple[500]),
             height: 48,
             width: 350,
+            [theme.breakpoints.down("sm")]: {
+                width: "100%",
+            },
             marginTop: "2%",
             padding: "12px 24px",
             "&:hover": {
@@ -170,16 +184,39 @@ const ProductDetailsInfo = ({...props}) => {
                     <hr />
                     <Grid container>
                         <Grid item lg={6} md={6} xs={12}>
-                            <Typography
-                            className={classes.quantity_title}
-                            align="left"                    
-                            >
-                                Số lượng:
-                            </Typography>
-                            <div className={classes.quantity_space}>
-                                <RemoveCircleOutlineSharpIcon className={classes.button_color} onClick={handleDecreaseQuantity} />
-                                <b className={classes.quantity}>{input.quantity}</b>
-                                <AddCircleOutlineSharpIcon className={classes.button_color} onClick={handleIncreaseQuantity} />
+                            <div className="quantity_web">
+                                <Grid container>
+                                    <Typography
+                                        className={classes.quantity_title}
+                                        align="left"                    
+                                    >
+                                        Số lượng:
+                                    </Typography>
+                                    <Grid container className={classes.quantity_space}>
+                                        <RemoveCircleOutlineSharpIcon className={classes.button_color} onClick={handleDecreaseQuantity} />
+                                        <b className={classes.quantity}>{input.quantity}</b>
+                                        <AddCircleOutlineSharpIcon className={classes.button_color} onClick={handleIncreaseQuantity} />
+                                    </Grid>
+                                </Grid>
+                            </div>
+                            <div className="quantity_mobile">
+                                <Grid container>
+                                    <Grid item lg={6} md={6} xs={6}>
+                                        <Typography
+                                            className={classes.quantity_title}
+                                            align="left"              
+                                        >
+                                            Số lượng:
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item lg={6} md={6} xs={6}>
+                                        <div className={classes.quantity_space} align="right">
+                                            <RemoveCircleOutlineSharpIcon className={classes.button_color} onClick={handleDecreaseQuantity} />
+                                            <b className={classes.quantity}>{input.quantity}</b>
+                                            <AddCircleOutlineSharpIcon className={classes.button_color} onClick={handleIncreaseQuantity} />
+                                        </div>
+                                    </Grid>
+                                </Grid>
                             </div>
                         </Grid>
                         <Grid item lg={6} md={6} xs={12}>
@@ -200,11 +237,13 @@ const ProductDetailsInfo = ({...props}) => {
                             </div>
                         </Grid>
                     </Grid>
-                    <Box>
-                        <StyledButton variant="contained" color="primary">
-                            Chọn vào giỏ hàng
-                        </StyledButton>
-                    </Box>
+                    <div className={classes.button_cart}>
+                        <Box>
+                            <StyledButton variant="contained" color="primary">
+                                Chọn vào giỏ hàng
+                            </StyledButton>
+                        </Box>
+                    </div>
                 </Grid>
             </Grid>
         </div>

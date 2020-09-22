@@ -473,3 +473,19 @@ p,ul {
   top: 0;
   left: 0;
 }
+.quantity_web{
+  display:block;
+}
+.quantity_mobile{
+  display:none;
+}
+
+/*============================ MEDIA MOBILE ==============================*/
+@media (max-width: 600px) {
+  .quantity_web{
+    display:none;
+  }
+  .quantity_mobile{
+    display:block;
+  }
+} 
