@@ -31,7 +31,7 @@ const ProductDetailsContent = ({...props}) => {
     const classes = useStyled()
     
     const renderReadMore = () => {
-        let length = props.content[0]._content.length + props.content[1]._content.length + props.content[2]._content.length + props.content[3]._content.length + props.content[4]._content.length
+        let length = props.content._content.length
         if(length > 700){
             return(
                 <Typography
@@ -58,31 +58,7 @@ const ProductDetailsContent = ({...props}) => {
                         className={classes.content}
                         align="left"                    
                     >
-                        {props.content[0]._content}
-                    </Typography>
-                    <Typography
-                        className={classes.content}
-                        align="left"                    
-                    >
-                        {props.content[1]._content}
-                    </Typography>
-                    <Typography
-                        className={classes.content}
-                        align="left"                    
-                    >
-                        {props.content[2]._content}
-                    </Typography>
-                    <Typography
-                        className={classes.content}
-                        align="left"                    
-                    >
-                        {props.content[3]._content}
-                    </Typography>
-                    <Typography
-                        className={classes.content}
-                        align="left"                    
-                    >
-                        {props.content[4]._content}
+                        {props.content._content}
                     </Typography>
                     {renderReadMore()}
                 </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { withStyles } from "@material-ui/core/styles";
@@ -15,6 +15,10 @@ import imageTest4 from "../../../assets/Img3.jpg";
 import imageTest5 from "../../../assets/Img4.jpg";
 
 const ProductDetailsInfo = ({...props}) => {
+    // Quantity
+    let state = { quantity: 1 }
+    const [input, setQuantity] = useState(state)
+
     const useStyled = makeStyles((theme) => ({
         main_list: {
           width: "92%",
@@ -66,8 +70,13 @@ const ProductDetailsInfo = ({...props}) => {
             fontWeight: "bold",
             color: "#111E16",
         },
-        button_color: {
+        button_color_plus: {
             fill: "#2FAF62",
+            cursor: "pointer"
+        },
+        button_color_minus: {
+            fill: input.quantity == 1 ? "#C3C7C5" : "#2FAF62",
+            cursor: "pointer",
         },
         quantity: {
             fontSize: 16,
@@ -120,15 +129,13 @@ const ProductDetailsInfo = ({...props}) => {
             fontStyle: "normal",
         },
     }))(Button);
-
-    // Quantity
-    let state = { quantity: 1 }
-    const [input, setQuantity] = useState(state)
-
-    const handleIncreaseQuantity = () => {
+    
+    // Handle Quantity
+    const handleIncreaseQuantity = () => {        
         let newState = { quantity: input.quantity + 1 }
         setQuantity(newState)
     }
+
     const handleDecreaseQuantity = () => {
         if(input.quantity > 1) {
             let newState = { quantity: input.quantity - 1 }
@@ -193,9 +200,9 @@ const ProductDetailsInfo = ({...props}) => {
                                         Số lượng:
                                     </Typography>
                                     <Grid container className={classes.quantity_space}>
-                                        <RemoveCircleOutlineSharpIcon className={classes.button_color} onClick={handleDecreaseQuantity} />
+                                        <RemoveCircleOutlineSharpIcon className={classes.button_color_minus} onClick={handleDecreaseQuantity} />
                                         <b className={classes.quantity}>{input.quantity}</b>
-                                        <AddCircleOutlineSharpIcon className={classes.button_color} onClick={handleIncreaseQuantity} />
+                                        <AddCircleOutlineSharpIcon className={classes.button_color_plus} onClick={handleIncreaseQuantity} />
                                     </Grid>
                                 </Grid>
                             </div>
@@ -211,9 +218,9 @@ const ProductDetailsInfo = ({...props}) => {
                                     </Grid>
                                     <Grid item lg={6} md={6} xs={6}>
                                         <div className={classes.quantity_space} align="right">
-                                            <RemoveCircleOutlineSharpIcon className={classes.button_color} onClick={handleDecreaseQuantity} />
+                                            <RemoveCircleOutlineSharpIcon className={classes.button_color_minus} onClick={handleDecreaseQuantity} />
                                             <b className={classes.quantity}>{input.quantity}</b>
-                                            <AddCircleOutlineSharpIcon className={classes.button_color} onClick={handleIncreaseQuantity} />
+                                            <AddCircleOutlineSharpIcon className={classes.button_color_plus} onClick={handleIncreaseQuantity} />
                                         </div>
                                     </Grid>
                                 </Grid>
