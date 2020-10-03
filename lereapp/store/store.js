@@ -7,7 +7,6 @@ import rootReducer from "./reducers/rootReducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 let store;
-
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== "production") {
     const { composeWithDevTools } = require("redux-devtools-extension");

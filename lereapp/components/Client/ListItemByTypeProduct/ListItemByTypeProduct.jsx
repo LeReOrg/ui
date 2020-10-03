@@ -102,6 +102,20 @@ const ListItemByTypeProduct = (props) => {
             <CardProduct test={test} itemByType={true} />
           </Grid>
         </Grid>
+        <Grid container spacing={8}>
+          <Grid item lg={3} xs={6}>
+            <CardProduct test={test} itemByType={true} />
+          </Grid>
+          <Grid item lg={3} xs={6}>
+            <CardProduct itemByType={true} />
+          </Grid>
+          <Grid item lg={3} xs={6}>
+            <CardProduct itemByType={true} />
+          </Grid>
+          <Grid item lg={3} xs={6}>
+            <CardProduct test={test} itemByType={true} />
+          </Grid>
+        </Grid>
       </Typography>
       <PaginationRounded />
       <FilterItemMobile
