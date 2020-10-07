@@ -10,7 +10,7 @@ import { wrapper } from "../../store/store";
 import { END } from "redux-saga";
 import { useDispatch,useSelector } from "react-redux";
 
-const ListProductByType = () => {
+const ListProductByType = (props) => {
   const useStyled = makeStyles((theme) => ({
     main_list: {
       width: "92%",
@@ -30,7 +30,7 @@ const ListProductByType = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getProductByCategory(router.query.index));
-  }, []);
+  }, [dispatch]);
   let nameTypeProduct = [];
   const getListProductByType  = useSelector(state => state.products.products)
   if(getListProductByType.length > 0){
@@ -73,8 +73,6 @@ export default ListProductByType;
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store, params }) => {
     store.dispatch(getProductByCategory(params.index));
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
   }
 );
 export async function getStaticPaths() {
