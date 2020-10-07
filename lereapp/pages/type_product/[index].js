@@ -5,10 +5,10 @@ import { Grid } from "@material-ui/core";
 import FilterItem from "../../components/Client/FilterItem/FilterItem";
 import ListItemByTypeProduct from "../../components/Client/ListItemByTypeProduct/ListItemByTypeProduct";
 import { makeStyles } from "@material-ui/styles";
-import { getProductByCategory } from "../../store/action/categories_action";
+import { getProductByCategory } from "../../store/action/products_action";
 import { wrapper } from "../../store/store";
 import { END } from "redux-saga";
-import { useDispatch, connect } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 const ListProductByType = () => {
   const useStyled = makeStyles((theme) => ({
@@ -27,16 +27,27 @@ const ListProductByType = () => {
   }));
   const classes = useStyled();
   const router = useRouter();
-  console.log(router)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProductByCategory(router.query.index));
+  }, []);
+  let nameTypeProduct = [];
+  const getListProductByType  = useSelector(state => state.products.products)
+  if(getListProductByType.length > 0){
+    nameTypeProduct =  getListProductByType.filter(item => `${router.query.index}` == parseInt(item.id))
+  }
+
   return (
     <>
       <BreadCrumb
         activeBread={
-          router.query.index !== "undefined"
-            ? router.query.index
+          nameTypeProduct.length > 0
+            ? nameTypeProduct[0].name
             : null
         }
+        id = { nameTypeProduct.length > 0
+          ? nameTypeProduct[0].id
+          : null}
       />
       <div className={classes.main_list}>
         <Grid container>
@@ -45,10 +56,11 @@ const ListProductByType = () => {
           </Grid>
           <Grid item lg={9} md={9} xs={12}>
             <ListItemByTypeProduct
+            listProduct = {getListProductByType}
               typeProduct={
-                router.query.index !== "undefined"
-                  ? router.query.index
-                  : null
+                nameTypeProduct.length > 0
+            ? nameTypeProduct[0].name
+            : null
               }
             />
           </Grid>
@@ -60,7 +72,7 @@ const ListProductByType = () => {
 export default ListProductByType;
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store, params }) => {
-    store.dispatch(getProductByCategory(params.type_product));
+    store.dispatch(getProductByCategory(params.index));
     store.dispatch(END);
     await store.sagaTask.toPromise();
   }

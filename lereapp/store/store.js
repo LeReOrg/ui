@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createWrapper } from "next-redux-wrapper";
-import rootSaga from "./saga";
+import rootSaga from "./saga/root-saga";
 import { useMemo } from "react";
 import rootReducer from "./reducers/rootReducer";
 import { persistReducer } from "redux-persist";

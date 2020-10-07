@@ -4,7 +4,7 @@ import CardProductType from "../../../utils/CardProductType";
 import { Typography, Box } from "@material-ui/core";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Controller } from "swiper";
-import { useSelector, connect, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../../store/action/categories_action";
 const ProductType = (props) => {
     const dispatch = useDispatch();
@@ -32,9 +32,6 @@ const ProductType = (props) => {
         </SwiperSlide>
       ));
     }
-    
-  
-       
     const useStyles = makeStyles((theme) => ({
       type_product_title: {
         [theme.breakpoints.down("xs")]: {

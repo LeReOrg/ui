@@ -4,10 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import imageTest from "../assets/Img.jpg";
 import Link from "next/link";
-
-
 const CardProduct = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,14 +32,14 @@ const CardProduct = (props) => {
   const classes = useStyles();
   return (
     <>
-    <Link as='/test' href="/[product]" >
+    <Link as={`/${props.item.id}`} href="/[product]" >
       <a>
     <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             component="img"
             className={classes.media}
-            image={imageTest}
+            image={props.item.image_url}
             title="Contemplative Reptile"
           />
         </CardActionArea>
@@ -53,7 +50,7 @@ const CardProduct = (props) => {
         align="left"
         
       >
-          {props.test === undefined ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz" : "go prosdascixachjdc"}
+          {props.item.name}
         
       </Typography>
       <Typography
@@ -61,7 +58,7 @@ const CardProduct = (props) => {
         align="left"
        
       >
-       30,000đ/ngày
+       {props.item.price}/ngày
       </Typography>
       </a>
     </Link>

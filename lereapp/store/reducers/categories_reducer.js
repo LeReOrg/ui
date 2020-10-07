@@ -1,5 +1,5 @@
 import { HYDRATE } from "next-redux-wrapper";
-import {  LOAD_DATA_SUCCESS } from "../action/types";
+import {  LOAD_DATA_SUCCESS } from "../types";
 const initialState = {
   categories: [],
 };

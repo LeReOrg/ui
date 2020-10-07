@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {  Box, Typography, Grid } from "@material-ui/core";
 import CardProduct from "../../../utils/CardProduct";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
 import FilterItemMobile from "../FilterItem/FilterItemMobile";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   interested_main: {
@@ -44,14 +45,21 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
- 
 const ListItemByTypeProduct = (props) => {
   const classes = useStyles();
- 
-  const [test, setTest] = useState(false);
+  let renderCards = [];
+  if(props.listProduct.length >0 ){
+     renderCards = 
+     props.listProduct.map((items, index) => (
+        <Grid item lg={3} xs={6} key={index}>
+            <CardProduct item={items} itemByType={true} />
+          </Grid>
+     
+      ))
+    
+  }
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
-
     setDisplayFilter(true);
   };
   const onChangeDisplay = () =>{
@@ -75,46 +83,7 @@ const ListItemByTypeProduct = (props) => {
         </div>
 
         <Grid container spacing={8}>
-          <Grid item lg={3} xs={6}>
-            <CardProduct test={test} itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct test={test} itemByType={true} />
-          </Grid>
-        </Grid>
-        <Grid container spacing={8}>
-          <Grid item lg={3} xs={6}>
-            <CardProduct test={test} itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct test={test} itemByType={true} />
-          </Grid>
-        </Grid>
-        <Grid container spacing={8}>
-          <Grid item lg={3} xs={6}>
-            <CardProduct test={test} itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct itemByType={true} />
-          </Grid>
-          <Grid item lg={3} xs={6}>
-            <CardProduct test={test} itemByType={true} />
-          </Grid>
+            {renderCards}
         </Grid>
       </Typography>
       <PaginationRounded />
@@ -125,5 +94,10 @@ const ListItemByTypeProduct = (props) => {
     </div>
   );
 };
+// const mapStateToProps = (state) => {
+//   return { 
+//     productByType : state.products.products.products
+//   }
+// }
 
 export default ListItemByTypeProduct;

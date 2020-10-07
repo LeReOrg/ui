@@ -33,7 +33,7 @@ const BreadCrumb = (props) => {
           Trang chủ
         </LinkStyle>
       </Link>
-      <Link as={`/${props.activeBread}`} href="/[type_product]">
+      <Link as={`/type_product/${props.id}`} href="/[type_product]/[index]">
         <LinkStyle
           color="textPrimary"
           aria-current="page"
