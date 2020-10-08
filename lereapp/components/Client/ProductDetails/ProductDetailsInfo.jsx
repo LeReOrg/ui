@@ -13,12 +13,19 @@ import imageTest2 from "../../../assets/Img1.jpg";
 import imageTest3 from "../../../assets/Img2.jpg";
 import imageTest4 from "../../../assets/Img3.jpg";
 import imageTest5 from "../../../assets/Img4.jpg";
-
+import { connect, useDispatch } from "react-redux";
+import { addItem } from "../../../store/action/cart_actions";
 const ProductDetailsInfo = ({...props}) => {
     // Quantity
     let state = { quantity: 1 }
-    const [input, setQuantity] = useState(state)
-
+     const testItem = {
+        id : "1", 
+        categoriesId : "1",
+        price : 100000,
+    
+    }
+     const dispatch = useDispatch()
+    const [input, setQuantity] = useState(state);
     const useStyled = makeStyles((theme) => ({
         main_list: {
           width: "92%",
@@ -163,98 +170,107 @@ const ProductDetailsInfo = ({...props}) => {
         },
     ];
 
-    return(
-        <div className={classes.main_list}>
-            <Grid container spacing={8}>
-                <Grid item lg={6} md={6} xs={12}>
-                    <ImageGallery items={images} />
-                </Grid>
-                <Grid item lg={6} md={6} xs={12}>
-                    <Typography
-                        className={classes.title}
-                        align="left"                    
-                    >
-                        Cho thuê lều trại đẹp siêu cấp cách âm cực tốt không còn điều gì để chê được nữa hãy thuê mau mau nhé
+    return (
+      <div className={classes.main_list}>
+        <Grid container spacing={8}>
+          <Grid item lg={6} md={6} xs={12}>
+            <ImageGallery items={images} />
+          </Grid>
+          <Grid item lg={6} md={6} xs={12}>
+            <Typography className={classes.title} align="left">
+              Cho thuê lều trại đẹp siêu cấp cách âm cực tốt không còn điều gì
+              để chê được nữa hãy thuê mau mau nhé
+            </Typography>
+            <Typography className={classes.prices} align="left">
+              40.000đ/ngày
+            </Typography>
+            <Typography className={classes.poster_info} align="left">
+              Đăng bởi: <b className={classes.poster}>dulich247</b>
+            </Typography>
+            <hr />
+            <Grid container>
+              <Grid item lg={6} md={6} xs={12}>
+                <div className="quantity_web">
+                  <Grid container>
+                    <Typography className={classes.quantity_title} align="left">
+                      Số lượng:
                     </Typography>
-                    <Typography
-                        className={classes.prices}
-                        align="left"                    
-                    >
-                        40.000đ/ngày
-                    </Typography>
-                    <Typography
-                        className={classes.poster_info}
-                        align="left"                    
-                    >
-                        Đăng bởi: <b className={classes.poster}>dulich247</b>
-                    </Typography>
-                    <hr />
-                    <Grid container>
-                        <Grid item lg={6} md={6} xs={12}>
-                            <div className="quantity_web">
-                                <Grid container>
-                                    <Typography
-                                        className={classes.quantity_title}
-                                        align="left"                    
-                                    >
-                                        Số lượng:
-                                    </Typography>
-                                    <Grid container className={classes.quantity_space}>
-                                        <RemoveCircleOutlineSharpIcon className={classes.button_color_minus} onClick={handleDecreaseQuantity} />
-                                        <b className={classes.quantity}>{input.quantity}</b>
-                                        <AddCircleOutlineSharpIcon className={classes.button_color_plus} onClick={handleIncreaseQuantity} />
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <div className="quantity_mobile">
-                                <Grid container>
-                                    <Grid item lg={6} md={6} xs={6}>
-                                        <Typography
-                                            className={classes.quantity_title}
-                                            align="left"              
-                                        >
-                                            Số lượng:
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item lg={6} md={6} xs={6}>
-                                        <div className={classes.quantity_space} align="right">
-                                            <RemoveCircleOutlineSharpIcon className={classes.button_color_minus} onClick={handleDecreaseQuantity} />
-                                            <b className={classes.quantity}>{input.quantity}</b>
-                                            <AddCircleOutlineSharpIcon className={classes.button_color_plus} onClick={handleIncreaseQuantity} />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                        </Grid>
-                        <Grid item lg={6} md={6} xs={12}>
-                            <Typography
-                            className={classes.hire_time}
-                            align="left"                    
-                            >
-                                Thời gian thuê:
-                            </Typography>
-                            <div className={classes.hire_time_space}>
-                                <FormGroup className={classes.hire_time_width}>
-                                    <Input type="select" name="select">
-                                        <option>1 ngày</option>
-                                        <option>2 ngày</option>
-                                        <option>3 ngày</option>
-                                    </Input>
-                                </FormGroup>
-                            </div>
-                        </Grid>
+                    <Grid container className={classes.quantity_space}>
+                      <RemoveCircleOutlineSharpIcon
+                        className={classes.button_color_minus}
+                        onClick={handleDecreaseQuantity}
+                      />
+                      <b className={classes.quantity}>{input.quantity}</b>
+                      <AddCircleOutlineSharpIcon
+                        className={classes.button_color_plus}
+                        onClick={handleIncreaseQuantity}
+                      />
                     </Grid>
-                    <div className={classes.button_cart}>
-                        <Box>
-                            <StyledButton variant="contained" color="primary">
-                                Chọn vào giỏ hàng
-                            </StyledButton>
-                        </Box>
-                    </div>
-                </Grid>
+                  </Grid>
+                </div>
+                <div className="quantity_mobile">
+                  <Grid container>
+                    <Grid item lg={6} md={6} xs={6}>
+                      <Typography
+                        className={classes.quantity_title}
+                        align="left"
+                      >
+                        Số lượng:
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={6} md={6} xs={6}>
+                      <div className={classes.quantity_space} align="right">
+                        <RemoveCircleOutlineSharpIcon
+                          className={classes.button_color_minus}
+                          onClick={handleDecreaseQuantity}
+                        />
+                        <b className={classes.quantity}>{input.quantity}</b>
+                        <AddCircleOutlineSharpIcon
+                          className={classes.button_color_plus}
+                          onClick={handleIncreaseQuantity}
+                        />
+                      </div>
+                    </Grid>
+                  </Grid>
+                </div>
+              </Grid>
+              <Grid item lg={6} md={6} xs={12}>
+                <Typography className={classes.hire_time} align="left">
+                  Thời gian thuê:
+                </Typography>
+                <div className={classes.hire_time_space}>
+                  <FormGroup className={classes.hire_time_width}>
+                    <Input type="select" name="select">
+                      <option>1 ngày</option>
+                      <option>2 ngày</option>
+                      <option>3 ngày</option>
+                    </Input>
+                  </FormGroup>
+                </div>
+              </Grid>
             </Grid>
-        </div>
-    )
+            <div className={classes.button_cart}>
+              <Box>
+                <StyledButton
+                  onClick={() => props.addItem(testItem)}
+                  variant="contained"
+                  color="primary"
+                >
+                  Chọn vào giỏ hàng
+                </StyledButton>
+              </Box>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+    );
 }
-
-export default ProductDetailsInfo;
+// const mapStateToProps = (state) => {
+//   return {
+//     cartItem : state.cart.cart
+//   }
+// }
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+});
+export default connect(null, mapDispatchToProps)(ProductDetailsInfo);

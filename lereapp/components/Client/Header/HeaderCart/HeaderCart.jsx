@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingBag from "../../../../assets/shopping_bag.svg";
+import { connect } from "react-redux";
+
 const useStyles = makeStyles((theme) => ({
   header_cart_main: {
     border: "1px solid #2FAF62",
@@ -32,14 +34,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const HeaderCart = () => {
+const HeaderCart = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.header_cart_main}>
       <div className={classes.header_cart_icon}></div>
-      <div className={classes.header_cart_countItem}>(0)</div>
+      <div className={classes.header_cart_countItem}>
+        ({props.cartItem.cartTotal})
+      </div>
     </div>
   );
 };
-
-export default HeaderCart;
+const mapStateToProps = (state) => {
+  return {
+    cartItem: state.carts,
+  };
+};
+export default connect(mapStateToProps)(HeaderCart);

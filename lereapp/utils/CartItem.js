@@ -11,7 +11,6 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const CartItem = ({ item, addItem }) => {
   const { name, price, cungcap, songay, coc, soluong, image } = item;
   const [allParamCart, setParamCart] = useState(item);
-  console.log(item);
   const useStyles = makeStyles((theme) => ({
     smallImage: {
       //   height: 88,

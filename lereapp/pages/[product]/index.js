@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
@@ -12,13 +12,17 @@ import ProductDetailsInfo from "../../components/Client/ProductDetails/ProductDe
 import ProductDetailsContent from "../../components/Client/ProductDetails/ProductDetailsContent";
 import ProductRelated from "../../components/Client/ProductDetails/ProductRelated";
 import { content } from "../../utils/FixedContentItem";
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../store/action/cart_actions';
 
 const ProductDetail = () => {
+  
     const useStyled = makeStyles((theme) => ({
         main_list: {
 
         },
       }));
+    
     const classes = useStyled()
     const router = useRouter()
     console.log(router)
