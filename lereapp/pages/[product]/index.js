@@ -25,7 +25,6 @@ const ProductDetail = () => {
     
     const classes = useStyled()
     const router = useRouter()
-    console.log(router)
     return (
         <>
             <BreadCrumb
