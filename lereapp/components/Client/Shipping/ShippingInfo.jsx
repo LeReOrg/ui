@@ -1,17 +1,12 @@
 import React from "react";
-import { Form, Formik, Field, ErrorMessage } from "formik";
-import { TextField, MenuItem, Select } from "@material-ui/core";
-import { object, string, number } from "yup";
-const initialValues = {
-  fullName: "",
-  email: "",
-  telephoneNumber: "",
-  city: -1,
-  district: -1,
-  ward: -1,
-  address: "",
-};
-
+import {Field, ErrorMessage } from "formik";
+import { Box, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+const useStyled = makeStyles((theme) => ({
+    inputTag : {
+        width : 250
+    },
+}))
 const city = [
   {
     idCity: 1,
@@ -94,60 +89,61 @@ const renderWard = (values) => {
     ));
 };
 const ShippingInfo = (props) => {
+    const classes = useStyled();
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-          }, 1000);
-        }}
-        validationSchema={object({
-          fullName: string().required("Full Name is required").min(6).max(100),
-          email: string().required("Email is required").min(10).max(100),
-          telephoneNumber: number().required("TelephoneNumber is required"),
-          city: number().required("City is required").min(0),
-          district: number().required("District is required").min(0),
-          ward: number().required("Ward is required").min(0),
-        })}
-      >
-        {({ values, errors, touched, handleChange }) => (
-          <Form>
-            <Field name="fullName" placeholder="Họ và tên" />
-            <Field name="email" type="email" placeholder="VD:dsdsd@gmail.com" />
-            <ErrorMessage name="fullName" />
+    <>
+      <Box mb={2}>
+        <p>Họ và tên</p>
+        <Field
+          className={classes.inputTag}
+          name="fullName"
+          placeholder="Họ và tên"
+        />
+      </Box>
+      <Box mb={2}>
+        <Grid container spacing={2}>
+          <Grid item lg={6}>
+            <p>Địa chỉ Email</p>
             <Field
+              className={classes.inputTag}
+              name="email"
+              type="email"
+              placeholder="VD:dsdsd@gmail.com"
+            />
+          </Grid>
+          <Grid item lg={6}>
+            <p>Số điện thoại</p>
+            <Field
+              className={classes.inputTag}
               name="telephoneNumber"
               type="number"
               placeholder="02323242"
             />
-            <Field name="city" as="select" onChange={handleChange}>
-              <option defaultValue hidden>
-                Chọn City
-              </option>
-              {renderCity()}
-            </Field>
-            <Field name="district" as="select" onChange={handleChange}>
-              <option defaultValue hidden>
-                Chọn Quan
-              </option>
-              {renderDistrict(values.city)}
-            </Field>
-            <Field name="ward" as="select">
-              <option defaultValue hidden>
-                Chọn Phường
-              </option>
-              {renderWard(values.district)}
-            </Field>
-            <Field name="address" />
-            <pre>{JSON.stringify(errors, null, 7)}</pre>
-            <pre>{JSON.stringify(values, null, 7)}</pre>
-            <button type="submit">Submit</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box mb={2}>
+        <p>Tỉnh/Thành phố</p>
+        <Field name="city" as="select" onChange={props.handleChange}>
+          <option defaultValue hidden>
+            Chọn tỉnh/thành phố
+          </option>
+          {renderCity()}
+        </Field>{" "}
+      </Box>
+
+      <ErrorMessage name="fullName" />
+
+      <Field name="district" as="select" onChange={props.handleChange}>
+        <option defaultValue hidden></option>
+        {renderDistrict(props.values.city)}
+      </Field>
+      <Field name="ward" as="select">
+        <option defaultValue hidden></option>
+        {renderWard(props.values.district)}
+      </Field>
+      <Field name="address" />
+    </>
   );
 };
 export default ShippingInfo;

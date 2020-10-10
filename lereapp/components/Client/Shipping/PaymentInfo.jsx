@@ -1,10 +1,9 @@
 import React from 'react';
 
-const PaymentInfo = () => {
+const PaymentInfo = (props) => {
     return (
-        <div>
-            
-        </div>
+      <div>
+      </div>
     );
 };
 
