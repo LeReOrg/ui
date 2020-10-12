@@ -9,7 +9,7 @@ import config from "../../config";
 import { loadDataSuccess } from "../action/categories_action";
 function* getCategories() {
   try {
-    const res = yield axios(`${config.api}/categories`);
+    const res = yield axios(`${config.api}/getCategory`);
     yield put(loadDataSuccess(res.data));
   } catch (error) {
     console.log(error);

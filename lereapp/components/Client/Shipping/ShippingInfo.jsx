@@ -4,8 +4,16 @@ import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 const useStyled = makeStyles((theme) => ({
     inputTag : {
-        width : 250
+        width : 280,
+        border: "1px solid #C3C7C5",
+        borderRadius : 4,
+        padding : "10px 12px"
     },
+    titleText:{
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: 14,
+    }
 }))
 const city = [
   {
@@ -89,42 +97,48 @@ const renderWard = (values) => {
     ));
 };
 const ShippingInfo = (props) => {
-    const classes = useStyled();
+  const classes = useStyled();
   return (
     <>
       <Box mb={2}>
-        <p>Họ và tên</p>
+        <p className={classes.titleText}>Họ và tên</p>
         <Field
           className={classes.inputTag}
           name="fullName"
           placeholder="Họ và tên"
         />
+        <ErrorMessage name="fullName" />
+
       </Box>
       <Box mb={2}>
         <Grid container spacing={2}>
           <Grid item lg={6}>
-            <p>Địa chỉ Email</p>
+            <p className={classes.titleText}>Địa chỉ Email</p>
             <Field
               className={classes.inputTag}
               name="email"
               type="email"
               placeholder="VD:dsdsd@gmail.com"
             />
+            <ErrorMessage name="email" />
+
           </Grid>
           <Grid item lg={6}>
-            <p>Số điện thoại</p>
+            <p className={classes.titleText}>Số điện thoại</p>
             <Field
               className={classes.inputTag}
               name="telephoneNumber"
               type="number"
               placeholder="02323242"
             />
+            <ErrorMessage name="fullName" />
           </Grid>
         </Grid>
       </Box>
       <Box mb={2}>
-        <p>Tỉnh/Thành phố</p>
-        <Field name="city" as="select" onChange={props.handleChange}>
+        <p className={classes.titleText}>Tỉnh/Thành phố</p>
+        <Field className={classes.inputTag}
+ name="city" as="select" onChange={props.handleChange}>
           <option defaultValue hidden>
             Chọn tỉnh/thành phố
           </option>
@@ -132,17 +146,16 @@ const ShippingInfo = (props) => {
         </Field>{" "}
       </Box>
 
-      <ErrorMessage name="fullName" />
 
-      <Field name="district" as="select" onChange={props.handleChange}>
+      <Field className={classes.inputTag} name="district" as="select" onChange={props.handleChange}>
         <option defaultValue hidden></option>
         {renderDistrict(props.values.city)}
       </Field>
-      <Field name="ward" as="select">
+      <Field className={classes.inputTag} name="ward" as="select">
         <option defaultValue hidden></option>
         {renderWard(props.values.district)}
       </Field>
-      <Field name="address" />
+      <Field className={classes.inputTag} name="address" />
     </>
   );
 };

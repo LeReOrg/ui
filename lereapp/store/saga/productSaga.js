@@ -5,7 +5,7 @@ import config from '../../config';
 import {getTopProductSuccess} from '../action/products_action'
 function* getTopProduct() {
     try {
-        const res = yield axios(`${config.api}/topProducts`)
+        const res = yield axios(`${config.api}/product/getTopProduct`)
         yield put(getTopProductSuccess(res.data))
     } catch (error) {
        console.log(error)
