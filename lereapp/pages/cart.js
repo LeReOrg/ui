@@ -12,14 +12,25 @@ const Cart = () => {
       marginBottom: 16,
       fontStyle: "normal",
       fontSize: 24,
+      [theme.breakpoints.down("xs")]: {
+        fontSize: 16,
+      },
     },
     main_cart: {
       width: "90%",
       margin: "32px auto 0 auto",
+      [theme.breakpoints.down("xs")]: {
+        margin: "16px auto 0 auto",
+        width: "95%",
+      },
     },
     main_cart__info: {
       borderRadius: 8,
       border: "1px solid rgba(0, 0, 0, 0.15)",
+      [theme.breakpoints.down("xs")]: {
+        margin: 0,
+        border: "none",
+      },
     },
     main_cart__summary: {
       borderRadius: 8,
@@ -227,14 +238,14 @@ const Cart = () => {
       <h1 className={classes.main_cart__title}>Giỏ hàng của bạn</h1>
       <div className={classes.main_cart__content}>
         <Grid container className={classes.root} spacing={2}>
-          <Grid item lg={7}>
+          <Grid item lg={7} xs={12}>
             <div className={classes.main_cart__info}>
               <div className={classes.main_cart__infoItem}>
                 {renderItemCart()}
               </div>
             </div>
           </Grid>
-          <Grid item lg={5}>
+          <Grid item lg={5} xs={12}>
             <div className={classes.main_cart__summary}>
               <div className={classes.main_cart__summaryContent}>
                 <div className={classes.main_cart__provisionalTotal}>

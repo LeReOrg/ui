@@ -1,20 +1,46 @@
 import React from "react";
-import {Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage } from "formik";
 import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-const useStyled = makeStyles((theme) => ({
-    inputTag : {
-        width : 280,
-        border: "1px solid #C3C7C5",
-        borderRadius : 4,
-        padding : "10px 12px"
-    },
-    titleText:{
-      fontStyle: "normal",
-      fontWeight: "bold",
-      fontSize: 14,
-    }
-}))
+import { useState } from "react";
+import { useEffect } from "react";
+
+const ShippingInfo = (props) => {
+const [disabled,setDisabled] = useState(true);
+const widthinputTag = 350;
+useEffect(() =>{
+    if (props.values.city != -1) setDisabled(false);
+},[props.values.city])
+ const useStyled = makeStyles((theme) => ({
+   inputTag: {
+     width: `${widthinputTag}px`,
+     border: "1px solid #C3C7C5",
+     borderRadius: 4,
+     padding: "10px 12px",
+     backgroundColor: "white",
+   },
+   inputTag2: {
+     width: "100%",
+     border: "1px solid #C3C7C5",
+     borderRadius: 4,
+     padding: "10px 12px",
+     backgroundColor: "white",
+   },
+   selectTag: {
+     width: 350,
+     border: "1px solid #C3C7C5",
+     borderRadius: 4,
+     padding: "10px 12px",
+     backgroundColor: `${disabled ? "#F3F4F3" : "white"} `,
+     pointerEvents: `${disabled ? "none" : "auto"} `,
+   },
+   titleText: {
+     fontStyle: "normal",
+     fontWeight: "bold",
+     fontSize: 14,
+     paddingBottom: 3,
+   },
+ }));
 const city = [
   {
     idCity: 1,
@@ -96,7 +122,6 @@ const renderWard = (values) => {
       </option>
     ));
 };
-const ShippingInfo = (props) => {
   const classes = useStyled();
   return (
     <>
@@ -108,7 +133,6 @@ const ShippingInfo = (props) => {
           placeholder="Họ và tên"
         />
         <ErrorMessage name="fullName" />
-
       </Box>
       <Box mb={2}>
         <Grid container spacing={2}>
@@ -121,7 +145,6 @@ const ShippingInfo = (props) => {
               placeholder="VD:dsdsd@gmail.com"
             />
             <ErrorMessage name="email" />
-
           </Grid>
           <Grid item lg={6}>
             <p className={classes.titleText}>Số điện thoại</p>
@@ -137,25 +160,49 @@ const ShippingInfo = (props) => {
       </Box>
       <Box mb={2}>
         <p className={classes.titleText}>Tỉnh/Thành phố</p>
-        <Field className={classes.inputTag}
- name="city" as="select" onChange={props.handleChange}>
+        <Field
+          className={classes.inputTag}
+          name="city"
+          as="select"
+          onChange={props.handleChange}
+        >
           <option defaultValue hidden>
             Chọn tỉnh/thành phố
           </option>
           {renderCity()}
-        </Field>{" "}
+        </Field>
       </Box>
-
-
-      <Field className={classes.inputTag} name="district" as="select" onChange={props.handleChange}>
-        <option defaultValue hidden></option>
-        {renderDistrict(props.values.city)}
-      </Field>
-      <Field className={classes.inputTag} name="ward" as="select">
-        <option defaultValue hidden></option>
-        {renderWard(props.values.district)}
-      </Field>
-      <Field className={classes.inputTag} name="address" />
+      <Box mb={2}>
+        <Grid container spacing={2}>
+          <Grid item lg={6}>
+            <p className={classes.titleText}>Quận/Huyện</p>
+            <Field
+              className={classes.selectTag}
+              name="district"
+              as="select"
+              onChange={props.handleChange}
+            >
+              <option defaultValue hidden></option>
+              {renderDistrict(props.values.city)}
+            </Field>
+          </Grid>
+          <Grid item lg={6}>
+            <p className={classes.titleText}>Phường/Xã</p>
+            <Field className={classes.selectTag} name="ward" as="select">
+              <option defaultValue hidden></option>
+              {renderWard(props.values.district)}
+            </Field>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box mb={2}>
+        <p className={classes.titleText}>Địa chỉ cụ thể</p>
+        <Field
+          placeholder="VD: 253/4 Lê Duẩn"
+          className={classes.inputTag2}
+          name="address"
+        />
+      </Box>
     </>
   );
 };

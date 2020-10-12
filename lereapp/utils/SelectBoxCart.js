@@ -14,6 +14,12 @@ const SelectBoxCart = (props) => {
       width: 36,
       height: 36,
       border: "1px solid #E7E9E8",
+      [theme.breakpoints.down("xs")]: {
+        width: 24,
+        height: 24,
+        minHeight: 24,
+        marginRight: 15,
+      },
     },
     addIcon: {
       background: "transparent",
@@ -22,6 +28,12 @@ const SelectBoxCart = (props) => {
       height: 36,
       border: "1px solid #E7E9E8",
       color: "#2FAF62",
+      [theme.breakpoints.down("xs")]: {
+        width: 24,
+        height: 24,
+        minHeight: 24,
+        marginLeft: 15,
+      },
     },
     disabled: {
       color: "#C3C7C5",
@@ -32,6 +44,9 @@ const SelectBoxCart = (props) => {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      [theme.breakpoints.down("xs")]: {
+        paddingBottom: 0,
+      },
     },
     dateSelect: {
       display: "flex",

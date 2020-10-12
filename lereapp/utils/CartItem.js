@@ -21,6 +21,9 @@ const CartItem = ({ item, addItem }) => {
       alignItems: "center",
       margin: "24px 24px",
       border: "none",
+      [theme.breakpoints.down("xs")]: {
+        margin: 0,
+      },
     },
     nameProvided: {
       color: "#2F80ED",
@@ -29,8 +32,10 @@ const CartItem = ({ item, addItem }) => {
       fontSize: 12,
     },
     infoAmount: {
-      float: "right",
       textAlign: "right",
+      [theme.breakpoints.down("xs")]: {
+        textAlign: "left",
+      },
     },
     deleteButton: {
       padding: 0,
@@ -38,15 +43,49 @@ const CartItem = ({ item, addItem }) => {
       display: "inline-block",
       textAlign: "right",
     },
+    deleteButtonDeskTop: {
+      padding: 0,
+      float: "right",
+      display: "inline-block",
+      textAlign: "right",
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
+    },
     hrCart: {
       marginRight: 24,
       marginLeft: 24,
       background: "#E7E9E8",
-      "&:last-child" :{
-          display : "none"
-      }
+      "&:last-child": {
+        display: "none",
+      },
+      [theme.breakpoints.down("xs")]: {
+        marginRight: 0,
+        marginLeft: 0,
+      },
     },
-    
+    deleteButtonMobile: {
+      display: "none",
+      [theme.breakpoints.down("xs")]: {
+        display: "inline-block",
+      },
+    },
+    infoAmountNumber: {
+      fontWeight: "bold",
+      fontSize: 16,
+      [theme.breakpoints.down("xs")]: {
+        color: "#2FAF62",
+        fontSize: 14,
+      },
+    },
+    selectedBoxCart: {
+      [theme.breakpoints.down("xs")]: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        order : 2
+      },
+    },
   }));
   const classes = useStyles();
 
@@ -56,12 +95,11 @@ const CartItem = ({ item, addItem }) => {
       ...itemChange,
     }));
   };
-  console.log(allParamCart);
   return (
     <>
       <div className={classes.cartBody}>
         <Grid container spacing={2}>
-          <Grid item lg={2}>
+          <Grid item lg={2} xs={3}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -71,30 +109,47 @@ const CartItem = ({ item, addItem }) => {
               />
             </CardActionArea>
           </Grid>
-          <Grid item lg={3}>
-            <Typography>
-              {name === undefined
-                ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
-                : name}
-            </Typography>
-            <Typography>
-              Cung cấp bởi{" "}
-              <span className={classes.nameProvided}>{cungcap}</span>
-            </Typography>
-          </Grid>
-          <Grid item lg={2}>
-            <SelectBoxCart
-              numberDate={songay}
-              quantity={soluong}
-              onNumberAndQuantityChange={handleNumberAndQuantityChange}
-            />
-          </Grid>
-          <Grid item lg={5} className={classes.infoAmount}>
-            <Typography>{price}đ/ngày</Typography>
-            <Typography>Cọc : {coc}đ/ngày</Typography>
-            <Button className={classes.deleteButton}>
-              <DeleteOutlineIcon />
-            </Button>
+          <Grid item lg={10} xs={9}>
+            <Grid container>
+              <Grid item lg={3} xs={10}>
+                <Typography>
+                  {name === undefined
+                    ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
+                    : name}
+                </Typography>
+                <Typography>
+                  Cung cấp bởi
+                  <span
+                    style={{ paddingLeft: 5 }}
+                    className={classes.nameProvided}
+                  >
+                    {cungcap}
+                  </span>
+                </Typography>
+              </Grid>
+              <Grid item className={classes.deleteButtonMobile} xs={2}>
+                <Button className={classes.deleteButton}>
+                  <DeleteOutlineIcon />
+                </Button>
+              </Grid>
+
+              <Grid item lg={2} xs={12} className={classes.selectedBoxCart}>
+                <SelectBoxCart
+                  numberDate={songay}
+                  quantity={soluong}
+                  onNumberAndQuantityChange={handleNumberAndQuantityChange}
+                />
+              </Grid>
+              <Grid item lg={5} xs={12} className={classes.infoAmount}>
+                <Typography className={classes.infoAmountNumber}>
+                  {price}đ/ngày
+                </Typography>
+                <Typography>Cọc : {coc}đ/ngày</Typography>
+                <Button className={classes.deleteButtonDeskTop}>
+                  <DeleteOutlineIcon />
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </div>
