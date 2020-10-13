@@ -18,6 +18,9 @@ const RecipentItems = (props) => {
   const useStyled = makeStyles((theme) => ({
     main_recipent: {
       padding: 24,
+      [theme.breakpoints.down("xs")]: {
+        padding: 0,
+      },
       "& h1": {
         fontSize: 20,
         fontStyle: "normal",
@@ -41,6 +44,9 @@ const RecipentItems = (props) => {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      [theme.breakpoints.down("xs")]: {
+        display : "none"
+      },
     },
     main_recipent__hr: {
       marginLeft: -24,

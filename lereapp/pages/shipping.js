@@ -14,6 +14,15 @@ const Shipping = () => {
     root: {
       flexGrow: 1,
     },
+    main_shipping__rootLeft: {
+      [theme.breakpoints.down("sm")]: {
+        margin: 0,
+        width: "100%",
+        "& > .MuiGrid-item": {
+          padding: 0,
+        },
+      },
+    },
     main_shipping: {
       margin: "30px 80px",
       [theme.breakpoints.down("xs")]: {
@@ -35,6 +44,10 @@ const Shipping = () => {
       borderRadius: 8,
       padding: 24,
       marginTop: 24,
+      [theme.breakpoints.down("xs")]: {
+        border: "none",
+        padding: 0,
+      },
     },
     main_shipping__contentLeftInfo: {
       width: "90%",
@@ -57,9 +70,21 @@ const Shipping = () => {
       fontStyle: "normal",
       fontSize: 20,
     },
+    main_shipping__mobileHr: {
+      display: "none",
+      [theme.breakpoints.down("xs")]: {
+        display: "block",
+        border: "1px solid #E7E9E8",
+        marginLeft: "-15px",
+        marginRight: "-15px",
+      },
+    },
     main_shipping__contentRight: {
       border: "1px solid #C3C7C5",
       borderRadius: 8,
+      [theme.breakpoints.down("xs")]: {
+        border: "none",
+      },
     },
   }));
   const classes = useStyled();
@@ -78,8 +103,10 @@ const Shipping = () => {
     }, 1000);
   };
   const showMenuAddressSub  = () => {
-    console.log('aaa')
     setshowSubAddress(true)
+  }
+  const getValueBack = () => {
+    setshowSubAddress(false);
   }
   return (
     <div className={classes.main_shipping}>
@@ -97,7 +124,11 @@ const Shipping = () => {
       >
         {({ values, errors, touched, handleChange }) => (
           <Form>
-            <Grid container spacing={3}>
+            <Grid
+              container
+              spacing={3}
+              className={classes.main_shipping__rootLeft}
+            >
               {!showSubAddress ? (
                 <>
                   <Grid item lg={8} md={7} xs={12}>
@@ -115,6 +146,9 @@ const Shipping = () => {
                           />
                         </Box>
                       </Box>
+                      <hr
+                        className={classes.main_shipping__mobileHr}
+                      />
                       <Box className={classes.main_shipping__contentBottom}>
                         <h1
                           className={classes.main_shipping__contentPaymentTitle}
@@ -133,6 +167,7 @@ const Shipping = () => {
                 </>
               ) : (
                 <AddAddressMobile
+                  getValueBack={getValueBack}
                   values={values}
                   errors={errors}
                   handleChange={handleChange}

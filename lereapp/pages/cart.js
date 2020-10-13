@@ -2,6 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import CartItem from "../utils/CartItem";
 import Grid from "@material-ui/core/Grid";
+import {testItem} from '../components/Client/dataEx'
+import Button from "@material-ui/core/Button";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const Cart = () => {
   const useStyled = makeStyles((theme) => ({
@@ -35,6 +38,9 @@ const Cart = () => {
     main_cart__summary: {
       borderRadius: 8,
       border: "1px solid rgba(0, 0, 0, 0.15)",
+      [theme.breakpoints.down("sm")]: {
+        border: "none",
+      },
     },
     main_cart__content: {
       display: "flex",
@@ -44,6 +50,9 @@ const Cart = () => {
     main_cart__infoItem: {},
     main_cart__summaryContent: {
       margin: "24px 24px",
+      [theme.breakpoints.down("sm")]: {
+        margin: 0,
+      },
     },
     main_cart__provisionalTotal: {
       display: "flex",
@@ -54,181 +63,55 @@ const Cart = () => {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      marginBottom: 30,
+    },
+    main_cart__provisionalTotalNumber: {
+      fontWeight: "bold",
+      fontSize: 16,
+    },
+    main_cart__totalTitle: {
+      fontWeight: "bold",
+      fontSize: 20,
+    },
+    main_cart__totalNumber: {
+      fontWeight: "bold",
+      fontSize: 20,
+      color: "#2FAF62",
+    },
+    main_cart__totalButton: {
+      width: "50%",
+      margin: "0 auto",
+      [theme.breakpoints.down("sm")]: {
+        width: "100%",
+      },
     },
   }));
+  const theme = createMuiTheme({
+    overrides: {
+      // Style sheet name ⚛️
+      MuiButton: {
+        // Name of the rule
+        text: {
+          // Some CSS
+          background: "#2FAF62",
+          borderRadius: 4,
+          border: 0,
+          color: "white",
+          height: 48,
+          padding: "0 30px",
+          fontWeight : "bold",
+          fontSize: 16,
+          width : "100%",
+          "&:hover": {
+            background: "red",
+          },
+        },
+      },
+    },
+  });
+  
   const classes = useStyled();
-  const testItem = [
-    {
-      id: "1",
-      name: "testa",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 1,
-      image: "https://9mobi.vn/cf/images/2015/03/nkk/hinh-dep-1.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-    {
-      id: "2",
-      name: "testb",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-  ];
+  
   const totalPrice = 190000;
   const renderItemCart = () =>
     testItem.map((item, index) => <CartItem item={item} key={index} />);
@@ -250,12 +133,23 @@ const Cart = () => {
               <div className={classes.main_cart__summaryContent}>
                 <div className={classes.main_cart__provisionalTotal}>
                   <div>Tạm tính</div>
-                  <div>{totalPrice}</div>
+                  <div className={classes.main_cart__provisionalTotalNumber}>
+                    {totalPrice}
+                  </div>
                 </div>
                 <hr />
                 <div className={classes.main_cart__total}>
-                  <div>Tổng cộng:</div>
-                  <div>{totalPrice}</div>
+                  <div className={classes.main_cart__totalTitle}>
+                    Tổng cộng:
+                  </div>
+                  <div className={classes.main_cart__totalNumber}>
+                    {totalPrice}
+                  </div>
+                </div>
+                <div className={classes.main_cart__totalButton}>
+                  <ThemeProvider theme={theme}>
+                    <Button>Tiến hành thanh toán</Button>
+                  </ThemeProvider>
                 </div>
               </div>
             </div>

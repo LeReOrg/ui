@@ -17,7 +17,10 @@ const PaymentInfo = (props) => {
       display: "flex",
       alignItems: "center",
       paddingTop: 30,
-      marginLeft : -9
+      marginLeft: -9,
+      [theme.breakpoints.down("xs")]: {
+        paddingTop: 15,
+      },
     },
     main_paymentType__selectImage: {
       backgroundImage: `url(${momoIcon})`,
@@ -28,10 +31,6 @@ const PaymentInfo = (props) => {
     main_paymentType__selectContent: {
       paddingLeft: 12,
     },
-    // main_paymentType__checkBox : {
-    //   padding : 0,
-    //   paddingRight: 16
-    // },
   }));
   const classes = useStyled();
   return (

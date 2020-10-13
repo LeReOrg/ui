@@ -90,90 +90,95 @@ const renderWard = (values) => {
   const classes = useStyled();
   return (
     <>
-
-          <Box mb={2}>
-            <p className={classes.titleText}>Họ và tên</p>
+      <Box mb={2}>
+        <p className={classes.titleText}>Họ và tên</p>
+        <Field
+          className={classes.inputTag}
+          name="fullName"
+          placeholder="Họ và tên"
+        />
+        <ErrorMessage name="fullName" />
+      </Box>
+      <Box mb={2}>
+        <Grid container spacing={2}>
+          <Grid item lg={6}>
+            <p className={classes.titleText}>Địa chỉ Email</p>
             <Field
               className={classes.inputTag}
-              name="fullName"
-              placeholder="Họ và tên"
+              name="email"
+              type="email"
+              placeholder="VD:dsdsd@gmail.com"
+            />
+            <ErrorMessage name="email" />
+          </Grid>
+          <Grid item lg={6}>
+            <p className={classes.titleText}>Số điện thoại</p>
+            <Field
+              className={classes.inputTag}
+              name="telephoneNumber"
+              type="number"
+              placeholder="02323242"
             />
             <ErrorMessage name="fullName" />
-          </Box>
-          <Box mb={2}>
-            <Grid container spacing={2}>
-              <Grid item lg={6}>
-                <p className={classes.titleText}>Địa chỉ Email</p>
-                <Field
-                  className={classes.inputTag}
-                  name="email"
-                  type="email"
-                  placeholder="VD:dsdsd@gmail.com"
-                />
-                <ErrorMessage name="email" />
-              </Grid>
-              <Grid item lg={6}>
-                <p className={classes.titleText}>Số điện thoại</p>
-                <Field
-                  className={classes.inputTag}
-                  name="telephoneNumber"
-                  type="number"
-                  placeholder="02323242"
-                />
-                <ErrorMessage name="fullName" />
-              </Grid>
-            </Grid>
-          </Box>
-          <Box mb={2}>
-            <p className={classes.titleText}>Địa chỉ nhận hàng</p>
-            <p onClick={props.showMenuSubAddress}>Thêm sản phẩm</p>
-          </Box>
-          <Box mb={2} className={classes.city}>
-            <p className={classes.titleText}>Tỉnh/Thành phố</p>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box mb={2}>
+        <p className={classes.titleText}>Địa chỉ nhận hàng</p>
+        {props.values.city !== -1 &&
+        props.values.district !== -1 &&
+        props.values.ward !== -1 &&
+        props.values.address !== "" ? (
+          <p>{`${props.values.address}, ${props.values.ward}, ${props.values.district}, ${props.values.city}`}</p>
+        ) : (
+          <p onClick={props.showMenuSubAddress}>+ Thêm địa chỉ</p>
+        )}
+      </Box>
+      <Box mb={2} className={classes.city}>
+        <p className={classes.titleText}>Tỉnh/Thành phố</p>
+        <Field
+          className={classes.inputTag}
+          name="city"
+          as="select"
+          onChange={props.handleChange}
+        >
+          <option defaultValue hidden>
+            Chọn tỉnh/thành phố
+          </option>
+          {renderCity()}
+        </Field>
+      </Box>
+      <Box mb={2} className={classes.district}>
+        <Grid container spacing={2}>
+          <Grid item lg={6}>
+            <p className={classes.titleText}>Quận/Huyện</p>
             <Field
-              className={classes.inputTag}
-              name="city"
+              className={classes.selectTag}
+              name="district"
               as="select"
               onChange={props.handleChange}
             >
-              <option defaultValue hidden>
-                Chọn tỉnh/thành phố
-              </option>
-              {renderCity()}
+              <option defaultValue hidden></option>
+              {renderDistrict(props.values.city)}
             </Field>
-          </Box>
-          <Box mb={2} className={classes.district}>
-            <Grid container spacing={2}>
-              <Grid item lg={6}>
-                <p className={classes.titleText}>Quận/Huyện</p>
-                <Field
-                  className={classes.selectTag}
-                  name="district"
-                  as="select"
-                  onChange={props.handleChange}
-                >
-                  <option defaultValue hidden></option>
-                  {renderDistrict(props.values.city)}
-                </Field>
-              </Grid>
-              <Grid item lg={6}>
-                <p className={classes.titleText}>Phường/Xã</p>
-                <Field className={classes.selectTag} name="ward" as="select">
-                  <option defaultValue hidden></option>
-                  {renderWard(props.values.district)}
-                </Field>
-              </Grid>
-            </Grid>
-          </Box>
-          <Box mb={2} className={classes.ward}>
-            <p className={classes.titleText}>Địa chỉ cụ thể</p>
-            <Field
-              placeholder="VD: 253/4 Lê Duẩn"
-              className={classes.inputTag2}
-              name="address"
-            />
-          </Box>
-      
+          </Grid>
+          <Grid item lg={6}>
+            <p className={classes.titleText}>Phường/Xã</p>
+            <Field className={classes.selectTag} name="ward" as="select">
+              <option defaultValue hidden></option>
+              {renderWard(props.values.district)}
+            </Field>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box mb={2} className={classes.ward}>
+        <p className={classes.titleText}>Địa chỉ cụ thể</p>
+        <Field
+          placeholder="VD: 253/4 Lê Duẩn"
+          className={classes.inputTag2}
+          name="address"
+        />
+      </Box>
     </>
   );
 };

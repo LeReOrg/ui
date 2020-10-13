@@ -16,6 +16,9 @@ const test = parseInt(price);
     smallImage: {
       // height: 88,
       // width: 88,
+      [theme.breakpoints.down("xs")]: {
+        height: 64,
+      },
     },
     nameItem: {
       //   color: "#111E16 !important",
@@ -25,6 +28,9 @@ const test = parseInt(price);
       margin: "16px 0",
       border: "none",
       flexDirection: "column",
+      [theme.breakpoints.down("xs")]: {
+        margin: 0,
+      },
     },
     hrCart: {
       background: "#E7E9E8",
@@ -47,8 +53,8 @@ const test = parseInt(price);
       justifyContent: "space-between",
     },
     depositMoney: {
-        textAlign : "right",
-        paddingTop : 8
+      textAlign: "right",
+      paddingTop: 8,
     },
   }));
   const classes = useStyles();
@@ -57,7 +63,7 @@ const test = parseInt(price);
     <>
       <div className={classes.cartBody}>
         <Grid container spacing={2}>
-          <Grid item lg={3}>
+          <Grid item lg={3} xs={3}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -67,7 +73,7 @@ const test = parseInt(price);
               />
             </CardActionArea>
           </Grid>
-          <Grid item lg={9} className={classes.infoContent}>
+          <Grid item lg={9} xs={9} className={classes.infoContent}>
             <Typography className={classes.nameItem}>
               {name === undefined
                 ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
