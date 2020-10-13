@@ -1,12 +1,15 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
-import { Box, Grid } from "@material-ui/core";
+import { Box, Grid, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { useEffect } from "react";
+import { city, ward, district } from "../dataEx";
 
 const ShippingInfo = (props) => {
 const [disabled,setDisabled] = useState(true);
+const [showMenuSub, setshowMenuSub] = useState(false);
+
 const widthinputTag = 350;
 useEffect(() =>{
     if (props.values.city != -1) setDisabled(false);
@@ -40,61 +43,23 @@ useEffect(() =>{
      fontSize: 14,
      paddingBottom: 3,
    },
+   city: {
+     [theme.breakpoints.down("xs")]: {
+       display: "none",
+     },
+   },
+   ward: {
+     [theme.breakpoints.down("xs")]: {
+       display: "none",
+     },
+   },
+   district: {
+     [theme.breakpoints.down("xs")]: {
+       display: "none",
+     },
+   },
  }));
-const city = [
-  {
-    idCity: 1,
-    nameCity: "Hồ chí Minh",
-  },
-  {
-    idCity: 1,
-    nameCity: "Hà Nội",
-  },
-];
-const district = [
-  {
-    idDistrct: 1,
-    idCity: 1,
-    nameCity: "Go Vap",
-  },
-  {
-    idDistrct: 2,
-    idCity: 1,
-    nameCity: "Phu Nhuan",
-  },
-  {
-    idDistrct: 3,
-    idCity: 2,
-    nameCity: "Hang Buom",
-  },
-  {
-    idDistrct: 4,
-    idCity: 2,
-    nameCity: "Pho Ha Noi",
-  },
-];
-const ward = [
-  {
-    idWard: 1,
-    idDistrct: 1,
-    nameCity: "Go Vap w",
-  },
-  {
-    idWard: 2,
-    idDistrct: 1,
-    nameCity: "Phu Nhuan w",
-  },
-  {
-    idWard: 3,
-    idDistrct: 2,
-    nameCity: "Hang Buom w",
-  },
-  {
-    idDistrct: 4,
-    idDistrct: 2,
-    nameCity: "Pho Ha Noi w",
-  },
-];
+
 const renderCity = () => {
   return city.map((item, index) => (
     <option key={index} value={index + 1}>
@@ -125,84 +90,90 @@ const renderWard = (values) => {
   const classes = useStyled();
   return (
     <>
-      <Box mb={2}>
-        <p className={classes.titleText}>Họ và tên</p>
-        <Field
-          className={classes.inputTag}
-          name="fullName"
-          placeholder="Họ và tên"
-        />
-        <ErrorMessage name="fullName" />
-      </Box>
-      <Box mb={2}>
-        <Grid container spacing={2}>
-          <Grid item lg={6}>
-            <p className={classes.titleText}>Địa chỉ Email</p>
+
+          <Box mb={2}>
+            <p className={classes.titleText}>Họ và tên</p>
             <Field
               className={classes.inputTag}
-              name="email"
-              type="email"
-              placeholder="VD:dsdsd@gmail.com"
-            />
-            <ErrorMessage name="email" />
-          </Grid>
-          <Grid item lg={6}>
-            <p className={classes.titleText}>Số điện thoại</p>
-            <Field
-              className={classes.inputTag}
-              name="telephoneNumber"
-              type="number"
-              placeholder="02323242"
+              name="fullName"
+              placeholder="Họ và tên"
             />
             <ErrorMessage name="fullName" />
-          </Grid>
-        </Grid>
-      </Box>
-      <Box mb={2}>
-        <p className={classes.titleText}>Tỉnh/Thành phố</p>
-        <Field
-          className={classes.inputTag}
-          name="city"
-          as="select"
-          onChange={props.handleChange}
-        >
-          <option defaultValue hidden>
-            Chọn tỉnh/thành phố
-          </option>
-          {renderCity()}
-        </Field>
-      </Box>
-      <Box mb={2}>
-        <Grid container spacing={2}>
-          <Grid item lg={6}>
-            <p className={classes.titleText}>Quận/Huyện</p>
+          </Box>
+          <Box mb={2}>
+            <Grid container spacing={2}>
+              <Grid item lg={6}>
+                <p className={classes.titleText}>Địa chỉ Email</p>
+                <Field
+                  className={classes.inputTag}
+                  name="email"
+                  type="email"
+                  placeholder="VD:dsdsd@gmail.com"
+                />
+                <ErrorMessage name="email" />
+              </Grid>
+              <Grid item lg={6}>
+                <p className={classes.titleText}>Số điện thoại</p>
+                <Field
+                  className={classes.inputTag}
+                  name="telephoneNumber"
+                  type="number"
+                  placeholder="02323242"
+                />
+                <ErrorMessage name="fullName" />
+              </Grid>
+            </Grid>
+          </Box>
+          <Box mb={2}>
+            <p className={classes.titleText}>Địa chỉ nhận hàng</p>
+            <p onClick={props.showMenuSubAddress}>Thêm sản phẩm</p>
+          </Box>
+          <Box mb={2} className={classes.city}>
+            <p className={classes.titleText}>Tỉnh/Thành phố</p>
             <Field
-              className={classes.selectTag}
-              name="district"
+              className={classes.inputTag}
+              name="city"
               as="select"
               onChange={props.handleChange}
             >
-              <option defaultValue hidden></option>
-              {renderDistrict(props.values.city)}
+              <option defaultValue hidden>
+                Chọn tỉnh/thành phố
+              </option>
+              {renderCity()}
             </Field>
-          </Grid>
-          <Grid item lg={6}>
-            <p className={classes.titleText}>Phường/Xã</p>
-            <Field className={classes.selectTag} name="ward" as="select">
-              <option defaultValue hidden></option>
-              {renderWard(props.values.district)}
-            </Field>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box mb={2}>
-        <p className={classes.titleText}>Địa chỉ cụ thể</p>
-        <Field
-          placeholder="VD: 253/4 Lê Duẩn"
-          className={classes.inputTag2}
-          name="address"
-        />
-      </Box>
+          </Box>
+          <Box mb={2} className={classes.district}>
+            <Grid container spacing={2}>
+              <Grid item lg={6}>
+                <p className={classes.titleText}>Quận/Huyện</p>
+                <Field
+                  className={classes.selectTag}
+                  name="district"
+                  as="select"
+                  onChange={props.handleChange}
+                >
+                  <option defaultValue hidden></option>
+                  {renderDistrict(props.values.city)}
+                </Field>
+              </Grid>
+              <Grid item lg={6}>
+                <p className={classes.titleText}>Phường/Xã</p>
+                <Field className={classes.selectTag} name="ward" as="select">
+                  <option defaultValue hidden></option>
+                  {renderWard(props.values.district)}
+                </Field>
+              </Grid>
+            </Grid>
+          </Box>
+          <Box mb={2} className={classes.ward}>
+            <p className={classes.titleText}>Địa chỉ cụ thể</p>
+            <Field
+              placeholder="VD: 253/4 Lê Duẩn"
+              className={classes.inputTag2}
+              name="address"
+            />
+          </Box>
+      
     </>
   );
 };

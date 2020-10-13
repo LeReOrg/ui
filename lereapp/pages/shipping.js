@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import ShippingInfo from "../components/Client/Shipping/ShippingInfo";
 import RecipentItems from "../components/Client/Shipping/RecipentItems";
 import PaymentType from "../components/Client/Shipping/PaymentType";
@@ -7,7 +7,9 @@ import Grid from "@material-ui/core/Grid";
 import { Box } from "@material-ui/core";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { object, string, number } from "yup";
+import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
 const Shipping = () => {
+  const [showSubAddress,setshowSubAddress] = useState(false)
   const useStyled = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -75,6 +77,10 @@ const Shipping = () => {
       alert(JSON.stringify(values, null, 2));
     }, 1000);
   };
+  const showMenuAddressSub  = () => {
+    console.log('aaa')
+    setshowSubAddress(true)
+  }
   return (
     <div className={classes.main_shipping}>
       <Formik
@@ -92,33 +98,46 @@ const Shipping = () => {
         {({ values, errors, touched, handleChange }) => (
           <Form>
             <Grid container spacing={3}>
-              <Grid item lg={8} md={7} xs={12}>
-                <Box>
-                  <Box className={classes.main_shipping__contentLeft}>
-                    <h1 className={classes.main_shipping__contentLeftTitle}>
-                      Thông tin nhận hàng
-                    </h1>
-                    <Box className={classes.main_shipping__contentLeftInfo}>
-                      <ShippingInfo
-                        values={values}
-                        errors={errors}
-                        handleChange={handleChange}
-                      />
+              {!showSubAddress ? (
+                <>
+                  <Grid item lg={8} md={7} xs={12}>
+                    <Box>
+                      <Box className={classes.main_shipping__contentLeft}>
+                        <h1 className={classes.main_shipping__contentLeftTitle}>
+                          Thông tin nhận hàng
+                        </h1>
+                        <Box className={classes.main_shipping__contentLeftInfo}>
+                          <ShippingInfo
+                            showMenuSubAddress={showMenuAddressSub}
+                            values={values}
+                            errors={errors}
+                            handleChange={handleChange}
+                          />
+                        </Box>
+                      </Box>
+                      <Box className={classes.main_shipping__contentBottom}>
+                        <h1
+                          className={classes.main_shipping__contentPaymentTitle}
+                        >
+                          Thông tin thanh toán
+                        </h1>
+                        <PaymentType />
+                      </Box>
                     </Box>
-                  </Box>
-                  <Box className={classes.main_shipping__contentBottom}>
-                    <h1 className={classes.main_shipping__contentPaymentTitle}>
-                      Thông tin thanh toán
-                    </h1>
-                    <PaymentType />
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item lg={4} md={5} xs={12}>
-                <Box className={classes.main_shipping__contentRight}>
-                  <RecipentItems values={values} />
-                </Box>
-              </Grid>
+                  </Grid>
+                  <Grid item lg={4} md={5} xs={12}>
+                    <Box className={classes.main_shipping__contentRight}>
+                      <RecipentItems values={values} />
+                    </Box>
+                  </Grid>
+                </>
+              ) : (
+                <AddAddressMobile
+                  values={values}
+                  errors={errors}
+                  handleChange={handleChange}
+                />
+              )}
             </Grid>
           </Form>
         )}
