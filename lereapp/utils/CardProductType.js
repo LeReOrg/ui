@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import imageTest from "../assets/testdanhmuc.png";
 import Link from "next/link";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: 4,
     },
   },
+  media : {
+    height : 160
+  }
 }));
 
 const CardProductType = ({info}) => {
@@ -32,7 +34,7 @@ const CardProductType = ({info}) => {
               <CardMedia
                 component="img"
                 className={classes.media}
-                image={imageTest}
+                image={info.image_url}
                 title="Contemplative Reptile"
               />
             </CardActionArea>
