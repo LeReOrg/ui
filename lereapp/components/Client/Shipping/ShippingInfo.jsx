@@ -58,6 +58,12 @@ useEffect(() =>{
        display: "none",
      },
    },
+   addAddressMobile :  {
+     display : "none",
+     [theme.breakpoints.down("sm")] : {
+       display: "block"
+     }
+   },
  }));
 
 const renderCity = () => {
@@ -123,7 +129,7 @@ const renderWard = (values) => {
           </Grid>
         </Grid>
       </Box>
-      <Box mb={2}>
+      <Box mb={2} className={classes.addAddressMobile}>
         <p className={classes.titleText}>Địa chỉ nhận hàng</p>
         {props.values.city !== -1 &&
         props.values.district !== -1 &&
