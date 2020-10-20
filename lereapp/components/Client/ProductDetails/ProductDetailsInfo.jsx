@@ -17,6 +17,7 @@ import { connect, useDispatch } from "react-redux";
 import { addItem } from "../../../store/action/cart_actions";
 const ProductDetailsInfo = ({...props}) => {
     // Quantity
+    console.log(props);
     let state = { quantity: 1 }
      const testItem = {
         id : "1", 

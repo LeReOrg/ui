@@ -27,13 +27,13 @@ const useStyled = makeStyles((theme) => ({
 const BreadCrumb = (props) => {
   const classes = useStyled();
   return (
-    <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb_main}>
+    <Breadcrumbs aria-label="breadcrumb"  className={classes.breadcrumb_main}>
       <Link href="/" as="/">
         <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
           Trang chủ
         </LinkStyle>
       </Link>
-      <Link as={`/type_product/${props.id}`} href="/[type_product]/[index]">
+      <Link as={`/type_product/${props.id}`}  href="/[type_product]/[index]">
         <LinkStyle
           color="textPrimary"
           aria-current="page"

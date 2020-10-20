@@ -5,9 +5,9 @@ import { Grid } from "@material-ui/core";
 import FilterItem from "../../components/Client/FilterItem/FilterItem";
 import ListItemByTypeProduct from "../../components/Client/ListItemByTypeProduct/ListItemByTypeProduct";
 import { makeStyles } from "@material-ui/styles";
-import { getProductByCategory } from "../../store/action/products_action";
+import { getProductByCategory  } from "../../store/action/products_action";
+import { getCategories  } from "../../store/action/categories_action";
 import { wrapper } from "../../store/store";
-import { END } from "redux-saga";
 import { useDispatch,useSelector } from "react-redux";
 
 const ListProductByType = (props) => {
@@ -69,15 +69,21 @@ const ListProductByType = (props) => {
     </>
   );
 };
-export default ListProductByType;
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store, params }) => {
     store.dispatch(getProductByCategory(params.index));
   }
 );
+
 export async function getStaticPaths() {
-  return {
-    paths: [{ params: { index: "1" } }],
-    fallback: true,
-  };
+   // Call an external API endpoint to get posts
+   const res = await fetch('https://pacific-ravine-33365.herokuapp.com/category/getCategory');
+   const categories = await res.json()
+  //  // Get the paths we want to pre-render based on posts
+   const paths = categories.map((post) => ({
+     params: { index: post.id },
+   }))
+   return { paths, fallback: false }
+
 }
+export default ListProductByType;

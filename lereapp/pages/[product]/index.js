@@ -14,17 +14,23 @@ import ProductRelated from "../../components/Client/ProductDetails/ProductRelate
 import { content } from "../../utils/FixedContentItem";
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/action/cart_actions';
+import { getProductDetail } from '../../store/action/products_action';
 
-const ProductDetail = () => {
-  
+const ProductDetail = ({detailsProduct}) => {
+    const dispatch = useDispatch();
+    const router = useRouter();
+    console.log(detailsProduct);
+
+    useEffect(() => {
+      dispatch(getProductDetail(router.query.index))
+    },[])
     const useStyled = makeStyles((theme) => ({
         main_list: {
 
         },
       }));
-    
-    const classes = useStyled()
-    const router = useRouter()
+      const classes = useStyled();
+
     return (
         <>
             <BreadCrumb
@@ -35,7 +41,7 @@ const ProductDetail = () => {
                 }
             />
             <div className={classes.main_list}>                
-                <ProductDetailsInfo />
+                <ProductDetailsInfo detailsProduct={detailsProduct} />
                 <Line />
                 <ProductDetailsContent content={content} />
                 <Line />
@@ -48,14 +54,25 @@ const ProductDetail = () => {
 
 export default ProductDetail;
 
-export async function getStaticProps(context) {
+export async function getStaticProps({ params }) {
+  console.log(params)
+  const res = await fetch(`https://pacific-ravine-33365.herokuapp.com/product/getProductById/${params.product}`)
+  const detailsProduct = await res.json()
+
     return {
-      props: {}, // will be passed to the page component as props
+      props: {detailsProduct}, // will be passed to the page component as props 
     }
   }
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { product: "1" } }],
-    fallback: true,
-  };
+export async function getStaticPaths() {  
+  // const res = await fetch(`https://pacific-ravine-33365.herokuapp.com/product/getProductById/${params.id}`)
+  // const detailsProduct = await res.json();
+  // const paths = detailsProduct.map((post) => ({
+  //   params: { product: post.id },
+  // }))
+  const  paths =  [
+    { params: { product: '1' } },
+    { params: { product: '2' } }
+  ]
+  return { paths, fallback: false }
+
 }
