@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const RecipentItems = ({ cartItem, values, totalPrice }) => {
   const [disabled, setDisabled] = useState(true);
-  console.log(cartItem);
   useEffect(() => {
     if (
       values.city != -1 &&
@@ -98,28 +97,6 @@ const RecipentItems = ({ cartItem, values, totalPrice }) => {
   function totalMoney(total, num) {
     return parseInt(total) + parseInt(num.price);
   }
-  // const testItem = [
-  //   {
-  //     id: "1",
-  //     name:
-  //       "Cho thuê lều trại đẹp siêu cấp cách âm cực tốt không còn điều gì để chê được nữa hãy thuê mau mau nhé",
-  //     cungcap: "dulichaa",
-  //     price: "100000",
-  //     coc: "10000",
-  //     songay: 1,
-  //     soluong: 1,
-  //     image: "https://9mobi.vn/cf/images/2015/03/nkk/hinh-dep-1.jpg",
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Cho thuê lều trại đẹp siêu cấp",
-  //     cungcap: "dulichaa",
-  //     price: "100000",
-  //     songay: 1,
-  //     soluong: 2,
-  //     image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-  //   },
-  // ];
   const renderRecipentItem = () =>
     cartItem.cartItems.map((item, index) => (
       <ShippingItem item={item} key={index} />

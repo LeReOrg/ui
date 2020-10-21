@@ -45,6 +45,7 @@ const ProductDetailsInfo = ({...props}) => {
        id: props.detailsProduct.id,
        categoryItem: props.detailsProduct.category_id,
        totalDateRent: totalDate,
+       name : props.detailsProduct.name,
        price: price,
        quantity: quantity,
        imageURL: image_url,
@@ -311,11 +312,6 @@ const ProductDetailsInfo = ({...props}) => {
     </div>
   );
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     cartItem : state.cart.cart
-//   }
-// }
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
 });

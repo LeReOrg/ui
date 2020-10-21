@@ -93,14 +93,14 @@ const Shipping = ({ cartItem }) => {
   const classes = useStyled();
   useEffect(() => {
     if (cartItem) {
-      let totalPriceTest = cartItem.cartItems.reduce(function (
+      let totalPrices = cartItem.cartItems.reduce(function (
         accumulator,
         item
       ) {
         return accumulator + item.quantity * item.price;
       },
       0);
-      setTotalPrice(totalPriceTest);
+      setTotalPrice(totalPrices);
     }
   }, [cartItem.cartItems]);
   const initialValues = {
@@ -111,10 +111,13 @@ const Shipping = ({ cartItem }) => {
     district: -1,
     ward: -1,
     address: "",
+    cartItem : cartItem.cartItems,
   };
   const payment = (values) => {
+    values.totalPrice = totalPrice;
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
+      console.log(values)
     }, 1000);
   };
   const showMenuAddressSub = () => {

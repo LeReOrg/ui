@@ -19,8 +19,6 @@ import { getProductDetail } from '../../store/action/products_action';
 const ProductDetail = ({detailsProduct}) => {
     const dispatch = useDispatch();
     const router = useRouter();
-    // console.log(detailsProduct);
-
     useEffect(() => {
       dispatch(getProductDetail(router.query.index))
     },[])
@@ -55,7 +53,6 @@ const ProductDetail = ({detailsProduct}) => {
 export default ProductDetail;
 
 export async function getStaticProps({ params }) {
-  console.log(params)
   const res = await fetch(`https://pacific-ravine-33365.herokuapp.com/product/getProductById/${params.product}`)
   const detailsProduct = await res.json()
 

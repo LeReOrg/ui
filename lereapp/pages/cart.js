@@ -150,7 +150,7 @@ const Cart = (props) => {
                 <div className={classes.main_cart__provisionalTotal}>
                   <div>Tạm tính</div>
                   <div className={classes.main_cart__provisionalTotalNumber}>
-                    {totalPrice}
+                    {totalPrice.toLocaleString("en-US")}
                   </div>
                 </div>
                 <hr />
@@ -159,7 +159,7 @@ const Cart = (props) => {
                     Tổng cộng:
                   </div>
                   <div className={classes.main_cart__totalNumber}>
-                    {totalPrice}
+                    {totalPrice.toLocaleString("en-US")}
                   </div>
                 </div>
                 <div className={classes.main_cart__totalButton}>

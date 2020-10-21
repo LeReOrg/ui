@@ -152,7 +152,7 @@ const CartItem = ({ item, clearItem }) => {
               </Grid>
               <Grid item lg={5} xs={12} className={classes.infoAmount}>
                 <Typography className={classes.infoAmountNumber}>
-                  {allParamCart.price}đ/ngày
+                  {allParamCart.price.toLocaleString("en-US")}đ/ngày
                 </Typography>
                 <Typography>Cọc : {coc}đ/ngày</Typography>
                 <Button
