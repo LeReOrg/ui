@@ -20,7 +20,7 @@ export const makeStore = (context) => {
   const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["categories"],
+    whitelist: ["carts"],
   };
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 

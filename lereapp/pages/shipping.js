@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import ShippingInfo from "../components/Client/Shipping/ShippingInfo";
 import RecipentItems from "../components/Client/Shipping/RecipentItems";
 import PaymentType from "../components/Client/Shipping/PaymentType";
@@ -8,8 +8,11 @@ import { Box } from "@material-ui/core";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { object, string, number } from "yup";
 import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
-const Shipping = () => {
-  const [showSubAddress,setshowSubAddress] = useState(false)
+import { connect } from "react-redux";
+const Shipping = ({ cartItem }) => {
+  const [showSubAddress, setshowSubAddress] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
+
   const useStyled = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -88,6 +91,18 @@ const Shipping = () => {
     },
   }));
   const classes = useStyled();
+  useEffect(() => {
+    if (cartItem) {
+      let totalPriceTest = cartItem.cartItems.reduce(function (
+        accumulator,
+        item
+      ) {
+        return accumulator + item.quantity * item.price;
+      },
+      0);
+      setTotalPrice(totalPriceTest);
+    }
+  }, [cartItem.cartItems]);
   const initialValues = {
     fullName: "",
     email: "",
@@ -102,12 +117,12 @@ const Shipping = () => {
       alert(JSON.stringify(values, null, 2));
     }, 1000);
   };
-  const showMenuAddressSub  = () => {
-    setshowSubAddress(true)
-  }
+  const showMenuAddressSub = () => {
+    setshowSubAddress(true);
+  };
   const getValueBack = () => {
     setshowSubAddress(false);
-  }
+  };
   return (
     <div className={classes.main_shipping}>
       <Formik
@@ -146,9 +161,7 @@ const Shipping = () => {
                           />
                         </Box>
                       </Box>
-                      <hr
-                        className={classes.main_shipping__mobileHr}
-                      />
+                      <hr className={classes.main_shipping__mobileHr} />
                       <Box className={classes.main_shipping__contentBottom}>
                         <h1
                           className={classes.main_shipping__contentPaymentTitle}
@@ -161,7 +174,11 @@ const Shipping = () => {
                   </Grid>
                   <Grid item lg={4} md={5} xs={12}>
                     <Box className={classes.main_shipping__contentRight}>
-                      <RecipentItems values={values} />
+                      <RecipentItems
+                        values={values}
+                        cartItem={cartItem}
+                        totalPrice={totalPrice}
+                      />
                     </Box>
                   </Grid>
                 </>
@@ -180,5 +197,9 @@ const Shipping = () => {
     </div>
   );
 };
-
-export default Shipping;
+const mapStateToProps = (state) => {
+  return {
+    cartItem: state.carts,
+  };
+};
+export default connect(mapStateToProps)(Shipping);

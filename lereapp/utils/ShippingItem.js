@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { Grid, Button, Box } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const ShippingItem = ({ item, addItem }) => {
-  const { name, price, cungcap, songay, coc, soluong, image } = item;
+  const { name, price, totalDateRent, coc, quantity, imageURL } = item;
 const test = parseInt(price);
   const [allParamCart, setParamCart] = useState(item);
   const useStyles = makeStyles((theme) => ({
@@ -67,7 +67,7 @@ const test = parseInt(price);
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={image}
+                image={imageURL}
                 title="Contemplative Reptile"
                 className={classes.smallImage}
               />
@@ -80,7 +80,7 @@ const test = parseInt(price);
                 : name}
             </Typography>
             <Typography className={classes.infoItem}>
-              <span>x{soluong}</span> <span>{songay} ngày</span>
+              <span>x{quantity}</span> <span>{totalDateRent} ngày</span>
               <span>
                 {parseInt(price).toLocaleString("en-US")}
                 đ/ngày

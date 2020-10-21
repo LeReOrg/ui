@@ -8,6 +8,8 @@ import { makeStyles } from "@material-ui/styles";
 import { getProductByCategory  } from "../../store/action/products_action";
 import { getCategories  } from "../../store/action/categories_action";
 import { wrapper } from "../../store/store";
+import { END } from "redux-saga";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch,useSelector } from "react-redux";
 
 const ListProductByType = (props) => {
@@ -31,7 +33,9 @@ const ListProductByType = (props) => {
   useEffect(() => {
     dispatch(getProductByCategory(router.query.index));
   }, [dispatch]);
+
   let nameTypeProduct = [];
+
   const getListProductByType  = useSelector(state => state.products.products)
   if(getListProductByType.length > 0){
     nameTypeProduct =  getListProductByType.filter(item => `${router.query.index}` == parseInt(item.id))
@@ -39,15 +43,12 @@ const ListProductByType = (props) => {
 
   return (
     <>
+  
       <BreadCrumb
         activeBread={
-          nameTypeProduct.length > 0
-            ? nameTypeProduct[0].name
-            : null
+          nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
         }
-        id = { nameTypeProduct.length > 0
-          ? nameTypeProduct[0].id
-          : null}
+        id={nameTypeProduct.length > 0 ? nameTypeProduct[0].id : null}
       />
       <div className={classes.main_list}>
         <Grid container>
@@ -56,11 +57,9 @@ const ListProductByType = (props) => {
           </Grid>
           <Grid item lg={9} md={9} xs={12}>
             <ListItemByTypeProduct
-            listProduct = {getListProductByType}
+              listProduct={getListProductByType}
               typeProduct={
-                nameTypeProduct.length > 0
-            ? nameTypeProduct[0].name
-            : null
+                nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
               }
             />
           </Grid>
@@ -72,6 +71,8 @@ const ListProductByType = (props) => {
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store, params }) => {
     store.dispatch(getProductByCategory(params.index));
+     store.dispatch(END);
+     await store.sagaTask.toPromise();
   }
 );
 

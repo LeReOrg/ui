@@ -3,10 +3,10 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { connect } from "react-redux";
+import { addItem, removeItem } from "../store/action/cart_actions";
 const SelectBoxCart = (props) => {
-  const [numberDate, setNumberDate] = useState(props.numberDate);
-  const [quantity, setQuantity] = useState(props.quantity);
+  const { numberDate, quantity } = props;
   const useStyles = makeStyles((theme) => ({
     removeIcon: {
       background: "transparent",
@@ -55,36 +55,6 @@ const SelectBoxCart = (props) => {
     },
   }));
   const classes = useStyles();
-  const increase = (info) => {
-    if (info === "date") {
-      const newCount = numberDate + 1;
-      setNumberDate(newCount);
-      props.onNumberAndQuantityChange({
-        songay: newCount,
-      });
-    } else {
-      const newCount = quantity + 1;
-      setQuantity(newCount);
-      props.onNumberAndQuantityChange({
-        soluong: newCount,
-      });
-    }
-  };
-  const reduce = (info) => {
-    if (info === "date") {
-      const newCount = numberDate === 1 ? 1 : numberDate - 1;
-      setNumberDate(newCount);
-      props.onNumberAndQuantityChange({
-        songay: newCount,
-      });
-    } else {
-      const newCount = quantity === 1 ? 1 : quantity - 1;
-      setQuantity(newCount);
-      props.onNumberAndQuantityChange({
-        soluong: newCount,
-      });
-    }
-  };
   return (
     <>
       <div className={classes.itemSelect}>
@@ -93,7 +63,7 @@ const SelectBoxCart = (props) => {
             quantity === 1 ? classes.disabled : null
           }`}
           aria-label="remove"
-          onClick={() => reduce("item")}
+          onClick={() => props.removeItem(props.cartItem)}
         >
           <RemoveIcon />
         </Fab>
@@ -101,7 +71,7 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
-          onClick={() => increase("item")}
+          onClick={() => props.addItem(props.cartItem)}
         >
           <AddIcon />
         </Fab>
@@ -112,7 +82,7 @@ const SelectBoxCart = (props) => {
             numberDate === 1 ? classes.disabled : null
           }`}
           aria-label="remove"
-          onClick={() => reduce("date")}
+          onClick={() => props.removeItem(props.cartItem)}
         >
           <RemoveIcon />
         </Fab>
@@ -120,7 +90,7 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
-          onClick={() => increase("date")}
+          onClick={() => props.addItem(props.cartItem)}
         >
           <AddIcon />
         </Fab>
@@ -128,5 +98,8 @@ const SelectBoxCart = (props) => {
     </>
   );
 };
-
-export default SelectBoxCart;
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+  removeItem: (item) => dispatch(removeItem(item)),
+});
+export default connect(null, mapDispatchToProps)(SelectBoxCart);

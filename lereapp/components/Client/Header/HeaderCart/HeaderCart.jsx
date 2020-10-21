@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingBag from "../../../../assets/shopping_bag.svg";
 import { connect } from "react-redux";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   header_cart_main: {
@@ -36,13 +37,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HeaderCart = (props) => {
   const classes = useStyles();
+  // console.log(props.cartItem);
   return (
-    <div className={classes.header_cart_main}>
-      <div className={classes.header_cart_icon}></div>
-      <div className={classes.header_cart_countItem}>
-        ({props.cartItem.cartTotal})
-      </div>
-    </div>
+    <Link href="/cart">
+      <a>
+        <div className={classes.header_cart_main}>
+          <div className={classes.header_cart_icon}></div>
+          <div className={classes.header_cart_countItem}>
+            ({props.cartItem.cartTotal})
+          </div>
+        </div>
+      </a>
+    </Link> 
   );
 };
 const mapStateToProps = (state) => {

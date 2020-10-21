@@ -15,8 +15,17 @@ import { PersistGate } from "redux-persist/integration/react";
 import Footer from "../components/Client/Footer/Footer";
 import { persistStore } from "redux-persist";
 import "react-image-gallery/styles/css/image-gallery.css";
+import Router from 'next/router';
+import NProgress from 'nprogress'; //nprogress module
+import 'nprogress/nprogress.css'; //styles of nprogress
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
+  
   const useStyles = makeStyles((theme) => ({
     page_container: {
       paddingBottom: 80,
@@ -45,6 +54,7 @@ const MyApp = ({ Component, pageProps }) => {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <link rel="stylesheet" type="text/css" href="/nprogress.css" />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

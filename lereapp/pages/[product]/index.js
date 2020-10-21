@@ -19,7 +19,7 @@ import { getProductDetail } from '../../store/action/products_action';
 const ProductDetail = ({detailsProduct}) => {
     const dispatch = useDispatch();
     const router = useRouter();
-    console.log(detailsProduct);
+    // console.log(detailsProduct);
 
     useEffect(() => {
       dispatch(getProductDetail(router.query.index))

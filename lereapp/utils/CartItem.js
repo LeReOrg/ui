@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SelectBoxCart from "../utils/SelectBoxCart";
 import Card from "@material-ui/core/Card";
@@ -7,10 +7,28 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
+import { clearItemFromCart } from "../store/action/cart_actions";
+
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-const CartItem = ({ item, addItem }) => {
-  const { name, price, cungcap, songay, coc, soluong, image } = item;
+const CartItem = ({ item, clearItem }) => {
+  const {
+    name,
+    price,
+    owner_id,
+    totalDateRent,
+    coc,
+    quantity,
+    imageURL,
+  } = item;
   const [allParamCart, setParamCart] = useState(item);
+  useEffect(() => {
+    let priceUpdate = 0;
+    priceUpdate = item.quantity * item.price;
+    setParamCart((preState) => ({
+      ...preState,
+      price: priceUpdate,
+    }));
+  }, [item.quantity]);
   const useStyles = makeStyles((theme) => ({
     smallImage: {
       //   height: 88,
@@ -83,18 +101,11 @@ const CartItem = ({ item, addItem }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        order : 2
+        order: 2,
       },
     },
   }));
   const classes = useStyles();
-
-  const handleNumberAndQuantityChange = (itemChange) => {
-    setParamCart((preState) => ({
-      ...preState,
-      ...itemChange,
-    }));
-  };
   return (
     <>
       <div className={classes.cartBody}>
@@ -103,7 +114,7 @@ const CartItem = ({ item, addItem }) => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={image}
+                image={imageURL}
                 title="Contemplative Reptile"
                 className={classes.smallImage}
               />
@@ -111,7 +122,7 @@ const CartItem = ({ item, addItem }) => {
           </Grid>
           <Grid item lg={10} xs={9}>
             <Grid container>
-              <Grid item lg={3} xs={10}>
+              <Grid item lg={5} xs={10}>
                 <Typography>
                   {name === undefined
                     ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
@@ -123,7 +134,7 @@ const CartItem = ({ item, addItem }) => {
                     style={{ paddingLeft: 5 }}
                     className={classes.nameProvided}
                   >
-                    {cungcap}
+                    {owner_id}
                   </span>
                 </Typography>
               </Grid>
@@ -132,20 +143,22 @@ const CartItem = ({ item, addItem }) => {
                   <DeleteOutlineIcon />
                 </Button>
               </Grid>
-
               <Grid item lg={2} xs={12} className={classes.selectedBoxCart}>
                 <SelectBoxCart
-                  numberDate={songay}
-                  quantity={soluong}
-                  onNumberAndQuantityChange={handleNumberAndQuantityChange}
+                  cartItem={item}
+                  numberDate={totalDateRent}
+                  quantity={quantity}
                 />
               </Grid>
               <Grid item lg={5} xs={12} className={classes.infoAmount}>
                 <Typography className={classes.infoAmountNumber}>
-                  {price}đ/ngày
+                  {allParamCart.price}đ/ngày
                 </Typography>
                 <Typography>Cọc : {coc}đ/ngày</Typography>
-                <Button className={classes.deleteButtonDeskTop}>
+                <Button
+                  onClick={() => clearItem(item)}
+                  className={classes.deleteButtonDeskTop}
+                >
                   <DeleteOutlineIcon />
                 </Button>
               </Grid>
@@ -158,6 +171,6 @@ const CartItem = ({ item, addItem }) => {
   );
 };
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+  clearItem: (item) => dispatch(clearItemFromCart(item)),
 });
 export default connect(null, mapDispatchToProps)(CartItem);

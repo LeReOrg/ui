@@ -3,18 +3,18 @@ import { makeStyles } from "@material-ui/styles";
 import ShippingItem from "../../../utils/ShippingItem";
 import { useState } from "react";
 
-const RecipentItems = (props) => {
+const RecipentItems = ({ cartItem, values, totalPrice }) => {
   const [disabled, setDisabled] = useState(true);
-
+  console.log(cartItem);
   useEffect(() => {
     if (
-      props.values.city != -1 &&
-      props.values.district != -1 &&
-      props.values.ward != -1 &&
-      props.values.address != ""
+      values.city != -1 &&
+      values.district != -1 &&
+      values.ward != -1 &&
+      values.address != ""
     )
       setDisabled(false);
-  }, [props.values]);
+  }, [values]);
   const useStyled = makeStyles((theme) => ({
     main_recipent: {
       padding: 24,
@@ -45,7 +45,7 @@ const RecipentItems = (props) => {
       justifyContent: "space-between",
       alignItems: "center",
       [theme.breakpoints.down("xs")]: {
-        display : "none"
+        display: "none",
       },
     },
     main_recipent__hr: {
@@ -98,30 +98,32 @@ const RecipentItems = (props) => {
   function totalMoney(total, num) {
     return parseInt(total) + parseInt(num.price);
   }
-  const testItem = [
-    {
-      id: "1",
-      name:
-        "Cho thuê lều trại đẹp siêu cấp cách âm cực tốt không còn điều gì để chê được nữa hãy thuê mau mau nhé",
-      cungcap: "dulichaa",
-      price: "100000",
-      coc: "10000",
-      songay: 1,
-      soluong: 1,
-      image: "https://9mobi.vn/cf/images/2015/03/nkk/hinh-dep-1.jpg",
-    },
-    {
-      id: "2",
-      name: "Cho thuê lều trại đẹp siêu cấp",
-      cungcap: "dulichaa",
-      price: "100000",
-      songay: 1,
-      soluong: 2,
-      image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
-    },
-  ];
+  // const testItem = [
+  //   {
+  //     id: "1",
+  //     name:
+  //       "Cho thuê lều trại đẹp siêu cấp cách âm cực tốt không còn điều gì để chê được nữa hãy thuê mau mau nhé",
+  //     cungcap: "dulichaa",
+  //     price: "100000",
+  //     coc: "10000",
+  //     songay: 1,
+  //     soluong: 1,
+  //     image: "https://9mobi.vn/cf/images/2015/03/nkk/hinh-dep-1.jpg",
+  //   },
+  //   {
+  //     id: "2",
+  //     name: "Cho thuê lều trại đẹp siêu cấp",
+  //     cungcap: "dulichaa",
+  //     price: "100000",
+  //     songay: 1,
+  //     soluong: 2,
+  //     image: "https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-3.jpg",
+  //   },
+  // ];
   const renderRecipentItem = () =>
-    testItem.map((item, index) => <ShippingItem item={item} key={index} />);
+    cartItem.cartItems.map((item, index) => (
+      <ShippingItem item={item} key={index} />
+    ));
   const classes = useStyled();
   return (
     <div className={classes.main_recipent}>
@@ -134,11 +136,11 @@ const RecipentItems = (props) => {
       <div className={classes.main_recipent__summary}>
         <div className={classes.main_recipent__summaryProvisional}>
           <p>Tạm tính:</p>
-          <p>{testItem.reduce(totalMoney, 0).toLocaleString("en-US")}đ</p>
+          {/* <p>{testItem.reduce(totalMoney, 0).toLocaleString("en-US")}đ</p> */}
         </div>
         <div className={classes.main_recipent__summaryTransport}>
           <p>Vận chuyển:</p>
-          <p>{testItem.reduce(totalMoney, 0).toLocaleString("en-US")}đ</p>
+          {/* <p>{testItem.reduce(totalMoney, 0).toLocaleString("en-US")}đ</p> */}
         </div>
         <hr />
       </div>
@@ -146,7 +148,7 @@ const RecipentItems = (props) => {
         <div className={classes.main_recipent__totalPayment}>
           <div>Tổng tiền</div>
           <div className={classes.main_recipent__totalPaymentNumber}>
-            225000
+            {totalPrice.toLocaleString("en-US")}
           </div>
         </div>
         <div className={classes.main_recipent__rePayment}>
