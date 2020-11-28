@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingBag from "../../../../assets/shopping_bag.svg";
+import ShoppingBagMobile from "../../../../assets/ic_shoppingbag_mobile.svg";
+
 import { connect } from "react-redux";
 import Link from "next/link";
 
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       border: "none",
-      padding: "0 56px 0 0",
+      padding: "0 40px 0 0",
     },
   },
   header_cart_icon: {
@@ -22,7 +24,9 @@ const useStyles = makeStyles((theme) => ({
     height: 24,
     width: 24,
     padding: 10,
-    [theme.breakpoints.down("sm")]: {},
+    [theme.breakpoints.down("sm")]: {
+      background: `url(${ShoppingBagMobile})`,
+    },
   },
   header_cart_countItem: {
     color: "#2FAF62",
@@ -32,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 12,
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 3,
+      color: "black",
     },
   },
 }));

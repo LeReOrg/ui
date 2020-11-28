@@ -3,20 +3,25 @@ import styled from 'styled-components';
 import RightNavMenu from './RightNavMenu';
 
 const StyledBurger = styled.div`
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   position: fixed;
-  top: 10px;
   right: 15px;
   z-index: 4;
   display: none;
-  @media (max-width: 890px) {
+  @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;
+    top: 25px;
+  }
+  @media (max-width: 500px) {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    top: 15px;
   }
   div {
-    width: 2rem;
     height: 0.25rem;
     border-radius: 5px;
     background-color: black;

@@ -9,6 +9,9 @@ const CardProduct = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 345,
+      [theme.breakpoints.down("xs")]:{
+        height : 72
+      }
     },
     content: {
       paddingTop: 16,
@@ -24,16 +27,32 @@ const CardProduct = (props) => {
       fontSize: 16,
       fontWeight: "bold",
     },
+    linkTypeProduct : {
+      "&:hover" : {
+        textDecoration : "none",
+        transition: "transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
+      },
+      color : "#111E16",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: 16
+    },
     media: {
-      height: `${props.itemByType ? "160px" : "215px"}`,
-      objectFit : "fill"
+      height : 160,
+      "&:hover" : {
+        transform: "scale(1.2)",
+        transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
+      },
+      [theme.breakpoints.down("xs")] : {
+        height : 72
+      }
     },
   }));
   const classes = useStyles();
   return (
     <>
     <Link as={`/${props.item.id}`} href="/[product]" >
-      <a>
+      <a className={classes.linkTypeProduct}>
     <Card className={classes.root}>
         <CardActionArea>
           <CardMedia

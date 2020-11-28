@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   info_main: {
-    marginTop : 80,
+    marginTop : 60,
     marginLeft : "-2.5%",
     marginRight : "-2.5%",
     [theme.breakpoints.down("xs")]: {

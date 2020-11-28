@@ -40,22 +40,30 @@ const Search = () => {
       alignItems: "center",
       letterSpacing: "-0.01em",
       color: "#FFF",
+      [theme.breakpoints.down("md")]: {
+        top: "20%",
+
+      },
+      [theme.breakpoints.down("sm ")]: {
+        top: "20%",
+
+      },
       [theme.breakpoints.down("xs")]: {
         fontSize: "24px",
         left: 0,
-        top: "42%",
+        top: "20%",
       },
     },
     search_contain: {
       width: "100%",
       textAlign: "center",
-      [theme.breakpoints.down("xs")]: {},
+      [theme.breakpoints.down("xs")]: {
+        width: "90%",
+        margin : "0 auto"
+      },
     },
     search_title: {
-      paddingBottom: "36px",
-      [theme.breakpoints.down("xs")]: {
-        paddingBottom: "16px",
-      },
+      
     },
     search_input_body: {
       width: "30%",
@@ -64,7 +72,7 @@ const Search = () => {
         width: "70%",
       },
       [theme.breakpoints.between("md", "lg")]: {
-        width: "50%",
+        width: "40%",
       },
       [theme.breakpoints.down("xs")]: {
         width: "100%",
@@ -86,6 +94,7 @@ const Search = () => {
       },
       [theme.breakpoints.down("xs")]: {
         justifyContent: "center",
+        padding : "13px 18px"
       },
     },
     search_icon: {
@@ -122,6 +131,7 @@ const Search = () => {
                 id={"search"}
                 formData={search.searchData.search}
                 change={(element) => updateSearch(element)}
+                useClasses = {true}
               />
             </div>
           </Grid>
@@ -140,5 +150,4 @@ const Search = () => {
     </div>
   );
 };
-
 export default Search;

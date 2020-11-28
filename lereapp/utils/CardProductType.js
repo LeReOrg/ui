@@ -8,6 +8,9 @@ import Link from "next/link";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    [theme.breakpoints.down("xs")]:{
+      height : 72
+    }
   },
   content: {
     paddingTop: 16,
@@ -17,8 +20,26 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: 4,
     },
   },
+  linkTypeProduct : {
+    "&:hover" : {
+      textDecoration : "none",
+      transition: "transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
+      fontSize : 26
+    },
+    color : "#111E16",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 24
+  },
   media : {
-    height : 160
+    height : 160,
+    "&:hover" : {
+      transform: "scale(1.2)",
+      transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
+    },
+    [theme.breakpoints.down("xs")] : {
+      height : 72
+    }
   }
 }));
 
@@ -28,7 +49,7 @@ const CardProductType = ({info}) => {
   return (
     <>
       <Link as={link} href="/type_product/[index]">
-        <a>
+        <a className={classes.linkTypeProduct}>
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia

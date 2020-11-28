@@ -7,6 +7,8 @@ import { getTopProduct } from "../../../store/action/products_action";
 const useStyles = makeStyles((theme) => ({
   interested_main: {
     marginTop: 64,
+    width: "90%",
+    margin: "0 auto",
     [theme.breakpoints.down("sm")]: {
       marginTop: 30,
     },
