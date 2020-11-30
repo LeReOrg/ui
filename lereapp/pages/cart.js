@@ -113,7 +113,7 @@ const Cart = (props) => {
   });
   const [totalPrice, setTotalPrice] = useState(0);
   const classes = useStyled();
-
+   
   useEffect(() => {
     if (props.cartItem) {
       let totalPriceTest = props.cartItem.cartItems.reduce(function (
@@ -126,7 +126,6 @@ const Cart = (props) => {
       setTotalPrice(totalPriceTest);
     }
   }, [props.cartItem.cartItems]);
-  console.log();
   const renderItemCart = () =>
     props.cartItem.cartItems.map((item, index) => (
       <CartItem item={item} key={index} />

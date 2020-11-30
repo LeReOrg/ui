@@ -13,9 +13,16 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundPosition: "center",
     backgroundSize: "cover",
-    [theme.breakpoints.down("xs")]: {
-      height: "50vh",
+    [theme.breakpoints.down("md")]: {
+      height: "35vh",
     },
+    [theme.breakpoints.down("sm ")]: {
+      height: "30vh",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "30vh",
+    },
+   
   },
 }));
 const SlideBackground = () => {

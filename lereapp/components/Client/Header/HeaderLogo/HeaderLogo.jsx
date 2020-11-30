@@ -37,7 +37,10 @@ const HeaderLogo = React.memo((props) => {
   const classes = useStyles();
   return (
     <div className={classes.header_wrap_logo} id="header-logo">
-      <div className={classes.header_logo}></div>
+        <a href='/'>
+          <div className={classes.header_logo}></div>
+        </a>
+
       <div className={classes.header_logo_title}>
         <p>Hichi kachi</p>
       </div>

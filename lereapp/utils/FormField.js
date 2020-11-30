@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormField = ({id,formData,change}) => {
+const FormField = ({id,formData,change,useClasses,className}) => {
     
     const showError = (search) => {
        
@@ -29,7 +29,7 @@ const FormField = ({id,formData,change}) => {
                             <div className='label_inputs'>{formData.config.label}</div>
                         :null}
                         <input 
-                            className="form-control"
+                            className={useClasses ? "form-control" : className}
                             style={{height:'unset'}}
                             aria-label="Search"
                             {...formData.config}

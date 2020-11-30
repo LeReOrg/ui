@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import HeaderLogo from "../HeaderLogo/HeaderLogo";
+import SearchItemHeader from "../SearchItemHeader/SearchItemHeader";
 import Burger from "./Burger";
 
 const Nav = styled.nav`
@@ -12,11 +13,18 @@ const Nav = styled.nav`
   @media (max-width: 599.95px) {
     padding: 18px 0 18px 20px;
   }
+  @media (max-width:1024px) {
+    padding: 15px;
+    display : flex;
+    align-items: center
+  }
 `;
+
 const Navbar = (props) => {
   return (
     <Nav id="header_nav">
       <HeaderLogo scroll = {props.scroll} />
+      <SearchItemHeader />
       <Burger scroll = {props.scroll}/>
     </Nav>
   );

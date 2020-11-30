@@ -16,6 +16,7 @@ const ProductType = (props) => {
     let getFirstCategoriesItems = [];
     let getSecondCategoriesItems = [];   
     const numberCategoriesbySlide = Math.round(numberCategories/2);
+
     if(categoriesItem.length > 0){
        getFirstCategoriesItems = categoriesItem
       .slice(0, numberCategoriesbySlide)

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { addItem, removeItem } from "../store/action/cart_actions";
 const SelectBoxCart = (props) => {
   const { numberDate, quantity } = props;
+  console.log(props.cartItem)
   const useStyles = makeStyles((theme) => ({
     removeIcon: {
       background: "transparent",

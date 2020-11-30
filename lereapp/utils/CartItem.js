@@ -20,6 +20,7 @@ const CartItem = ({ item, clearItem }) => {
     quantity,
     imageURL,
   } = item;
+  console.log(item)
   const [allParamCart, setParamCart] = useState(item);
   useEffect(() => {
     let priceUpdate = 0;
