@@ -3,8 +3,7 @@ import { Field, ErrorMessage } from "formik";
 import { Box, Grid, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-const UploadInfo = (props) => {
-    console.log(props)
+const UploadInfo = ({type_product}) => {
     const useStyled = makeStyles((theme) => ({ 
         titleText: {
             fontStyle: "normal",
@@ -27,6 +26,13 @@ const UploadInfo = (props) => {
           }
          
     }))
+    const renderProductType = () => {
+        return type_product.map((item, index) => (
+          <option key={index} value={index + 1}>
+            {item.name}
+          </option>
+        ));
+      };
     const classes = useStyled();
     return (
         <>
@@ -57,7 +63,12 @@ const UploadInfo = (props) => {
                     className={classes.inputTag}
                     name="type_product"
                     placeholder="Chọn danh mục sản phẩm"
-                />
+                >
+                  <option defaultValue hidden>
+                    Chọn danh mục sản phẩm
+                 </option>
+                {renderProductType()}
+                </Field>
                 {/* <ErrorMessage name="fullName" /> */}
             </Box>
         </>
