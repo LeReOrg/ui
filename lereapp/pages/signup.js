@@ -1,9 +1,10 @@
 import React from 'react';
+import SignUpPage from '../components/Client/SignUp/SignUp';
 
 const Signup = () => {
     return (
         <div>
-         dang ku
+            <SignUpPage />
         </div>
     );
 };
