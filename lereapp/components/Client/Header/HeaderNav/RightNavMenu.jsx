@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
+import ShowLogin from "../ShowLogin/ShowLogin";
+import { useState } from "react";
 const RightNav = styled.ul`
   list-style: none;
   display: flex;
@@ -60,12 +62,24 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   uploadproduct: {
-    color: "#2faf62 !important"
-  }
+    color: "#2faf62 !important",
+  },
+  right_nav_main_test: {
+    position: "absoulute",
+  },
+  showLogin :{
+    position : "relative",
+    "&:hover": {
+      cursor : "pointer"
+    }
+  },
+
 }));
 
 const RightNavMenu = ({ ...props }) => {
   const classes = useStyles();
+  const [isHovering,setIsHovering] = useState(false);
+
   return (
     <div className={classes.right_nav_main}>
       <RightNav open={props.open}>
@@ -74,17 +88,21 @@ const RightNavMenu = ({ ...props }) => {
             <a>Về chúng tôi</a>
           </Link>
         </li>
-        <li>
-          <Link href="/login">
-            <a>Tài khoản</a>
-          </Link>
+        <li
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          className={classes.showLogin}
+        >
+          <a>Tài khoản</a>
+          {isHovering && <ShowLogin />}
         </li>
         <li>
-          <Link  href="/uploadproduct">
-            <a  className={classes.uploadproduct}>Đăng sản phẩm</a>
+          <Link href="/uploadproduct">
+            <a className={classes.uploadproduct}>Đăng sản phẩm</a>
           </Link>
         </li>
       </RightNav>
+
       <HeaderCart />
     </div>
   );

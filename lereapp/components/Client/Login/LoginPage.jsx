@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 const LoginPage = () => {
     return (
         <div>
-            
+            login
         </div>
     );
 };

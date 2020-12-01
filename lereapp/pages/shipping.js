@@ -103,7 +103,6 @@ const Shipping = ({ cartItem }) => {
       setTotalPrice(totalPrices);
     }
   }, [cartItem.cartItems]);
-  console.log(cartItem.cartItems)
   const initialValues = {
     fullName: "",
     email: "",

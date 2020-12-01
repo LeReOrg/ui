@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import { Form, Formik, Field, ErrorMessage, useFormik } from "formik";
 import { object, string, number } from "yup";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
@@ -14,11 +14,17 @@ const UploadProduct = (props) => {
     uploadMain: {
       width: "80%",
       margin: "37px auto 0 auto",
+      [theme.breakpoints.down("sm")]: {
+        width: "95%",
+      },
     },
     uploadMain_Info: {
       border: " 1px solid rgba(0, 0, 0, 0.15)",
       borderRadius: "8px",
       marginBottom: 24,
+      [theme.breakpoints.down("sm")]: {
+        border: "none",
+      },
     },
     uploadMain_InfoContent: {
       paddingLeft: 24,
@@ -33,14 +39,19 @@ const UploadProduct = (props) => {
     uploadMain_InfoBody: {
       width: "80%",
       margin: "0 auto",
+      [theme.breakpoints.down("sm")]: {
+        width: "100%",
+      },
     },
     uploadMain_Price: {
       border: " 1px solid rgba(0, 0, 0, 0.15)",
       borderRadius: "8px",
     },
   }));
+
   const classes = useStyled();
   const initialValues = {
+    imageProduct: [],
     nameProduct: "",
     descriptor: "",
     telephoneNumber: "",
@@ -62,7 +73,13 @@ const UploadProduct = (props) => {
         //   ward: number().required("Ward is required").min(0),
         // })}
       >
-        {({ values, errors, touched, handleChange }) => (
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          setFieldValue,
+        }) => (
           <Form>
             <Grid container className={classes.uploadMain_Info}>
               <Grid item lg={12} className={classes.uploadMain_InfoContent}>
@@ -85,16 +102,17 @@ const UploadProduct = (props) => {
                   Giá thuê sản phẩm
                 </h1>
                 <Box className={classes.uploadMain_InfoBody}>
-                  <UploadPrice  values={values}
+                  <UploadPrice
+                    values={values}
+                    setFieldValue={setFieldValue}
                     errors={errors}
-                    handleChange={handleChange} />
+                    handleChange={handleChange}
+                  />
                 </Box>
               </Grid>
             </Grid>
             <div className={classes.main_recipent__paymentButton}>
-              <button type="submit">
-                Đăng sản phẩm
-              </button>
+              <button type="submit">Đăng sản phẩm</button>
             </div>
           </Form>
         )}
