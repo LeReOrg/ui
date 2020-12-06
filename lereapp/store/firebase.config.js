@@ -69,8 +69,9 @@ const config = {
     },{})
   }
 
-
-  firebase.initializeApp(config)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config)
+  }  
 
   export const getCurrentUser = () => {
     return new Promise((resolve,reject) =>{
