@@ -11,22 +11,10 @@ import { wrapper } from "../../store/store";
 import { END } from "redux-saga";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch,useSelector } from "react-redux";
+import styles from "../../styles/ListProductByTypeStyled";
 
 const ListProductByType = (props) => {
-  const useStyled = makeStyles((theme) => ({
-    main_list: {
-      width: "92%",
-      margin: "40px auto",
-      [theme.breakpoints.down("sm")]: {
-        margin: "0px auto",
-      },
-    },
-    main_filter: {
-      [theme.breakpoints.down("sm")]: {
-        display: "none",
-      },
-    },
-  }));
+  const useStyled = makeStyles(styles);
   const classes = useStyled();
   const router = useRouter();
   const dispatch = useDispatch()

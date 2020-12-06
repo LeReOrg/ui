@@ -9,87 +9,13 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import { object, string, number } from "yup";
 import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
 import { connect } from "react-redux";
+import styles from "../styles/ShippingStyled";
+
 const Shipping = ({ cartItem }) => {
   const [showSubAddress, setshowSubAddress] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
 
-  const useStyled = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    main_shipping__rootLeft: {
-      [theme.breakpoints.down("sm")]: {
-        margin: 0,
-        width: "100%",
-        "& > .MuiGrid-item": {
-          padding: 0,
-        },
-      },
-    },
-    main_shipping: {
-      margin: "30px 80px",
-      [theme.breakpoints.down("xs")]: {
-        margin: "10px 15px",
-      },
-    },
-    main_shipping__content: {},
-    main_shipping__contentLeft: {
-      border: "1px solid #C3C7C5",
-      borderRadius: 8,
-      padding: 24,
-      [theme.breakpoints.down("xs")]: {
-        border: "none",
-        padding: 0,
-      },
-    },
-    main_shipping__contentBottom: {
-      border: "1px solid #C3C7C5",
-      borderRadius: 8,
-      padding: 24,
-      marginTop: 24,
-      [theme.breakpoints.down("xs")]: {
-        border: "none",
-        padding: 0,
-      },
-    },
-    main_shipping__contentLeftInfo: {
-      width: "90%",
-      margin: "20px auto",
-      [theme.breakpoints.down("xs")]: {
-        width: "100%",
-        margin: 0,
-      },
-    },
-    main_shipping__contentLeftTitle: {
-      fontWeight: 700,
-      fontStyle: "normal",
-      fontSize: 20,
-      [theme.breakpoints.down("xs")]: {
-        display: "none",
-      },
-    },
-    main_shipping__contentPaymentTitle: {
-      fontWeight: 700,
-      fontStyle: "normal",
-      fontSize: 20,
-    },
-    main_shipping__mobileHr: {
-      display: "none",
-      [theme.breakpoints.down("xs")]: {
-        display: "block",
-        border: "1px solid #E7E9E8",
-        marginLeft: "-15px",
-        marginRight: "-15px",
-      },
-    },
-    main_shipping__contentRight: {
-      border: "1px solid #C3C7C5",
-      borderRadius: 8,
-      [theme.breakpoints.down("xs")]: {
-        border: "none",
-      },
-    },
-  }));
+  const useStyled = makeStyles(styles);
   const classes = useStyled();
   useEffect(() => {
     if (cartItem) {

@@ -18,6 +18,8 @@ import { connect, useDispatch } from "react-redux";
 import { addItem } from "../../../store/action/cart_actions";
 import { DateRange } from "react-date-range";
 import moment from 'moment';
+import styles from "./ProductDetailsInfoStyled";
+
 const ProductDetailsInfo = ({...props}) => {
   const { name, image_url, price, owner_id } = props.detailsProduct;
   const [checked, setChecked] = useState(false);
@@ -63,90 +65,7 @@ const ProductDetailsInfo = ({...props}) => {
   console.log(itemAdd);
   const updateItem = () => {};
   const dispatch = useDispatch();
-  const useStyled = makeStyles((theme) => ({
-    main_list: {
-      width: "92%",
-      margin: "40px auto",
-      [theme.breakpoints.down("sm")]: {
-        margin: "0px auto",
-      },
-    },
-    media: {
-      height: `${props.itemByType ? "160px" : "215px"}`,
-      objectFit: "fill",
-    },
-    title: {
-      color: "#111E16",
-      fontSize: 24,
-      fontWeight: "bold",
-      marginRight: "25%",
-      [theme.breakpoints.down("sm")]: {
-        marginRight: "0px",
-      },
-    },
-    prices: {
-      color: "#2FAF62",
-      fontSize: 24,
-      fontWeight: "bold",
-      marginTop: "1%",
-    },
-    poster_info: {
-      fontSize: 14,
-      marginTop: "1%",
-      color: "#888E8A",
-    },
-    poster: {
-      color: "#2F80ED",
-    },
-    quantity_space: {
-      marginTop: "2%",
-    },
-    hire_time_space: {
-      marginTop: "1%",
-    },
-    quantity_title: {
-      fontSize: 16,
-      fontWeight: "bold",
-      color: "#111E16",
-    },
-    hire_time: {
-      fontSize: 16,
-      fontWeight: "bold",
-      color: "#111E16",
-    },
-    button_color_plus: {
-      fill: "#2FAF62",
-      cursor: "pointer",
-    },
-    button_color_minus: {
-      fill: quantity == 1 ? "#C3C7C5" : "#2FAF62",
-      cursor: "pointer",
-    },
-    quantity: {
-      fontSize: 16,
-      fontWeight: "bold",
-      color: "#111E16",
-      padding: "0px 2%",
-    },
-    formControl: {
-      marginTop: theme.spacing(1),
-      minWidth: 250,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-    hire_time_width: {
-      width: "70%",
-      [theme.breakpoints.down("sm")]: {
-        width: "100%",
-      },
-    },
-    button_cart: {
-      [theme.breakpoints.down("sm")]: {
-        margin: "10 auto",
-      },
-    },
-  }));
+  const useStyled = makeStyles(styles);
   const classes = useStyled();
 
   const StyledButton = withStyles((theme) => ({
@@ -239,7 +158,7 @@ const ProductDetailsInfo = ({...props}) => {
                   </Typography>
                   <Grid container className={classes.quantity_space}>
                     <RemoveCircleOutlineSharpIcon
-                      className={classes.button_color_minus}
+                      className={quantity == 1 ? classes.button_color_minus_1 : classes.button_color_minus}
                       onClick={handleDecreaseQuantity}
                     />
                     <b className={classes.quantity}>{quantity}</b>

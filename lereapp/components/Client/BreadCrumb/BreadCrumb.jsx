@@ -4,25 +4,9 @@ import Link from "next/link";
 import { makeStyles } from "@material-ui/styles";
 import LinkStyle from "@material-ui/core/Link";
 import { capitalize } from "../../../utils/FunctionUses";
+import styles from "./BreadCrumbStyled";
 
-const useStyled = makeStyles((theme) => ({
-  breadcrumb_main: {
-    background: "#F3F4F3",
-    padding: "14px 0 14px 80px",
-    [theme.breakpoints.down("sm")] : {
-      padding : "7px 0 7px 16px"
-    }
-  },
-  breadcrumb_main_link: {
-    fontSize: 14,
-    fontWeight: "normal",
-    fontStyle: "normal",
-    "&:hover": {
-      cursor: "pointer",
-      color: "#2FAF62 !important",
-    },
-  },
-}));
+const useStyled = makeStyles(styles);
 
 const BreadCrumb = (props) => {
   const classes = useStyled();

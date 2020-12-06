@@ -20,21 +20,14 @@ import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import styles from "../styles/AppStyled"; // styles of component
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
   
-  const useStyles = makeStyles((theme) => ({
-    page_container: {
-      paddingBottom: 80,
-      width: "100%",
-      [theme.breakpoints.down("sm")]: {
-        paddingBottom: 130,
-      },
-    },
-  }));
+  const useStyles = makeStyles(styles);
 
   const classes = useStyles();
   React.useEffect(() => {

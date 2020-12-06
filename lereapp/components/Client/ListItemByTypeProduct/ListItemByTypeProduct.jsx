@@ -10,41 +10,9 @@ import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
 import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import { connect } from "react-redux";
+import styles from "./ListItemByTypeProductStyled";
 
-const useStyles = makeStyles((theme) => ({
-  interested_main: {
-    marginTop: 64,
-    [theme.breakpoints.down("sm")]: {
-      marginTop: 20,
-    },
-  },
-  interested_title: {
-    fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: 30,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: 20,
-      display: "none",
-    },
-  },
-  title_main: {
-    display: "flex",
-    justifyContent: "space-between",
-   alignItems : "center",
-   [theme.breakpoints.down("sm")] : {
-     paddingBottom : 15
-   }
-  },
-  mobile_mode_filter: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-      alignItems : "center",
-      justifyContent : "space-between",
-      width : "50px"
-    },
-  },
-}));
+const useStyles = makeStyles(styles);
 const ListItemByTypeProduct = (props) => {
   const classes = useStyles();
   let renderCards = [];
