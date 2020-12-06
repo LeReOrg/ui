@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Controller } from "swiper";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../../store/action/categories_action";
+import styles from "./ProductTypeStyled";
+
 const ProductType = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -33,28 +35,7 @@ const ProductType = (props) => {
         </SwiperSlide>
       ));
     }
-    const useStyles = makeStyles((theme) => ({
-      type_product_title: {
-        [theme.breakpoints.down("xs")]: {
-          fontSize: 20,
-          paddingBottom: 16,
-        },
-      },
-      type_product_main: {
-        marginTop: 40,
-        width: "90%",
-        margin: "0 auto",
-        [theme.breakpoints.down("xs")]: {
-          marginTop: 24,
-        },
-      },
-      spaceBetweenTwoSwipe: {
-        marginTop: 40,
-        [theme.breakpoints.down("xs")]: {
-          marginTop: 14,
-        },
-      },
-    }));
+    const useStyles = makeStyles(styles);
 
   SwiperCore.use([Controller]);
   const [firstSwiper, setFirstSwiper] = useState(null);

@@ -3,20 +3,10 @@ import CardBlockShop from '../../../utils/CardBlockShop';
 import { Typography, Box, CardMedia, Button } from "@material-ui/core";
 import { green, purple, red } from "@material-ui/core/colors";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import styles from "./LoadMoreItemStyled";
 
 const LoadMoreItem = (props) => {
-    const useStyles = makeStyles((theme) => ({
-        load_more_btn : {
-            display : "flex",
-            justifyContent : "center",
-            marginTop : 35,
-            marginBottom : 52,
-            [theme.breakpoints.down("xs")] : {
-                marginTop : 25,
-                marginBottom : 42
-            }
-        }
-    }))
+    const useStyles = makeStyles(styles)
     const StyledButton = withStyles((theme) => ({
         root: {
           backgroundColor : "transparent",

@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./HeaderNav/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
-  header: {
-    position: "relative",
-    background: "#FFFFFF",
-  },
-}));
+import styles from "./HeaderStyled";
+
+const useStyles = makeStyles(styles);
 const Header = (props) => {
   const [scroll, setScroll] = useState(false);
   const classes = useStyles();

@@ -3,71 +3,9 @@ import { Typography, Box, CardMedia, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { green, purple } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
+import styles from "./InfoStyled";
 
-const useStyles = makeStyles((theme) => ({
-  info_main: {
-    marginTop : 60,
-    marginLeft : "-2.5%",
-    marginRight : "-2.5%",
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 32,
-    },
-  },
-  media: {
-    height: 280,
-    border: "none",
-    [theme.breakpoints.down("xs")]: {
-      height: 240,
-    },
-  },
-  imageInfo: {
-    position: "relative",
-    zIndex: 2,
-  },
-  typography: {
-    position : "absolute",
-    top: 0,
-    left: 0,
-    width : "50%",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 20,
-      width : "80%"
-    },
-  },
-  box: {
-    paddingLeft: 72,
-    paddingRight: 120,
-    paddingTop: 56,
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: 16,
-      paddingTop: 26,
-      paddingRight : 0
-    },
-  },
-
-  image_gradient: {
-    position: "absolute",
-    background:
-      "linear-gradient(90deg, #EAF7EF 0%, rgba(234, 247, 239, 0) 100%)",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-  },
-  background_info : {
-    position : "relative"
-  },
-  info_tittle : {
-    [theme.breakpoints.down("xs")]  :{
-      fontSize : 20
-    }
-  },
-  more_info : {
-    [theme.breakpoints.down("xs")] : {
-      paddingTop : 20
-    }
-  }
-}));
+const useStyles = makeStyles(styles);
 
 const StyledButton = withStyles((theme) => ({
   root: {
