@@ -141,7 +141,11 @@ q:after {
   content: "";
   content: none;
 }
+.disabled{
+  opacity:  0.5;
+  overflow: hidden !important;
 
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;

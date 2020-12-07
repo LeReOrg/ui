@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import RightNavMenu from './RightNavMenu';
+import React, { useState } from "react";
+import styled from "styled-components";
+import RightNavMenu from "./RightNavMenu";
+import onClickOutside from "react-onclickoutside";
 
 const StyledBurger = styled.div`
   width: 1.5rem;
@@ -41,17 +42,34 @@ const StyledBurger = styled.div`
 `;
 
 const Burger = (props) => {
-    const [open,setIOpen] = useState(false)
-    return (
-        <>
-        <StyledBurger open={open}  onClick={() => setIOpen(!open)} >
-            <div />
-            <div />
-            <div />
-        </StyledBurger>
-        <RightNavMenu scroll = {props.scroll} open={open}/>
-        </>
-    );
-};
+  const [open, setIsOpen] = useState(false);
+  let getMainLayout = document.getElementById("main-container");
+  console.log(open);
+  const showBurger = () => {
+    !open
+      ? getMainLayout.classList.add("disabled")
+      : getMainLayout.classList.remove("disabled");
+    setIsOpen(!open);
+  };
+   !open
+     ? (Burger.handleClickOutside = () => {
+       if (getMainLayout) getMainLayout.classList.remove("disabled");
+         setIsOpen(false);
+       })
+     : null;
 
-export default Burger;
+  return (
+    <>
+      <StyledBurger open={open} onClick={showBurger}>
+        <div />
+        <div />
+        <div />
+      </StyledBurger>
+      <RightNavMenu scroll={props.scroll} open={open} />
+    </>
+  );
+};
+const clickOutsideConfig = {
+  handleClickOutside: () => Burger.handleClickOutside,
+};
+export default onClickOutside(Burger, clickOutsideConfig);

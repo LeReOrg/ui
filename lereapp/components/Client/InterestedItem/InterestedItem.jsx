@@ -15,7 +15,7 @@ const InterestedItem = (props) => {
   let renderTopItems = [];
   if (topProductItemsSelect.length > 0) {
     renderTopItems = topProductItemsSelect.map((items, index) => (
-      <Grid item key={index} lg={3} xs={6}>
+      <Grid item key={index} lg={3} md={4} xs={6}>
         <CardProduct item={items} />
       </Grid>
     ));

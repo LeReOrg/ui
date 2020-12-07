@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { green, purple } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./InfoStyled";
-
+import InfoImage from '../../../assets/info.png'
 const useStyles = makeStyles(styles);
 
 const StyledButton = withStyles((theme) => ({
@@ -31,8 +31,6 @@ const Info = () => {
   return (
     <div className={classes.info_main}>
       <div className={classes.background_info}>
-        <CardMedia component="img" className={classes.media} />
-        <div className={classes.image_gradient}></div>
         <Typography
           component={"div"}
           className={classes.typography}
@@ -44,7 +42,7 @@ const Info = () => {
               className={classes.info_tittle}
               fontWeight="fontWeightBold"
             >
-              Bạn có đồ cần thuê ?
+              Who are we?
             </Box>
             <Box fontSize={16}>
               Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản phẩm
@@ -57,6 +55,14 @@ const Info = () => {
             </Box>
           </Box>
         </Typography>
+        <div className={classes.mediaInfo}>
+          <CardMedia
+            component="img"
+            image={InfoImage}
+            className={classes.mediaPicture}
+            title="info"
+          />
+        </div>
       </div>
     </div>
   );

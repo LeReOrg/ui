@@ -64,11 +64,11 @@ const ProductType = (props) => {
             slidesPerView: 2.5,
             spaceBetween: 20,
           },
-          480: {
+          768: {
             slidesPerView: 3.5,
             spaceBetween: 30,
           },
-          640: {
+          1024: {
             slidesPerView: 4,
             spaceBetween: 40,
           },
@@ -87,11 +87,11 @@ const ProductType = (props) => {
             slidesPerView: 2.5,
             spaceBetween: 20,
           },
-          480: {
+          768: {
             slidesPerView: 3.5,
             spaceBetween: 40,
           },
-          640: {
+          1024: {
             slidesPerView: 4,
             spaceBetween: 50,
           },

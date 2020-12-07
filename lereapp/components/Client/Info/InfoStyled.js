@@ -20,29 +20,44 @@ const styles = (theme) => ({
   },
   typography: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    width: "50%",
+    top: 60,
+    left: 192,
     [theme.breakpoints.down("xs")]: {
       fontSize: 20,
-      width: "80%",
+      right: 10,
+      left: 10,
     },
   },
   box: {
-    paddingLeft: 72,
-    paddingRight: 120,
-    paddingTop: 56,
+    // paddingLeft: 192,
+    // paddingTop: 56,
+    // [theme.breakpoints.down("xs")]: {
+    //   paddingLeft: 16,
+    //   paddingTop: 26,
+    //   paddingRight: 0,
+    // },
+    width: "50%",
+  },
+  mediaInfo: {
+    position: "absolute",
+    top: 40,
+    right: 192,
     [theme.breakpoints.down("xs")]: {
-      paddingLeft: 16,
-      paddingTop: 26,
-      paddingRight: 0,
+      right: 10,
+      left: 10,
     },
   },
-
+  mediaPicture: {
+    width: 400,
+    height: 225,
+    [theme.breakpoints.down("xs")]: {
+      width: 200,
+      height: 100,
+    },
+  },
   image_gradient: {
     position: "absolute",
-    background:
-      "linear-gradient(90deg, #EAF7EF 0%, rgba(234, 247, 239, 0) 100%)",
+    background: "#EAF7EF",
     top: 0,
     left: 0,
     width: "100%",
@@ -50,6 +65,8 @@ const styles = (theme) => ({
   },
   background_info: {
     position: "relative",
+    height: "320px",
+    background: "#EAF7EF",
   },
   info_tittle: {
     [theme.breakpoints.down("xs")]: {

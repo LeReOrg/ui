@@ -58,7 +58,7 @@ const MyApp = ({ Component, pageProps }) => {
           >
             <div className="container-fluid">
               <Header />
-              <div className={classes.page_container}>
+              <div id="main-container" className={classes.page_container}>
                 <Component {...pageProps} />
               </div>
               <Footer />
