@@ -1,5 +1,5 @@
 import { takeLatest, put,all,call } from 'redux-saga/effects'
-import {GOOGLE_SIGN_IN_START,EMAIL_SIGN_IN_START,CHECK_USER_SESSION,SIGN_OUT_START,SIGN_UP_START,SIGN_UP_SUCCESS} from '../types'
+import {GOOGLE_SIGN_IN_START,EMAIL_SIGN_IN_START,CHECK_USER_SESSION,SIGN_OUT_START,SIGN_UP_START,SIGN_UP_SUCCESS, FACEBOOK_SIGN_IN_START} from '../types'
 import { auth , googleProvider, createUserProfileDocument ,getCurrentUser,facebookProvider} from '../firebase.config';
 import { signInSuccess, signInFailure, signUpFailure,signUpSuccess, signOutFailure,signOutSuccess} from '../action/user_action'
 
@@ -80,6 +80,9 @@ export function* onGoogleSignIn(){
 export function* onEmailSignIn(){
     yield takeLatest(EMAIL_SIGN_IN_START,signInWithEmail)
 }
+export function* onFaceBookSignIn() {
+  yield takeLatest(FACEBOOK_SIGN_IN_START, singInWithFaceBook);
+}
 
 export function* onCheckUserSession(){
     yield takeLatest(CHECK_USER_SESSION,isUserAuthenticated)
@@ -97,7 +100,7 @@ export function* onSignUpSuccess(){
 }
 
 function* userSagas(){
-    yield all([call(onGoogleSignIn),call(onEmailSignIn),
+    yield all([call(onGoogleSignIn),call(onEmailSignIn),call(onFaceBookSignIn),
         call(isUserAuthenticated),call(onSignOutStart),call(onSignUpStart),
         call(onSignUpSuccess)])
 }

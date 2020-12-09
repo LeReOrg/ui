@@ -4,6 +4,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILURE,
   EMAIL_SIGN_IN_START,
+  FACEBOOK_SIGN_IN_START,
   SIGN_OUT_SUCCESS,
   SIGN_UP_SUCCESS,
   SIGN_OUT_START,
@@ -33,6 +34,10 @@ export const signInFailure = (error) => ({
 
 export const emailSignInStart = (emailAndPassword) => ({
   type: EMAIL_SIGN_IN_START,
+  payload: emailAndPassword,
+});
+export const faceBookSignInStart = (emailAndPassword) => ({
+  type: FACEBOOK_SIGN_IN_START,
   payload: emailAndPassword,
 });
 export const signOutSuccess = () => ({

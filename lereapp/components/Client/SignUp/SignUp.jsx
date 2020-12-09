@@ -9,7 +9,6 @@ const SignUpPage = () => {
     fullName: "",
     telephone: "",
     password: "",
-    repassword: "",
   };
   const signUpHandle = () => {};
   return (
@@ -25,10 +24,7 @@ const SignUpPage = () => {
             .required("Telephone is required")
             .min(10)
             .max(100),
-          repassword: string()
-            .required("Repassword is required")
-            .min(10)
-            .max(100),
+          
         })}
       >
         {({ values, errors, handleChange }) => (
@@ -47,9 +43,6 @@ const SignUpPage = () => {
             <p>Nhập mật khẩu</p>
             <Field name="password" placeholder="Nhập mật khẩu" />
             <ErrorMessage name="password" />
-            <p>Nhập lại mật khẩu</p>
-            <Field name="repassword" placeholder="Nhập lại mật khẩu" />
-            <ErrorMessage name="repassword" />
             <button type="submit">Đăng ký</button>
           </Form>
         )}
