@@ -1,7 +1,5 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
-import FaceBookIcon from "../../../assets/facebookIcon.svg";
-import GmailIcon from "../../../assets/gmailIcon.svg";
 const styles = (theme) => ({
   main_page_login: {
     width: "70%",
@@ -40,54 +38,6 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 14,
   },
-  facebookButton: {
-    position: "relative",
-    border: "1px solid #E7E9E8",
-    borderRadius: 4,
-    paddingTop: 9,
-    paddingBottom: 9,
-    fontSize: 16,
-    color: "#888E8A",
-    marginBottom: 20,
-    textAlign: "center",
-    "&:hover": {
-      cursor: "pointer",
-      backgroundColor: "#2FAF62",
-    },
-  },
-  gmailButton: {
-    position: "relative",
-    border: "1px solid #E7E9E8",
-    borderRadius: 4,
-    paddingTop: 9,
-    paddingBottom: 9,
-    fontSize: 16,
-    color: "#888E8A",
-    textAlign: "center",
-    marginBottom: 24,
-    "&:hover": {
-      cursor: "pointer",
-      backgroundColor: "#2FAF62",
-    },
-  },
-  faceBookIcon: {
-    background: `url("${FaceBookIcon}") no-repeat`,
-    backgroundSize: "cover",
-    position: "absolute",
-    left: 12,
-    height: 20,
-    width: 20,
-    top: 10,
-  },
-  gmailIcon: {
-    background: `url("${GmailIcon}") no-repeat`,
-    backgroundSize: "cover",
-    position: "absolute",
-    left: 12,
-    height: 20,
-    width: 20,
-    top: 10,
-  },
   passwordTitle: {
     fontStyle: "normal",
     fontWeight: "bold",
@@ -112,13 +62,6 @@ const styles = (theme) => ({
     paddingLeft: 12,
     paddingTop: 10,
     paddingBottom: 10,
-  },
-  forgotPassword: {
-    textAlign: "right",
-    fontWeight: "bold",
-    fontSize: 14,
-    color: "#2F80ED",
-    marginBottom: 16,
   },
   loginButton: {
     backgroundColor: (props) =>

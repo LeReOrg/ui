@@ -1,7 +1,7 @@
 import React from "react";
 import ForGotPasswordPage from "../components/Client/ForGotPassword/ForGotPassword"
-const Signup = () => {
+const ForgotPassWord = () => {
   return <div><ForGotPasswordPage /></div>;
 };
 
-export default Signup;
+export default ForgotPassWord;

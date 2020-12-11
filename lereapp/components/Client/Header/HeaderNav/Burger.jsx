@@ -44,7 +44,6 @@ const StyledBurger = styled.div`
 const Burger = (props) => {
   const [open, setIsOpen] = useState(false);
   let getMainLayout = document.getElementById("main-container");
-  console.log(open);
   const showBurger = () => {
     !open
       ? getMainLayout.classList.add("disabled")

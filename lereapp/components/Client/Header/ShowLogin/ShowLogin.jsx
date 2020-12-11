@@ -10,10 +10,14 @@ const ShowLogin = () => {
     <div className={classes.mainShow}>
       <div className={classes.mainShowBody}>
         <Link href="/signup">
-          <a>Đăng ký</a>
+          <div className={classes.registerContentButton}>
+            <a className={classes.registerButton}>Đăng ký</a>
+          </div>
         </Link>
         <Link href="/login">
-          <a>Đăng nhập</a>
+          <div className={classes.loginContentButton}>
+            <a className={classes.loginButton}>Đăng nhập</a>
+          </div>
         </Link>
       </div>
     </div>

@@ -62,7 +62,6 @@ const ProductDetailsInfo = ({...props}) => {
     setTotalDate(calculateTotalDate);
   }, [dateRent]);
 
-  console.log(itemAdd);
   const updateItem = () => {};
   const dispatch = useDispatch();
   const useStyled = makeStyles(styles);

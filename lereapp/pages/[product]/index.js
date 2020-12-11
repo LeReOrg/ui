@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
-import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import Line from "../../utils/Line";
 import BreadCrumb from "../../components/Client/BreadCrumb/BreadCrumb";
 import ProductDetailsInfo from "../../components/Client/ProductDetails/ProductDetailsInfo";
@@ -13,15 +8,14 @@ import ProductDetailsContent from "../../components/Client/ProductDetails/Produc
 import ProductRelated from "../../components/Client/ProductDetails/ProductRelated";
 import { content } from "../../utils/FixedContentItem";
 import { useDispatch } from 'react-redux';
-import { addItem } from '../../store/action/cart_actions';
 import { getProductDetail } from '../../store/action/products_action';
 
 const ProductDetail = ({detailsProduct}) => {
     const dispatch = useDispatch();
     const router = useRouter();
-    useEffect(() => {
-      dispatch(getProductDetail(router.query.index))
-    },[])
+    // useEffect(() => {
+    //   dispatch(getProductDetail(router.query.product))
+    // },[])
     const useStyled = makeStyles((theme) => ({
         main_list: {
 
