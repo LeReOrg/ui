@@ -56,6 +56,7 @@ const styles = (theme) => ({
     width: "100%",
     border: "none",
     fontStyle: "normal",
+    textTransform: "unset !important",
     fontWeight: "bold",
     fontSize: 16,
     color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),

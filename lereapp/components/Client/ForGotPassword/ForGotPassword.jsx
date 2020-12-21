@@ -13,7 +13,9 @@ import { isEmpty } from "lodash";
 const ForGotPasswordPage = (props) => {
   const initialValues = {
     email: "",
+    code : ""
   };
+  const [code,setCode]  = useState(false)
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
@@ -41,14 +43,27 @@ const ForGotPasswordPage = (props) => {
             >
               {({ values, errors, handleChange }) => (
                 <Form>
-                  <p className={classes.emailTitle}>Nhập Email của bạn</p>
+                  {code ? 
+                  <>
+                    <p className={classes.emailTitle}>Nhập Email của bạn</p>
+                    <Field
+                      className={classes.emailFormLogin}
+                      name="email"
+                      placeholder="Địa chỉ Email"
+                    />
+                    <ErrorMessage name="email" />
+                  </>
+                  :   <>
+                  {/* <p className={classes.emailTitle}>Nhập mã khôi phục <span style={{color: "#888E8A",fontSize : 14}}>(gửi qua tuannvadsg@gmail.com)</span></p> */}
+                  <p className={classes.emailTitle}>Nhập mã khôi phục</p>
+
                   <Field
                     className={classes.emailFormLogin}
-                    name="email"
-                    placeholder="Địa chỉ Email"
+                    name="code"
+                    placeholder="VD: 84XCVJF94"
                   />
-                  <ErrorMessage name="email" />
-
+                  <ErrorMessage name="code" />
+                </> }
                   {values.email !== "" && isEmpty(errors)
                     ? setDisabled(false)
                     : setDisabled(true)}
