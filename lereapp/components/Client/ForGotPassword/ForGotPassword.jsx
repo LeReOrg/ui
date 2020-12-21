@@ -7,7 +7,6 @@ import styles from "./ForGotPasswordStyled";
 import BackGroundLogin from "../../../assets/background_login.png";
 import { Grid } from "@material-ui/core";
 import { MyButton } from "./ForGotPasswordStyled";
-import Link from "next/link";
 import { isEmpty } from "lodash";
 
 const ForGotPasswordPage = (props) => {
@@ -56,7 +55,6 @@ const ForGotPasswordPage = (props) => {
                   :   <>
                   {/* <p className={classes.emailTitle}>Nhập mã khôi phục <span style={{color: "#888E8A",fontSize : 14}}>(gửi qua tuannvadsg@gmail.com)</span></p> */}
                   <p className={classes.emailTitle}>Nhập mã khôi phục</p>
-
                   <Field
                     className={classes.emailFormLogin}
                     name="code"
