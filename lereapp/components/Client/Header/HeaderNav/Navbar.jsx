@@ -13,10 +13,13 @@ const Nav = styled.nav`
   @media (max-width: 599.95px) {
     padding: 18px 0 18px 20px;
   }
-  @media (max-width:1024px) {
+  @media (max-width: 1340px) {
+    padding: 20px;
+  }
+  @media (max-width: 1024px) {
     padding: 15px;
-    display : flex;
-    align-items: center
+    display: flex;
+    align-items: center;
   }
 `;
 
