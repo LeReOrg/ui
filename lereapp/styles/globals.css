@@ -80,7 +80,9 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-
+a {
+  text-decoration: none !important;
+}
 * {
   font-family: "Nunito Sans", sans-serif !important;
 }
@@ -425,7 +427,9 @@ img {
 textarea {
   resize: vertical;
 }
-
+.customerPage{
+  background-color: #E5E5E5;
+}
 .chromeframe {
   margin: 0.2em 0;
   background: #ccc;

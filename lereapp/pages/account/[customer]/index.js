@@ -1,12 +1,18 @@
-import React from 'react';
-import CustomerPage from '../../../components/Client/Customer/Customer';
+import React, { useEffect } from "react";
+import CustomerPage from "../../../components/Client/Customer/Customer";
 
 const CustomerProfile = () => {
-    return (
-        <>
-         <CustomerPage />
-        </>
-    );
+  useEffect(() => {
+    let background = document.getElementById("container-fluid");
+    if (background) {
+      background.classList.add("customerPage");
+    }
+  }, []);
+  return (
+    <>
+      <CustomerPage />
+    </>
+  );
 };
 
 export default CustomerProfile;

@@ -56,7 +56,7 @@ const MyApp = ({ Component, pageProps }) => {
             persistor={persistor}
             loading={<Component {...pageProps} />}
           >
-            <div className="container-fluid">
+            <div className="container-fluid" id="container-fluid">
               <Header />
               <div id="main-container" className={classes.page_container}>
                 <Component {...pageProps} />
