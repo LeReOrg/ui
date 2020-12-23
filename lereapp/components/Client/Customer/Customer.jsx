@@ -5,10 +5,11 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import CustomerHistory from "./CustomerHistory";
 import { MyButton } from "../Login/LoginPageStyled";
+import CustomerInfo from "./CustomerInfo";
 const CustomerPage = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const [historyCart, setHistoryCart] = React.useState(true); 
+  const [historyCart, setHistoryCart] = React.useState(true);
   return (
     <div className={classes.main_customerProfile}>
       <Grid container spacing={4}>
@@ -32,13 +33,13 @@ const CustomerPage = () => {
             />
             <Box component="div" display="flex" alignItems="center" mb={4}>
               <div className={classes.customerInfo_imageHistory}></div>
-              <div className={classes.customerInfo_textHistoryActive}>
+              <div className={classes.customerInfo_textHistoryActive} onClick={(() => {setHistoryCart(true)})}>
                 Lịch sử đơn hàng
               </div>
             </Box>
             <Box component="div" display="flex" alignItems="center">
               <div className={classes.customerInfo_imageCustomerDetail}></div>
-              <div className={classes.customerInfo_textCustomerDetailInActive}>
+              <div className={classes.customerInfo_textCustomerDetailInActive} onClick={(() => {setHistoryCart(false)})}>
                 Thông tin tài khoản
               </div>
             </Box>
@@ -49,7 +50,11 @@ const CustomerPage = () => {
         </Grid>
         <Grid item lg={10} md={10} xs={12}>
           <Box className={classes.customerProcessInfo}>
-            {historyCart ? <CustomerHistory /> : null}
+            {historyCart  ? (
+              <CustomerHistory />
+            ) : (
+              <CustomerInfo />
+            )}
           </Box>
         </Grid>
       </Grid>

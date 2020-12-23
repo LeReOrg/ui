@@ -135,9 +135,17 @@ const styles = (theme) => ({
 });
 const useStyles = makeStyles(styles);
 export function MyButton(props) {
-  const { type, ...other } = props;
+  const { type, onPageChange, ...other } = props;
+
   const classes = useStyles(props);
-  return <Button type={type} className={classes.loginButton} {...other} />;
+  return (
+    <Button
+      type={type}
+      className={classes.loginButton}
+      onClick={onPageChange}
+      {...other}
+    />
+  );
 }
 
 export default styles;

@@ -1,6 +1,5 @@
 import History from "../../../assets/history_cart.svg";
 import AccountDetail from "../../../assets/accountDetail.svg";
-import HistoryCart from "../../../assets/imageTestHistoryCart.png";
 
 const styles = (theme) => ({
   main_customerProfile: {
@@ -13,8 +12,8 @@ const styles = (theme) => ({
     backgroundColor: "#FFFFFF",
     padding: "24px 16px",
   },
-  customerInfoButton :{
-    paddingTop : 16
+  customerInfoButton: {
+    paddingTop: 16,
   },
   customerProcessInfo: {
     borderRadius: 8,
@@ -46,9 +45,9 @@ const styles = (theme) => ({
   tabInfo_content: {
     padding: 24,
   },
-  main_customerProfileContent:{
-    display : "flex",
-    flexDirection : "column"
+  main_customerProfileContent: {
+    display: "flex",
+    flexDirection: "column",
   },
   tabInfo_contentRight: {
     display: "flex",
@@ -108,6 +107,11 @@ const styles = (theme) => ({
     fontSize: 14,
     fontWeight: "bold",
     color: "#2FAF62",
+    "&:hover": {
+      color: "#2FAF62",
+      cursor: "pointer",
+      fontWeight: "bold",
+    },
   },
   customerInfo_imageHistory: {
     background: `url(${History})`,
