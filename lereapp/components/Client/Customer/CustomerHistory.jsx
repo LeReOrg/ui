@@ -6,7 +6,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import { Box } from "@material-ui/core";
 import styles from "./CustomerStyled";
-import Grid from "@material-ui/core/Grid";
 import Image from "next/image";
 import HistoryCart from "../../../assets/imagetest2.png";
 import { MyButton } from "../Login/LoginPageStyled";
