@@ -60,7 +60,7 @@ export const getStaticProps = wrapper.getStaticProps(
   async ({ store, params }) => {
     store.dispatch(getProductByCategory(params.index));
      store.dispatch(END);
-     await store.sagaTask.toPromise();
+    //  await store.sagaTask.toPromise();
   }
 );
 

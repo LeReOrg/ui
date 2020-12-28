@@ -14,7 +14,8 @@ const BreadCrumb = (props) => {
     <Breadcrumbs aria-label="breadcrumb"  className={classes.breadcrumb_main}>
       <Link href="/" as="/">
         <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
-          Trang chủ
+         <span>Trang chủ</span>
+          
         </LinkStyle>
       </Link>
       <Link as={`/type_product/${props.id}`}  href="/[type_product]/[index]">
@@ -23,7 +24,8 @@ const BreadCrumb = (props) => {
           aria-current="page"
           className={classes.breadcrumb_main_link}
         >
-          {props.activeBread && capitalize(props.activeBread)}
+            <span>{props.activeBread && capitalize(props.activeBread)}</span>
+
         </LinkStyle>
       </Link>
     </Breadcrumbs>
