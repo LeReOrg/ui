@@ -11,6 +11,7 @@ import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import {
   getProductByCategory,
+  prefetchProductByCate,
   useProductByCategory,
 } from "../../hooks/useProductByCategory";
 const ListProductByType = (props) => {
@@ -18,11 +19,13 @@ const ListProductByType = (props) => {
   const classes = useStyled();
   const router = useRouter();
   let nameTypeProduct = [];
-  useEffect(() => {
-    getProductByCategory(router.query.index);
-  },[])
-  const getListProductByType = useProductByCategory();
-  console.log(getListProductByType);
+  const { data: productByCate, isLoading, error } = useProductByCategory(
+    router.query.index
+  );
+  let getListProductByType = [];
+  if (!isLoading) {
+    getListProductByType = productByCate;
+  }
   if (getListProductByType.length > 0) {
     nameTypeProduct = getListProductByType.filter(
       (item) => `${router.query.index}` == parseInt(item.id)
@@ -31,12 +34,12 @@ const ListProductByType = (props) => {
 
   return (
     <>
-      {/* <BreadCrumb
+      <BreadCrumb
         activeBread={
           nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
         }
         id={nameTypeProduct.length > 0 ? nameTypeProduct[0].id : null}
-      /> */}
+      />
       <div className={classes.main_list}>
         <Grid container>
           <Grid item lg={3} md={3} className={classes.main_filter}>
@@ -62,8 +65,8 @@ export async function getStaticPaths() {
   );
 
   const categories = await res.json();
-  //  // Get the paths we want to pre-render based on posts
-  
+// Get the paths we want to pre-render based on posts
+
   const paths = categories.map((post) => ({
     params: { index: post.id },
   }));
@@ -71,12 +74,16 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery("productsByCategory", (_key, params=0) =>
-    getProductByCategory(params)
+  await queryClient.prefetchQuery(
+    ["categories", String(params.index)],
+    getProductByCategory,
+    {
+      staleTime: 5000,
+    }
   );
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 }

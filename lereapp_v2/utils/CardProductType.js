@@ -5,6 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
+import { prefetchProductByCate } from "../hooks/useProductByCategory";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -53,7 +54,12 @@ const CardProductType = ({info}) => {
   return (
     <>
       <Link as={link} href="/type_product/[index]">
-        <a className={classes.linkTypeProduct}>
+        <a
+          className={classes.linkTypeProduct}
+          onMouseEnter={() => {
+            prefetchProductByCate(info.id);
+          }}
+        >
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia
