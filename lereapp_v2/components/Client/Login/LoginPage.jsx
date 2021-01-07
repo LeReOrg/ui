@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
-import {
-  googleSignInStart,
-  faceBookSignInStart,
-} from "../../../store/action/user_action";
 import styles from "./LoginPageStyled";
 import BackGroundLogin from "../../../assets/background_login.png";
 import { Grid, Box } from "@material-ui/core";

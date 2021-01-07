@@ -17,7 +17,8 @@ import Collapse from "@material-ui/core/Collapse";
 import { addItem } from "../../../store/action/cart_actions";
 import { DateRange } from "react-date-range";
 import moment from 'moment';
-import styles from "./ProductDetailsInfoStyled";
+import styles from "./ProductDetailsStyled";
+
 
 const ProductDetailsInfo = ({...props}) => {
   const { name, image_url, price, owner_id } = props.detailsProduct;
@@ -136,7 +137,7 @@ const ProductDetailsInfo = ({...props}) => {
           <ImageGallery items={images} />
         </Grid>
         <Grid item lg={6} md={6} xs={12}>
-          <Typography className={classes.title} align="left">
+          <Typography className={classes.titleDetailInfo} align="left">
             {name}
           </Typography>
           <Typography className={classes.prices} align="left">

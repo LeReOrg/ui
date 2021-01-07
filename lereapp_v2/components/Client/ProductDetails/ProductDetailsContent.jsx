@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Typography, Box, Button } from "@material-ui/core";
-import styles from "./ProductDetailsContentStyled";
+import styles from "./ProductDetailsStyled";
 
 const ProductDetailsContent = ({...props}) => {
     const useStyled = makeStyles(styles);

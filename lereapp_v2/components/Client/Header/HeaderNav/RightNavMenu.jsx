@@ -5,84 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
 import ShowLogin from "../ShowLogin/ShowLogin";
 import { useState } from "react";
-const RightNav = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-flow: row nowrap;
-  margin-bottom: 0;
-  margin-right: 10px;
-  align-items: center;
-  @media (max-width: 1024px) {
-    margin-right: 0;
-    padding-left: 0;
-  }
-  li {
-    padding: 0px 23px;
-    @media (max-width: 1024px) {
-      padding: 0px 20px;
-    }
-    a {
-      color: black;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 22px;
-      text-decoration: none;
-      &:hover {
-        color: #2faf62;
-      }
-    }
-  }
-  @media (max-width: 1023px) {
-    flex-flow: column nowrap;
-    background-color: #ffffff;
-    position: fixed;
-    z-index: 3;
-    margin-right: 0;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    box-shadow: ${({ open }) =>
-      open ? "-4px 0px 10px rgba(0, 0, 0, 0.3);" : "unset"};
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 30%;
-    align-items: flex-end;
-    padding-top: 5rem;
-    li {
-      padding-top: 25px;
-      a {
-        color: black;
-      }
-      &:nth-child(3) {
-        display: none;
-      }
-    }
-  }
-  @media (max-width: 414px) {
-    width: 50%;
-  }
-`;
-const useStyles = makeStyles((theme) => ({
-  right_nav_main: {
-    display: "flex",
-  },
-  uploadproduct: {
-    color: "#2faf62 !important",
-  },
-  right_nav_main_test: {
-    position: "absoulute",
-  },
-  showLogin: {
-    position: "relative",
-    "&:hover": {
-      cursor: "pointer",
-    },
-  },
-}));
+import { RightNav,styles } from "./HeaderNavStyled";
 
 const RightNavMenu = ({ ...props }) => {
-  const classes = useStyles();
-  const [isHovering, setIsHovering] = useState(false);  
+  const useStyled = makeStyles(styles);
+  const classes = useStyled();
+  const [isHovering, setIsHovering] = useState(false);
   return (
     <div className={classes.right_nav_main}>
       <RightNav open={props.open}>

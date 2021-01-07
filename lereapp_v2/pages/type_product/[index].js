@@ -59,14 +59,10 @@ const ListProductByType = (props) => {
   );
 };
 export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
   const res = await fetch(
     "https://pacific-ravine-33365.herokuapp.com/category/getCategory"
   );
-
   const categories = await res.json();
-// Get the paths we want to pre-render based on posts
-
   const paths = categories.map((post) => ({
     params: { index: post.id },
   }));
@@ -78,7 +74,7 @@ export async function getStaticProps({ params }) {
     ["categories", String(params.index)],
     getProductByCategory,
     {
-      staleTime: 5000,
+      staleTime: 2000,
     }
   );
   return {

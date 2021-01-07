@@ -14,11 +14,8 @@ const AddAddressMobile = (props) => {
   }, [props.values.city]);
  const theme = createMuiTheme({
    overrides: {
-     // Style sheet name ⚛️
      MuiButton: {
-       // Name of the rule
        text: {
-         // Some CSS
          background: "#2FAF62",
          borderRadius: 4,
          border: 0,

@@ -6,19 +6,16 @@ const styles = (theme) => ({
       margin: "0px auto",
     },
   },
-  media_160: {
-    height: "160px",
-    objectFit: "fill",
+  main_list_related: {
+    marginTop: "1%",
   },
-  media: {
-    height: "215px",
-    objectFit: "fill",
-  },
-  // media: {
-  //   height: `${props.itemByType ? "160px" : "215px"}`,
-  //   objectFit: "fill",
-  // },
+  
   title: {
+    color: "#111E16",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  titleDetailInfo: {
     color: "#111E16",
     fontSize: 24,
     fontWeight: "bold",
@@ -26,6 +23,24 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginRight: "0px",
     },
+  },
+  content: {
+    color: "#111E16",
+    fontSize: 16,
+    marginTop: "2%",
+  },
+  read_more: {
+    color: "#2FAF62",
+    fontSize: 16,
+    marginTop: "2%",
+  },
+  media_160: {
+    height: "160px",
+    objectFit: "fill",
+  },
+  media: {
+    height: "215px",
+    objectFit: "fill",
   },
   prices: {
     color: "#2FAF62",
@@ -94,5 +109,4 @@ const styles = (theme) => ({
     },
   },
 });
-
 export default styles;
