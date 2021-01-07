@@ -22,6 +22,12 @@ const styles = (theme) => ({
     position: "absolute",
     top: 60,
     left: 192,
+    [theme.breakpoints.between("sm", "md")]: {
+      left: 60,
+    },
+    [theme.breakpoints.between("md", "lg")]: {
+      left: 60,
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: 20,
       right: 10,
@@ -42,6 +48,12 @@ const styles = (theme) => ({
     position: "absolute",
     top: 40,
     right: 192,
+    [theme.breakpoints.between("sm", "md")]: {
+      right: 60,
+    },
+    [theme.breakpoints.between("md", "lg")]: {
+      right: 60,
+    },
     [theme.breakpoints.down("xs")]: {
       right: 10,
       left: 10,

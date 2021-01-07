@@ -40,7 +40,7 @@ const styles = (theme) => ({
       width: "70%",
     },
     [theme.breakpoints.between("md", "lg")]: {
-      width: "40%",
+      width: "50%",
     },
     [theme.breakpoints.down("xs")]: {
       width: "100%",

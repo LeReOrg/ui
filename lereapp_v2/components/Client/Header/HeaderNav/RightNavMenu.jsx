@@ -39,8 +39,9 @@ const RightNav = styled.ul`
     position: fixed;
     z-index: 3;
     margin-right: 0;
-    transform: ${({ open }) => open ? "translateX(0)" : "translateX(100%)"};
-    box-shadow: ${({ open }) => open ? "-4px 0px 10px rgba(0, 0, 0, 0.3);" : "unset"};
+    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
+    box-shadow: ${({ open }) =>
+      open ? "-4px 0px 10px rgba(0, 0, 0, 0.3);" : "unset"};
     top: 0;
     right: 0;
     height: 100vh;
@@ -71,19 +72,17 @@ const useStyles = makeStyles((theme) => ({
   right_nav_main_test: {
     position: "absoulute",
   },
-  showLogin :{
-    position : "relative",
+  showLogin: {
+    position: "relative",
     "&:hover": {
-      cursor : "pointer"
-    }
+      cursor: "pointer",
+    },
   },
-
 }));
 
 const RightNavMenu = ({ ...props }) => {
   const classes = useStyles();
-  const [isHovering,setIsHovering] = useState(false);
-
+  const [isHovering, setIsHovering] = useState(false);  
   return (
     <div className={classes.right_nav_main}>
       <RightNav open={props.open}>
@@ -106,7 +105,6 @@ const RightNavMenu = ({ ...props }) => {
           </Link>
         </li>
       </RightNav>
-
       <HeaderCart />
     </div>
   );

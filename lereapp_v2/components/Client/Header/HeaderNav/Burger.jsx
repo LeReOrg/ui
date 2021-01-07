@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import RightNavMenu from "./RightNavMenu";
+import { useClickOutside } from "../../../../hooks/useOnClickOutSide";
 
 const StyledBurger = styled.div`
   width: 1.5rem;
@@ -42,15 +43,50 @@ const StyledBurger = styled.div`
 
 const Burger = (props) => {
   const [open, setIsOpen] = useState(false);
+  const [mainLayout, setMainLayout] = useState("");
+  const menuRef = useRef();
+
+  useEffect(() => {
+    let getMainLayout = document.getElementById("main-container");
+    setMainLayout(getMainLayout);
+  }, []);
+
+  const showBurger = () => {
+    var x = document.getElementsByClassName("bodyTag")[0];
+    console.log(x);
+    if (!open) {
+      x.classList.add("noscrolldown");
+      mainLayout.classList.add("disabled");
+    } else {
+      x.classList.remove("noscrolldown");
+      mainLayout.classList.remove("disabled");
+    }
+    setIsOpen(!open);
+  };
+  const onClickOutSide = () => {
+    var x = document.getElementsByClassName("bodyTag")[0];
+    if (open) {
+      setIsOpen(!open);
+      x.classList.remove("noscrolldown");
+
+      mainLayout.classList.remove("disabled");
+    }
+  };
+  useClickOutside(menuRef, onClickOutSide);
   return (
-    <>
-      <StyledBurger open={open}>
+    <div ref={menuRef}>
+      <StyledBurger
+        open={open}
+        onClick={() => {
+          showBurger();
+        }}
+      >
         <div />
         <div />
         <div />
       </StyledBurger>
       <RightNavMenu scroll={props.scroll} open={open} />
-    </>
+    </div>
   );
 };
 

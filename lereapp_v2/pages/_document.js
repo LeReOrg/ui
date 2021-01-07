@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
             href="https://unpkg.com/swiper/swiper-bundle.min.css"
           />
         </Head>
-        <body>
+        <body className="bodyTag">
           <Main />
           <NextScript />
         </body>
