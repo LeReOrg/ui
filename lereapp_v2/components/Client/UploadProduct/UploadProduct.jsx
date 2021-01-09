@@ -35,13 +35,7 @@ const UploadProduct = (props) => {
         //   ward: number().required("Ward is required").min(0),
         // })}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          setFieldValue,
-        }) => (
+        {({ values, errors, touched, handleChange, setFieldValue }) => (
           <Form>
             <Grid container className={classes.uploadMain_Info}>
               <Grid item lg={12} className={classes.uploadMain_InfoContent}>
@@ -82,7 +76,5 @@ const UploadProduct = (props) => {
     </div>
   );
 };
-
-
 
 export default UploadProduct;

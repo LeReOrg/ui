@@ -3,13 +3,12 @@ import { Field, ErrorMessage } from "formik";
 import { Box, Grid, Link, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import ImageUploading from "react-images-uploading";
-import styles from "./UploadInfoStyled";
+import styles from "./UploadProductStyled";
 
 const UploadInfo = ({ type_product }) => {
   const [images, setImages] = React.useState([]);
   const maxNumberImage = 10;
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };

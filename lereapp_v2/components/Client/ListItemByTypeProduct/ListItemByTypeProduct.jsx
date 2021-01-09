@@ -11,8 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import styles from "./ListItemByTypeProductStyled";
 
-const useStyles = makeStyles(styles);
 const ListItemByTypeProduct = (props) => {
+  const useStyles = makeStyles(styles);
   const classes = useStyles();
   let renderCards = [];
   if(props.listProduct.length >0 ){

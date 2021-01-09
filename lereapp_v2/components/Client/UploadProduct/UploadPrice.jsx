@@ -2,7 +2,7 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 import { Box, Grid, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import styles from "./UploadPriceStyled";
+import styles from "./UploadProductStyled";
 
 const UploadPrice = (props) => {
   const useStyled = makeStyles(styles);

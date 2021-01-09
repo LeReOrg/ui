@@ -23,7 +23,9 @@ const FilterItemMobile = (props) => {
     }
   }, [props.display]);
   const useStyled = makeStyles(styles);
-  const classes = useStyled();
+  const classes = useStyled({
+    display : display
+  });
   const handleFilters = (filters, cate) => {
     const newFilter = { ...filter.filters };
     newFilter[cate] = filters;
@@ -62,7 +64,7 @@ const FilterItemMobile = (props) => {
     props.onChangeDisplay();
   };
   return (
-    <FilterItemMobile display={display}>
+    // <FilterItemMobile display={display}>
       <div className={classes.filter_main_mobile_background}>
         <div className={classes.filter_main_mobile}>
           <button onClick={() => hideModel()}>X</button>
@@ -81,7 +83,7 @@ const FilterItemMobile = (props) => {
           />
         </div>
       </div>
-    </FilterItemMobile>
+    // </FilterItemMobile>
   );
 };
 export default FilterItemMobile;

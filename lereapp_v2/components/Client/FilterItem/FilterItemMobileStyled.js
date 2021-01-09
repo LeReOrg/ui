@@ -19,10 +19,4 @@ const styles = (theme) => ({
     overflowY: "hidden",
   },
 });
-export function FilterItemMobile(props) {
-  const { display } = props;
-
-  return <>{children}</>;
-}
-
 export default styles;

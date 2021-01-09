@@ -95,19 +95,68 @@ const styles = (theme) => ({
       textAlign: "center",
       "& button": {
         padding: "15px 60px",
-        background: `${!disabled ? "#2FAF62" : "#E7E9E8"}`,
+        background: (props) => (props.disabled  ? "#2FAF62" : "#E7E9E8"),
         fontStyle: "normal",
         fontWeight: "bold",
         fontSize: 16,
         border: "none",
         borderRadius: 4,
-        color: `${!disabled ? "#FFFFFF" : "#C3C7C5"}`,
+        color: (props) =>(props.disabled ? "#FFFFFF" : "#C3C7C5"),
       },
     },
-
-
-
-    
+    inputTag: {
+      width: '350px',
+      border: "1px solid #C3C7C5",
+      borderRadius: 4,
+      padding: "10px 12px",
+      backgroundColor: "white",
+    },
+    inputTag2: {
+      width: "100%",
+      border: "1px solid #C3C7C5",
+      borderRadius: 4,
+      padding: "10px 12px",
+      backgroundColor: "white",
+    },
+    selectTag: {
+      width: 350,
+      border: "1px solid #C3C7C5",
+      borderRadius: 4,
+      padding: "10px 12px",
+      backgroundColor:  (props) =>(props.disabled ? "#F3F4F3" : "white"),
+      pointerEvents: (props) =>(props.disabled ? "none" : "auto"),
+    },
+    titleText: {
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: 14,
+      paddingBottom: 3,
+    },
+    main_addressMobile: {},
+    main_addressMobileContent : {
+      marginTop : 30
+    },
+    city: {
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
+    },
+    ward: {
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
+    },
+    district: {
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
+    },
+    addAddressMobile: {
+      display: "none",
+      [theme.breakpoints.down("sm")]: {
+        display: "block",
+      },
+    },
   });
   
   export default styles;

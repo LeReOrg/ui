@@ -1,99 +1,47 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
-import { Box, Grid, Link } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { useEffect } from "react";
 import { city, ward, district } from "../dataEx";
+import styles from "./ShippingStyled";
 
 const ShippingInfo = (props) => {
-const [disabled,setDisabled] = useState(true);
-const [showMenuSub, setshowMenuSub] = useState(false);
-
-const widthinputTag = 350;
-useEffect(() =>{
+  const [disabled, setDisabled] = useState(true);
+  const [showMenuSub, setshowMenuSub] = useState(false);
+  useEffect(() => {
     if (props.values.city != -1) setDisabled(false);
-},[props.values.city])
- const useStyled = makeStyles((theme) => ({
-   inputTag: {
-     width: `${widthinputTag}px`,
-     border: "1px solid #C3C7C5",
-     borderRadius: 4,
-     padding: "10px 12px",
-     backgroundColor: "white",
-   },
-   inputTag2: {
-     width: "100%",
-     border: "1px solid #C3C7C5",
-     borderRadius: 4,
-     padding: "10px 12px",
-     backgroundColor: "white",
-   },
-   selectTag: {
-     width: 350,
-     border: "1px solid #C3C7C5",
-     borderRadius: 4,
-     padding: "10px 12px",
-     backgroundColor: `${disabled ? "#F3F4F3" : "white"} `,
-     pointerEvents: `${disabled ? "none" : "auto"} `,
-   },
-   titleText: {
-     fontStyle: "normal",
-     fontWeight: "bold",
-     fontSize: 14,
-     paddingBottom: 3,
-   },
-   city: {
-     [theme.breakpoints.down("xs")]: {
-       display: "none",
-     },
-   },
-   ward: {
-     [theme.breakpoints.down("xs")]: {
-       display: "none",
-     },
-   },
-   district: {
-     [theme.breakpoints.down("xs")]: {
-       display: "none",
-     },
-   },
-   addAddressMobile :  {
-     display : "none",
-     [theme.breakpoints.down("sm")] : {
-       display: "block"
-     }
-   },
- }));
-
-const renderCity = () => {
-  return city.map((item, index) => (
-    <option key={index} value={index + 1}>
-      {item.nameCity}
-    </option>
-  ));
-};
-const renderDistrict = (values) => {
-  const ef = parseInt(values);
-  return district
-    .filter((e) => e.idCity == ef)
-    .map((item, index) => (
-      <option key={index} value={index + 1}>
-        {item.nameCity}
-      </option>
-    ));
-};
-const renderWard = (values) => {
-  const ef = parseInt(values);
-  return ward
-    .filter((e) => e.idDistrct == ef)
-    .map((item, index) => (
-      <option key={index} value={index + 1}>
-        {item.nameCity}
-      </option>
-    ));
-};
+  }, [props.values.city]);
+  const useStyled = makeStyles(styles);
   const classes = useStyled();
+  const renderCity = () => {
+    return city.map((item, index) => (
+      <option key={index} value={index + 1}>
+        {item.nameCity}
+      </option>
+    ));
+  };
+  const renderDistrict = (values) => {
+    const ef = parseInt(values);
+    return district
+      .filter((e) => e.idCity == ef)
+      .map((item, index) => (
+        <option key={index} value={index + 1}>
+          {item.nameCity}
+        </option>
+      ));
+  };
+  const renderWard = (values) => {
+    const ef = parseInt(values);
+    return ward
+      .filter((e) => e.idDistrct == ef)
+      .map((item, index) => (
+        <option key={index} value={index + 1}>
+          {item.nameCity}
+        </option>
+      ));
+  };
   return (
     <>
       <Box mb={2}>

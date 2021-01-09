@@ -1,71 +1,41 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Link, Button } from "@material-ui/core";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { makeStyles } from "@material-ui/styles";
-import {city,ward,district} from "../dataEx";
+import { city, ward, district } from "../dataEx";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import styles from "./ShippingStyled";
 
 const AddAddressMobile = (props) => {
-  const widthinputTag = 350;
   const [disabled, setDisabled] = useState(true);
   useEffect(() => {
     if (props.values.city != -1) setDisabled(false);
   }, [props.values.city]);
- const theme = createMuiTheme({
-   overrides: {
-     MuiButton: {
-       text: {
-         background: "#2FAF62",
-         borderRadius: 4,
-         border: 0,
-         color: "white",
-         height: 48,
-         padding: "0 30px",
-         fontWeight: "bold",
-         fontSize: 16,
-         width: "100%",
-         "&:hover": {
-           background: "red",
-         },
-       },
-     },
-   },
- });
-  const useStyled = makeStyles((theme) => ({
-    inputTag: {
-      width: `${widthinputTag}px`,
-      border: "1px solid #C3C7C5",
-      borderRadius: 4,
-      padding: "10px 12px",
-      backgroundColor: "white",
+  const theme = createMuiTheme({
+    overrides: {
+      MuiButton: {
+        text: {
+          background: "#2FAF62",
+          borderRadius: 4,
+          border: 0,
+          color: "white",
+          height: 48,
+          padding: "0 30px",
+          fontWeight: "bold",
+          fontSize: 16,
+          width: "100%",
+          "&:hover": {
+            background: "red",
+          },
+        },
+      },
     },
-    inputTag2: {
-      width: "100%",
-      border: "1px solid #C3C7C5",
-      borderRadius: 4,
-      padding: "10px 12px",
-      backgroundColor: "white",
-    },
-    selectTag: {
-      width: 350,
-      border: "1px solid #C3C7C5",
-      borderRadius: 4,
-      padding: "10px 12px",
-      backgroundColor: `${disabled ? "#F3F4F3" : "white"} `,
-      pointerEvents: `${disabled ? "none" : "auto"} `,
-    },
-    titleText: {
-      fontStyle: "normal",
-      fontWeight: "bold",
-      fontSize: 14,
-      paddingBottom: 3,
-    },
-    main_addressMobile: {},
-    main_addressMobileContent : {
-      marginTop : 30
-    },
-  }));
+  });
+  const useStyled = makeStyles(styles);
+  const classes = useStyled({
+    disabled: disabled,
+  });
   const renderCity = () => {
     return city.map((item, index) => (
       <option key={index} value={index + 1}>
@@ -93,8 +63,6 @@ const AddAddressMobile = (props) => {
         </option>
       ));
   };
-  const classes = useStyled();
-
   return (
     <div className={classes.main_addressMobile}>
       <div>
