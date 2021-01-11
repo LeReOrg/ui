@@ -3,9 +3,18 @@ import AccountDetail from "../../../assets/accountDetail.svg";
 
 const styles = (theme) => ({
   main_customerProfile: {
-    width: "70%",
+    width: "75%",
     margin: "40px auto",
     flexGrow: 1,
+    [theme.breakpoints.between("sm", "md")]: {
+      width: "95%",
+    },
+    // [theme.breakpoints.between("md", "lg")]: {
+    //   width: "90%",
+    // },
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   customerInfo: {
     borderRadius: 8,
@@ -27,13 +36,33 @@ const styles = (theme) => ({
     textTransform: "none",
     fontSize: 16,
     fontWeight: "500",
+    [theme.breakpoints.between("sm", "md")]: {
+      minWidth: 120,
+      padding: "3px 5px",
+    },
   },
+  main_customerProfileMobile: {
+    width: "70%",
+    margin: "0 auto",
+    textAlign: "center",
+    [theme.breakpoints.between("sm", "md")]: {
+      width: "90%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
+  },
+  main_customerProfileActionMobile: {},
   tabInfo: {
     border: "1px solid #E7E9E8",
     borderRadius: 8,
     padding: 24,
     display: "flex",
     flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      border: "none",
+      padding: 0,
+    },
   },
   tabInfo_contentLeft: {
     display: "flex",
@@ -54,6 +83,10 @@ const styles = (theme) => ({
     justifyContent: "space-between",
     maxWidth: "30%",
     width: "30%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      maxWidth: "unset",
+    },
   },
   tabInfo_contentRightTotal: {
     textAlign: "right",
@@ -64,10 +97,16 @@ const styles = (theme) => ({
     paddingBottom: 10,
   },
   buttonActions_Content: {
-    width: " 30%",
+    width: "30%",
     float: "right",
     display: "flex",
     justifyContent: "space-between",
+    [theme.breakpoints.between("sm", "md")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   buttonActions: {},
   tabInfo_contentRightAmount: {

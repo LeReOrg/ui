@@ -20,7 +20,7 @@ const SignUpPage = (props) => {
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   // const SignUpPage = () => {};
   return (
     <div className={classes.main_page_login}>

@@ -6,7 +6,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Button } from "@material-ui/core";
-import { clearItemFromCart } from "../store/action/cart_actions";
+// import { clearItemFromCart } from "../store/action/cart_actions";
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const CartItem = ({ item, clearItem }) => {

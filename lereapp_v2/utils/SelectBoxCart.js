@@ -3,7 +3,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { makeStyles } from "@material-ui/core/styles";
-import { addItem, removeItem } from "../store/action/cart_actions";
+// import { addItem, removeItem } from "../store/action/cart_actions";
 const SelectBoxCart = (props) => {
   const { numberDate, quantity } = props;
   console.log(props.cartItem)
@@ -63,7 +63,7 @@ const SelectBoxCart = (props) => {
             quantity === 1 ? classes.disabled : null
           }`}
           aria-label="remove"
-          onClick={() => props.removeItem(props.cartItem)}
+          // onClick={() => props.removeItem(props.cartItem)}
         >
           <RemoveIcon />
         </Fab>
@@ -71,7 +71,7 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
-          onClick={() => props.addItem(props.cartItem)}
+          // onClick={() => props.addItem(props.cartItem)}
         >
           <AddIcon />
         </Fab>
@@ -82,7 +82,7 @@ const SelectBoxCart = (props) => {
             numberDate === 1 ? classes.disabled : null
           }`}
           aria-label="remove"
-          onClick={() => props.removeItem(props.cartItem)}
+          // onClick={() => props.removeItem(props.cartItem)}
         >
           <RemoveIcon />
         </Fab>
@@ -90,7 +90,7 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
-          onClick={() => props.addItem(props.cartItem)}
+          // onClick={() => props.addItem(props.cartItem)}
         >
           <AddIcon />
         </Fab>

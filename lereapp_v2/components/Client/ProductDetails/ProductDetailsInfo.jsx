@@ -14,7 +14,7 @@ import imageTest3 from "../../../assets/Img2.jpg";
 import imageTest4 from "../../../assets/Img3.jpg";
 import imageTest5 from "../../../assets/Img4.jpg";
 import Collapse from "@material-ui/core/Collapse";
-import { addItem } from "../../../store/action/cart_actions";
+// import { addItem } from "../../../store/action/cart_actions";
 import { DateRange } from "react-date-range";
 import moment from 'moment';
 import styles from "./ProductDetailsStyled";
@@ -216,7 +216,7 @@ const ProductDetailsInfo = ({...props}) => {
           <div className={classes.button_cart}>
             <Box>
               <StyledButton
-                onClick={() => props.addItem(itemAdd)}
+                // onClick={() => props.addItem(itemAdd)}
                 variant="contained"
                 color="primary"
               >

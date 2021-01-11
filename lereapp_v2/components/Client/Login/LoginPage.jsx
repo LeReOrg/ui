@@ -17,7 +17,7 @@ const LoginPage = (props) => {
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const loginHandel = () => {};
   return (
     <div className={classes.main_page_login}>
@@ -89,11 +89,19 @@ const LoginPage = (props) => {
             <Box mt={2} fontSize={14} color="#888E8A" mb={2}>
               Hoặc đăng nhập bằng
             </Box>
-            <div onClick={signInFaceBook} className={classes.facebookButton}>
+            {/* <div onClick={signInFaceBook} className={classes.facebookButton}>
+              <div className={classes.faceBookIcon}></div>
+              <span>Facebook</span>
+            </div> */}
+            <div className={classes.facebookButton}>
               <div className={classes.faceBookIcon}></div>
               <span>Facebook</span>
             </div>
-            <div onClick={signInEmail} className={classes.gmailButton}>
+            {/* <div onClick={signInEmail} className={classes.gmailButton}>
+              <div className={classes.gmailIcon}></div>
+              <span>Google</span>
+            </div> */}
+            <div  className={classes.gmailButton}>
               <div className={classes.gmailIcon}></div>
               <span>Google</span>
             </div>

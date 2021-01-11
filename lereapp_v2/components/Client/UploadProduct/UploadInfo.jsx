@@ -7,6 +7,7 @@ import styles from "./UploadProductStyled";
 
 const UploadInfo = ({ type_product }) => {
   const [images, setImages] = React.useState([]);
+  console.log(type_product);
   const maxNumberImage = 10;
   const onChange = (imageList, addUpdateIndex) => {
     console.log(imageList, addUpdateIndex);

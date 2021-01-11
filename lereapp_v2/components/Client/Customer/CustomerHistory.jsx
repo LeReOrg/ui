@@ -36,7 +36,7 @@ function a11yProps(index) {
     "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
-const CustomerHistory = () => {
+const CustomerHistory = (props) => {
   const tabValue = [
     {
       key: 0,
@@ -107,7 +107,8 @@ const CustomerHistory = () => {
               onChange={handleChange}
               indicatorColor="primary"
               textColor="primary"
-              variant="fullWidth"
+              variant={props.isMobile ? "scrollable" : "fullWidth"}
+              scrollButtons="auto"
             >
               {renderTab()}
             </Tabs>

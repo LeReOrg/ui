@@ -6,11 +6,12 @@ import { Box, Grid, Link } from "@material-ui/core";
 import UploadInfo from "./UploadInfo";
 import UploadPrice from "./UploadPrice";
 import styles from "./UploadProductStyled";
+import { useCategories } from "../../../hooks/useCategories";
 
 const UploadProduct = (props) => {
-  const categoriesItem = useSelector((state) => state.categories.categories);
+  const { data: categories, isLoading, error } = useCategories();
+  console.log(categories);
   const useStyled = makeStyles(styles);
-
   const classes = useStyled();
   const initialValues = {
     imageProduct: [],
@@ -45,7 +46,7 @@ const UploadProduct = (props) => {
                 <Box className={classes.uploadMain_InfoBody}>
                   <UploadInfo
                     values={values}
-                    type_product={categoriesItem}
+                    type_product={categories}
                     errors={errors}
                     handleChange={handleChange}
                   />

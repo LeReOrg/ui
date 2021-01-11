@@ -131,6 +131,10 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 16,
     color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
+    [theme.breakpoints.down("xs")]: {
+      padding : "5px 10px",
+      fontSize : 14
+    },
   },
 });
 const useStyles = makeStyles(styles);
