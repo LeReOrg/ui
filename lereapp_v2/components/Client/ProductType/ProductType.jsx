@@ -9,6 +9,8 @@ import { useCategories } from "../../../hooks/useCategories";
 
 const ProductType = () => {
   const { data: categories, isLoading, error } = useCategories();
+  const useStyles = makeStyles(styles);
+  const classes = useStyles();
   const categoriesItem = categories;
   const numberCategories = categoriesItem.length;
   let getFirstCategoriesItems = [];
@@ -18,24 +20,22 @@ const ProductType = () => {
     getFirstCategoriesItems = categoriesItem
       .slice(0, numberCategoriesbySlide)
       .map((item, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide className={classes.type_product__slide} key={index}>
           <CardProductType info={item} />
         </SwiperSlide>
       ));
     getSecondCategoriesItems = categoriesItem
       .slice(numberCategoriesbySlide)
       .map((item, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide className={classes.type_product__slide} key={index}>
           <CardProductType info={item} />
         </SwiperSlide>
       ));
   }
-  const useStyles = makeStyles(styles);
 
   SwiperCore.use([Controller]);
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
-  const classes = useStyles();
   return (
     <div className={classes.type_product_main}>
       <Typography component="div">

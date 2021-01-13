@@ -9,7 +9,9 @@ const styles = (theme) => ({
   main_list_related: {
     marginTop: "1%",
   },
-  
+  imageGallery:{
+    height: 200
+  },
   title: {
     color: "#111E16",
     fontSize: 24,

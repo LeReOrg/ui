@@ -165,7 +165,30 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-
+.image-gallery-image{
+  height: 300px !important;
+}
+.image-gallery-thumbnail-image{
+  height: 75px;
+  width: 100px;
+  
+}
+.image-gallery-content.fullscreen{
+  background :unset;
+}
+.image-gallery.fullscreen-modal {
+  background : rgba(0, 0, 0, 0.8);
+}
+.image-gallery-thumbnail-inner{
+  padding-right: 10px;
+}
+.image-gallery-thumbnail.active{
+  border : 4px solid #2FAF62 !important ;
+  border-radius: 8px;
+}
+.image-gallery-thumbnail:hover {
+  border : 4px solid #2FAF62 !important ;
+}
 input[type="search"] {
   -webkit-appearance: none;
   -moz-appearance: none;

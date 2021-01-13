@@ -64,26 +64,26 @@ const FilterItemMobile = (props) => {
     props.onChangeDisplay();
   };
   return (
-    // <FilterItemMobile display={display}>
-      <div className={classes.filter_main_mobile_background}>
-        <div className={classes.filter_main_mobile}>
-          <button onClick={() => hideModel()}>X</button>
-          <CollapseRadio
-            initState={true}
-            title="Khoảng giá"
-            list={price}
-            handleFilters={(filters) => handleFilters(filters, "price")}
-          />
-          <div style={{ height: 1, width: "55%", background: "#E7E9E8" }}></div>
-          <CollapseCheckbox
-            initState={true}
-            title="Địa điểm"
-            list={places}
-            handleFilters={(filters) => handleFilters(filters, "places")}
-          />
+    <div className={classes.filter_main_mobile_background}>
+      <div className={classes.filter_main_mobile}>
+        <div className={classes.filter_main_mobileClose} onClick={() => hideModel()}>
+          X
         </div>
+        <CollapseRadio
+          initState={true}
+          title="Khoảng giá"
+          list={price}
+          handleFilters={(filters) => handleFilters(filters, "price")}
+        />
+        <div style={{ height: 1, width: "55%", background: "#E7E9E8" }}></div>
+        <CollapseCheckbox
+          initState={true}
+          title="Địa điểm"
+          list={places}
+          handleFilters={(filters) => handleFilters(filters, "places")}
+        />
       </div>
-    // </FilterItemMobile>
+    </div>
   );
 };
 export default FilterItemMobile;

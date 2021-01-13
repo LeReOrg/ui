@@ -10,6 +10,7 @@ const styles = (theme) => ({
   interested_title: {
     fontStyle: "normal",
     fontWeight: "bold",
+    marginBottom : 24,
     fontSize: 30,
     [theme.breakpoints.down("sm")]: {
       fontSize: 20,

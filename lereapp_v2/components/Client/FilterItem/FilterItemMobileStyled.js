@@ -5,6 +5,7 @@ const styles = (theme) => ({
     height: "100vh",
     overflowX: "hidden",
     overflowY: "hidden",
+    paddingLeft: 16,
   },
   filter_main_mobile_background: {
     width: "100%",
@@ -17,6 +18,11 @@ const styles = (theme) => ({
     zIndex: 3,
     overflowX: "hidden",
     overflowY: "hidden",
+  },
+  filter_main_mobileClose :{
+    fontSize: 20,
+    fontWeight: "bold",
+    paddingTop: 21
   },
 });
 export default styles;

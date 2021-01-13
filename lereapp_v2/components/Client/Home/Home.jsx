@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ProductType from "../ProductType/ProductType";
 import Info from "../Info/Info";
+import MoreInfo from "../MoreInfo/MoreInfo";
 import InterestedItem from "../InterestedItem/InterestedItem";
 import LoadMoreItem from "../InterestedItem/LoadMoreItem";
 import SlideBackground from "../SlideBackground/SlideBackground";
@@ -29,6 +30,7 @@ const HomePage = (props) => {
         <Info />
         <InterestedItem />
         <LoadMoreItem loadMore={() => loadMore()} />
+        <MoreInfo />
       </div>
     </>
   );

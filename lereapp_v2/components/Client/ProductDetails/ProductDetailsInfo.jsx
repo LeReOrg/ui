@@ -4,24 +4,18 @@ import { makeStyles } from "@material-ui/styles";
 import { withStyles } from "@material-ui/core/styles";
 import { green, purple } from "@material-ui/core/colors";
 import { Typography, Box, Button } from "@material-ui/core";
-import AddCircleOutlineSharpIcon from '@material-ui/icons/AddCircleOutlineSharp';
-import RemoveCircleOutlineSharpIcon from '@material-ui/icons/RemoveCircleOutlineSharp';
-import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import ImageGallery from 'react-image-gallery';
-import imageTest1 from "../../../assets/Tent.jpg";
-import imageTest2 from "../../../assets/Img1.jpg";
-import imageTest3 from "../../../assets/Img2.jpg";
-import imageTest4 from "../../../assets/Img3.jpg";
-import imageTest5 from "../../../assets/Img4.jpg";
+import AddCircleOutlineSharpIcon from "@material-ui/icons/AddCircleOutlineSharp";
+import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutlineSharp";
+import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import ImageGallery from "react-image-gallery";
 import Collapse from "@material-ui/core/Collapse";
 // import { addItem } from "../../../store/action/cart_actions";
 import { DateRange } from "react-date-range";
-import moment from 'moment';
+import moment from "moment";
 import styles from "./ProductDetailsStyled";
-
-
-const ProductDetailsInfo = ({...props}) => {
-  const { name, image_url, price, owner_id } = props.detailsProduct;
+import {zip} from 'lodash'
+const ProductDetailsInfo = ({ ...props }) => {
+  const { name, image_url, price, owner_id, thumbnails } = props.detailsProduct;
   const [checked, setChecked] = useState(false);
   const [totalDate, setTotalDate] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -29,9 +23,9 @@ const ProductDetailsInfo = ({...props}) => {
     id: 0,
     categoryItem: 0,
     totalDateRent: 0,
-    imageURL : "",
-    quantity : 0,
-    owner_id : ""
+    imageURL: "",
+    quantity: 0,
+    owner_id: "",
   });
 
   const [dateRent, setDateRent] = useState([
@@ -41,19 +35,19 @@ const ProductDetailsInfo = ({...props}) => {
       key: "selection",
     },
   ]);
-   useEffect(() => {
-     setItemAdd((preState) => ({
-       ...preState,
-       id: props.detailsProduct.id,
-       categoryItem: props.detailsProduct.category_id,
-       totalDateRent: totalDate,
-       name : props.detailsProduct.name,
-       price: price,
-       quantity: quantity,
-       imageURL: image_url,
-       owner_id: owner_id,
-     }));
-   }, [totalDate, quantity]);
+  useEffect(() => {
+    setItemAdd((preState) => ({
+      ...preState,
+      id: props.detailsProduct.id,
+      categoryItem: props.detailsProduct.category_id,
+      totalDateRent: totalDate,
+      name: props.detailsProduct.name,
+      price: price,
+      quantity: quantity,
+      imageURL: image_url,
+      owner_id: owner_id,
+    }));
+  }, [totalDate, quantity]);
   useEffect(() => {
     var calculateTotalDate = moment(dateRent[0].endDate).diff(
       moment(dateRent[0].startDate),
@@ -106,26 +100,17 @@ const ProductDetailsInfo = ({...props}) => {
       setQuantity(newState);
     }
   };
+  let thumbnails_image = [{}];
+  let images = []
 
-  // Image
-  const images = [
-    {
-      original: imageTest1,
-      thumbnail: imageTest1,
-    },
-    {
-      original: imageTest1,
-      thumbnail: imageTest1,
-    },
-    {
-      original: imageTest1,
-      thumbnail: imageTest1,
-    },
-    {
-      original: imageTest1,
-      thumbnail: imageTest1,
-    },
-  ];
+  let a = thumbnails
+  let b = thumbnails;
+  // const test = zip(a,b);
+  const anew = a.map((item, index) => ({
+    original: item,
+    thumbnail: b[index],
+  }));
+
   const showDatePicker = () => {
     setChecked(true);
   };
@@ -134,7 +119,15 @@ const ProductDetailsInfo = ({...props}) => {
     <div className={classes.main_list}>
       <Grid container spacing={8}>
         <Grid item lg={6} md={6} xs={12}>
-          <ImageGallery items={images} />
+          <ImageGallery
+            showNav={false}
+            showPlayButton={false}
+            autoPlay={true}
+            slideDuration={1000}
+            items={anew}
+            slideOnThumbnailOver={true}
+            useBrowserFullscreen= {false}
+          />
         </Grid>
         <Grid item lg={6} md={6} xs={12}>
           <Typography className={classes.titleDetailInfo} align="left">
@@ -156,7 +149,11 @@ const ProductDetailsInfo = ({...props}) => {
                   </Typography>
                   <Grid container className={classes.quantity_space}>
                     <RemoveCircleOutlineSharpIcon
-                      className={quantity == 1 ? classes.button_color_minus_1 : classes.button_color_minus}
+                      className={
+                        quantity == 1
+                          ? classes.button_color_minus_1
+                          : classes.button_color_minus
+                      }
                       onClick={handleDecreaseQuantity}
                     />
                     <b className={classes.quantity}>{quantity}</b>
@@ -228,6 +225,6 @@ const ProductDetailsInfo = ({...props}) => {
       </Grid>
     </div>
   );
-}
+};
 
 export default ProductDetailsInfo;

@@ -3,7 +3,7 @@ import { Typography, Box, CardMedia, Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { green, purple } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "./InfoStyled";
+import styles from "./MoreInfoStyled";
 import InfoImage from "../../../assets/info.png";
 const useStyles = makeStyles(styles);
 
@@ -26,7 +26,7 @@ const StyledButton = withStyles((theme) => ({
     fontStyle: "normal",
   },
 }))(Button);
-const Info = () => {
+const MoreInfo = () => {
   const classes = useStyles();
   return (
     <div className={classes.info_main}>
@@ -36,7 +36,6 @@ const Info = () => {
           spacing={10}
           className={classes.background_info__main}
           alignItems="center"
-          justify="center"
         >
           <Grid
             item
@@ -57,7 +56,7 @@ const Info = () => {
                   className={classes.info_tittle}
                   fontWeight="fontWeightBold"
                 >
-                  Who are we?
+                  Bạn có đồ cần cho thuê?
                 </Box>
                 <Box fontSize={16}>
                   Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản
@@ -71,27 +70,10 @@ const Info = () => {
               </Box>
             </Typography>
           </Grid>
-          <Grid
-            item
-            className={classes.background_info__itemImage}
-            lg={3}
-            md={6}
-            sm={6}
-            xs={12}
-          >
-            <div className={classes.mediaInfo}>
-              <CardMedia
-                component="img"
-                image={InfoImage}
-                className={classes.mediaPicture}
-                title="info"
-              />
-            </div>
-          </Grid>
         </Grid>
       </div>
     </div>
   );
 };
 
-export default Info;
+export default MoreInfo;

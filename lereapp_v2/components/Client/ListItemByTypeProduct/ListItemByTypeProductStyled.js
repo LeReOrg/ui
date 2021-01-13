@@ -18,6 +18,7 @@ const styles = (theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    paddingTop: 15,
     [theme.breakpoints.down("sm")]: {
       paddingBottom: 15,
     },
@@ -29,6 +30,12 @@ const styles = (theme) => ({
       alignItems: "center",
       justifyContent: "space-between",
       width: "50px",
+    },
+  },
+  typeProduct_content: {
+    paddingTop: 34,
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 0,
     },
   },
 });

@@ -10,8 +10,9 @@ const CardProduct = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 345,
+      height : 158,
       [theme.breakpoints.down("xs")]: {
-        height: 72,
+        height: 100,
       },
     },
     content: {
@@ -20,7 +21,7 @@ const CardProduct = (props) => {
       fontWeight: "normal",
       [theme.breakpoints.down("xs")]: {
         fontSize: 14,
-        paddingTop: 4,
+        paddingTop: 10,
       },
     },
     price_item: {
@@ -39,13 +40,9 @@ const CardProduct = (props) => {
       fontSize: 16,
     },
     media: {
-      height: 160,
       "&:hover": {
         transform: "scale(1.2)",
         transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
-      },
-      [theme.breakpoints.down("xs")]: {
-        height: 72,
       },
     },
   }));
@@ -60,7 +57,7 @@ const CardProduct = (props) => {
                 component="img"
                 className={classes.media}
                 image={props.item.image_url}
-                title="Contemplative Reptile"
+                title={props.item.name}
               />
               {/* <Image
                 src={props.item.image_url}
@@ -74,7 +71,7 @@ const CardProduct = (props) => {
             {props.item.name}
           </Typography>
           <Typography className={classes.price_item} align="left">
-            {props.item.price}/ngày
+            {props.item.price.toLocaleString("en-US")}đ/ngày
           </Typography>
         </a>
       </Link>

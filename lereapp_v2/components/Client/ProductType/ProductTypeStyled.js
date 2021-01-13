@@ -22,6 +22,9 @@ const styles = (theme) => ({
       marginTop: 14,
     },
   },
+  type_product__slide:{
+    display: "flex",
+  },
 });
 
 export default styles;
