@@ -6,15 +6,20 @@ import { green, purple } from "@material-ui/core/colors";
 import { Typography, Box, Button } from "@material-ui/core";
 import AddCircleOutlineSharpIcon from "@material-ui/icons/AddCircleOutlineSharp";
 import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutlineSharp";
-import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import ImageGallery from "react-image-gallery";
 import Collapse from "@material-ui/core/Collapse";
 // import { addItem } from "../../../store/action/cart_actions";
-import { DateRange } from "react-date-range";
+import { DateRangePicker } from "rsuite";
+import { useTheme } from "@material-ui/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import moment from "moment";
 import styles from "./ProductDetailsStyled";
-import {zip} from 'lodash'
 const ProductDetailsInfo = ({ ...props }) => {
+  const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"), {
+    defaultMatches: true,
+  });
   const { name, image_url, price, owner_id, thumbnails } = props.detailsProduct;
   const [checked, setChecked] = useState(false);
   const [totalDate, setTotalDate] = useState(0);
@@ -67,7 +72,6 @@ const ProductDetailsInfo = ({ ...props }) => {
       border: 0,
       color: theme.palette.getContrastText(purple[500]),
       height: 48,
-      width: 350,
       [theme.breakpoints.down("sm")]: {
         width: "100%",
       },
@@ -101,18 +105,20 @@ const ProductDetailsInfo = ({ ...props }) => {
     }
   };
   let thumbnails_image = [{}];
-  let images = []
+  let images = [];
 
-  let a = thumbnails
+  let a = thumbnails;
   let b = thumbnails;
   // const test = zip(a,b);
   const anew = a.map((item, index) => ({
     original: item,
     thumbnail: b[index],
   }));
-
+  const getValueDatePiker = (values) => {
+    console.log(values);
+  };
   const showDatePicker = () => {
-    setChecked(true);
+    setChecked(!checked);
   };
 
   return (
@@ -126,7 +132,7 @@ const ProductDetailsInfo = ({ ...props }) => {
             slideDuration={1000}
             items={anew}
             slideOnThumbnailOver={true}
-            useBrowserFullscreen= {false}
+            useBrowserFullscreen={false}
           />
         </Grid>
         <Grid item lg={6} md={6} xs={12}>
@@ -134,14 +140,14 @@ const ProductDetailsInfo = ({ ...props }) => {
             {name}
           </Typography>
           <Typography className={classes.prices} align="left">
-            {price}đ/ngày
+            {price.toLocaleString("en-US")}đ/ngày
           </Typography>
           <Typography className={classes.poster_info} align="left">
             Đăng bởi: <b className={classes.poster}>{owner_id}</b>
           </Typography>
           <hr />
           <Grid container>
-            <Grid item lg={6} md={6} xs={12}>
+            <Grid item lg={4} md={6} xs={12}>
               <div className="quantity_web">
                 <Grid container>
                   <Typography className={classes.quantity_title} align="left">
@@ -162,6 +168,17 @@ const ProductDetailsInfo = ({ ...props }) => {
                       onClick={handleIncreaseQuantity}
                     />
                   </Grid>
+                  <div className={classes.button_cart}>
+                    <Box>
+                      <StyledButton
+                        // onClick={() => props.addItem(itemAdd)}
+                        variant="contained"
+                        color="primary"
+                      >
+                        Chọn vào giỏ hàng
+                      </StyledButton>
+                    </Box>
+                  </div>
                 </Grid>
               </div>
               <div className="quantity_mobile">
@@ -184,6 +201,17 @@ const ProductDetailsInfo = ({ ...props }) => {
                       />
                     </div>
                   </Grid>
+                  <div className={classes.button_cart}>
+                    <Box>
+                      <StyledButton
+                        // onClick={() => props.addItem(itemAdd)}
+                        variant="contained"
+                        color="primary"
+                      >
+                        Chọn vào giỏ hàng
+                      </StyledButton>
+                    </Box>
+                  </div>
                 </Grid>
               </div>
             </Grid>
@@ -191,36 +219,19 @@ const ProductDetailsInfo = ({ ...props }) => {
               <Typography className={classes.hire_time} align="left">
                 Thời gian thuê:
               </Typography>
+
               <div className={classes.hire_time_space}>
-                <FormGroup className={classes.hire_time_width}>
-                  <Input
-                    type="select"
-                    name="select"
-                    onClick={showDatePicker}
-                  ></Input>
-                  <Collapse in={checked}>
-                    <DateRange
-                      editableDateInputs={true}
-                      onChange={(item) => setDateRent([item.selection])}
-                      moveRangeOnFirstSelection={false}
-                      ranges={dateRent}
-                    />
-                  </Collapse>
-                </FormGroup>
+                <Box className={classes.hire_time_width}>
+                  <DateRangePicker
+                    onChange={(value) => getValueDatePiker(value)}
+                    placeholder="Chọn ngày"
+                    disabledDate={beforeToday()}
+                    showOneCalendar={isMobile ? true : false}
+                  />
+                </Box>
               </div>
             </Grid>
           </Grid>
-          <div className={classes.button_cart}>
-            <Box>
-              <StyledButton
-                // onClick={() => props.addItem(itemAdd)}
-                variant="contained"
-                color="primary"
-              >
-                Chọn vào giỏ hàng
-              </StyledButton>
-            </Box>
-          </div>
         </Grid>
       </Grid>
     </div>

@@ -20,7 +20,6 @@ import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
-
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
@@ -45,6 +44,8 @@ const MyApp = ({ Component, pageProps }) => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
+        <link href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css" rel="stylesheet" />
+
       </Head>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>

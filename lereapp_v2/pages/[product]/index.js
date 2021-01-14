@@ -32,13 +32,11 @@ const ProductDetail = (props) => {
   }
   return (
     <>
-      <BreadCrumb
-        activeBread={
-          router.query.index !== "undefined" ? router.query.index : null
-        }
-      />
+      {/* <BreadCrumb lastItem={router.query.product} categories={productDetail.} /> */}
       <div className={classes.main_list}>
-        <ProductDetailsInfo detailsProduct={productDetail ? productDetail : null } />
+        <ProductDetailsInfo
+          detailsProduct={productDetail ? productDetail : null}
+        />
         <Line />
         <ProductDetailsContent content={content} />
         <Line />
@@ -77,25 +75,3 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-
-// export async function getStaticProps({ params }) {
-//   const res = await fetch(`https://pacific-ravine-33365.herokuapp.com/product/getProductById/${params.product}`)
-//   const detailsProduct = await res.json()
-
-//     return {
-//       props: {detailsProduct}, // will be passed to the page component as props
-//     }
-//   }
-// export async function getStaticPaths() {
-// const res = await fetch(`https://pacific-ravine-33365.herokuapp.com/product/getProductById/${params.id}`)
-// const detailsProduct = await res.json();
-// const paths = detailsProduct.map((post) => ({
-//   params: { product: post.id },
-// }))
-//   const  paths =  [
-//     { params: { product: '1' } },
-//     { params: { product: '2' } }
-//   ]
-//   return { paths, fallback: false }
-
-// }

@@ -9,6 +9,12 @@ const styles = (theme) => ({
   main_list_related: {
     marginTop: "1%",
   },
+  datePicker:{
+    border: "1px solid #E7E9E8",
+    bordeRadius: 4,
+    padding : "9px 16px",
+    width : "100%"
+  },
   imageGallery:{
     height: 200
   },
@@ -35,6 +41,10 @@ const styles = (theme) => ({
     color: "#2FAF62",
     fontSize: 16,
     marginTop: "2%",
+    fontWeight: "bold",
+    "&:hover":{
+      cursor: "pointer",
+    }
   },
   media_160: {
     height: "160px",
@@ -106,6 +116,7 @@ const styles = (theme) => ({
     },
   },
   button_cart: {
+    marginTop: 40,
     [theme.breakpoints.down("sm")]: {
       margin: "10 auto",
     },

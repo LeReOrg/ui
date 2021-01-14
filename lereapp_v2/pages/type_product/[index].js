@@ -34,12 +34,12 @@ const ListProductByType = (props) => {
 
   return (
     <>
-      <BreadCrumb
+      {/* <BreadCrumb
         activeBread={
           nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
         }
         id={nameTypeProduct.length > 0 ? nameTypeProduct[0].id : null}
-      />
+      /> */}
       <div className={classes.main_list}>
         <Grid container>
           <Grid item lg={3} md={3} className={classes.main_filter}>
