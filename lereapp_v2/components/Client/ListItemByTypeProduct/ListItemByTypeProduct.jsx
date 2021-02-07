@@ -30,7 +30,7 @@ const ListItemByTypeProduct = (props) => {
     setDisplayFilter(false);
   };
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"), {
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"), {
     defaultMatches: true,
   });
   return (

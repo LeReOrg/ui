@@ -5,23 +5,10 @@ import MoreInfo from "../MoreInfo/MoreInfo";
 import InterestedItem from "../InterestedItem/InterestedItem";
 import LoadMoreItem from "../InterestedItem/LoadMoreItem";
 import SlideBackground from "../SlideBackground/SlideBackground";
-
 const HomePage = (props) => {
-  const loadMore = () => {
-    // let skip = layout.skip + layout.limit;
-    // props.dispatch(getProductToShop(
-    //     skip,
-    //     layout.limit,
-    //     layout.filters,
-    //     props.products.toShop
-    // )).then(() => {
-    //     setLayout((preState) => ({
-    //         ...preState,
-    //         skip : skip
-    //        }))
-    // })
-    alert("load")
-}
+ 
+
+
   return (
     <>
       <SlideBackground />
@@ -29,7 +16,7 @@ const HomePage = (props) => {
         <ProductType />
         <Info />
         <InterestedItem />
-        <LoadMoreItem loadMore={() => loadMore()} />
+        {/* <LoadMoreItem loadMore={() => loadMore()} /> */}
         <MoreInfo />
       </div>
     </>

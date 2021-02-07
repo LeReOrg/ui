@@ -8,7 +8,6 @@ import AddCircleOutlineSharpIcon from "@material-ui/icons/AddCircleOutlineSharp"
 import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutlineSharp";
 import ImageGallery from "react-image-gallery";
 import Collapse from "@material-ui/core/Collapse";
-// import { addItem } from "../../../store/action/cart_actions";
 import { DateRangePicker } from "rsuite";
 import { useTheme } from "@material-ui/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -28,9 +27,7 @@ const ProductDetailsInfo = ({ ...props }) => {
     id: 0,
     categoryItem: 0,
     totalDateRent: 0,
-    imageURL: "",
     quantity: 0,
-    owner_id: "",
   });
 
   const [dateRent, setDateRent] = useState([
@@ -49,8 +46,6 @@ const ProductDetailsInfo = ({ ...props }) => {
       name: props.detailsProduct.name,
       price: price,
       quantity: quantity,
-      imageURL: image_url,
-      owner_id: owner_id,
     }));
   }, [totalDate, quantity]);
   useEffect(() => {
@@ -104,16 +99,6 @@ const ProductDetailsInfo = ({ ...props }) => {
       setQuantity(newState);
     }
   };
-  let thumbnails_image = [{}];
-  let images = [];
-
-  let a = thumbnails;
-  let b = thumbnails;
-  // const test = zip(a,b);
-  const anew = a.map((item, index) => ({
-    original: item,
-    thumbnail: b[index],
-  }));
   const getValueDatePiker = (values) => {
     console.log(values);
   };
@@ -124,17 +109,17 @@ const ProductDetailsInfo = ({ ...props }) => {
   return (
     <div className={classes.main_list}>
       <Grid container spacing={8}>
-        <Grid item lg={6} md={6} xs={12}>
+        {/* <Grid item lg={6} md={6} xs={12}>
           <ImageGallery
             showNav={false}
             showPlayButton={false}
             autoPlay={true}
             slideDuration={1000}
-            items={anew}
+            items={}
             slideOnThumbnailOver={true}
             useBrowserFullscreen={false}
           />
-        </Grid>
+        </Grid> */}
         <Grid item lg={6} md={6} xs={12}>
           <Typography className={classes.titleDetailInfo} align="left">
             {name}
@@ -171,7 +156,7 @@ const ProductDetailsInfo = ({ ...props }) => {
                   <div className={classes.button_cart}>
                     <Box>
                       <StyledButton
-                        // onClick={() => props.addItem(itemAdd)}
+                        onClick={() => dispatch(cartActions.addItem(itemAdd))}
                         variant="contained"
                         color="primary"
                       >

@@ -13,13 +13,12 @@ import "swiper/swiper.scss";
 import Header from "../components/Client/Header/Header";
 import theme from "../styles/theme";
 import "react-image-gallery/styles/css/image-gallery.css";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
 import styles from "../styles/AppStyled"; // styles of component
 import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
+
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
@@ -65,5 +64,5 @@ const MyApp = ({ Component, pageProps }) => {
     </React.Fragment>
   );
 };
-
+export {queryClient}
 export default MyApp;

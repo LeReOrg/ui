@@ -52,7 +52,7 @@ const styles = (theme) => ({
     textAlign: "center",
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#2FAF62",
+      // backgroundColor: "#2FAF62",
     },
   },
   gmailButton: {
@@ -67,7 +67,7 @@ const styles = (theme) => ({
     marginBottom: 24,
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#2FAF62",
+      // backgroundColor: "#2FAF62",
     },
   },
   faceBookIcon: {
