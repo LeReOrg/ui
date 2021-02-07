@@ -1,16 +1,14 @@
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery,useQuery } from "react-query";
 import axios from "axios";
 import config from "../../config";
 
-const useMoreProduct = () =>
-  useInfiniteQuery(
-    "topProduct",
-    async ({ pageParam = 0 }) => {
-      const {data} = await axios.get(`${config.api}/product/getTopProduct/${pageParam}`);
+const useMoreProduct = (page = 0) =>
+useQuery(
+    ["topProduct",page],
+    async () => {
+      const {data} = await axios.get(`${config.api}/product/getTopProduct/${page}`);
       return data;
-    },
-    {
-      getNextPageParam: (lastPage) => lastPage.numPage -1 ?? false,
-    }
+    }, { keepPreviousData: true }
+   
   );
 export { useMoreProduct };

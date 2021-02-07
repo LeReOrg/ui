@@ -3,12 +3,8 @@ import ProductType from "../ProductType/ProductType";
 import Info from "../Info/Info";
 import MoreInfo from "../MoreInfo/MoreInfo";
 import InterestedItem from "../InterestedItem/InterestedItem";
-import LoadMoreItem from "../InterestedItem/LoadMoreItem";
 import SlideBackground from "../SlideBackground/SlideBackground";
 const HomePage = (props) => {
- 
-
-
   return (
     <>
       <SlideBackground />
@@ -16,7 +12,6 @@ const HomePage = (props) => {
         <ProductType />
         <Info />
         <InterestedItem />
-        {/* <LoadMoreItem loadMore={() => loadMore()} /> */}
         <MoreInfo />
       </div>
     </>
