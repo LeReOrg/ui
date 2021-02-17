@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Typography, Grid } from "@material-ui/core";
 import CardProduct from "../../../utils/CardProduct";
 import { useState } from "react";
-import { capitalize } from "../../../utils/FunctionUses";
+import { capitalize, isMobileDevice } from "../../../utils/FunctionUses";
 import Sort from "./Sort";
 import PaginationRounded from "../../../utils/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,8 +10,6 @@ import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
 import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import styles from "./ListItemByTypeProductStyled";
-import { useTheme } from "@material-ui/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const ListItemByTypeProduct = (props) => {
   const useStyles = makeStyles(styles);
@@ -29,10 +27,7 @@ const ListItemByTypeProduct = (props) => {
   const onChangeDisplay = () => {
     setDisplayFilter(false);
   };
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"), {
-    defaultMatches: true,
-  });
+  
   return (
     <div>
       <Typography component="div">
@@ -52,14 +47,14 @@ const ListItemByTypeProduct = (props) => {
 
         <Grid
           container
-          spacing={isMobile ? 4 : 8}
+          spacing={isMobileDevice() ? 4 : 8}
           className={classes.typeProduct_content}
         >
           {renderCards}
         </Grid>
       </Typography>
       <PaginationRounded />
-      {isMobile ? (
+      {isMobileDevice() ? (
         <FilterItemMobile
           onChangeDisplay={onChangeDisplay}
           display={displayFilter}

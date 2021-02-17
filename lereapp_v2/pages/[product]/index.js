@@ -6,20 +6,13 @@ import BreadCrumb from "../../components/Client/BreadCrumb/BreadCrumb";
 import ProductDetailsInfo from "../../components/Client/ProductDetails/ProductDetailsInfo";
 import ProductDetailsContent from "../../components/Client/ProductDetails/ProductDetailsContent";
 import ProductRelated from "../../components/Client/ProductDetails/ProductRelated";
-import { content } from "../../utils/FixedContentItem";
 import { getProductDetails, useProductDetails } from "../../hooks/useProduct";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
-// import { useDispatch } from 'react-redux';
-// import { getProductDetail } from '../../store/action/products_action';
+
 
 const ProductDetail = (props) => {
-  // const dispatch = useDispatch();
   const router = useRouter();
-  // useEffect(() => {
-  //   dispatch(getProductDetail(router.query.product))
-  // },[])
-  // const [productDetails,setProductDetails] =useState([]);
   const useStyled = makeStyles((theme) => ({
     main_list: {},
   }));
@@ -38,7 +31,7 @@ const ProductDetail = (props) => {
           detailsProduct={productDetail ? productDetail : null}
         />
         <Line />
-        <ProductDetailsContent content={content} />
+        <ProductDetailsContent  detailsProduct={productDetail ? productDetail : null} />
         <Line />
         <ProductRelated />
       </div>
@@ -57,7 +50,7 @@ export async function getStaticPaths() {
   //   params: { index: post.id },
   // }));
   // return { paths, fallback: false };
-  const paths = [{ params: { product: "1" } }, { params: { product: "2" } }];
+  const paths = [{ params: { product: "19" } }, { params: { product: "2" } }];
   return { paths, fallback: false };
 }
 export async function getStaticProps({ params }) {

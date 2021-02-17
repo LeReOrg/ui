@@ -52,6 +52,13 @@ const styles = (theme) => ({
       alignItems: "left",
     },
   },
+  upload__image_wrapper : {
+    width: 480,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      alignItems: "left",
+    },
+  },
   inputTag: {
     padding: "9px 12px",
     border: "1px solid rgba(0, 0, 0, 0.15)",

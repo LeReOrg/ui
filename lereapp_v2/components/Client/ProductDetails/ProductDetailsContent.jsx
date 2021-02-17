@@ -7,16 +7,17 @@ const ProductDetailsContent = ({ ...props }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [stateCollapse, setStateCollapse] = useState(false);
+  const { description } = props.detailsProduct[0];
   const [collapseContent, setCollapseContent] = useState(
-    props.content._content
+    description
   );
 
   const renderReadMore = () => {
-    if (props.content._content.length > 700) {
+    if ( description.length > 700) {
       const showFullContent = (status) => {
         setStateCollapse(!stateCollapse);
         status === "open"
-          ? setCollapseContent(props.content._content)
+          ? setCollapseContent( description)
           : setCollapseContent(collapseContent.slice(0, 700));
       };
       return (

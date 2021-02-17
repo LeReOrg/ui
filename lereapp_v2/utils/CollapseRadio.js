@@ -11,14 +11,11 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Box } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { isMobileDevice } from "./FunctionUses";
+
 
 const CollapseRadio = ({ ...props }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"), {
-    defaultMatches: true,
-  });
+
   const useStyles = makeStyles((theme) => ({
     listItemRadio: {
       padding: "10px 23px 10px 0",
@@ -87,7 +84,7 @@ const CollapseRadio = ({ ...props }) => {
             }
             className="collapse_title"
           />
-          {!isMobile ? handleAngle() : null}
+          {!isMobileDevice() ? handleAngle() : null}
         </ListItem>
         <Collapse in={radioState.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>

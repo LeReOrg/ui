@@ -9,17 +9,25 @@ import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutline
 import ImageGallery from "react-image-gallery";
 import Collapse from "@material-ui/core/Collapse";
 import { DateRangePicker } from "rsuite";
-import { useTheme } from "@material-ui/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 import moment from "moment";
 import styles from "./ProductDetailsStyled";
+import { isMobileDevice } from "../../../utils/FunctionUses";
 const ProductDetailsInfo = ({ ...props }) => {
   const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"), {
-    defaultMatches: true,
-  });
-  const { name, image_url, price, owner_id, thumbnails } = props.detailsProduct;
+  const { name, cover_images, owner_id, price } = props.detailsProduct[0];
+  let a = [];
+
+  cover_images?.map(
+    (item, index) => (
+      (a.original = item.large_url), (a.thumbnail = item.small_url)
+    )
+  );
+  // item.map((items,key) => (
+  //   a.original = items.small_url,
+  //   a.thumbnail = items.large_url
+  // ))
+  console.log(a);
   const [checked, setChecked] = useState(false);
   const [totalDate, setTotalDate] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -37,17 +45,17 @@ const ProductDetailsInfo = ({ ...props }) => {
       key: "selection",
     },
   ]);
-  useEffect(() => {
-    setItemAdd((preState) => ({
-      ...preState,
-      id: props.detailsProduct.id,
-      categoryItem: props.detailsProduct.category_id,
-      totalDateRent: totalDate,
-      name: props.detailsProduct.name,
-      price: price,
-      quantity: quantity,
-    }));
-  }, [totalDate, quantity]);
+  // useEffect(() => {
+  //   setItemAdd((preState) => ({
+  //     ...preState,
+  //     id: props.detailsProduct.id,
+  //     categoryItem: props.detailsProduct.category_id,
+  //     totalDateRent: totalDate,
+  //     name: props.detailsProduct.name,
+  //     price: price,
+  //     quantity: quantity,
+  //   }));
+  // }, [totalDate, quantity]);
   useEffect(() => {
     var calculateTotalDate = moment(dateRent[0].endDate).diff(
       moment(dateRent[0].startDate),
@@ -109,26 +117,29 @@ const ProductDetailsInfo = ({ ...props }) => {
   return (
     <div className={classes.main_list}>
       <Grid container spacing={8}>
-        {/* <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={6} xs={12}>
           <ImageGallery
             showNav={false}
             showPlayButton={false}
             autoPlay={true}
             slideDuration={1000}
-            items={}
+            items={cover_images}
             slideOnThumbnailOver={true}
             useBrowserFullscreen={false}
           />
-        </Grid> */}
+        </Grid>
         <Grid item lg={6} md={6} xs={12}>
           <Typography className={classes.titleDetailInfo} align="left">
             {name}
           </Typography>
           <Typography className={classes.prices} align="left">
-            {price.toLocaleString("en-US")}đ/ngày
+            {price?.toLocaleString("en-US")}đ/ngày
           </Typography>
           <Typography className={classes.poster_info} align="left">
-            Đăng bởi: <b className={classes.poster}>{owner_id}</b>
+            Đăng bởi:{" "}
+            <b className={classes.poster}>
+              {owner_id.first_name + "" + owner_id.last_name}
+            </b>
           </Typography>
           <hr />
           <Grid container>
@@ -211,7 +222,7 @@ const ProductDetailsInfo = ({ ...props }) => {
                     onChange={(value) => getValueDatePiker(value)}
                     placeholder="Chọn ngày"
                     disabledDate={beforeToday()}
-                    showOneCalendar={isMobile ? true : false}
+                    showOneCalendar={isMobileDevice() ? true : false}
                   />
                 </Box>
               </div>

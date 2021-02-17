@@ -13,14 +13,11 @@ import FormGroup from "@material-ui/core/FormGroup";
 import { Box } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/styles";
-import { useTheme } from "@material-ui/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { isMobileDevice } from "./FunctionUses";
+
 
 const CollapseCheckbox = ({ ...props }) => {
-   const theme = useTheme();
-   const isMobile = useMediaQuery(theme.breakpoints.down("xs"), {
-     defaultMatches: true,
-   });
+ 
   const GreenCheckbox = withStyles({
     root: {
       "&$checked": {
@@ -100,7 +97,7 @@ const CollapseCheckbox = ({ ...props }) => {
               </Box>
             }
           />
-          {!isMobile ? handleAngle() : null}
+          {!isMobileDevice() ? handleAngle() : null}
         </ListItem>
         <Collapse in={stateCollapse.open} timeout="auto" unmountOnExit>
           <FormControl component="fieldset">

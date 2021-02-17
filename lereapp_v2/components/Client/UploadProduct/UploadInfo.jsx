@@ -4,10 +4,12 @@ import { Box, Grid, Link, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import ImageUploading from "react-images-uploading";
 import styles from "./UploadProductStyled";
-
-const UploadInfo = ({ type_product }) => {
+ 
+import { useCategories } from "../../../hooks/useCategories";
+import { isMobileDevice } from "../../../utils/FunctionUses";
+const UploadInfo = () => {
   const [images, setImages] = React.useState([]);
-  console.log(type_product);
+  const { data: categories, isLoading, error } = useCategories();
   const maxNumberImage = 10;
   const onChange = (imageList, addUpdateIndex) => {
     console.log(imageList, addUpdateIndex);
@@ -18,18 +20,18 @@ const UploadInfo = ({ type_product }) => {
   };
   const useStyled = makeStyles(styles);
   const renderProductType = () => {
-    return type_product.map((item, index) => (
+    return categories?.map((item, index) => (
       <option key={index} value={index + 1}>
         {item.name}
       </option>
     ));
   };
   const classes = useStyled();
-
+ 
   return (
     <>
       <Box mb={4} className={classes.rowInfo}>
-        <p className={classes.titleText}>Hình ảnh sản phẩm</p>
+        {!isMobileDevice() ?  <p className={classes.titleText}>Hình ảnh sản phẩm</p> : null }
         <ImageUploading
           multiple
           value={images}
@@ -46,7 +48,7 @@ const UploadInfo = ({ type_product }) => {
             dragProps,
           }) => (
             // write your building UI
-            <div className="upload__image-wrapper">
+            <div className={classes.upload__image_wrapper}>
               <button
                 style={isDragging ? { color: "red" } : null}
                 onClick={onImageUpload}
@@ -54,6 +56,7 @@ const UploadInfo = ({ type_product }) => {
               >
                 Tải ảnh lên
               </button>
+              <span>(Tối đa 10 hình)</span>
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image.data_url} alt="" width="100" />
@@ -68,7 +71,7 @@ const UploadInfo = ({ type_product }) => {
             </div>
           )}
         </ImageUploading>
-        <span>(Tối đa 10 hình)</span>
+       
         {/* <ErrorMessage name="fullName" /> */}
       </Box>
       <Box mb={4} className={classes.rowInfo}>
