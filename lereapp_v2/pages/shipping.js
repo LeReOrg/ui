@@ -120,7 +120,11 @@ const Shipping = () => {
   //     </Formik>
   //   </div>
   // );
-  <h1>careItem</h1>
+  return (
+    <div>
+        Shipping
+    </div>
+);
 };
 
 export default Shipping;
