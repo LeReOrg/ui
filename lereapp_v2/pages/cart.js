@@ -5,7 +5,6 @@ import Grid from "@material-ui/core/Grid";
 import { testItem } from "../components/Client/dataEx";
 import Button from "@material-ui/core/Button";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-// import { connect } from "react-redux";
 import Link from "next/link";
 import styles from "../styles/CartStyled";
 
@@ -101,10 +100,5 @@ const Cart = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    cartItem: state.carts,
-  };
-};
-// export default connect(mapStateToProps)(Cart);
+
 export default Cart;
