@@ -28,7 +28,7 @@ const styles = (theme) => ({
     fontSize: 16,
     fontStyle: "normal",
     fontWeight: "bold",
-    paddingLeft: 12,
+    paddingLeft: 6,
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 3,
       color: "black",

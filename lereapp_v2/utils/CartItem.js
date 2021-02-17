@@ -16,19 +16,17 @@ const CartItem = ({ item, clearItem }) => {
     owner_id,
     totalDateRent,
     coc,
-    quantity,
-    imageURL,
+    quantityIncrease,
+    image,
   } = item;
-  console.log(item)
-  const [allParamCart, setParamCart] = useState(item);
-  useEffect(() => {
-    let priceUpdate = 0;
-    priceUpdate = item.quantity * item.price;
-    setParamCart((preState) => ({
-      ...preState,
-      price: priceUpdate,
-    }));
-  }, [item.quantity]);
+  // useEffect(() => {
+  //   let priceUpdate = 0;
+  //   priceUpdate = item.quantity * item.price;
+  //   setParamCart((preState) => ({
+  //     ...preState,
+  //     price: priceUpdate,
+  //   }));
+  // }, [item.quantity]);
   const useStyles = makeStyles((theme) => ({
     smallImage: {
       //   height: 88,
@@ -114,7 +112,7 @@ const CartItem = ({ item, clearItem }) => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={imageURL}
+                image={image}
                 title="Contemplative Reptile"
                 className={classes.smallImage}
               />
@@ -134,7 +132,7 @@ const CartItem = ({ item, clearItem }) => {
                     style={{ paddingLeft: 5 }}
                     className={classes.nameProvided}
                   >
-                    {owner_id}
+                    {owner_id.last_name}{owner_id.first_name}
                   </span>
                 </Typography>
               </Grid>
@@ -147,12 +145,12 @@ const CartItem = ({ item, clearItem }) => {
                 <SelectBoxCart
                   cartItem={item}
                   numberDate={totalDateRent}
-                  quantity={quantity}
+                  quantity={quantityIncrease}
                 />
               </Grid>
               <Grid item lg={5} xs={12} className={classes.infoAmount}>
                 <Typography className={classes.infoAmountNumber}>
-                  {allParamCart.price.toLocaleString("en-US")}đ/ngày
+                  {price.toLocaleString("en-US")}đ/ngày
                 </Typography>
                 <Typography>Cọc : {coc}đ/ngày</Typography>
                 <Button

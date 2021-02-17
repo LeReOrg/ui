@@ -9,65 +9,45 @@ import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutline
 import ImageGallery from "react-image-gallery";
 import Collapse from "@material-ui/core/Collapse";
 import { DateRangePicker } from "rsuite";
-
-import moment from "moment";
 import styles from "./ProductDetailsStyled";
 import { isMobileDevice } from "../../../utils/FunctionUses";
+import { cartState, addCart } from "../../../recoil-root";
+import { useRecoilState } from "recoil";
+
 const ProductDetailsInfo = ({ ...props }) => {
   const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
-  const { name, cover_images, owner_id, price } = props.detailsProduct[0];
-  let a = [];
-
-  cover_images?.map(
-    (item, index) => (
-      (a.original = item.large_url), (a.thumbnail = item.small_url)
-    )
-  );
-  // item.map((items,key) => (
-  //   a.original = items.small_url,
-  //   a.thumbnail = items.large_url
-  // ))
-  console.log(a);
-  const [checked, setChecked] = useState(false);
-  const [totalDate, setTotalDate] = useState(0);
+  const {
+    name,
+    cover_images,
+    owner_id,
+    price,
+    id,
+    image
+  } = props.detailsProduct[0];
   const [quantity, setQuantity] = useState(1);
   const [itemAdd, setItemAdd] = useState({
-    id: 0,
-    categoryItem: 0,
-    totalDateRent: 0,
-    quantity: 0,
+    id: id,
+    owner_id: owner_id,
+    name: name,
+    formDate: "",
+    toDate: "",
+    price: price,
+    quantityIncrease: 0,
+    image : image.original
   });
-
-  const [dateRent, setDateRent] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-  // useEffect(() => {
-  //   setItemAdd((preState) => ({
-  //     ...preState,
-  //     id: props.detailsProduct.id,
-  //     categoryItem: props.detailsProduct.category_id,
-  //     totalDateRent: totalDate,
-  //     name: props.detailsProduct.name,
-  //     price: price,
-  //     quantity: quantity,
-  //   }));
-  // }, [totalDate, quantity]);
   useEffect(() => {
-    var calculateTotalDate = moment(dateRent[0].endDate).diff(
-      moment(dateRent[0].startDate),
-      "days"
-    );
-    setTotalDate(calculateTotalDate);
-  }, [dateRent]);
-
-  const updateItem = () => {};
+    setItemAdd((preState) => ({
+      ...preState,
+      quantityIncrease: quantity,
+    }));
+  }, [quantity]);
+  const [cart, setCart] = useRecoilState(cartState);
+  const addToCart = (items) => {
+    const newCart = addCart(cart, items);
+    setCart(newCart);
+  };
   const useStyled = makeStyles(styles);
   const classes = useStyled();
-
   const StyledButton = withStyles((theme) => ({
     root: {
       backgroundColor: "#2FAF62",
@@ -96,10 +76,6 @@ const ProductDetailsInfo = ({ ...props }) => {
   const handleIncreaseQuantity = () => {
     let newState = quantity + 1;
     setQuantity(newState);
-    updateItem();
-  };
-  const handleSelect = (ranges) => {
-    console.log(ranges);
   };
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
@@ -108,12 +84,12 @@ const ProductDetailsInfo = ({ ...props }) => {
     }
   };
   const getValueDatePiker = (values) => {
-    console.log(values);
+    setItemAdd((preState) => ({
+      ...preState,
+      formDate: values[0],
+      toDate: values[1],
+    }));
   };
-  const showDatePicker = () => {
-    setChecked(!checked);
-  };
-
   return (
     <div className={classes.main_list}>
       <Grid container spacing={8}>
@@ -167,7 +143,7 @@ const ProductDetailsInfo = ({ ...props }) => {
                   <div className={classes.button_cart}>
                     <Box>
                       <StyledButton
-                        onClick={() => dispatch(cartActions.addItem(itemAdd))}
+                        onClick={() => addToCart(itemAdd)}
                         variant="contained"
                         color="primary"
                       >
@@ -200,7 +176,7 @@ const ProductDetailsInfo = ({ ...props }) => {
                   <div className={classes.button_cart}>
                     <Box>
                       <StyledButton
-                        // onClick={() => props.addItem(itemAdd)}
+                        onClick={() => addToCart(itemAdd)}
                         variant="contained"
                         color="primary"
                       >

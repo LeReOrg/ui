@@ -18,6 +18,7 @@ import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { RecoilRoot } from "recoil";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -43,20 +44,24 @@ const MyApp = ({ Component, pageProps }) => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
-        <link href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css" rel="stylesheet" />
-
+        <link
+          href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css"
+          rel="stylesheet"
+        />
       </Head>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <div className="container-fluid" id="container-fluid">
-              <Header />
-              <div id="main-container" className={classes.page_container}>
-                <Component {...pageProps} />
+            <RecoilRoot>
+              <div className="container-fluid" id="container-fluid">
+                <Header />
+                <div id="main-container" className={classes.page_container}>
+                  <Component {...pageProps} />
+                </div>
+                <Footer />
               </div>
-              <Footer />
-            </div>
+            </RecoilRoot>
           </ThemeProvider>
         </Hydrate>
         <ReactQueryDevtools initialIsOpen={false} />
@@ -64,5 +69,5 @@ const MyApp = ({ Component, pageProps }) => {
     </React.Fragment>
   );
 };
-export {queryClient}
+export { queryClient };
 export default MyApp;
