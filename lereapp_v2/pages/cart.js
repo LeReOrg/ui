@@ -7,7 +7,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Link from "next/link";
 import styles from "../styles/CartStyled";
 import {useRecoilValue,useRecoilState} from 'recoil'
-import { cartState,cartTotal } from "../recoil-root";
+import { cartState,cartTotal } from "../lib/recoil-root";
 const Cart = (props) => {
   const [cart,setCart] = useRecoilState(cartState);
   const totalPrice = useRecoilValue(cartTotal)

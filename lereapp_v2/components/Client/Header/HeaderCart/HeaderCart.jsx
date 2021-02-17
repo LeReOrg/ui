@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "next/link";
 import styles from "./HeaderCartStyled";
-import { cartTotalItem } from "../../../../recoil-root";
+import { cartTotalItem } from "../../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
 const useStyles = makeStyles(styles);
 const HeaderCart = (props) => {

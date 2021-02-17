@@ -11,7 +11,7 @@ import Collapse from "@material-ui/core/Collapse";
 import { DateRangePicker } from "rsuite";
 import styles from "./ProductDetailsStyled";
 import { isMobileDevice } from "../../../utils/FunctionUses";
-import { cartState, addCart } from "../../../recoil-root";
+import { cartState, addCart } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 
 const ProductDetailsInfo = ({ ...props }) => {
@@ -33,7 +33,7 @@ const ProductDetailsInfo = ({ ...props }) => {
     toDate: "",
     price: price,
     quantityIncrease: 0,
-    image : image.original
+    image : image?.original
   });
   useEffect(() => {
     setItemAdd((preState) => ({
