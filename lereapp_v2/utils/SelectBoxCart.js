@@ -71,7 +71,6 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
-          // onClick={() => props.addItem(props.cartItem)}
         >
           <AddIcon />
         </Fab>
