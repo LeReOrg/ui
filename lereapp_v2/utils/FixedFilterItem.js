@@ -51,17 +51,17 @@ const price = [
 
 const sort = [
   {
-    _id: 0,
+    id: 0,
     name: "Mặc định",
    
   },
   {
-    _id: 1,
+    id: 1,
     name: "Giá Thấp",
    
   },
   {
-    _id: 2,
+    id: 2,
     name: "Giá cao",
    
   },

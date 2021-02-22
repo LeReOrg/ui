@@ -19,7 +19,6 @@ const ListItemByTypeProduct = (props) => {
       <CardProduct item={items} itemByType={true} />
     </Grid>
   ));
-  console.log(props.listProduct)
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
     setDisplayFilter(true);

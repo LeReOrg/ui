@@ -14,21 +14,23 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const SortProduct = ({ ...props }) => {
   const [open, setOpen] = useState(false);
-
   const anchorRef = useRef(null);
   const [title, setTitle] = useState(props.list[0].name);
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event,value) => {
+    setOpen(false);
+  };
+  const handleClick = (event,value) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
     const { textContent } = event.target;
     setTitle(textContent);
     setOpen(false);
-  };
+  }
 
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
@@ -49,7 +51,7 @@ const SortProduct = ({ ...props }) => {
   const renderList = () =>
     props.list
       ? props.list.map((value) => (
-          <MenuItem key={value._id} onClick={handleClose}>
+          <MenuItem key={value.id} onClick={(e) => handleClick(e,value.id)}>
             {value.name}
           </MenuItem>
         ))
