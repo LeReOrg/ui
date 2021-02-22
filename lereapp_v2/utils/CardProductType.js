@@ -50,14 +50,14 @@ const useStyles = makeStyles((theme) => ({
 
 const CardProductType = ({info}) => {
   const classes = useStyles();
-  const link = `/type_product/${info.id}`
+  const link = `/type_product/${info._id}`
   return (
     <>
       <Link as={link} href="/type_product/[index]">
         <a
           className={classes.linkTypeProduct}
           onMouseEnter={() => {
-            prefetchProductByCate(info.id);
+            prefetchProductByCate(info._id);
           }}
         >
           <Card className={classes.root}>

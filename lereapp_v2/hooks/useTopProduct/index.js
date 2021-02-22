@@ -1,4 +1,4 @@
-import { useInfiniteQuery,useQuery } from "react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 import config from "../../config";
 

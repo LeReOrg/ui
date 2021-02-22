@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import BreadCrumb from "../../components/Client/BreadCrumb/BreadCrumb";
 import { Grid } from "@material-ui/core";
@@ -7,38 +7,46 @@ import ListItemByTypeProduct from "../../components/Client/ListItemByTypeProduct
 import { makeStyles } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styles from "../../styles/ListProductByTypeStyled";
-import { QueryClient } from "react-query";
+import { QueryClient,useQueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
+import { queryClient } from "../_app";
 import {
-  getProductByCategory,
-  prefetchProductByCate,
   useProductByCategory,
+  getProductByCategory,
 } from "../../hooks/useProductByCategory";
 const ListProductByType = (props) => {
   const useStyled = makeStyles(styles);
+  const [page, setPage] = useState(0);
+  const [nameTypeProduct,setNameTypeProduct] = useState("")
   const classes = useStyled();
   const router = useRouter();
-  let nameTypeProduct = [];
+  let nameTypeProducts = [];
   const { data: productByCate, isLoading, error } = useProductByCategory(
-    router.query.index
+    router.query.index,page
   );
-  let getListProductByType = [];
-  if (!isLoading) {
-    getListProductByType = productByCate;
-  }
-  if (getListProductByType.length > 0) {
-    nameTypeProduct = getListProductByType.filter(
-      (item) => `${router.query.index}` == parseInt(item.id)
+
+  useEffect(async () => {
+      await queryClient.prefetchQuery(["categoriesProduct",router.query.index, page], () =>
+        useProductByCategory(router.query.index, page)
+      );
+  }, [page]);
+  if (productByCate?.products?.length > 0) {
+    nameTypeProducts = productByCate?.products.filter(
+      (item) => `${parseInt(router.query.index)}` == parseInt(item._id)
     );
   }
+  // let listBreadCrumb = []
+  // if(nameTypeProduct){
+  //   listBreadCrumb.push(nameTypeProduct[0]?.name)
 
+  // }
+  // console.log(nameTypeProduct[0]?.name)
   return (
     <>
       {/* <BreadCrumb
-        activeBread={
-          nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
+        listBreadCrumb={
+          listBreadCrumb
         }
-        id={nameTypeProduct.length > 0 ? nameTypeProduct[0].id : null}
       /> */}
       <div className={classes.main_list}>
         <Grid container>
@@ -47,10 +55,11 @@ const ListProductByType = (props) => {
           </Grid>
           <Grid item lg={9} md={9} xs={12}>
             <ListItemByTypeProduct
-              listProduct={getListProductByType}
-              typeProduct={
-                nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
-              }
+              listProduct={productByCate}
+              // typeProduct={
+              //   nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
+              // }
+              page={(page) => setPage(page)}
             />
           </Grid>
         </Grid>
@@ -64,7 +73,7 @@ export async function getStaticPaths() {
   );
   const categories = await res.json();
   const paths = categories.map((post) => ({
-    params: { index: post.id },
+    params: { index: post._id },
   }));
   return { paths, fallback: false };
 }

@@ -9,14 +9,17 @@ const useStyles = makeStyles((theme) => ({
       float: "right",
     },
   },
- 
-}));    
-export default function PaginationRounded() {
+}));
+export default function PaginationRounded(props) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
-      <Pagination  count={10} variant="outlined" shape="rounded" />
+      <Pagination
+        onChange={(e, page) => props.onChangePage(e, page)}
+        count={props.numPage}
+        variant="outlined"
+        shape="rounded"
+      />
     </div>
   );
 }

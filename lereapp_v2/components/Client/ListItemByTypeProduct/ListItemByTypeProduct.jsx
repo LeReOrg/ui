@@ -14,12 +14,11 @@ import styles from "./ListItemByTypeProductStyled";
 const ListItemByTypeProduct = (props) => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const renderCards = props.listProduct.map((items, index) => (
+  const renderCards = props.listProduct?.products?.map((items, index) => (
     <Grid item lg={3} xs={6} key={index}>
       <CardProduct item={items} itemByType={true} />
     </Grid>
   ));
-
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
     setDisplayFilter(true);
@@ -27,13 +26,16 @@ const ListItemByTypeProduct = (props) => {
   const onChangeDisplay = () => {
     setDisplayFilter(false);
   };
+  const onChangePage = (e, page) => {
   
+    props.page(page-1)
+  };
   return (
     <div>
       <Typography component="div">
         <div className={classes.title_main}>
           <Box className={classes.interested_title}>
-            {props.typeProduct && capitalize(props.typeProduct)}
+            {props.listProduct && capitalize(props.listProduct?.name)}
           </Box>
           <Box
             className={classes.mobile_mode_filter}
@@ -53,7 +55,10 @@ const ListItemByTypeProduct = (props) => {
           {renderCards}
         </Grid>
       </Typography>
-      <PaginationRounded />
+      <PaginationRounded
+        numPage={props.listProduct?.numPage}
+        onChangePage={(e, page) => onChangePage(e, page)}
+      />
       {isMobileDevice() ? (
         <FilterItemMobile
           onChangeDisplay={onChangeDisplay}

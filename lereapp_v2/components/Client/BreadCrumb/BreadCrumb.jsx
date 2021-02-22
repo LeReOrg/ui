@@ -9,22 +9,37 @@ import { Breadcrumb } from "rsuite";
 
 const BreadCrumb = (props) => {
   const useStyled = makeStyles(styles);
+  // const arrayBreadCrumb = [];
+  // arrayBreadCrumb.push(props.listBreadCrumb);
+  // const item = props.activeBread;
+  // console.log(arrayBreadCrumb);
   const classes = useStyled();
-  const renderBreadcrumb = (item) => (
-    item.map((item,index) =>{
-      <Breadcrumb.Item>{item}</Breadcrumb.Item>;
-    })
-  );
+  // const renderBreadcrumb = () =>
+  //   arrayBreadCrumb?.map((item, index) => (
+  //       <Link href={`/${item}`} as="/">
+  //         <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
+  //           <span>{item}</span>
+  //         </LinkStyle>
+  //       </Link>
+  //   ));
   return (
     <Breadcrumb className={classes.breadcrumb_main}>
-      <Breadcrumb.Item>
         <Link href="/" as="/">
           <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
             <span>Trang chủ</span>
           </LinkStyle>
         </Link>
-      </Breadcrumb.Item>
-      {renderBreadcrumb()}
+        {props.listBreadCrumb?.map((item, index) => (
+          
+            <Link href={`/${item}`} as="/" key={item}>
+              <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
+                <span>{item}</span>
+              </LinkStyle>
+            </Link>
+          
+         ))
+        
+        }
     </Breadcrumb>
     // <Breadcrumbs aria-label="breadcrumb"  className={classes.breadcrumb_main}>
     //   <Link href="/" as="/">
