@@ -17,10 +17,8 @@ import {
 const ListProductByType = (props) => {
   const useStyled = makeStyles(styles);
   const [page, setPage] = useState(0);
-  const [nameTypeProduct,setNameTypeProduct] = useState("")
   const classes = useStyled();
   const router = useRouter();
-  let nameTypeProducts = [];
   const { data: productByCate, isLoading, error } = useProductByCategory(
     router.query.index,page
   );
@@ -30,24 +28,22 @@ const ListProductByType = (props) => {
         useProductByCategory(router.query.index, page)
       );
   }, [page]);
-  if (productByCate?.products?.length > 0) {
-    nameTypeProducts = productByCate?.products.filter(
-      (item) => `${parseInt(router.query.index)}` == parseInt(item._id)
-    );
+  const categoryName = productByCate?.products[0].category.name
+  let listBreadCrumb = []
+  if(categoryName){
+    let test =  {
+      id : router.query.index,
+      itemName : categoryName
+    }
+    listBreadCrumb.push(test)
   }
-  // let listBreadCrumb = []
-  // if(nameTypeProduct){
-  //   listBreadCrumb.push(nameTypeProduct[0]?.name)
-
-  // }
-  // console.log(nameTypeProduct[0]?.name)
   return (
     <>
-      {/* <BreadCrumb
+      <BreadCrumb
         listBreadCrumb={
           listBreadCrumb
         }
-      /> */}
+      />
       <div className={classes.main_list}>
         <Grid container>
           <Grid item lg={3} md={3} className={classes.main_filter}>
@@ -56,9 +52,9 @@ const ListProductByType = (props) => {
           <Grid item lg={9} md={9} xs={12}>
             <ListItemByTypeProduct
               listProduct={productByCate}
-              // typeProduct={
-              //   nameTypeProduct.length > 0 ? nameTypeProduct[0].name : null
-              // }
+              nameTypeProduct={
+                categoryName
+              }
               page={(page) => setPage(page)}
             />
           </Grid>

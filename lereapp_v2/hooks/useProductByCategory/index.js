@@ -12,9 +12,9 @@ const getProductByCategory =  async (postId) => {
   }
 };
 
-const prefetchProductByCate = (postId) => {
+const prefetchProductByCate = (postId,page) => {
   queryClient.prefetchQuery(
-    ["categoriesProduct", String(postId)],
+    ["categoriesProduct", String(postId),page],
     getProductByCategory,
     {
       staleTime: 5000,

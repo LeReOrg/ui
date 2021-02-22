@@ -19,6 +19,7 @@ const ListItemByTypeProduct = (props) => {
       <CardProduct item={items} itemByType={true} />
     </Grid>
   ));
+  console.log(props.listProduct)
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
     setDisplayFilter(true);
@@ -27,7 +28,6 @@ const ListItemByTypeProduct = (props) => {
     setDisplayFilter(false);
   };
   const onChangePage = (e, page) => {
-  
     props.page(page-1)
   };
   return (
@@ -35,7 +35,7 @@ const ListItemByTypeProduct = (props) => {
       <Typography component="div">
         <div className={classes.title_main}>
           <Box className={classes.interested_title}>
-            {props.listProduct && capitalize(props.listProduct?.name)}
+            {props.nameTypeProduct && capitalize(props.nameTypeProduct)}
           </Box>
           <Box
             className={classes.mobile_mode_filter}

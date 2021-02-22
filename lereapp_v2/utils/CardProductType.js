@@ -57,7 +57,7 @@ const CardProductType = ({info}) => {
         <a
           className={classes.linkTypeProduct}
           onMouseEnter={() => {
-            prefetchProductByCate(info._id);
+            prefetchProductByCate(info._id,0);
           }}
         >
           <Card className={classes.root}>

@@ -23,16 +23,22 @@ const ProductDetail = (props) => {
   );
   let breadCrumbArray = [];
   if(productDetail) {
-     breadCrumbArray.push(productDetail[0]?.category?.name)
-    breadCrumbArray.push(productDetail[0]?.name)
-  }
-  // console.log(breadCrumbArray)
-  // if (!isLoading) {
+    let categeryItem = {
+      id : productDetail[0]?.category?._id,
+      itemName : productDetail[0]?.category?.name
+    }
+    let productItem = {
+      id : productDetail[0]?.id,
+      itemName : productDetail[0]?.name
 
-  // }
+    }
+    breadCrumbArray.push(categeryItem)
+    breadCrumbArray.push(productItem)
+
+  }
   return (
     <>
-      {/* <BreadCrumb listBreadCrumb = {breadCrumbArray}  /> */}
+      <BreadCrumb listBreadCrumb = {breadCrumbArray}  />
       <div className={classes.main_list}>
         <ProductDetailsInfo
           detailsProduct={productDetail ? productDetail : null}
