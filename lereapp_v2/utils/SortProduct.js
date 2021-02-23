@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import faAngleDown from "@fortawesome/fontawesome-free-solid/faAngleDown";
-
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { Box } from "@material-ui/core";
@@ -9,7 +8,6 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Button from "@material-ui/core/Button";
-
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const SortProduct = ({ ...props }) => {

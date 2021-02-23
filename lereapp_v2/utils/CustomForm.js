@@ -1,0 +1,73 @@
+import React from "react";
+
+const CustomForm = ({
+  inputType,
+  name,
+  nameInput,
+  nameSelect,
+  valueOptions,
+  ...inputProp
+}) => {
+  const renderTemplate = () => {
+    let formTemplate = null;
+    switch (inputType) {
+      case "input":
+        formTemplate = (
+          <>
+            <input
+              type={inputType}
+              name={nameInput}
+              ref={name}
+              {...inputProp}
+            />
+          </>
+        );
+        break;
+      case "textarea":
+        formTemplate = (
+          <>
+            <textarea
+              type={inputType}
+              name={nameInput}
+              ref={name}
+              {...inputProp}
+              rows="4"
+            />
+          </>
+        );
+        break;
+      case "select":
+        formTemplate = (
+          <>
+            <select type={inputType} name={nameInput} ref={name} {...inputProp}>
+              <option value="" style={{color:"#C3C7C5"}}>{nameSelect}</option>
+              {valueOptions?.map((item, index) => (
+                <option key={index} value={index + 1}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </>
+        );
+        break;
+      case "number":
+        formTemplate = (
+          <>
+            <input
+              type={inputType}
+              name={nameInput}
+              ref={name}
+              {...inputProp}
+            />
+          </>
+        );
+        break;
+      default:
+        formTemplate = null;
+        break;
+    }
+    return formTemplate;
+  };
+  return renderTemplate();
+};
+export default CustomForm;

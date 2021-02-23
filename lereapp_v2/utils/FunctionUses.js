@@ -15,6 +15,12 @@ function isMobileDevice () {
   });
   return isMobileXs;
 }
+const customCurrency = (valuePrice) => {
+  if (valuePrice) {
+    valuePrice = valuePrice.replace(/,/g, "");
+    valuePrice = valuePrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return valuePrice;
+  }
+};
 
-
-export { capitalize, splitAt,isMobileDevice };
+export { capitalize, splitAt,isMobileDevice,customCurrency};
