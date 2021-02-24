@@ -44,7 +44,6 @@ const UploadInfo = (props) => {
             isDragging,
             dragProps,
           }) => (
-            // write your building UI
             <div className={classes.upload__image_wrapper}>
               <button
                 style={isDragging ? { color: "red" } : null}
@@ -61,8 +60,6 @@ const UploadInfo = (props) => {
                 {imageList.map((image, index) => (
                   <div
                     className={classes.upload__image_eachItem}
-                    onMouseOver={() => setShow(true)}
-                    onMouseOut={() => setShow(false)}
                     key={index}
                   >
                     <img
@@ -70,8 +67,7 @@ const UploadInfo = (props) => {
                       alt=""
                       className={classes.image_item}
                     />
-                    
-                      <div className={`${classes.image_item__btn_wrapper} ${show ? "showItem" : ""}`}>
+                      <div className={classes.image_item__btn_wrapper}>
                         <button                       
                           className={classes.image_item__btn_coverImage}
                           onClick={() => setCoverImage(image)}

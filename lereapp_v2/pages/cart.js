@@ -6,11 +6,11 @@ import Button from "@material-ui/core/Button";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Link from "next/link";
 import styles from "../styles/CartStyled";
-import {useRecoilValue,useRecoilState} from 'recoil'
-import { cartState,cartTotal } from "../lib/recoil-root";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { cartState, cartTotal } from "../lib/recoil-root";
 const Cart = (props) => {
-  const [cart,setCart] = useRecoilState(cartState);
-  const totalPrice = useRecoilValue(cartTotal)
+  const [cart, setCart] = useRecoilState(cartState);
+  const totalPrice = useRecoilValue(cartTotal);
   const useStyled = makeStyles(styles);
   const theme = createMuiTheme({
     overrides: {
@@ -32,27 +32,10 @@ const Cart = (props) => {
       },
     },
   });
-  // const [totalPrice, setTotalPrice] = useState(0);
   const classes = useStyled();
-   
-  // useEffect(() => {
-  //   if (props.cartItem) {
-  //     let totalPriceTest = props.cartItem.cartItems.reduce(function (
-  //       accumulator,
-  //       item
-  //     ) {
-  //       return accumulator + item.quantity * item.price;
-  //     },
-  //     0);
-  //     setTotalPrice(totalPriceTest);
-  //   }
-  // }, [props.cartItem.cartItems]);
-  console.log(cart)
+  console.log(cart);
   const renderItemCart = () =>
-   cart.map((item, index) => (
-      <CartItem item={item.item} key={index} />
-    ));
-
+    cart.map((item, index) => <CartItem item={item.item} key={index} />);
   return (
     <div className={classes.main_cart}>
       <h1 className={classes.main_cart__title}>Giỏ hàng của bạn</h1>
@@ -99,7 +82,6 @@ const Cart = (props) => {
       </div>
     </div>
   );
-
 };
 
 export default Cart;

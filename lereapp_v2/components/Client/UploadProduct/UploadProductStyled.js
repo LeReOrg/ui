@@ -170,12 +170,16 @@ const styles = (theme) => ({
   },
   upload__image_eachItem: {
     position: "relative",
+    marginRight : 16,
     "&:hover": {
       cursor: "pointer",
       background: "#000000",
       borderRadius: 8,
       "& $image_item": {
         opacity: " 0.48",
+      },
+      "& $image_item__btn_wrapper": {
+        display : "flex"
       },
     },
   },

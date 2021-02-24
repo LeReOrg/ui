@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import SelectBoxCart from "../utils/SelectBoxCart";
-import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Button, Box } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const ShippingItem = ({ item, addItem }) => {
-  const { name, price, totalDateRent, coc, quantity, imageURL } = item;
-const test = parseInt(price);
-  const [allParamCart, setParamCart] = useState(item);
+  const { name, price, coc, quantity, image } = item.item;
   const useStyles = makeStyles((theme) => ({
     smallImage: {
       // height: 88,
@@ -66,7 +62,7 @@ const test = parseInt(price);
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={imageURL}
+                image={image}
                 title="Contemplative Reptile"
                 className={classes.smallImage}
               />
@@ -74,14 +70,12 @@ const test = parseInt(price);
           </Grid>
           <Grid item lg={9} xs={9} className={classes.infoContent}>
             <Typography className={classes.nameItem}>
-              {name === undefined
-                ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
-                : name}
+              {name}
             </Typography>
             <Typography className={classes.infoItem}>
-              <span>x{quantity}</span> <span>{totalDateRent} ngày</span>
+              {/* <span>x{quantity}</span> <span>{totalDateRent} ngày</span> */}
               <span>
-                {parseInt(price).toLocaleString("en-US")}
+                {price?.toLocaleString("en-US")}
                 đ/ngày
               </span>
             </Typography>
