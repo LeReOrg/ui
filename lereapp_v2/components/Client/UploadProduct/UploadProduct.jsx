@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/styles";
 import { Box, Grid, Link } from "@material-ui/core";
 import UploadInfo from "./UploadInfo";
 import UploadPrice from "./UploadPrice";
-import { object, string, number } from "yup";
 import { UploadProductButton } from "./UploadProductStyled";
 import { customCurrency } from "../../../utils/FunctionUses";
 const UploadProduct = () => {

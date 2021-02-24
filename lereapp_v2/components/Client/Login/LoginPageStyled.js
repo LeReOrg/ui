@@ -135,6 +135,10 @@ const styles = (theme) => ({
       padding : "5px 10px",
       fontSize : 14
     },
+    "&:hover":{
+      opacity: "0.8",
+      backgroundColor : "#2FAF62"
+    }
   },
 });
 const useStyles = makeStyles(styles);

@@ -1,27 +1,46 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Form, Formik, Field, ErrorMessage } from "formik";
-import { object, string } from "yup";
 import styles from "./SignUpPageStyled";
 import BackGroundLogin from "../../../assets/background_login.png";
 import { Grid, Box } from "@material-ui/core";
 import { MyButton } from "./SignUpPageStyled";
 import Link from "next/link";
 import { isEmpty } from "lodash";
-//  import * as Yup from "yup";
+import CustomForm from "../../../utils/CustomForm.js";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
+import * as yup from "yup";
+const schema = yup.object().shape({
+  email: yup.string().required().email().max(100),
+  password: yup.string().required().min(8).max(100),
+  phoneNumber: yup.string().min(10).max(100),
+  fullName: yup.string().required().max(100),
+});
 const SignUpPage = (props) => {
-  const initialValues = {
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-  };
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
+  const { register, handleSubmit, watch, setValue, errors } = useForm({
+    mode: "all",
+    resolver: yupResolver(schema),
+  });
+  const isErrors = isEmpty(errors);
+  let email = watch("email");
+  let password = watch("password");
+  let phoneNumber = watch("password");
+  let fullName = watch("fullName");
+  useEffect(() => {
+    if (email && password && isErrors && fullName && phoneNumber) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [errors, email, password, phoneNumber, fullName]);
+  const registerHandle = (data) => {
+    let paramsUpdate = data;
+    console.log(paramsUpdate);
+  };
   const classes = useStyles();
-  // const user = useSelector((state) => state.user);
-  // const SignUpPage = () => {};
   return (
     <div className={classes.main_page_login}>
       <Grid container spacing={2}>
@@ -35,72 +54,59 @@ const SignUpPage = (props) => {
             <div className={classes.main_page_contentTitle}>
               Đăng ký tài khoản
             </div>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={(values) => loginHandel(values)}
-              validationSchema={object({
-                password: string()
-                  .required("Password is required")
-                  .min(8)
-                  .max(100),
-                email: string().required("Email is required").max(100),
-                phoneNumber: string().min(10).max(100),
-                fullName: string()
-                  .required("FullName is required")
-                  .max(100)
-                  .email("Invalid email"),
-              })}
-            >
-              {({ values, errors, handleChange }) => (
-                <Form>
-                  <p className={classes.emailTitle}>Họ và tên</p>
-                  <Field
-                    className={classes.emailFormLogin}
-                    name="fullName"
-                    placeholder="Nhập họ và tên đầy đủ"
-                  />
-                  <ErrorMessage name="fullName" />
-                  <p className={classes.emailTitle}>Địa chỉ Email</p>
-                  <Field
-                    className={classes.emailFormLogin}
-                    name="email"
-                    placeholder="Nhập Email"
-                  />
-                  <ErrorMessage name="email" />
-                  <p className={classes.emailTitle}>Số điện thoại</p>
-                  <Field
-                    type="number"
-                    className={classes.emailFormLogin}
-                    name="phoneNumber"
-                    placeholder="Nhập số điện thoại"
-                  />
-                  <ErrorMessage name="phoneNumber" />
-                  <p className={classes.passwordTitle}>Nhập mật khẩu</p>
-                  <Field
-                    className={classes.passwordFormLogin}
-                    name="password"
-                    placeholder="Tối thiểu 8 ký tự"
-                    type="password"
-                  />
-                  <ErrorMessage name="password" />
-                  {values.email !== "" &&
-                  values.password !== "" &&
-                  values.fullName !== "" &&
-                  values.phoneNumber !== "" &&
-                  isEmpty(errors)
-                    ? setDisabled(false)
-                    : setDisabled(true)}
-                  <MyButton
-                    type="submit"
-                    isDisabled={disabled}
-                    disabled={disabled}
-                  >
-                    Tạo tài khoản
-                  </MyButton>
-                </Form>
-              )}
-            </Formik>
+            <form onSubmit={handleSubmit(registerHandle)}>
+              <p className={classes.emailTitle}>Họ và tên</p>
 
+              <CustomForm
+                inputType="input"
+                className={classes.emailFormLogin}
+                nameInput="fullName"
+                name={register}
+                placeholder="Nhập họ và tên đầy đủ"
+              />
+              <p style={{ color: "red", fontStyle: "italic" }}>
+                {errors.fullName?.message}
+              </p>
+              <p className={classes.emailTitle}>Địa chỉ Email</p>
+              <CustomForm
+                inputType="input"
+                className={classes.emailFormLogin}
+                name={register}
+                placeholder="Nhập Email"
+                nameInput="email"
+              />
+              <p style={{ color: "red", fontStyle: "italic" }}>
+                {errors.email?.message}
+              </p>
+              <p className={classes.emailTitle}>Số điện thoại</p>
+              <CustomForm
+                inputType="number"
+                className={classes.emailFormLogin}
+                nameInput="phoneNumber"
+                name={register}
+                placeholder="Nhập số điện thoại"
+              />
+              <p style={{ color: "red", fontStyle: "italic" }}>
+                {errors.phoneNumber?.message}
+              </p>
+
+              <p className={classes.passwordTitle}>Nhập mật khẩu</p>
+              <CustomForm
+                className={classes.passwordFormLogin}
+                nameInput="password"
+                name={register}
+                placeholder="Tối thiểu 8 ký tự"
+                inputOption="password"
+                inputType="input"
+              />
+              <p style={{ color: "red", fontStyle: "italic" }}>
+                {errors.password?.message}
+              </p>
+
+              <MyButton type="submit" isDisabled={disabled} disabled={disabled}>
+                Tạo tài khoản
+              </MyButton>
+            </form>
             <Box fontSize={14} mt={3}>
               Đã có tài khoản?
               <Link href="/login">

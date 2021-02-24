@@ -1,24 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Form, Formik, Field, ErrorMessage } from "formik";
-import { object, string } from "yup";
 import styles from "./LoginPageStyled";
 import BackGroundLogin from "../../../assets/background_login.png";
 import { Grid, Box } from "@material-ui/core";
 import { MyButton } from "./LoginPageStyled";
 import Link from "next/link";
 import { isEmpty } from "lodash";
-
+import { useForm } from "react-hook-form";
+import CustomForm from "../../../utils/CustomForm.js";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+const schema = yup.object().shape({
+  email: yup.string().required().email(),
+  password: yup.string().required().min(8),
+});
 const LoginPage = (props) => {
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+  const { register, handleSubmit, watch, setValue, errors } = useForm({
+    mode: "all",
+    resolver: yupResolver(schema),
+  });
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  // const user = useSelector((state) => state.user);
-  const loginHandel = () => {};
+  const isErrors = isEmpty(errors);
+  let email = watch("email");
+  let password = watch("password");
+  useEffect(() => {
+    if(email && password && isErrors ){
+      setDisabled(false)
+    }else{
+      setDisabled(true)
+    }
+  }, [errors,email,password]);
+  const loginHandle = (data) => {
+    let paramsUpdate = data;
+    console.log(paramsUpdate);
+  };
   return (
     <div className={classes.main_page_login}>
       <Grid container spacing={2}>
@@ -30,62 +47,48 @@ const LoginPage = (props) => {
         <Grid item lg={6} md={6} xs={12}>
           <div className={classes.main_page_content}>
             <div className={classes.main_page_contentTitle}>Đăng nhập</div>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={(values) => loginHandel(values)}
-              validationSchema={object({
-                password: string()
-                  .required("Password is required")
-                  .min(8)
-                  .max(100),
-                email: string().required("Email is required").max(100),
-              })}
-            >
-              {({ values, errors, handleChange }) => (
-                <Form>
-                  <p className={classes.emailTitle}>Email hoặc SĐT</p>
-                  <Field
-                    className={classes.emailFormLogin}
-                    name="email"
-                    placeholder="Nhập Email hoặc số điện thoại"
-                  />
-                  <ErrorMessage name="email" />
-                  <p className={classes.passwordTitle}>Mật khẩu</p>
-                  <Field
-                    className={classes.passwordFormLogin}
-                    name="password"
-                    placeholder="Nhập mật khẩu"
-                    type="password"
-                  />
-                  <ErrorMessage name="password" />
-                  <Link href="/forgotPassword">
-                    <a style={{ textDecoration: "none" }}>
-                      <Box
-                        textAlign="right"
-                        fontWeight="bold"
-                        fontSize={16}
-                        color="#2F80ED"
-                        mb={2}
-                      >
-                        Quên mật khẩu
-                      </Box>
-                    </a>
-                  </Link>
-                  {values.email !== "" &&
-                  values.password !== "" &&
-                  isEmpty(errors)
-                    ? setDisabled(false)
-                    : setDisabled(true)}
-                  <MyButton
-                    type="submit"
-                    isDisabled={disabled}
-                    disabled={disabled}
+            <form onSubmit={handleSubmit(loginHandle)}>
+              <p className={classes.emailTitle}>Email hoặc SĐT</p>
+              <CustomForm
+                inputType="input"
+                className={classes.emailFormLogin}
+                nameInput="email"
+                name={register}
+                placeholder="Nhập Email hoặc số điện thoại"
+              />
+              <p style={{ color: "red", fontStyle: "italic" }}>
+                {errors.email?.message}
+              </p>
+              <p className={classes.passwordTitle}>Mật khẩu</p>
+              <CustomForm
+                className={classes.passwordFormLogin}
+                name={register}
+                nameInput="password"
+                placeholder="Nhập mật khẩu"
+                inputOption="password"
+                inputType="input"
+              />
+              <p style={{ color: "red", fontStyle: "italic" }}>
+                {errors.password?.message}
+              </p>
+              <Link href="/forgotPassword">
+                <a style={{ textDecoration: "none" }}>
+                  <Box
+                    textAlign="right"
+                    fontWeight="bold"
+                    fontSize={16}
+                    color="#2F80ED"
+                    mb={2}
                   >
-                    Đăng nhập
-                  </MyButton>
-                </Form>
-              )}
-            </Formik>
+                    Quên mật khẩu
+                  </Box>
+                </a>
+              </Link>
+
+              <MyButton type="submit" isDisabled={disabled} disabled={disabled}>
+                Đăng nhập
+              </MyButton>
+            </form>
             <Box mt={2} fontSize={14} color="#888E8A" mb={2}>
               Hoặc đăng nhập bằng
             </Box>
@@ -101,7 +104,7 @@ const LoginPage = (props) => {
               <div className={classes.gmailIcon}></div>
               <span>Google</span>
             </div> */}
-            <div  className={classes.gmailButton}>
+            <div className={classes.gmailButton}>
               <div className={classes.gmailIcon}></div>
               <span>Google</span>
             </div>

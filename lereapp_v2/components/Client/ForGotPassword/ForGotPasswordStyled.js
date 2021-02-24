@@ -60,6 +60,10 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 16,
     color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
+    "&:hover":{
+      opacity: "0.8",
+      backgroundColor : "#2FAF62"
+    }
   },
 });
 const useStyles = makeStyles(styles);

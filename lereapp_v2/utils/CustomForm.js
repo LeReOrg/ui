@@ -5,6 +5,7 @@ const CustomForm = ({
   name,
   nameInput,
   nameSelect,
+  inputOption,
   valueOptions,
   ...inputProp
 }) => {
@@ -15,7 +16,7 @@ const CustomForm = ({
         formTemplate = (
           <>
             <input
-              type={inputType}
+              type={inputOption}
               name={nameInput}
               ref={name}
               {...inputProp}
