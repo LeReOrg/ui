@@ -1,6 +1,4 @@
-import {
-  QueryClient,
-} from "react-query";
+import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import { getCategories } from "../hooks/useCategories";
 import HomePage from "../components/Client/Home/Home";

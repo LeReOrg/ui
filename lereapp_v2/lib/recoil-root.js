@@ -1,35 +1,34 @@
-import { atom,selector } from "recoil";
+import { atom, selector } from "recoil";
 
 export const cartState = atom({
   key: "cartState",
-  default : []
+  default: [],
 });
 export const cartTotal = selector({
-  key: 'cartTotal',
-  get : ({get}) => {
+  key: "cartTotal",
+  get: ({ get }) => {
     const cart = get(cartState);
-    return cart.reduce((total,item) => {
-      return total +  (item.quantity * item.item.price)
-    },0)
-  }
-})
+    return cart.reduce((total, item) => {
+      return total + item.quantity * item.item.price;
+    }, 0);
+  },
+});
 export const cartTotalItem = selector({
-  key: 'cartTotalItem',
-  get : ({get}) => {
+  key: "cartTotalItem",
+  get: ({ get }) => {
     const cart = get(cartState);
     let totalElement = 0;
-    cart.map((item,index) => {
-      totalElement += item.quantity
-    })
-    return totalElement
-  }
-})
+    cart.map((item, index) => {
+      totalElement += item.quantity;
+    });
+    return totalElement;
+  },
+});
 export const addCart = (cart, item) => {
   const newCart = [...cart];
   const foundIndex = cart.findIndex((x) => x.id === item.id);
 
   if (foundIndex >= 0) {
-    
     newCart[foundIndex] = {
       ...cart[foundIndex],
       quantity: cart[foundIndex].item.quantityIncrease + item.quantityIncrease,
@@ -39,7 +38,11 @@ export const addCart = (cart, item) => {
   newCart.push({
     item,
     id: item.id,
-    quantity : item.quantityIncrease
+    quantity: item.quantityIncrease,
   });
   return newCart;
 };
+export const userState = atom({
+  key: "userState",
+  default: "",
+});

@@ -10,28 +10,82 @@ import { useForm } from "react-hook-form";
 import CustomForm from "../../../utils/CustomForm.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Router from "next/router";
+
+import {
+  signInWithGoogle,
+  signInWithFacebook,
+} from "../../../firebase/firenase.utils";
+import { userState } from "../../../lib/recoil-root";
+import { useRecoilState } from "recoil";
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required().min(8),
 });
+
 const LoginPage = (props) => {
   const { register, handleSubmit, watch, setValue, errors } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
   });
+  const [currentUser, setcurrentUser] = useRecoilState(userState);
+
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
+  const handlerLoginSocial = (typeLogin) => {
+    if(typeLogin === 'google'){
+      signInWithGoogle()
+      .then((res) => {
+        const  result  = res.user;
+        if (result) {
+          let valueParam = {
+            uid: result.uid,
+            displayName: result.displayName,
+            email: result.email,
+            emailVerified: result.emailVerified,
+            photoURL: result.photoURL,
+          };
+          setcurrentUser(valueParam);
+          Router.push("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }else{
+      signInWithFacebook()
+      .then((res) => {
+        const  result  = res.user;
+        if (result) {
+          let valueParam = {
+            uid: result.uid,
+            displayName: result.displayName,
+            email: result.email,
+            emailVerified: result.emailVerified,
+            photoURL: result.photoURL,
+          };
+          console.log(result)
+          setcurrentUser(valueParam);
+          Router.push("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+    
+  };
   const isErrors = isEmpty(errors);
   let email = watch("email");
   let password = watch("password");
   useEffect(() => {
-    if(email && password && isErrors ){
-      setDisabled(false)
-    }else{
-      setDisabled(true)
+    if (email && password && isErrors) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
     }
-  }, [errors,email,password]);
+  }, [errors, email, password]);
   const loginHandle = (data) => {
     let paramsUpdate = data;
     console.log(paramsUpdate);
@@ -49,6 +103,7 @@ const LoginPage = (props) => {
             <div className={classes.main_page_contentTitle}>Đăng nhập</div>
             <form onSubmit={handleSubmit(loginHandle)}>
               <p className={classes.emailTitle}>Email hoặc SĐT</p>
+              {/* <p onClick={() => auth.signOut()}>Dang xuat</p> */}
               <CustomForm
                 inputType="input"
                 className={classes.emailFormLogin}
@@ -92,19 +147,11 @@ const LoginPage = (props) => {
             <Box mt={2} fontSize={14} color="#888E8A" mb={2}>
               Hoặc đăng nhập bằng
             </Box>
-            {/* <div onClick={signInFaceBook} className={classes.facebookButton}>
-              <div className={classes.faceBookIcon}></div>
-              <span>Facebook</span>
-            </div> */}
-            <div className={classes.facebookButton}>
+            <div onClick={() => handlerLoginSocial("facebook")} className={classes.facebookButton}>
               <div className={classes.faceBookIcon}></div>
               <span>Facebook</span>
             </div>
-            {/* <div onClick={signInEmail} className={classes.gmailButton}>
-              <div className={classes.gmailIcon}></div>
-              <span>Google</span>
-            </div> */}
-            <div className={classes.gmailButton}>
+            <div onClick={() => handlerLoginSocial("google")} className={classes.gmailButton}>
               <div className={classes.gmailIcon}></div>
               <span>Google</span>
             </div>

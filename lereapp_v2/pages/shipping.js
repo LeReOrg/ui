@@ -10,7 +10,7 @@ import styles from "../styles/ShippingStyled";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { cartState, cartTotal } from "../lib/recoil-root";
 import { city, ward, district } from "../components/Client/dataEx";
 

@@ -14,7 +14,6 @@ const Burger = (props) => {
 
   const showBurger = () => {
     var x = document.getElementsByClassName("bodyTag")[0];
-    console.log(x);
     if (!open) {
       x.classList.add("noscrolldown");
       mainLayout.classList.add("disabled");
