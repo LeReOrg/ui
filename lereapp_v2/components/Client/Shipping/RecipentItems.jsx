@@ -9,6 +9,7 @@ import { useRecoilValue } from "recoil";
 
 const RecipentItems = ({ cartItem, totalPrice }) => {
   const [disabled, setDisabled] = useState(true);
+  const [transportValue,setTransportValue] = useState(0)
   const totalItem = useRecoilValue(cartTotalItem);
   let parsedString = totalPrice.toString();
   const useStyled = makeStyles(styles)
@@ -19,6 +20,8 @@ const RecipentItems = ({ cartItem, totalPrice }) => {
     cartItem?.map((item, index) => (
       <ShippingItem item={item} key={index} />
     ));
+    const totalPayment = parseInt(transportValue) + parseInt(parsedString);
+    const test = totalPayment.toString()
   return (
     <div className={classes.main_recipent}>
       <div className={classes.main_recipent__title}>
@@ -34,7 +37,7 @@ const RecipentItems = ({ cartItem, totalPrice }) => {
         </div>
         <div className={classes.main_recipent__summaryTransport}>
           <p>Vận chuyển:</p>
-          <p>{customCurrency(parsedString)}đ</p>
+          <p>{transportValue} d</p>
         </div>
         <hr />
       </div>
@@ -42,7 +45,7 @@ const RecipentItems = ({ cartItem, totalPrice }) => {
         <div className={classes.main_recipent__totalPayment}>
           <div>Tổng tiền</div>
           <div className={classes.main_recipent__totalPaymentNumber}>
-          <p>{customCurrency(parsedString)}đ</p>
+          <p>{customCurrency(test)}đ</p>
           </div>
         </div>
         <div className={classes.main_recipent__rePayment}>

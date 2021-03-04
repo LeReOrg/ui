@@ -15,6 +15,7 @@ const RightNavMenu = ({ ...props }) => {
   const classes = useStyled();
   const [isHovering, setIsHovering] = useState(false);
   const nameUser = useRecoilValue(userState)
+  console.log(nameUser)
   return (
     <div className={classes.right_nav_main}>
       <RightNav open={props.open}>

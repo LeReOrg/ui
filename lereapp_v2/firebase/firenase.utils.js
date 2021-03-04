@@ -31,12 +31,13 @@ const facebookProvider = new firebase.auth.FacebookAuthProvider();
 facebookProvider.setCustomParameters({ prompt: "select_account" });
 const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 const signInWithFacebook = () => auth.signInWithPopup(facebookProvider);
-
+const logOut = () => auth.signOut();
 export {
   auth,
   getCurrentUser,
   firestore,
   signInWithGoogle,
   signInWithFacebook,
+  logOut
 };
 export default firebase;

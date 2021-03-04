@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import Link from "next/link";
 import styles from "../ShowLogin/ShowLoginStyled";
-
+import { logOut } from "../../../../firebase/firenase.utils";
 const AccountList = () => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
@@ -11,17 +11,20 @@ const AccountList = () => {
       <div className={classes.mainShowBody}>
         <Link href="/signup">
           <div className={classes.registerContentButton}>
-            <a className={classes.registerButton}>Đăng dddsdsd</a>
+            {/* <Link as="/account" href={}>
+              <a className={classes.registerButton}>Tài khoản của tôi</a>
+            </Link> */}
           </div>
         </Link>
         <Link href="/login">
           <div className={classes.loginContentButton}>
-            <a className={classes.loginButton}>Đăng nhập</a>
+            <a className={classes.loginButton} onClick={logOut}>
+              Dăng xuất
+            </a>
           </div>
         </Link>
       </div>
     </div>
   );
 };
-
 export default AccountList;

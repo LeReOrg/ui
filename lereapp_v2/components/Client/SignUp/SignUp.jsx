@@ -11,10 +11,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import * as yup from "yup";
+import { signUp } from "../../../hooks/signIn_signUp";
 const schema = yup.object().shape({
   email: yup.string().required().email().max(100),
   password: yup.string().required().min(8).max(100),
-  phoneNumber: yup.string().min(10).max(100),
+  mobile: yup.string().min(10).max(100),
   fullName: yup.string().required().max(100),
 });
 const SignUpPage = (props) => {
@@ -27,18 +28,19 @@ const SignUpPage = (props) => {
   const isErrors = isEmpty(errors);
   let email = watch("email");
   let password = watch("password");
-  let phoneNumber = watch("password");
+  let mobile = watch("mobile");
   let fullName = watch("fullName");
   useEffect(() => {
-    if (email && password && isErrors && fullName && phoneNumber) {
+    if (email && password && isErrors && fullName && mobile) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [errors, email, password, phoneNumber, fullName]);
+  }, [errors, email, password, mobile, fullName]);
   const registerHandle = (data) => {
     let paramsUpdate = data;
-    console.log(paramsUpdate);
+    const getBackRespose = signUp(paramsUpdate);
+    console.log(getBackRespose)
   };
   const classes = useStyles();
   return (
@@ -82,12 +84,12 @@ const SignUpPage = (props) => {
               <CustomForm
                 inputType="number"
                 className={classes.emailFormLogin}
-                nameInput="phoneNumber"
+                nameInput="mobile"
                 name={register}
                 placeholder="Nhập số điện thoại"
               />
               <p style={{ color: "red", fontStyle: "italic" }}>
-                {errors.phoneNumber?.message}
+                {errors.mobile?.message}
               </p>
 
               <p className={classes.passwordTitle}>Nhập mật khẩu</p>
