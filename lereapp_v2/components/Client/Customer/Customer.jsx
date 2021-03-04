@@ -8,8 +8,11 @@ import { MyButton } from "../Login/LoginPageStyled";
 import CustomerInfo from "./CustomerInfo";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CustomerMobile from "./CustomerMobile";
+import { useRouter } from 'next/router'
+
 const CustomerPage = () => {
   const useStyles = makeStyles(styles);
+  const router = useRouter()
   const classes = useStyles();
   const [historyCart, setHistoryCart] = React.useState(true);
   const matches = useMediaQuery("(max-width:768px)");
@@ -32,7 +35,7 @@ const CustomerPage = () => {
             className={classes.main_customerProfileContent}
           >
             <Box component="div" className={classes.customerInfo}>
-              <p className={classes.customerInfo_title}>Luu Duc Hoa</p>
+              <p className={classes.customerInfo_title}>{router?.query.name}</p>
               <hr
                 style={{
                   background: "rgba(0, 0, 0, 0.09)",

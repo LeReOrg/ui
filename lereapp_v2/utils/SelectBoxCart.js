@@ -75,7 +75,7 @@ const SelectBoxCart = (props) => {
           <AddIcon />
         </Fab>
       </div>
-      <div className={classes.dateSelect}>
+      {/* <div className={classes.dateSelect}>
         <Fab
           className={`${classes.removeIcon} ${
             numberDate === 1 ? classes.disabled : null
@@ -93,7 +93,7 @@ const SelectBoxCart = (props) => {
         >
           <AddIcon />
         </Fab>
-      </div>
+      </div> */}
     </>
   );
 };

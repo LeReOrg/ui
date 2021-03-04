@@ -31,7 +31,7 @@ const BreadCrumb = (props) => {
         </Link>
         {props.listBreadCrumb?.map((item, index) => (
           
-            <Link  href="/[type_product]/[index]" as={`/type_product/${item.id}`} key={item}>
+            <Link  href="/type_product/[index]" as={`/type_product/${item.id}`} key={item}>
               <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
                 <span className={classes.breadcrumb_main_linkspan}>{item.itemName}</span>
               </LinkStyle>

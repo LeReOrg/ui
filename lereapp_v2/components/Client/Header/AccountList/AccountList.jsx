@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import Link from "next/link";
 import styles from "../ShowLogin/ShowLoginStyled";
 import { logOut } from "../../../../firebase/firenase.utils";
-const AccountList = () => {
+const AccountList = ({user}) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   return (
@@ -11,9 +11,9 @@ const AccountList = () => {
       <div className={classes.mainShowBody}>
         <Link href="/signup">
           <div className={classes.registerContentButton}>
-            {/* <Link as="/account" href={}>
+            <Link href={{pathname : `/account/customer/${user.uid}`,query :{name : `${user.displayName}`} }}  >
               <a className={classes.registerButton}>Tài khoản của tôi</a>
-            </Link> */}
+            </Link>
           </div>
         </Link>
         <Link href="/login">

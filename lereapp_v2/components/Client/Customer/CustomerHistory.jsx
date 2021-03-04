@@ -160,7 +160,45 @@ const CustomerHistory = (props) => {
               </div>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              Item Two
+            <div className={classes.tabInfo}>
+                <Box pb={3} display="flex" justifyContent="space-between">
+                  <div className={classes.tabInfo_contentLeft}>
+                    <div className={classes.tabInfo_contentLeftImage}>
+                      <Image src={HistoryCart} height="88px" width="88px" />
+                    </div>
+                    <div className={classes.tabInfo_contentLeftInfo}>
+                      Cho thuê lều trại đẹp siêu cấp cách âm cực tốt không còn
+                      điều gì để chê được nữa hãy thuê mau mau nhé
+                    </div>
+                  </div>
+                  <div className={classes.tabInfo_contentRight}>
+                    <div className={classes.tabInfo_contentRightQuantity}>
+                      1 món
+                    </div>
+                    <div className={classes.tabInfo_contentRightTotal}>
+                      <div className={classes.tabInfo_contentRightAmount}>
+                        40,000đ/ngày
+                      </div>
+                      <div className={classes.tabInfo_contentRightpile}>
+                        Cọc 100,000đ
+                      </div>
+                      <div>24/01 - 28/2</div>
+                    </div>
+                  </div>
+                </Box>
+                <Box className={classes.buttonActions}>
+                  <div className={classes.buttonActions_Content}>
+                    <div>
+                      <MyButton type="submit">Thuê Lại</MyButton>
+                    </div>
+                    <div>
+                      <MyButton onPageChange={changePage}>
+                        Chi tiết đơn hàng
+                      </MyButton>
+                    </div>
+                  </div>
+                </Box>
+              </div>
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
               Item Three
