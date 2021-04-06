@@ -11,7 +11,7 @@ import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 
 
-const ProductDetail = (props) => {
+const ProductDetail = () => {
   const router = useRouter();
   
   const useStyled = makeStyles((theme) => ({
@@ -60,7 +60,7 @@ export async function getStaticPaths() {
   );
   const categories = await res.json();
   const paths = categories.map((post) => ({
-    params: { product: post.id },
+    params: { product: post._id },
   }));
   return { paths, fallback: false };
 

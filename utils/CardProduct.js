@@ -6,50 +6,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
 import Image from "next/image";
+import { makeStyles } from "@material-ui/styles";
+import styles from "../styles/CardProductStyled";
 const CardProduct = (props) => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      maxWidth: 345,
-      height : 158,
-      [theme.breakpoints.down("xs")]: {
-        height: 100,
-      },
-    },
-    content: {
-      paddingTop: 16,
-      fontSize: 16,
-      fontWeight: "normal",
-      [theme.breakpoints.down("xs")]: {
-        fontSize: 14,
-        paddingTop: 10,
-      },
-    },
-    price_item: {
-      color: "#2F80ED",
-      fontSize: 16,
-      fontWeight: "bold",
-    },
-    linkTypeProduct: {
-      "&:hover": {
-        textDecoration: "none",
-        transition: "transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
-      },
-      color: "#111E16",
-      fontStyle: "normal",
-      fontWeight: "normal",
-      fontSize: 16,
-    },
-    media: {
-      "&:hover": {
-        transform: "scale(1.2)",
-        transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
-      },
-    },
-  }));
-  const classes = useStyles();
+  const useStyled = makeStyles(styles);
+  const classes = useStyled();
   return (
     <>
-      <Link as={`/${props.item.id}`} href="/[product]">
+      <Link as={`/${props.item._id}`} href="/[product]">
         <a className={classes.linkTypeProduct}>
           <Card className={classes.root}>
             <CardActionArea>
