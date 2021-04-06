@@ -25,8 +25,8 @@ const schema = yup.object().shape({
 const Shipping = (props) => {
   const [showSubAddress, setshowSubAddress] = useState(false);
   const cart = useRecoilValue(cartState);
-  const [districtState,setDistrictState] = useState()
-  const [wardState,setWardState] = useState()
+  const [districtState, setDistrictState] = useState();
+  const [wardState, setWardState] = useState();
   const totalPrice = useRecoilValue(cartTotal);
   const useStyled = makeStyles(styles);
   const classes = useStyled();
@@ -34,21 +34,25 @@ const Shipping = (props) => {
     mode: "all",
     resolver: yupResolver(schema),
   });
-  const cityChosen = watch('city')
-  const districtChosen = watch('district')
+  const cityChosen = watch("city");
+  const districtChosen = watch("district");
   useEffect(() => {
-    if(cityChosen){
-      const districtByCity = district.filter((e) => e.idCity == parseInt(cityChosen))
-      setDistrictState(districtByCity)
-    };
-  },[cityChosen])
+    if (cityChosen) {
+      const districtByCity = district.filter(
+        (e) => e.idCity == parseInt(cityChosen)
+      );
+      setDistrictState(districtByCity);
+    }
+  }, [cityChosen]);
   useEffect(() => {
-    if(districtChosen){
-      const wardByDistrict = ward.filter((e) => e.idDistrict == parseInt(districtChosen))
-      setWardState(wardByDistrict)
-    };
-  },[districtChosen])
-  
+    if (districtChosen) {
+      const wardByDistrict = ward.filter(
+        (e) => e.idDistrict == parseInt(districtChosen)
+      );
+      setWardState(wardByDistrict);
+    }
+  }, [districtChosen]);
+
   // useEffect(() => {
   //   if (cartItem) {
   //     let totalPrices = cartItem.cartItems.reduce(function (accumulator, item) {
@@ -88,11 +92,11 @@ const Shipping = (props) => {
                     </h1>
                     <Box className={classes.main_shipping__contentLeftInfo}>
                       <ShippingInfo
-                      name= {register}
-                      showMenuSubAddress={showMenuAddressSub}
-                      city = {city}
-                      ward = {wardState}
-                      district = {districtState}
+                        name={register}
+                        showMenuSubAddress={showMenuAddressSub}
+                        city={city}
+                        ward={wardState}
+                        district={districtState}
                       />
                     </Box>
                   </Box>
@@ -107,17 +111,12 @@ const Shipping = (props) => {
               </Grid>
               <Grid item lg={4} md={5} xs={12}>
                 <Box className={classes.main_shipping__contentRight}>
-                  <RecipentItems
-                    cartItem={cart}
-                    totalPrice={totalPrice}
-                  />
+                  <RecipentItems cartItem={cart} totalPrice={totalPrice} />
                 </Box>
               </Grid>
             </>
           ) : (
-            <AddAddressMobile
-              getValueBack={getValueBack}
-            />
+            <AddAddressMobile getValueBack={getValueBack} />
           )}
         </Grid>
       </form>
