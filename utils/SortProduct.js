@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import faAngleDown from "@fortawesome/fontawesome-free-solid/faAngleDown";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-import { Box } from "@material-ui/core";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
@@ -78,7 +77,6 @@ const SortProduct = ({ ...props }) => {
           anchorEl={anchorRef.current}
           style={{
             zIndex: 2,
-           
             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
             borderRadius: "4px",
           }}
