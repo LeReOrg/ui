@@ -16,9 +16,10 @@ import {
   signInWithGoogle,
   signInWithFacebook,
 } from "../../../firebase/firenase.utils";
+import { logInEmailAndPassword } from "../../../hooks/useAuthentication";
+import { useLoginByFireBase } from "../../../hooks/useAuthentication";
 import { userState } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
-import { logInEmailAndPassword } from "../../../hooks/signIn_signUp";
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required().min(8),
@@ -32,6 +33,7 @@ const LoginPage = (props) => {
   const [currentUser, setcurrentUser] = useRecoilState(userState);
 
   const [disabled, setDisabled] = useState(true);
+  const { mutate, isLoading } = useLoginByFireBase();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const handlerLoginSocial = (typeLogin) => {
@@ -40,14 +42,13 @@ const LoginPage = (props) => {
         .then((res) => {
           const result = res.user;
           if (result) {
-            let valueParam = {
+            const valueParam = {
               uid: result.uid,
               displayName: result.displayName,
               email: result.email,
-              emailVerified: result.emailVerified,
-              photoURL: result.photoURL,
+              avatar: result.photoURL,
             };
-            setcurrentUser(valueParam);
+            mutate(valueParam);
             Router.push("/");
           }
         })
@@ -59,15 +60,13 @@ const LoginPage = (props) => {
         .then((res) => {
           const result = res.user;
           if (result) {
-            let valueParam = {
+            const valueParam = {
               uid: result.uid,
               displayName: result.displayName,
               email: result.email,
-              emailVerified: result.emailVerified,
-              photoURL: result.photoURL,
+              avatar: result.photoURL,
             };
-            console.log(result);
-            setcurrentUser(valueParam);
+            mutate(valueParam);
             Router.push("/");
           }
         })
@@ -86,10 +85,11 @@ const LoginPage = (props) => {
       setDisabled(true);
     }
   }, [errors, email, password]);
-  const loginHandle = (data) => {
+  const loginHandle = async (data) => {
     let paramsUpdate = data;
-    const res = logInEmailAndPassword(paramsUpdate);
-    console.log(res);
+    const res = await logInEmailAndPassword(paramsUpdate);
+    res && setcurrentUser(res);
+    Router.push("/");
   };
 
   return (

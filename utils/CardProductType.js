@@ -7,7 +7,7 @@ import Link from "next/link";
 import { prefetchProductByCate } from "../hooks/useProductByCategory";
 import { makeStyles } from "@material-ui/styles";
 import styles from "../styles/CardProductTypeStyled";
-
+import Image from "next/image";
 const CardProductType = ({ info }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
@@ -18,20 +18,16 @@ const CardProductType = ({ info }) => {
         <a
           className={classes.linkTypeProduct}
           onMouseEnter={() => {
-            prefetchProductByCate(info._id, 0);
+            prefetchProductByCate(info._id);
           }}
         >
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                className={classes.media}
-                image={info.image_url}
-                title={info.name}
-              />
-            </CardActionArea>
-          </Card>
-
+          <Image
+            className={classes.media}
+            src={info.thumbnail.url}
+            alt={info.name}
+            width={285}
+            height={160}
+          />
           <Typography
             className={classes.content}
             align="center"

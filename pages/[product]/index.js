@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/styles";
 import Line from "../../utils/Line";
@@ -10,10 +10,8 @@ import { getProductDetails, useProductDetails } from "../../hooks/useProduct";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 
-
 const ProductDetail = () => {
   const router = useRouter();
-  
   const useStyled = makeStyles((theme) => ({
     main_list: {},
   }));
@@ -22,29 +20,29 @@ const ProductDetail = () => {
     router.query.product
   );
   let breadCrumbArray = [];
-  if(productDetail) {
+  if (productDetail) {
     let categeryItem = {
-      id : productDetail[0]?.category?._id,
-      itemName : productDetail[0]?.category?.name
-    }
+      id: productDetail[0]?.category?._id,
+      itemName: productDetail[0]?.category?.name,
+    };
     let productItem = {
-      id : productDetail[0]?.id,
-      itemName : productDetail[0]?.name
-
-    }
-    breadCrumbArray.push(categeryItem)
-    breadCrumbArray.push(productItem)
-
+      id: productDetail[0]?.id,
+      itemName: productDetail[0]?.name,
+    };
+    breadCrumbArray.push(categeryItem);
+    breadCrumbArray.push(productItem);
   }
   return (
     <>
-      <BreadCrumb listBreadCrumb = {breadCrumbArray}  />
+      {/* <BreadCrumb listBreadCrumb = {breadCrumbArray}  /> */}
       <div className={classes.main_list}>
         <ProductDetailsInfo
           detailsProduct={productDetail ? productDetail : null}
         />
         <Line />
-        <ProductDetailsContent  detailsProduct={productDetail ? productDetail : null} />
+        <ProductDetailsContent
+          detailsProduct={productDetail ? productDetail : null}
+        />
         <Line />
         <ProductRelated />
       </div>
@@ -56,14 +54,13 @@ export default ProductDetail;
 
 export async function getStaticPaths() {
   const res = await fetch(
-    "http://pacific-ravine-33365.herokuapp.com/product/getAllProduct"
+    "https://staging-lereappserver.herokuapp.com/api/v1/products?limit=100"
   );
-  const categories = await res.json();
-  const paths = categories.map((post) => ({
+  const products = await res.json();
+  const paths = products.docs.map((post) => ({
     params: { product: post._id },
   }));
   return { paths, fallback: false };
-
 }
 export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();

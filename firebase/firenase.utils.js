@@ -1,7 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-
+import { userState } from "../lib/recoil-root";
+import { useRecoilState } from "recoil";
 const config = {
   apiKey: "AIzaSyBrjNPHbl9Gp7TpMHMzfj-hJUNd4ipzMLI",
   authDomain: "lereorg.firebaseapp.com",
@@ -31,13 +32,25 @@ const facebookProvider = new firebase.auth.FacebookAuthProvider();
 facebookProvider.setCustomParameters({ prompt: "select_account" });
 const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 const signInWithFacebook = () => auth.signInWithPopup(facebookProvider);
-const logOut = () => auth.signOut();
+const logOut = () => {
+  console.log("aaaa");
+  auth
+    .signOut()
+    .then(() => {
+      console.log("bb");
+
+      setCurrentUser("");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 export {
   auth,
   getCurrentUser,
   firestore,
   signInWithGoogle,
   signInWithFacebook,
-  logOut
+  logOut,
 };
 export default firebase;

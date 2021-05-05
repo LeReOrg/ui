@@ -52,7 +52,7 @@ const styles = (theme) => ({
     textAlign: "center",
     "&:hover": {
       cursor: "pointer",
-      // backgroundColor: "#2FAF62",
+      backgroundColor: "#b6c2d4",
     },
   },
   gmailButton: {
@@ -67,7 +67,7 @@ const styles = (theme) => ({
     marginBottom: 24,
     "&:hover": {
       cursor: "pointer",
-      // backgroundColor: "#2FAF62",
+      backgroundColor: "#b6c2d4",
     },
   },
   faceBookIcon: {
@@ -132,13 +132,13 @@ const styles = (theme) => ({
     fontSize: 16,
     color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
     [theme.breakpoints.down("xs")]: {
-      padding : "5px 10px",
-      fontSize : 14
+      padding: "5px 10px",
+      fontSize: 14,
     },
-    "&:hover":{
+    "&:hover": {
       opacity: "0.8",
-      backgroundColor : "#2FAF62"
-    }
+      backgroundColor: "#2FAF62",
+    },
   },
 });
 const useStyles = makeStyles(styles);

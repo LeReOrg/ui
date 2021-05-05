@@ -3,11 +3,11 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Typography } from "@material-ui/core";
 import styles from "./ProductDetailsStyled";
-const ProductDetailsContent = ({ ...props }) => {
+const ProductDetailsContent = ({ detailsProduct }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [stateCollapse, setStateCollapse] = useState(false);
-  const { description } = props.detailsProduct[0];
+  const { description } = detailsProduct;
   const [collapseContent, setCollapseContent] = useState(
     description
   );

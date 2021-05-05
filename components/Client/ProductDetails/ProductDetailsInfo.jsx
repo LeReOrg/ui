@@ -14,16 +14,23 @@ import { isMobileDevice } from "../../../utils/FunctionUses";
 import { cartState, addCart } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 
-const ProductDetailsInfo = ({ ...props }) => {
+const ProductDetailsInfo = (props) => {
   const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
   const {
     name,
-    cover_images,
+    images,
     owner_id,
     price,
     id,
     image
-  } = props.detailsProduct[0];
+  } = props?.detailsProduct;
+  let arrayImages = [];
+  images.map((item,index) => {
+    let objectImages = {};
+    objectImages.original = item.url
+    objectImages.thumbnail = item.url
+    arrayImages.push(objectImages)
+  })
   const [quantity, setQuantity] = useState(1);
   const [itemAdd, setItemAdd] = useState({
     id: id,
@@ -99,7 +106,7 @@ const ProductDetailsInfo = ({ ...props }) => {
             showPlayButton={false}
             autoPlay={true}
             slideDuration={1000}
-            items={cover_images}
+            items={arrayImages}
             slideOnThumbnailOver={true}
             useBrowserFullscreen={false}
           />
@@ -114,7 +121,7 @@ const ProductDetailsInfo = ({ ...props }) => {
           <Typography className={classes.poster_info} align="left">
             Đăng bởi:{" "}
             <b className={classes.poster}>
-              {owner_id.first_name + "" + owner_id.last_name}
+              {/* {owner_id.first_name + "" + owner_id.last_name} */}
             </b>
           </Typography>
           <hr />

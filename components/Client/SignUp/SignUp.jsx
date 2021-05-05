@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import styles from "./SignUpPageStyled";
 import BackGroundLogin from "../../../assets/background_login.png";
@@ -11,15 +11,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import * as yup from "yup";
-import { signUp } from "../../../hooks/signIn_signUp";
+import { signUp } from "../../../hooks/useAuthentication";
+import { userState } from "../../../lib/recoil-root";
+import { useRecoilState } from "recoil";
 const schema = yup.object().shape({
   email: yup.string().required().email().max(100),
   password: yup.string().required().min(8).max(100),
-  mobile: yup.string().min(10).max(100),
-  fullName: yup.string().required().max(100),
+  phoneNumber: yup.string().min(10).max(100),
+  displayName: yup.string().required().max(100),
 });
 const SignUpPage = (props) => {
   const [disabled, setDisabled] = useState(true);
+  const [currentUser, setcurrentUser] = useRecoilState(userState);
+
   const useStyles = makeStyles(styles);
   const { register, handleSubmit, watch, setValue, errors } = useForm({
     mode: "all",
@@ -28,19 +32,19 @@ const SignUpPage = (props) => {
   const isErrors = isEmpty(errors);
   let email = watch("email");
   let password = watch("password");
-  let mobile = watch("mobile");
-  let fullName = watch("fullName");
+  let phoneNumber = watch("phoneNumber");
+  let displayName = watch("displayName");
   useEffect(() => {
-    if (email && password && isErrors && fullName && mobile) {
+    if (email && password && isErrors && displayName && phoneNumber) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [errors, email, password, mobile, fullName]);
-  const registerHandle = (data) => {
-    let paramsUpdate = data;
-    const getBackRespose = signUp(paramsUpdate);
-    console.log(getBackRespose)
+  }, [errors, email, password, phoneNumber, displayName]);
+  const registerHandle = async (data) => {
+    let params = data;
+    const res = await signUp(params);
+    res && setcurrentUser(res);
   };
   const classes = useStyles();
   return (
@@ -62,12 +66,12 @@ const SignUpPage = (props) => {
               <CustomForm
                 inputType="input"
                 className={classes.emailFormLogin}
-                nameInput="fullName"
+                nameInput="displayName"
                 name={register}
                 placeholder="Nhập họ và tên đầy đủ"
               />
               <p style={{ color: "red", fontStyle: "italic" }}>
-                {errors.fullName?.message}
+                {errors.displayName?.message}
               </p>
               <p className={classes.emailTitle}>Địa chỉ Email</p>
               <CustomForm
@@ -84,12 +88,12 @@ const SignUpPage = (props) => {
               <CustomForm
                 inputType="number"
                 className={classes.emailFormLogin}
-                nameInput="mobile"
+                nameInput="phoneNumber"
                 name={register}
                 placeholder="Nhập số điện thoại"
               />
               <p style={{ color: "red", fontStyle: "italic" }}>
-                {errors.mobile?.message}
+                {errors.phoneNumber?.message}
               </p>
 
               <p className={classes.passwordTitle}>Nhập mật khẩu</p>

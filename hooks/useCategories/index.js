@@ -3,7 +3,7 @@ import axios from "axios";
 import config from "../../config";
 
 const getCategories = () =>
-  axios.get(`${config.api}/category/getCategory`).then((res) => res.data);
+  axios.get(`${config.api}/categories`).then((res) => res.data);
   
 const useCategories = () => {
   return useQuery("categories", getCategories);

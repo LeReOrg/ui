@@ -7,19 +7,21 @@ import ShowLogin from "../ShowLogin/ShowLogin";
 import AccountList from "../AccountList/AccountList";
 
 import { useState } from "react";
-import { RightNav,styles } from "./HeaderNavStyled";
+import { RightNav, styles } from "./HeaderNavStyled";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../lib/recoil-root";
+
 const RightNavMenu = ({ ...props }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [isHovering, setIsHovering] = useState(false);
-  const nameUser = useRecoilValue(userState)
+  const { user } = useRecoilValue(userState);
+  console.log(user);
   return (
     <div className={classes.right_nav_main}>
       <RightNav open={props.open}>
         <li>
-          <Link href="/contact">
+          <Link href="/about">
             <a>Về chúng tôi</a>
           </Link>
         </li>
@@ -28,10 +30,14 @@ const RightNavMenu = ({ ...props }) => {
           onMouseLeave={() => setIsHovering(false)}
           className={classes.showLogin}
         >
-          <a>{nameUser ? nameUser.displayName : "Tài khoản"}</a>
-          {isHovering && !nameUser && <ShowLogin />}
-          {isHovering && nameUser && <AccountList user = {nameUser} />}
-
+          <a>{user ? user.displayName : "Tài khoản"}</a>
+          {isHovering ? (
+            !user ? (
+              <ShowLogin />
+            ) : (
+              <AccountList user={user} />
+            )
+          ) : null}
         </li>
         <li>
           <Link href="/uploadproduct">

@@ -20,8 +20,8 @@ const styles = (theme) => ({
       linkTypeProduct: {
         "&:hover": {
           textDecoration: "none",
-          transition: "transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
           fontSize: 26,
+         
         },
         color: "#111E16",
         fontStyle: "normal",
@@ -29,10 +29,10 @@ const styles = (theme) => ({
         fontSize: 24,
       },
       media: {
-        height: 160,
+        borderRadius : 8,
         "&:hover": {
           transform: "scale(1.2)",
-          transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
+          transition: "transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
         },
         [theme.breakpoints.down("xs")]: {
           height: 72,

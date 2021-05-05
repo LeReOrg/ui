@@ -12,12 +12,12 @@ import { userState } from "../lib/recoil-root";
 import Router from "next/router";
 const Cart = (props) => {
   const [cart, setCart] = useRecoilState(cartState);
-  const nameUser = useRecoilValue(userState);
-  useEffect(() => {
-    if (nameUser === "" ) {
-      Router.push("/login");
-    }
-  }, []);
+  const { user } = useRecoilValue(userState);
+  // useEffect(() => {
+  //   if (nameUser === "" ) {
+  //     Router.push("/login");
+  //   }
+  // }, []);
   const totalPrice = useRecoilValue(cartTotal);
   const useStyled = makeStyles(styles);
   const theme = createMuiTheme({
@@ -46,11 +46,11 @@ const Cart = (props) => {
     cart.map((item, index) => <CartItem item={item.item} key={index} />);
   return (
     <>
-      {nameUser !== "" ? (
+      {user !== "" ? (
         <div className={classes.main_cart}>
           <h1 className={classes.main_cart__title}>Giỏ hàng của bạn</h1>
-          {
-              cart.length !== 0 ? <div className={classes.main_cart__content}>
+          {cart.length !== 0 ? (
+            <div className={classes.main_cart__content}>
               <Grid container className={classes.root} spacing={2}>
                 <Grid item lg={7} xs={12}>
                   <div className={classes.main_cart__info}>
@@ -92,8 +92,10 @@ const Cart = (props) => {
                   </div>
                 </Grid>
               </Grid>
-            </div> : <p>Hiện tại bạn chưa có mặt hàng nào</p>
-          }
+            </div>
+          ) : (
+            <p>Hiện tại bạn chưa có mặt hàng nào</p>
+          )}
         </div>
       ) : null}
     </>

@@ -10,24 +10,12 @@ const useStyles = makeStyles(styles);
 
 const InterestedItem = (props) => {
   const [page, setPage] = React.useState(0);
-  const [productItem, setProductItem] = React.useState([]);
-  const { status, data, error, isFetching, isPreviousData } = useMoreProduct(
-    page
-  );
-  if (productItem?.length == 0 && data) {
-    setProductItem(data.products);
-  }
-  React.useEffect(async () => {
-    if (page != 0) {
-      await queryClient.prefetchQuery(["topProduct", page], () =>
-        useMoreProduct(page)
-      );
-    }
-  }, [page]);
+  const { status, data, error, isFetching, isPreviousData } = useMoreProduct();
+  const [productItem, setProductItem] = React.useState(null);
   useEffect(() => {
-    if (data && page != 0) {
-      let { products } = data;
-      setProductItem((oldArray) => [...oldArray, ...products]);
+    if (data) {
+      let products = data;
+      setProductItem(...products);
     }
   }, [data]);
   // const loadMoreButtonRef = React.useRef();
@@ -36,7 +24,7 @@ const InterestedItem = (props) => {
   //   onIntersect: useMoreProduct(page + 1),
   //    enabled: hasNextPage,
   // });
-  const renderTopItems = productItem?.map((productItem) => (
+  const renderTopItems = data?.map((productItem) => (
     <Grid key={productItem.id} item lg={3} md={4} xs={6}>
       <CardProduct item={productItem} />
     </Grid>
@@ -53,9 +41,9 @@ const InterestedItem = (props) => {
         <Grid container spacing={3}>
           {renderTopItems}
         </Grid>
-        {
-          data?.numPage - 1 > page ?<LoadMoreItem loadMore={() => loadMore()} /> : null
-        }
+        {data?.numPage - 1 > page ? (
+          <LoadMoreItem loadMore={() => loadMore()} />
+        ) : null}
       </Typography>
     </div>
   );

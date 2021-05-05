@@ -23,9 +23,12 @@ import { RecoilRoot } from "recoil";
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
-const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps }) => {
+  const queryClientRef = React.useRef();
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   React.useEffect(() => {
@@ -49,7 +52,7 @@ const MyApp = ({ Component, pageProps }) => {
           rel="stylesheet"
         />
       </Head>
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClientRef.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -69,5 +72,4 @@ const MyApp = ({ Component, pageProps }) => {
     </React.Fragment>
   );
 };
-export { queryClient };
 export default MyApp;
