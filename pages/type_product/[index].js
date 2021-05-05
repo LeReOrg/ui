@@ -58,7 +58,7 @@ export async function getStaticPaths() {
     "https://staging-lereappserver.herokuapp.com/api/v1/categories"
   );
   const categories = await res.json();
-  const paths = categories.docs.map((post) => ({
+  const paths = categories?.map((post) => ({
     params: { index: post._id },
   }));
   return { paths, fallback: true };
