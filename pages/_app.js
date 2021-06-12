@@ -51,6 +51,11 @@ const MyApp = ({ Component, pageProps }) => {
           href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <QueryClientProvider client={queryClientRef.current}>
         <Hydrate state={pageProps.dehydratedState}>

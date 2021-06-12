@@ -13,7 +13,6 @@ import CustomerDetail from "./CustomerDetail";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -160,7 +159,7 @@ const CustomerHistory = (props) => {
               </div>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-            <div className={classes.tabInfo}>
+              <div className={classes.tabInfo}>
                 <Box pb={3} display="flex" justifyContent="space-between">
                   <div className={classes.tabInfo_contentLeft}>
                     <div className={classes.tabInfo_contentLeftImage}>

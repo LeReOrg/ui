@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { green, purple } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./InfoStyled";
-import InfoImage from "../../../assets/info.png";
 const useStyles = makeStyles(styles);
 
 const StyledButton = withStyles((theme) => ({
@@ -31,64 +30,27 @@ const Info = () => {
   return (
     <div className={classes.info_main}>
       <div className={classes.background_info}>
-        <Grid
-          container
-          spacing={10}
-          className={classes.background_info__main}
-          alignItems="center"
-          justify="center"
-        >
-          <Grid
-            item
-            className={classes.background_info__itemContent}
-            lg={3}
-            md={6}
-            sm={6}
-            xs={12}
-          >
-            <Typography
-              component={"div"}
-              className={classes.typography}
-              variant={"body2"}
+        <Typography component={"div"} className={classes.typography}>
+          <Box className={classes.box}>
+            <Box
+              fontSize={30}
+              className={classes.info_tittle}
+              fontWeight="fontWeightBold"
             >
-              <Box className={classes.box}>
-                <Box
-                  fontSize={30}
-                  className={classes.info_tittle}
-                  fontWeight="fontWeightBold"
-                >
-                  Who are we?
-                </Box>
-                <Box fontSize={16}>
-                  Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản
-                  phẩm bạn không dùng tới, tại sao không nhỉ?
-                </Box>
-                <Box pt={4} className={classes.more_info}>
-                  <StyledButton variant="contained" color="primary">
-                    Tìm hiểu thêm
-                  </StyledButton>
-                </Box>
-              </Box>
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            className={classes.background_info__itemImage}
-            lg={3}
-            md={6}
-            sm={6}
-            xs={12}
-          >
-            <div className={classes.mediaInfo}>
-              <CardMedia
-                component="img"
-                image={InfoImage}
-                className={classes.mediaPicture}
-                title="info"
-              />
-            </div>
-          </Grid>
-        </Grid>
+              Đăng ký để nhận khuyến mãi
+            </Box>
+            <hr className={classes.hr} />
+            <Box fontSize={16} className={classes.subTitle}>
+              Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản phẩm
+              bạn không dùng tới, tại sao không nhỉ?
+            </Box>
+            <Box pt={4} className={classes.more_info}>
+              <StyledButton variant="contained" color="primary">
+                Tìm hiểu thêm
+              </StyledButton>
+            </Box>
+          </Box>
+        </Typography>
       </div>
     </div>
   );

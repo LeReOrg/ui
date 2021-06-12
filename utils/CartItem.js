@@ -11,11 +11,12 @@ import { Grid, Button } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const CartItem = ({ item, clearItem }) => {
   const {
+    id,
     name,
     price,
     owner_id,
     totalDateRent,
-    coc,
+    depositPrice,
     quantityIncrease,
     image,
   } = item;
@@ -112,7 +113,7 @@ const CartItem = ({ item, clearItem }) => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={image}
+                image={image.url}
                 title="Contemplative Reptile"
                 className={classes.smallImage}
               />
@@ -132,7 +133,7 @@ const CartItem = ({ item, clearItem }) => {
                     style={{ paddingLeft: 5 }}
                     className={classes.nameProvided}
                   >
-                    {owner_id.last_name}{owner_id.first_name}
+                    {/* {owner_id.last_name}{owner_id.first_name} */}
                   </span>
                 </Typography>
               </Grid>
@@ -144,7 +145,7 @@ const CartItem = ({ item, clearItem }) => {
               <Grid item lg={2} xs={12} className={classes.selectedBoxCart}>
                 <SelectBoxCart
                   cartItem={item}
-                  numberDate={totalDateRent}
+                  // numberDate={totalDateRent}
                   quantity={quantityIncrease}
                 />
               </Grid>
@@ -152,7 +153,7 @@ const CartItem = ({ item, clearItem }) => {
                 <Typography className={classes.infoAmountNumber}>
                   {price.toLocaleString("en-US")}đ/ngày
                 </Typography>
-                <Typography>Cọc : {coc}đ/ngày</Typography>
+                <Typography>Cọc : {depositPrice}đ/ngày</Typography>
                 <Button
                   onClick={() => clearItem(item)}
                   className={classes.deleteButtonDeskTop}

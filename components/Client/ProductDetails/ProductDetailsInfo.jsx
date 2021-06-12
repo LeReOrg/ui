@@ -14,16 +14,16 @@ import { isMobileDevice } from "../../../utils/FunctionUses";
 import { cartState, addCart } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 
-const ProductDetailsInfo = (props) => {
+const ProductDetailsInfo = ({detailsProduct}) => {
   const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
   const {
     name,
     images,
     owner_id,
     price,
-    id,
-    image
-  } = props?.detailsProduct;
+    _id,
+    depositPrice
+  } = detailsProduct;
   let arrayImages = [];
   images.map((item,index) => {
     let objectImages = {};
@@ -33,15 +33,17 @@ const ProductDetailsInfo = (props) => {
   })
   const [quantity, setQuantity] = useState(1);
   const [itemAdd, setItemAdd] = useState({
-    id: id,
+    id: _id,
     owner_id: owner_id,
     name: name,
     formDate: "",
     toDate: "",
     price: price,
     quantityIncrease: 0,
-    image : image?.original
+    image :images[0],
+    depositPrice : depositPrice
   });
+  console.log(_id)
   useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,
@@ -50,6 +52,7 @@ const ProductDetailsInfo = (props) => {
   }, [quantity]);
   const [cart, setCart] = useRecoilState(cartState);
   const addToCart = (items) => {
+    console.log(items)
     const newCart = addCart(cart, items);
     setCart(newCart);
   };

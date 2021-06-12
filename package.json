@@ -45,6 +45,7 @@
     "react-image-gallery": "^1.0.8",
     "react-images-uploading": "^3.1.2",
     "react-query": "^3.5.6",
+    "react-responsive": "^8.2.0",
     "react-swipeable-views": "^0.13.9",
     "recoil": "^0.1.2",
     "rsuite": "^4.8.7",

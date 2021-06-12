@@ -1,10 +1,10 @@
-import MoreInfoBackGround from '../../../assets/bgmoreinfo.png'
+import MoreInfoBackGround from "../../../assets/BG_Gradient.png";
 const styles = (theme) => ({
   info_main: {
     marginTop: 60,
     width: "90%",
     margin: "0 auto",
-    marginBottom : 24,
+    marginBottom: 24,
     [theme.breakpoints.down("xs")]: {
       marginTop: 32,
     },
@@ -36,7 +36,7 @@ const styles = (theme) => ({
     background: `url("${MoreInfoBackGround}")`,
     display: "flex",
     backgroundRepeat: "no-repeat",
-    borderRadius : 16
+    borderRadius: 16,
   },
   background_info__main: {
     margin: 0,

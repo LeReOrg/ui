@@ -14,7 +14,7 @@ const getProductDetails = (postId) => {
 };
 
 const prefetchProductByDetails = (postId) => {
-  queryClient.prefetchQuery(["product", String(postId)], getProductByCategory, {
+  queryClient.prefetchQuery(["product", String(postId)], getProductDetails, {
     staleTime: 5000,
   });
 };

@@ -3,10 +3,13 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { makeStyles } from "@material-ui/core/styles";
+import { useRecoilState } from "recoil";
+import { cartState } from "../lib/recoil-root";
 // import { addItem, removeItem } from "../store/action/cart_actions";
 const SelectBoxCart = (props) => {
   const { numberDate, quantity } = props;
-  console.log(props.cartItem)
+  const [cart, setCart] = useRecoilState(cartState);
+
   const useStyles = makeStyles((theme) => ({
     removeIcon: {
       background: "transparent",
@@ -55,6 +58,19 @@ const SelectBoxCart = (props) => {
     },
   }));
   const classes = useStyles();
+  const addItem  = () => {
+    console.log(cart)
+  
+    setCart([...cart].map(object => {
+      if(object.id === props.cartItem.id) {
+        return {
+          ...object,
+          quantity : quantity + 1
+        }
+      }
+      else return object;
+    }))
+  }
   return (
     <>
       <div className={classes.itemSelect}>
@@ -71,6 +87,7 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
+          onClick = {() => addItem() }
         >
           <AddIcon />
         </Fab>
