@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { green, purple } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./InfoStyled";
+import Image from "next/image";
+
 const useStyles = makeStyles(styles);
 
 const StyledButton = withStyles((theme) => ({
@@ -30,6 +32,7 @@ const Info = () => {
   return (
     <div className={classes.info_main}>
       <div className={classes.background_info}>
+        {/* <Image src={InfoImage} width={1206} height={280} layout="responsive" /> */}
         <Typography component={"div"} className={classes.typography}>
           <Box className={classes.box}>
             <Box

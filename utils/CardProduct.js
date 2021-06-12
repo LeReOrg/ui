@@ -18,17 +18,17 @@ const CardProduct = ({ item }) => {
           }}
         >
           <Image
-            src={item.images[0].url}
-            title={item.name}
+            src={item?.images[0]?.url}
+            title={item?.name}
             width={285}
             height={160}
           />
 
           <Typography className={classes.content} align="left">
-            {item.name}
+            {item?.name}
           </Typography>
           <Typography className={classes.price_item} align="left">
-            {item.price.toLocaleString("en-US")}đ/ngày
+            {item?.price.toLocaleString("en-US")}đ/ngày
           </Typography>
         </a>
       </Link>

@@ -6,7 +6,8 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./MoreInfoStyled";
 import InfoImage from "../../../assets/info.png";
 const useStyles = makeStyles(styles);
-
+import MoreInfoBackGround from "../../../assets/BG_Gradient.png";
+import Image from "next/image";
 const StyledButton = withStyles((theme) => ({
   root: {
     backgroundColor: "#2FAF62",
@@ -30,8 +31,16 @@ const MoreInfo = () => {
   const classes = useStyles();
   return (
     <div className={classes.info_main}>
-      <div className={classes.background_info}>
-        <Grid
+      <div>
+        {/* <Image
+          src={MoreInfoBackGround}
+          height={240}
+          width={1440}
+          layout="fixed"
+          quality={100}
+        /> */}
+        <img src={MoreInfoBackGround} className={classes.image} />
+        {/* <Grid
           container
           spacing={10}
           className={classes.background_info__main}
@@ -70,7 +79,7 @@ const MoreInfo = () => {
               </Box>
             </Typography>
           </Grid>
-        </Grid>
+        </Grid> */}
       </div>
     </div>
   );

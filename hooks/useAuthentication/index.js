@@ -6,7 +6,7 @@ import { userState } from "../../lib/recoil-root";
 
 const saveLoginByFireBase = async (params) => {
   const { data } = await axios.post(
-    `${config.api}/authentication/firebase-login`,
+    `${config.api}/authentication/firebase`,
     params
   );
   return data;

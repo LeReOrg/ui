@@ -84,7 +84,7 @@ a {
   text-decoration: none !important;
 }
 * {
-  font-family: "Nunito Sans", sans-serif !important;
+  font-family: "Nunito Sans", sans-serif;
 }
 /* make sure to set some focus styles for accessibility */
 :focus {
@@ -157,7 +157,7 @@ table {
 .nav-link:hover {
   cursor: pointer;
 }
-.fade.in{
+.fade.in {
   opacity: 1 !important;
 }
 input[type="search"]::-webkit-search-cancel-button,
@@ -167,33 +167,32 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-.image-gallery-image{
+.image-gallery-image {
   height: 300px !important;
 }
-.image-gallery-thumbnail-image{
+.image-gallery-thumbnail-image {
   height: 75px;
   width: 100px;
-  
 }
-.image-gallery-content.fullscreen{
-  background :unset;
+.image-gallery-content.fullscreen {
+  background: unset;
 }
-.fullscreen-modal.image-gallery-fullscreen-button{
+.fullscreen-modal.image-gallery-fullscreen-button {
   right: 28% !important;
 }
 
 .image-gallery.fullscreen-modal {
-  background : rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
-.image-gallery-thumbnail-inner{
+.image-gallery-thumbnail-inner {
   padding-right: 10px;
 }
-.image-gallery-thumbnail.active{
-  border : 4px solid #2FAF62 !important ;
+.image-gallery-thumbnail.active {
+  border: 4px solid #2faf62 !important ;
   border-radius: 8px;
 }
 .image-gallery-thumbnail:hover {
-  border : 4px solid #2FAF62 !important ;
+  border: 4px solid #2faf62 !important ;
 }
 input[type="search"] {
   -webkit-appearance: none;
@@ -479,7 +478,7 @@ button:focus {
   outline: none !important;
 }
 .showItem {
-  display: flex  !important;
+  display: flex !important;
 }
 .col-md-2,
 .col-md-6,

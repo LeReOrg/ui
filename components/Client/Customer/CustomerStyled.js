@@ -1,10 +1,10 @@
 import History from "../../../assets/history_cart.svg";
 import AccountDetail from "../../../assets/accountDetail.svg";
-
+import Ring from "../../../assets/ring.svg";
 const styles = (theme) => ({
   main_customerProfile: {
-    width: "75%",
-    margin: "40px auto",
+    maxWidth: 1440,
+    margin: "60px auto",
     flexGrow: 1,
     [theme.breakpoints.between("sm", "md")]: {
       width: "95%",
@@ -20,6 +20,9 @@ const styles = (theme) => ({
     borderRadius: 8,
     backgroundColor: "#FFFFFF",
     padding: "24px 16px",
+    position: "relative",
+    paddingTop: 60,
+    textAlign: "center",
   },
   customerInfoButton: {
     paddingTop: 16,
@@ -30,7 +33,27 @@ const styles = (theme) => ({
   },
   customerInfo_title: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: "20px",
+    color: "#111E16",
+    fontStyle: "normal",
+  },
+  customerInfoImage: {
+    position: "absolute",
+    top: "-20%",
+    left: "30%",
+    background: `url(${Ring})`,
+    width: 100,
+    height: 100,
+  },
+  customerImage: {
+    width: 85,
+    height: 85,
+    objectFit: "contain",
+    borderRadius: "50%",
+    position: "absolute",
+    left: 8,
+    top: 8,
   },
   rootTab: {
     textTransform: "none",

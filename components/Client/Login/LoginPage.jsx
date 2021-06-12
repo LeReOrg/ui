@@ -10,8 +10,7 @@ import { useForm } from "react-hook-form";
 import CustomForm from "../../../utils/CustomForm.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Router from "next/router";
-
+import { useRouter } from "next/router";
 import {
   signInWithGoogle,
   signInWithFacebook,
@@ -31,12 +30,18 @@ const LoginPage = (props) => {
     resolver: yupResolver(schema),
   });
   const [currentUser, setcurrentUser] = useRecoilState(userState);
-
+  const router = useRouter();
   const [disabled, setDisabled] = useState(true);
   const { mutate, isLoading } = useLoginByFireBase();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const handlerLoginSocial = (typeLogin) => {
+  useEffect(() => {
+    if (currentUser !== "") {
+      router.back();
+    }
+  }, [currentUser]);
+
+  const handlerLoginSocial = async (typeLogin) => {
     if (typeLogin === "google") {
       signInWithGoogle()
         .then((res) => {
@@ -49,7 +54,6 @@ const LoginPage = (props) => {
               avatar: result.photoURL,
             };
             mutate(valueParam);
-            Router.push("/");
           }
         })
         .catch((error) => {
@@ -67,7 +71,6 @@ const LoginPage = (props) => {
               avatar: result.photoURL,
             };
             mutate(valueParam);
-            Router.push("/");
           }
         })
         .catch((error) => {
@@ -89,7 +92,6 @@ const LoginPage = (props) => {
     let paramsUpdate = data;
     const res = await logInEmailAndPassword(paramsUpdate);
     res && setcurrentUser(res);
-    Router.push("/");
   };
 
   return (
