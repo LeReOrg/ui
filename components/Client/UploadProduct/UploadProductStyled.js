@@ -190,15 +190,16 @@ const styles = (theme) => ({
     borderRadius: "4px 0px 0px 4px",
     width: "100%",
     marginBottom: 10,
-    "&:first-child": {
-      marginRight: 10,
-    },
+
     // [theme.breakpoints.between("sm", "md")]: {
     //   width: 400,
     // },
     // [theme.breakpoints.down("xs")]: {
     //   width: "100%",
     // },
+  },
+  inputTagDateRent: {
+    marginRight: 10,
   },
   titleTextInput: {
     display: "flex",

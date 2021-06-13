@@ -4,40 +4,38 @@ import { makeStyles } from "@material-ui/styles";
 import styles from "./UploadProductStyled";
 import CustomForm from "../../../utils/CustomForm.js";
 
-const UploadPrice = (props) => {
+const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
   const useStyled = makeStyles(styles);
   const [discountList, setDiscountList] = useState([""]);
-  console.log(discountList);
   const classes = useStyled();
-  // <CustomForm
-  //   inputType="number"
-  //   className={classes.inputTagPrice}
-  //   name={props.name}
-  //   nameInput="price_product"
-  //   placeholder="Nhập giá thuê sản phẩm"
-  // />;
-  // const addMoreDiscount = () => {
-  //   discountList;
-  // }
   const renderDisCountItem = () =>
     discountList.map((item) => (
       <Box display="flex">
         <CustomForm
           inputType="input"
-          className={classes.inputTagPrice}
-          name={props.name}
-          nameInput="price_product"
-          placeholder="Nhập giá thuê sản phẩm"
+          className={`${classes.inputTagPrice} ${classes.inputTagDateRent}`}
+          name={name}
+          nameInput="rent_date"
+          placeholder="VD: 5"
         />
         <CustomForm
           inputType="input"
           className={classes.inputTagPrice}
-          name={props.name}
-          nameInput="price_product"
-          placeholder="Nhập giá thuê sản phẩm"
+          name={name}
+          nameInput="percent_discount"
+          placeholder="5"
         />
       </Box>
     ));
+  const addItemList = () => {
+    setDiscountList(["", ...discountList]);
+    const item = {
+      days: rent_date,
+      discount: percent_discount,
+    };
+    // setItemDiscount(item);
+    discountItems(item);
+  };
   return (
     <>
       <Grid container spacing={3}>
@@ -54,10 +52,10 @@ const UploadPrice = (props) => {
 
             <div className={classes.titleTextInput}>
               <CustomForm
-                inputType="number"
+                inputType="input"
                 className={classes.inputTagPrice}
-                name={props.name}
-                nameInput="price_product"
+                name={name}
+                nameInput="price"
                 placeholder="Nhập giá thuê sản phẩm"
               />
             </div>
@@ -73,13 +71,12 @@ const UploadPrice = (props) => {
               <p className={classes.titleText}>Yêu cầu đặt cọc:</p>
               <p className={classes.titleNumberText}>VNĐ</p>
             </Box>
-
             <div className={classes.titleTextInput}>
               <CustomForm
-                inputType="number"
+                inputType="input"
                 className={classes.inputTagPrice}
-                name={props.name}
-                nameInput="pile_price"
+                name={name}
+                nameInput="depositPrice"
                 placeholder="Nhập giá cọc sản phẩm"
               />
             </div>
@@ -100,8 +97,8 @@ const UploadPrice = (props) => {
               <CustomForm
                 inputType="number"
                 className={classes.inputTagPrice}
-                name={props.name}
-                nameInput="min_date"
+                name={name}
+                nameInput="shortestHiredDays"
                 placeholder="Số ngày tối thiểu"
               />
             </div>
@@ -114,7 +111,7 @@ const UploadPrice = (props) => {
       <Grid container spacing={2} className={classes.discountContainer}>
         <Grid item lg={5} md={5}>
           <Box>
-            <Box display="flex">
+            <Box display="flex" mb={1}>
               <Grid container>
                 <Grid item lg={6} md={6}>
                   <div className={classes.titleSubDiscount}>Tổng ngày thuê</div>
@@ -130,7 +127,7 @@ const UploadPrice = (props) => {
         <Grid item lg={2} md={2}>
           <Box
             className={classes.addDiscountItem}
-            onClick={() => setDiscountList(["", ...discountList])}
+            onClick={() => addItemList()}
           >
             Thêm vào
           </Box>

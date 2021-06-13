@@ -19,7 +19,7 @@ const UploadInfo = ({
   cityChoose,
   districtChoose,
 }) => {
-  const [images, setImages] = useState();
+  const [images, setImages] = useState(null);
   const { data: categories, isLoading, error } = useCategories();
   const { data: city } = useCity();
   const { data: district } = useDistrict(cityChoose);
@@ -132,7 +132,7 @@ const UploadInfo = ({
               className={classes.inputTag}
               name={name}
               inputType="input"
-              nameInput="nameProduct"
+              nameInput="name"
               placeholder="Tên sản phẩm"
             />
           </Box>
@@ -158,7 +158,7 @@ const UploadInfo = ({
               inputType="select"
               className={classes.inputTag}
               name={name}
-              nameInput="type_product"
+              nameInput="categoryId"
               placeholder="Chọn danh mục sản phẩm"
               nameSelect="Chọn danh mục sản phẩm"
               valueOptions={categories}
@@ -186,7 +186,7 @@ const UploadInfo = ({
               inputType="number"
               className={classes.inputTag}
               name={name}
-              nameInput="number_product"
+              nameInput="quantity"
               placeholder="Số lượng sản phẩm:"
             />
           </Box>
