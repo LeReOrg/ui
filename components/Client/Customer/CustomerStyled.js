@@ -5,6 +5,7 @@ const styles = (theme) => ({
   main_customerProfile: {
     maxWidth: 1440,
     margin: "60px auto",
+    marginTop: 90,
     flexGrow: 1,
     [theme.breakpoints.between("sm", "md")]: {
       width: "95%",
@@ -40,8 +41,8 @@ const styles = (theme) => ({
   },
   customerInfoImage: {
     position: "absolute",
-    top: "-20%",
-    left: "30%",
+    top: "-14%",
+    left: "32%",
     background: `url(${Ring})`,
     width: 100,
     height: 100,

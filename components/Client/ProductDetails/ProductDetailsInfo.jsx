@@ -14,23 +14,16 @@ import { isMobileDevice } from "../../../utils/FunctionUses";
 import { cartState, addCart } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 
-const ProductDetailsInfo = ({detailsProduct}) => {
+const ProductDetailsInfo = ({ detailsProduct }) => {
   const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
-  const {
-    name,
-    images,
-    owner_id,
-    price,
-    _id,
-    depositPrice
-  } = detailsProduct;
+  const { name, images, owner_id, price, _id, depositPrice } = detailsProduct;
   let arrayImages = [];
-  images.map((item,index) => {
+  images.map((item, index) => {
     let objectImages = {};
-    objectImages.original = item.url
-    objectImages.thumbnail = item.url
-    arrayImages.push(objectImages)
-  })
+    objectImages.original = item.url;
+    objectImages.thumbnail = item.url;
+    arrayImages.push(objectImages);
+  });
   const [quantity, setQuantity] = useState(1);
   const [itemAdd, setItemAdd] = useState({
     id: _id,
@@ -40,10 +33,10 @@ const ProductDetailsInfo = ({detailsProduct}) => {
     toDate: "",
     price: price,
     quantityIncrease: 0,
-    image :images[0],
-    depositPrice : depositPrice
+    image: images[0],
+    depositPrice: depositPrice,
   });
-  console.log(_id)
+  console.log(_id);
   useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,
@@ -52,7 +45,7 @@ const ProductDetailsInfo = ({detailsProduct}) => {
   }, [quantity]);
   const [cart, setCart] = useRecoilState(cartState);
   const addToCart = (items) => {
-    console.log(items)
+    console.log(items);
     const newCart = addCart(cart, items);
     setCart(newCart);
   };
@@ -116,7 +109,7 @@ const ProductDetailsInfo = ({detailsProduct}) => {
         </Grid>
         <Grid item lg={6} md={6} xs={12}>
           <Typography className={classes.titleDetailInfo} align="left">
-            {name}
+            {name && name}
           </Typography>
           <Typography className={classes.prices} align="left">
             {price?.toLocaleString("en-US")}đ/ngày

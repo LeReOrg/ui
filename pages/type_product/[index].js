@@ -53,30 +53,30 @@ const ListProductByType = (props) => {
     </>
   );
 };
-export async function getStaticPaths() {
-  const res = await fetch(
-    "https://staging-lereappserver.herokuapp.com/api/v1/categories"
-  );
-  const categories = await res.json();
-  const paths = categories?.map((post) => ({
-    params: { index: post._id },
-  }));
-  return { paths, fallback: true };
-}
-export async function getStaticProps({ params }) {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    ["categories", String(params.index)],
-    getProductByCategory,
-    {
-      staleTime: 2000,
-    }
-  );
-  return {
-    props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-    },
-  };
-}
+// export async function getStaticPaths() {
+//   const res = await fetch(
+//     "https://staging-lereappserver.herokuapp.com/api/v1/categories"
+//   );
+//   const categories = await res.json();
+//   const paths = categories?.map((post) => ({
+//     params: { index: post._id },
+//   }));
+//   return { paths, fallback: true };
+// }
+// export async function getStaticProps({ params }) {
+//   const queryClient = new QueryClient();
+//   await queryClient.prefetchQuery(
+//     ["categories", String(params.index)],
+//     getProductByCategory,
+//     {
+//       staleTime: 2000,
+//     }
+//   );
+//   return {
+//     props: {
+//       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+//     },
+//   };
+// }
 
 export default ListProductByType;

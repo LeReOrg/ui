@@ -540,3 +540,15 @@ ul {
     display: block;
   }
 }
+.rs-picker-toggle {
+  background-color: #ffffff;
+}
+.rs-picker-toggle:hover {
+  background-color: #ffffff;
+}
+.rs-checkbox-wrapper {
+  left: 0;
+}
+.rs-checkbox-checker {
+  padding-left: 25px;
+}

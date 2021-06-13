@@ -31,7 +31,6 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "next": "^10.2.0",
-    "next-auth": "^3.26.1",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.6.2",
     "nprogress": "^0.2.0",

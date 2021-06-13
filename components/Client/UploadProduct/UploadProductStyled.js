@@ -1,63 +1,108 @@
 import { makeStyles, Button } from "@material-ui/core";
-
+import InfoIcon from "../../../assets/infoUpload.svg";
+import UploadImageIcon from "../../../assets/UploadImageIcon.svg";
 const styles = (theme) => ({
   uploadMain: {
     width: "80%",
     margin: "37px auto 0 auto",
+    marginTop: 80,
     [theme.breakpoints.down("sm")]: {
       width: "95%",
     },
   },
+  uploadMain_sideBar: {
+    borderRight: "1px solid #000000",
+  },
   uploadMain_Info: {
-    border: " 1px solid rgba(0, 0, 0, 0.15)",
+    border: "1px solid rgba(0, 0, 0, 0.15)",
     borderRadius: "8px",
     marginBottom: 24,
+    backgroundColor: "#ffffff",
     [theme.breakpoints.down("sm")]: {
       border: "none",
       marginBottom: 0,
     },
   },
   uploadMain_InfoContent: {
-    paddingLeft: 24,
-    paddingTop: 24,
-    paddingBottom: 24,
+    paddingLeft: 40,
+    paddingTop: 30,
+    paddingBottom: 40,
+    paddingRight: 40,
     [theme.breakpoints.down("xs")]: {
       padding: 0,
     },
   },
+  rowInfoTextArea: {
+    marginTop: 20,
+  },
   uploadMain_Info__Title: {
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 20,
-    marginBottom: 30,
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: 16,
-    },
+    fontSize: 16,
+    lineHeight: "22px",
+    marginBottom: 20,
+    // [theme.breakpoints.down("xs")]: {
+    //   marginBottom: 20,
+    // },
   },
   upload__image_span: {
     color: "rgba(0, 0, 0, 0.45)",
-    fontSize: 14,
-    paddingLeft: 16,
+    fontSize: 10,
+    lineHeight: "13px",
+  },
+  upload__imageIcon_wrapper: {
+    background: `url(${UploadImageIcon})`,
+    width: 30,
+    height: 30,
+    backgroundRepeat: "no-repeat",
+  },
+  upload__imageIconText: {
+    position: "absolute",
+    bottom: 8,
+    left: 30,
+    color: "#888E8A",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 12,
+    lineHeight: "18px",
   },
   upload__image_button: {
-    border: "1px solid #FA8C16",
-    borderRadius: 4,
-    padding: "3px 25px",
+    border: "1px solid #888E8A",
+    borderRadius: 5,
+    padding: "45px",
     color: "#FA8C16",
-    backgroundColor: "white",
+    backgroundColor: "#F3F4F3",
+    position: "relative",
+    maxWidth: 120,
+    maxHeight: 120,
   },
   uploadMain_InfoBody: {
-    width: "80%",
     margin: "0 auto",
-    [theme.breakpoints.between("md", "lg")]: {
-      width: "90%",
-    },
-    // [theme.breakpoints.between("sm","md")]: {
-    //   width: "92%",
-    // },
-    [theme.breakpoints.down("sm")]: {
-      width: "95%",
-    },
+    [theme.breakpoints.between("md", "lg")]: {},
+
+    [theme.breakpoints.down("sm")]: {},
+  },
+  uploadMain_InfoContentTitle: {
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 16,
+    lineHeight: "22px",
+  },
+  uploadMain_InfoIconText: {
+    color: " #2F80ED",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 10,
+    lineHeight: "13px",
+    paddingLeft: 6,
+  },
+  iconInfo: {
+    background: `url(${InfoIcon})`,
+    width: 14,
+    height: 14,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
   },
   uploadMain_Price: {
     border: " 1px solid rgba(0, 0, 0, 0.15)",
@@ -65,19 +110,35 @@ const styles = (theme) => ({
   },
   titleText: {
     fontStyle: "normal",
-    fontWeight: 600,
+    fontWeight: "bold",
     fontSize: 14,
-    paddingBottom: 3,
+    lineHeight: "20px",
+    color: "#111E16",
+    paddingBottom: 5,
+  },
+  titleNumberText: {
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 10,
+    lineHeight: "13px",
+    color: "#111E16",
+  },
+  tagPickerStyled: {
+    backgroundColor: "#ffffff",
+  },
+  rowInfoContent: {
+    marginTop: 30,
+    paddingBottom: 24,
   },
   rowInfo: {
-    marginBottom: 32,
     display: "flex",
     justifyContent: "space-between",
-    width: "65%",
-    alignItems: "center",
+    flexDirection: "column",
+    // width: "65%",
+    // alignItems: "center",
 
     [theme.breakpoints.between("sm", "md")]: {
-      width: "95%",
+      // width: "95%",
     },
     [theme.breakpoints.down("xs")]: {
       width: "100%",
@@ -87,6 +148,10 @@ const styles = (theme) => ({
   },
   upload__image_wrapper: {
     width: 480,
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginBottom: 10,
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
@@ -95,23 +160,45 @@ const styles = (theme) => ({
     padding: "9px 12px",
     border: "1px solid rgba(0, 0, 0, 0.15)",
     borderRadius: 4,
-    width: 480,
-
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
+  },
+  discountPrice: {
+    marginTop: 20,
+  },
+  discountContainer: {
+    alignItems: "center",
+  },
+  addDiscountItem: {
+    padding: "9px 16px",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 16,
+    lineHeight: "22px",
+    color: "#ffffff",
+    background: "#2FAF62",
+    borderRadius: 4,
+    maxWidth: 105,
+    maxHeight: 40,
+    textAlign: "center",
+    cursor: "pointer",
   },
   inputTagPrice: {
     padding: "9px 12px",
     border: "1px solid rgba(0, 0, 0, 0.15)",
     borderRadius: "4px 0px 0px 4px",
-    width: 480,
-    [theme.breakpoints.between("sm", "md")]: {
-      width: 400,
+    width: "100%",
+    marginBottom: 10,
+    "&:first-child": {
+      marginRight: 10,
     },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-    },
+    // [theme.breakpoints.between("sm", "md")]: {
+    //   width: 400,
+    // },
+    // [theme.breakpoints.down("xs")]: {
+    //   width: "100%",
+    // },
   },
   titleTextInput: {
     display: "flex",
@@ -170,7 +257,8 @@ const styles = (theme) => ({
   },
   upload__image_eachItem: {
     position: "relative",
-    marginRight : 16,
+    marginRight: 16,
+    marginBottom: 10,
     "&:hover": {
       cursor: "pointer",
       background: "#000000",
@@ -179,7 +267,7 @@ const styles = (theme) => ({
         opacity: " 0.48",
       },
       "& $image_item__btn_wrapper": {
-        display : "flex"
+        display: "flex",
       },
     },
   },

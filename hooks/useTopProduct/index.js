@@ -3,12 +3,18 @@ import axios from "axios";
 import config from "../../config";
 
 const useMoreProduct = () =>
-useQuery(
+  useQuery(
     ["topProduct"],
     async () => {
-      const {data} = await axios.get(`${config.api}/products?isTopProduct=true`);
+      const { data } = await axios.get(
+        `${config.api}/products?isTopProduct=true`
+      );
       return data.docs;
-    }, { keepPreviousData: true }
-   
+    },
+    {
+      keepPreviousData: true,
+      refetchIntervalInBackground: false,
+      refetchOnWindowFocus: false,
+    }
   );
 export { useMoreProduct };

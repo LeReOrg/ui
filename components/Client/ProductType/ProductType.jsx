@@ -11,12 +11,12 @@ const ProductType = () => {
   const { data: categories, isLoading, error } = useCategories();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const categoriesItem = categories;
-  const numberCategories = categoriesItem.length;
+  const categoriesItem = categories && categories;
+  const numberCategories = categoriesItem?.length;
   let getFirstCategoriesItems = [];
   let getSecondCategoriesItems = [];
   const numberCategoriesbySlide = Math.round(numberCategories / 2);
-  if (categoriesItem.length > 0) {
+  if (categoriesItem?.length > 0) {
     getFirstCategoriesItems = categoriesItem
       .slice(0, numberCategoriesbySlide)
       .map((item, index) => (

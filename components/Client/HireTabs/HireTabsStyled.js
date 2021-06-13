@@ -1,6 +1,8 @@
+import AccountDetail from "../../../assets/accountDetail.svg";
+
 const styles = (theme) => ({
-  customerInfo_imageHistory: {
-    background: `url(${History})`,
+  customerInfo_imageCustomerDetail: {
+    background: `url(${AccountDetail})`,
     width: 22,
     height: 22,
     backgroundSize: "cover",
@@ -17,3 +19,4 @@ const styles = (theme) => ({
     },
   },
 });
+export default styles;

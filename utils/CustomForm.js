@@ -41,9 +41,19 @@ const CustomForm = ({
         formTemplate = (
           <>
             <select type={inputType} name={nameInput} ref={name} {...inputProp}>
-              <option value="" style={{color:"#C3C7C5"}}>{nameSelect}</option>
+              <option value="" style={{ color: "#C3C7C5" }}>
+                {nameSelect}
+              </option>
               {valueOptions?.map((item, index) => (
-                <option key={index} value={index + 1}>
+                <option
+                  key={index}
+                  value={
+                    item._id ||
+                    item.idCoummune ||
+                    item.idDistrict ||
+                    item.idProvince
+                  }
+                >
                   {item.name}
                 </option>
               ))}
