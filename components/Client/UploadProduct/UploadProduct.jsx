@@ -24,17 +24,19 @@ const UploadProduct = () => {
   let name = watch("name");
   let description = watch("description");
   let categoryId = watch("categoryId");
-  let city = watch("city");
+  let province = watch("province");
   let district = watch("district");
   let ward = watch("ward");
   let term = watch("term");
-  let address = watch("address");
+  let street = watch("street");
   let rent_date = watch("rent_date");
   let percent_discount = watch("percent_discount");
+  console.log(imageList);
   const breadcrumbs = [
     {
       name: categoryId,
       categoryId: categoryId,
+      url: categoryId,
     },
   ];
   useEffect(() => {
@@ -42,7 +44,7 @@ const UploadProduct = () => {
       name &&
       description &&
       categoryId &&
-      imageList &&
+      // imageList &&
       price &&
       depositPrice
     ) {
@@ -68,8 +70,6 @@ const UploadProduct = () => {
   };
   const classes = useStyled();
   const { mutate, isLoading, isSuccess, isError } = useAddProduct();
-  console.log(discountDateItems);
-
   const onSubmit = (data) => {
     let paramsUpdate = data;
     if (imageList) {
@@ -84,19 +84,21 @@ const UploadProduct = () => {
     if (licenseInfo) {
       paramsUpdate.requiredLicenses = licenseInfo;
     }
+    paramsUpdate.price = price.replaceAll(",", "");
+    paramsUpdate.depositPrice = depositPrice.replaceAll(",", "");
     paramsUpdate.discounts = discountDateItems;
     paramsUpdate.token = currentUser.token;
     paramsUpdate.breadcrumbs = breadcrumbs;
-    paramsUpdate.location = {
-      city,
+    paramsUpdate.address = {
+      province,
       ward,
       district,
-      address,
+      street,
     };
-    delete paramsUpdate.city;
+    delete paramsUpdate.province;
     delete paramsUpdate.ward;
     delete paramsUpdate.district;
-    delete paramsUpdate.address;
+    delete paramsUpdate.street;
     delete paramsUpdate.percent_discount;
     delete paramsUpdate.rent_date;
     console.log(paramsUpdate);
@@ -152,7 +154,7 @@ const UploadProduct = () => {
 
                 <Box className={classes.uploadMain_InfoBody}>
                   <UploadInfo
-                    cityChoose={city}
+                    cityChoose={province}
                     districtChoose={district}
                     descriptionNumber={description}
                     name={register}

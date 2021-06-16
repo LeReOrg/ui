@@ -234,7 +234,7 @@ const UploadInfo = ({
               inputType="select"
               className={classes.inputTag}
               name={name}
-              nameInput="city"
+              nameInput="province"
               placeholder="Tỉnh/Thành phố"
               nameSelect="Tỉnh/Thành phố"
               valueOptions={city}
@@ -275,7 +275,7 @@ const UploadInfo = ({
               className={classes.inputTag}
               name={name}
               inputType="input"
-              nameInput="address"
+              nameInput="street"
               placeholder="Địa chỉ cụ thế"
             />
           </Box>
