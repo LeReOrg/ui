@@ -3,6 +3,8 @@ import axios from "axios";
 import config from "../../config";
 import { queryClient } from "../index";
 import { clone } from "lodash";
+import { productAddDetailState } from "../../lib/recoil-root";
+import { useRecoilState } from "recoil";
 const getProductDetails = (postId) => {
   const params = postId?.queryKey[1];
   if (params) {
@@ -23,9 +25,13 @@ const addProduct = async (params) => {
   return data;
 };
 const useAddProduct = () => {
+  const [productAddDetail, setProductAddDetail] = useRecoilState(
+    productAddDetailState
+  );
+
   return useMutation(addProduct, {
     onSuccess: async (data) => {
-      return data;
+      setProductAddDetail(data);
     },
     onError: async (error) => {
       return error;

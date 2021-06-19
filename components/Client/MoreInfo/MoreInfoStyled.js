@@ -1,3 +1,6 @@
+import MoreInfoBackGround from "../../../assets/BG_Gradient.png";
+import MoreInfoBackGroundMobile from "../../../assets/moreInfoMobile.png";
+
 const styles = (theme) => ({
   info_main: {
     marginTop: 60,
@@ -18,9 +21,15 @@ const styles = (theme) => ({
       height: 240,
     },
   },
-  image: {
-    height: "100%",
+  imageBackGround: {
+    height: 280,
     width: "100%",
+    background: `url(${MoreInfoBackGround}) no-repeat`,
+    backgroundSize: "cover",
+    position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      backgroundImage: `url(${MoreInfoBackGroundMobile})`,
+    },
   },
   imageInfo: {
     position: "relative",
@@ -48,9 +57,20 @@ const styles = (theme) => ({
     margin: 0,
   },
   background_info__itemContent: {
+    position: "absolute",
+    top: "25%",
+    left: 72,
+    maxWidth: "30%",
+
+    [theme.breakpoints.down("md")]: {
+      top: 50,
+      left: 16,
+      maxWidth: "50%",
+    },
     [theme.breakpoints.down("xs")]: {
-      padding: "15px !important",
-      order: 1,
+      top: 45,
+      left: 16,
+      maxWidth: "100%",
     },
   },
   background_info__itemImage: {

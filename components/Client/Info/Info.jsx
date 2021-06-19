@@ -47,6 +47,7 @@ const Info = () => {
               Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản phẩm
               bạn không dùng tới, tại sao không nhỉ?
             </Box>
+            <Box></Box>
             <Box pt={4} className={classes.more_info}>
               <StyledButton variant="contained" color="primary">
                 Tìm hiểu thêm

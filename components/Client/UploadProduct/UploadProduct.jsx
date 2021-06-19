@@ -11,7 +11,9 @@ import SideBarCustomer from "../Customer/SideBarCustomer";
 import { userState } from "../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
 import { useAddProduct } from "../../../hooks/useProduct";
+import { useRouter } from "next/router";
 const UploadProduct = () => {
+  const router = useRouter();
   const { register, handleSubmit, watch, setValue } = useForm();
   const [disabled, setDisabled] = useState(true);
   const [imageList, setImageList] = useState();
@@ -102,8 +104,12 @@ const UploadProduct = () => {
     delete paramsUpdate.percent_discount;
     delete paramsUpdate.rent_date;
     console.log(paramsUpdate);
-    mutate(paramsUpdate);
+    const a = mutate(paramsUpdate);
+    console.log(a);
   };
+  if (isSuccess) {
+    router.push("/uploadsuccess");
+  }
   const getDiscountItems = (val) => {
     setDiscountDateItems([...discountDateItems, val]);
   };

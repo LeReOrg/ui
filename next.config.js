@@ -3,10 +3,9 @@ const withImages = require("next-images");
 
 const nextConfig = {
   images: {
-    domains: [
-      "res.cloudinary.com"
-    ],
+    domains: ["res.cloudinary.com"],
   },
+  webpack5: false,
 };
 
 module.exports = withPlugins([[withImages]], nextConfig);

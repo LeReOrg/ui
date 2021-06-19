@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./MoreInfoStyled";
 import InfoImage from "../../../assets/info.png";
 const useStyles = makeStyles(styles);
-import MoreInfoBackGround from "../../../assets/BG_Gradient.png";
 import Image from "next/image";
 const StyledButton = withStyles((theme) => ({
   root: {
@@ -31,55 +30,33 @@ const MoreInfo = () => {
   const classes = useStyles();
   return (
     <div className={classes.info_main}>
-      <div>
-        {/* <Image
-          src={MoreInfoBackGround}
-          height={240}
-          width={1440}
-          layout="fixed"
-          quality={100}
-        /> */}
-        <img src={MoreInfoBackGround} className={classes.image} />
-        {/* <Grid
-          container
-          spacing={10}
-          className={classes.background_info__main}
-          alignItems="center"
-        >
-          <Grid
-            item
-            className={classes.background_info__itemContent}
-            lg={3}
-            md={6}
-            sm={6}
-            xs={12}
+      <div className={classes.imageBackGround}>
+        <div className={classes.background_info__itemContent}>
+          <Typography
+            component={"div"}
+            className={classes.typography}
+            variant={"body2"}
           >
-            <Typography
-              component={"div"}
-              className={classes.typography}
-              variant={"body2"}
-            >
-              <Box className={classes.box}>
-                <Box
-                  fontSize={30}
-                  className={classes.info_tittle}
-                  fontWeight="fontWeightBold"
-                >
-                  Bạn có đồ cần cho thuê?
-                </Box>
-                <Box fontSize={16}>
-                  Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản
-                  phẩm bạn không dùng tới, tại sao không nhỉ?
-                </Box>
-                <Box pt={4} className={classes.more_info}>
-                  <StyledButton variant="contained" color="primary">
-                    Tìm hiểu thêm
-                  </StyledButton>
-                </Box>
+            <Box className={classes.box}>
+              <Box
+                fontSize={30}
+                className={classes.info_tittle}
+                fontWeight="fontWeightBold"
+              >
+                Bạn có đồ cần cho thuê?
               </Box>
-            </Typography>
-          </Grid>
-        </Grid> */}
+              <Box fontSize={16}>
+                Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản
+                phẩm bạn không dùng tới, tại sao không nhỉ?
+              </Box>
+              <Box pt={4} className={classes.more_info}>
+                <StyledButton variant="contained" color="primary">
+                  Tìm hiểu thêm
+                </StyledButton>
+              </Box>
+            </Box>
+          </Typography>
+        </div>
       </div>
     </div>
   );
