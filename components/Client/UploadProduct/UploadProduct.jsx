@@ -39,15 +39,15 @@ const UploadProduct = () => {
   let percent_discount = watch("percent_discount");
   useEffect(() => {
     if (listAddress !== "") {
-      const cityName = listAddress?.city.filter(
+      const cityName = listAddress?.city?.filter(
         (item, index) => item.idProvince == province
       );
       setProviceName(cityName);
-      const districtItem = listAddress?.district.filter(
+      const districtItem = listAddress?.district?.filter(
         (item, index) => item.idDistrict == district
       );
       setDistrictName(districtItem);
-      const warItem = listAddress?.ward.filter(
+      const warItem = listAddress?.ward?.filter(
         (item, index) => item.idCoummune == ward
       );
       setWardName(warItem);
