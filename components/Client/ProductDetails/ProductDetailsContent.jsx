@@ -3,21 +3,22 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Typography } from "@material-ui/core";
 import styles from "./ProductDetailsStyled";
+import Line from "../../../utils/Line";
+
 const ProductDetailsContent = ({ detailsProduct }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [stateCollapse, setStateCollapse] = useState(false);
-  const { description } = detailsProduct;
-  const [collapseContent, setCollapseContent] = useState(
-    description
-  );
+  const { description, term } = detailsProduct;
+  const [collapseContent, setCollapseContent] = useState(description);
+  const [collapseTerm, setCollapseTerm] = useState(term);
 
   const renderReadMore = () => {
-    if ( description.length > 700) {
+    if (description.length > 700) {
       const showFullContent = (status) => {
         setStateCollapse(!stateCollapse);
         status === "open"
-          ? setCollapseContent( description)
+          ? setCollapseContent(description)
           : setCollapseContent(collapseContent.slice(0, 700));
       };
       return (
@@ -49,21 +50,42 @@ const ProductDetailsContent = ({ detailsProduct }) => {
       let moreContent = collapseContent.slice(0, 700);
       setCollapseContent(moreContent);
     }
+    let lengthTerm = collapseTerm.length;
+    if (lengthTerm > 700) {
+      let moreContent = collapseTerm.slice(0, 700);
+      setCollapseTerm(moreContent);
+    }
   }, []);
   return (
-    <div className={classes.main_list}>
-      <Grid container>
-        <Grid item lg={6} md={6} xs={12}>
-          <Typography className={classes.title} align="left">
-            Chi tiết sản phẩm
-          </Typography>
-          <Typography className={classes.content} align="left">
-            {collapseContent}
-          </Typography>
-          {renderReadMore()}
+    <>
+      <div className={classes.main_list}>
+        <Grid container>
+          <Grid item lg={6} md={6} xs={12}>
+            <Typography className={classes.title} align="left">
+              Chi tiết sản phẩm
+            </Typography>
+            <Typography className={classes.content} align="left">
+              {collapseContent}
+            </Typography>
+            {renderReadMore()}
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
+      <Line />
+      <div className={classes.main_list}>
+        <Grid container>
+          <Grid item lg={6} md={6} xs={12}>
+            <Typography className={classes.title} align="left">
+              Điều khoản thuê sản phẩm
+            </Typography>
+            <Typography className={classes.content} align="left">
+              {collapseTerm}
+            </Typography>
+            {renderReadMore()}
+          </Grid>
+        </Grid>
+      </div>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import DepositPriceLogo from "../../../assets/depositprice.svg";
 
 const styles = (theme) => ({
   main_list: {
-    margin: "40px auto",
+    margin: "40px 80px",
     [theme.breakpoints.down("sm")]: {
       margin: "0px auto",
     },
@@ -22,10 +22,23 @@ const styles = (theme) => ({
     marginLeft: 7,
     lineHeight: "13px",
     color: "#2F80ED",
-    marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
+    marginBottom: (props) => (props.lengh > 1 ? "5px" : "0"),
     "&:first-child": {
       marginLeft: 0,
     },
+  },
+  itemRequired: {
+    border: "1px solid #2F80ED;",
+    borderRadius: 5,
+    background: "#FFFFFF",
+    padding: "4px 11px",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 10,
+    lineHeight: "13px",
+    color: "#2F80ED",
+    textAlign: "center",
+    marginBottom: (props) => (props.lengh > 1 ? "5px" : "0"),
   },
   main_list_firstRow: {
     display: "flex",
@@ -154,17 +167,41 @@ const styles = (theme) => ({
     marginTop: "2%",
   },
   hire_time_space: {
-    marginTop: "1%",
+    marginTop: "12px",
   },
   quantity_title: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#111E16",
+    "& span": {
+      fontSize: 16,
+      fontWeight: "normal",
+      color: "#111E16",
+    },
+  },
+  requireItems: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
   },
   hire_time: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#111E16",
+  },
+  hire_time_sub: {
+    fontSize: 12,
+    fontWeight: "normal",
+    color: "#111E16",
+    lineHeight: "18px",
+    marginTop: 12,
+  },
+  totalDate: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#111E16",
+    lineHeight: "22px",
+    marginTop: 12,
   },
   button_color_plus: {
     fill: "#2FAF62",
@@ -191,6 +228,18 @@ const styles = (theme) => ({
     lineHeight: "22px",
     padding: "5px 16px",
   },
+  addressProduct: {
+    textAlign: "right",
+    fontSize: 16,
+    fontWeight: "normal",
+    color: "#111E16",
+    lineHeight: "22px",
+  },
+  quantityItemContent: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   formControl: {
     marginTop: theme.spacing(1),
     minWidth: 250,
@@ -199,13 +248,14 @@ const styles = (theme) => ({
     marginTop: theme.spacing(2),
   },
   hire_time_width: {
-    width: "70%",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-    },
+    // width: "70%",
+    // [theme.breakpoints.down("sm")]: {
+    //   width: "100%",
+    // },
   },
   button_cart: {
-    marginTop: 40,
+    marginTop: 30,
+    textAlign: "right",
     [theme.breakpoints.down("sm")]: {
       margin: "10 auto",
     },

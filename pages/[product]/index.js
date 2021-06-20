@@ -16,6 +16,7 @@ const ProductDetail = () => {
     main_list: {
       maxWidth: "1440px",
       margin: "auto",
+      backgroundColor: "white",
     },
   }));
   const classes = useStyled();
@@ -39,15 +40,13 @@ const ProductDetail = () => {
     <>
       {/* <BreadCrumb listBreadCrumb = {breadCrumbArray}  /> */}
       <div className={classes.main_list}>
-        <ProductDetailsInfo
-          detailsProduct={productDetail ? productDetail : null}
-        />
+        <ProductDetailsInfo detailsProduct={productDetail && productDetail} />
         <Line />
         <ProductDetailsContent
-          detailsProduct={productDetail ? productDetail : null}
+          detailsProduct={productDetail && productDetail}
         />
         <Line />
-        <ProductRelated />
+        <ProductRelated detailsProduct={productDetail && productDetail} />
       </div>
     </>
   );

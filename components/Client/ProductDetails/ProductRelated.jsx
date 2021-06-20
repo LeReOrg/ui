@@ -3,54 +3,33 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import CardProductRelated from "../../../utils/CardProductRelated";
 import styles from "./ProductDetailsStyled";
+import { useProductByCategory } from "../../../hooks/useProductByCategory";
 
-const ProductRelated = ({...props}) => {
-    const useStyled = makeStyles(styles);
-    const classes = useStyled()
-
-    const [test, setTest] = useState(false);
-
-    return(
-        <div className={classes.main_list}>
-            <Typography
-                className={classes.title}
-                align="left"                    
-            >
-                Sản phẩm tương tự
-            </Typography>
-            <div className={classes.main_list_related}>
-                <Grid container spacing={2}>                
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated test={test} itemByType={true} />
-                    </Grid>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated itemByType={true} />
-                    </Grid>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated itemByType={true} />
-                    </Grid>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated test={test} itemByType={true} />
-                    </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated test={test} itemByType={true} />
-                    </Grid>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated itemByType={true} />
-                    </Grid>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated itemByType={true} />
-                    </Grid>
-                    <Grid item lg={3} xs={6}>
-                        <CardProductRelated test={test} itemByType={true} />
-                    </Grid>
-                </Grid>
-            </div>
-            
-        </div>
-    )
-}
+const ProductRelated = ({ detailsProduct }) => {
+  const useStyled = makeStyles(styles);
+  const classes = useStyled();
+  const [test, setTest] = useState(false);
+  const { data: relatedItem, isLoading, isSuccess } = useProductByCategory(
+    detailsProduct?.category?._id
+  );
+  const renderRelatedItem = () =>
+    relatedItem?.map((item, index) => (
+      <Grid item lg={3} xs={6}>
+        <CardProductRelated item={item} itemByType={true} />
+      </Grid>
+    ));
+  return (
+    <div className={classes.main_list}>
+      <Typography className={classes.title} align="left">
+        Sản phẩm tương tự
+      </Typography>
+      <div className={classes.main_list_related}>
+        <Grid container spacing={2}>
+          {renderRelatedItem()}
+        </Grid>
+      </div>
+    </div>
+  );
+};
 
 export default ProductRelated;

@@ -7,7 +7,6 @@ import { Typography, Box, Button } from "@material-ui/core";
 import AddCircleOutlineSharpIcon from "@material-ui/icons/AddCircleOutlineSharp";
 import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutlineSharp";
 import ImageGallery from "react-image-gallery";
-import Collapse from "@material-ui/core/Collapse";
 import { DateRangePicker } from "rsuite";
 import styles from "./ProductDetailsStyled";
 import { isMobileDevice } from "../../../utils/FunctionUses";
@@ -23,7 +22,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     _id,
     depositPrice,
     label,
-    term,
     shortestHiredDays,
     address,
     discounts,
@@ -39,7 +37,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     objectImages.thumbnail = item.url;
     arrayImages.push(objectImages);
   });
-  console.log(arrayImages);
   const [quantityItem, setQuantityItem] = useState(1);
   const [itemAdd, setItemAdd] = useState({
     id: _id,
@@ -52,12 +49,21 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     depositPrice: depositPrice,
   });
   useEffect(() => {
+    let background = document.getElementById("container-fluid");
+    background.classList.add("customerPage");
+    return () => {
+      background.classList.remove("customerPage");
+    };
+  }, []);
+  useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,
       quantityIncrease: quantityItem,
     }));
   }, [quantityItem]);
   const [cart, setCart] = useRecoilState(cartState);
+  const [totalDays, setTotalDays] = useState();
+
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
     setCart(newCart);
@@ -70,8 +76,19 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
         </>
       </div>
     ));
+
+  const renderRequire = () =>
+    requiredLicenses.map((item, index) => (
+      <div key={index} className={classes.itemRequired}>
+        <>
+          {item == 1 && "CMND"}
+          {item == 2 && "Căn cước công dân"}
+          {item == 3 && "Bằng lái"}
+        </>
+      </div>
+    ));
   const useStyled = makeStyles(styles);
-  const classes = useStyled();
+  const classes = useStyled({ lengh: requiredLicenses.length });
   const StyledButton = withStyles((theme) => ({
     root: {
       backgroundColor: "#2FAF62",
@@ -82,8 +99,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
       [theme.breakpoints.down("sm")]: {
         width: "100%",
       },
-      marginTop: "2%",
-      padding: "12px 24px",
+      padding: "9px 16px",
       "&:hover": {
         backgroundColor: green[700],
       },
@@ -91,6 +107,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     label: {
       textTransform: "capitalize",
       fontSize: 16,
+      lineHeight: "22px",
       fontWeight: "bold",
       fontStyle: "normal",
     },
@@ -108,6 +125,9 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     }
   };
   const getValueDatePiker = (values) => {
+    const totoDate =
+      (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);
+    setTotalDays(totoDate);
     setItemAdd((preState) => ({
       ...preState,
       formDate: values[0],
@@ -122,7 +142,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
             showNav={false}
             showPlayButton={false}
             autoPlay={true}
-            slideDuration={1000}
+            slideDuration={2000}
             items={arrayImages}
             slideOnThumbnailOver={false}
             showFullscreenButton={false}
@@ -169,92 +189,131 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
             </Box>
           </Box>
           <hr style={{ borderTop: "1px solid #C3C7C5" }} />
-          <Grid container>
-            <Grid item lg={4} md={6} xs={12}>
-              <div className="quantity_web">
-                <Grid container>
-                  <Typography className={classes.quantity_title} align="left">
-                    Số lượng:
-                  </Typography>
-                  <Grid container className={classes.quantity_space}>
-                    <RemoveCircleOutlineSharpIcon
-                      className={
-                        quantityItem == 1
-                          ? classes.button_color_minus_1
-                          : classes.button_color_minus
-                      }
-                      onClick={handleDecreaseQuantity}
-                    />
-                    <b className={classes.quantity}>{quantityItem}</b>
-                    <AddCircleOutlineSharpIcon
-                      className={classes.button_color_plus}
-                      onClick={handleIncreaseQuantity}
-                    />
-                  </Grid>
-                  <div className={classes.button_cart}>
-                    <Box>
-                      <StyledButton
-                        onClick={() => addToCart(itemAdd)}
-                        variant="contained"
-                        color="primary"
-                      >
-                        Chọn vào giỏ hàng
-                      </StyledButton>
-                    </Box>
-                  </div>
-                </Grid>
-              </div>
-              <div className="quantity_mobile">
-                <Grid container>
-                  <Grid item lg={6} md={6} xs={6}>
-                    <Typography className={classes.quantity_title} align="left">
-                      Số lượng:
-                    </Typography>
-                  </Grid>
-                  <Grid item lg={6} md={6} xs={6}>
-                    <div className={classes.quantity_space} align="right">
-                      <RemoveCircleOutlineSharpIcon
-                        className={classes.button_color_minus}
-                        onClick={handleDecreaseQuantity}
-                      />
-                      <b className={classes.quantity}>{quantityItem}</b>
-                      <AddCircleOutlineSharpIcon
-                        className={classes.button_color_plus}
-                        onClick={handleIncreaseQuantity}
-                      />
-                    </div>
-                  </Grid>
-                  <div className={classes.button_cart}>
-                    <Box>
-                      <StyledButton
-                        onClick={() => addToCart(itemAdd)}
-                        variant="contained"
-                        color="primary"
-                      >
-                        Chọn vào giỏ hàng
-                      </StyledButton>
-                    </Box>
-                  </div>
-                </Grid>
+          <div className="quantity_web">
+            <Box className={classes.quantityItemContent}>
+              <Box>
+                <Typography className={classes.quantity_title} align="left">
+                  Số lượng:
+                </Typography>
+                <Box className={classes.quantity_space}>
+                  <RemoveCircleOutlineSharpIcon
+                    className={
+                      quantityItem == 1
+                        ? classes.button_color_minus_1
+                        : classes.button_color_minus
+                    }
+                    onClick={handleDecreaseQuantity}
+                  />
+                  <b className={classes.quantity}>{quantityItem}</b>
+                  <AddCircleOutlineSharpIcon
+                    className={classes.button_color_plus}
+                    onClick={handleIncreaseQuantity}
+                  />
+                </Box>
+              </Box>
+              <Box>
+                <Typography className={classes.quantity_title} align="right">
+                  Địa chỉ hàng
+                </Typography>
+                <Box className={classes.addressProduct}>
+                  <p>{address && address.street}</p>
+                  <p>
+                    {address && address.ward} ,{address && address.district},
+                    {address && address.province}
+                  </p>
+                </Box>
+              </Box>
+            </Box>
+            <Box mb={2}>
+              <Typography className={classes.quantity_title}>
+                Số lượng còn lại: <span>{quantity}</span>
+              </Typography>
+            </Box>
+          </div>
+          <div className="quantity_mobile">
+            <Grid container>
+              <Grid item lg={6} md={6} xs={6}>
+                <Typography className={classes.quantity_title} align="left">
+                  Số lượng:
+                </Typography>
+              </Grid>
+              <Grid item lg={6} md={6} xs={6}>
+                <div className={classes.quantity_space} align="right">
+                  <RemoveCircleOutlineSharpIcon
+                    className={classes.button_color_minus}
+                    onClick={handleDecreaseQuantity}
+                  />
+                  <b className={classes.quantity}>{quantityItem}</b>
+                  <AddCircleOutlineSharpIcon
+                    className={classes.button_color_plus}
+                    onClick={handleIncreaseQuantity}
+                  />
+                </div>
+              </Grid>
+              <div className={classes.button_cart}>
+                <Box>
+                  <StyledButton
+                    onClick={() => addToCart(itemAdd)}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Chọn vào giỏ hàng
+                  </StyledButton>
+                </Box>
               </div>
             </Grid>
-            <Grid item lg={6} md={6} xs={12}>
+          </div>
+          <Grid container>
+            <Grid item lg={5}>
               <Typography className={classes.hire_time} align="left">
                 Thời gian thuê:
               </Typography>
-
+              <Typography className={classes.hire_time_sub} align="left">
+                Chọn ngày
+              </Typography>
               <div className={classes.hire_time_space}>
                 <Box className={classes.hire_time_width}>
                   <DateRangePicker
                     onChange={(value) => getValueDatePiker(value)}
                     placeholder="Chọn ngày"
                     disabledDate={beforeToday()}
-                    showOneCalendar={isMobileDevice() ? true : false}
+                    showOneCalendar={true}
+                    showWeekNumbers={false}
+                    size="lg"
+                    isoWeek
+                    ranges={[]}
                   />
                 </Box>
               </div>
             </Grid>
+            <Grid item lg={4}>
+              <Typography className={classes.hire_time} align="left">
+                Min days: {shortestHiredDays} ngày
+              </Typography>
+              <Box className={classes.hire_time_sub}>Số ngày thuê</Box>
+              {totalDays && (
+                <Box className={classes.totalDate}>{totalDays} ngày</Box>
+              )}
+            </Grid>
+            <Grid item lg={3} className={classes.requireItems}>
+              <Typography className={classes.hire_time}>
+                Yêu cầu giấy tờ
+              </Typography>
+              <Box mt={2}>{renderRequire()}</Box>
+            </Grid>
           </Grid>
+          <hr style={{ borderTop: "1px solid #C3C7C5" }} />
+          <div className={classes.button_cart}>
+            <Box>
+              <StyledButton
+                onClick={() => addToCart(itemAdd)}
+                variant="contained"
+                color="primary"
+              >
+                Thêm Giỏ Hàng
+              </StyledButton>
+            </Box>
+          </div>
         </Grid>
       </Grid>
     </div>

@@ -21,7 +21,6 @@ const UploadProduct = () => {
   const [proviceName, setProviceName] = useState();
   const [districtName, setDistrictName] = useState();
   const [wardName, setWardName] = useState();
-
   const currentUser = useRecoilValue(userState);
   const [discountDateItems, setDiscountDateItems] = useState([]);
   const [listAddress, setListAddress] = useRecoilState(listAddressState);

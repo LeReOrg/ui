@@ -3,7 +3,9 @@ import axios from "axios";
 import config from "../../config";
 import { queryClient } from "../index";
 const getProductByCategory = async (postId) => {
-  const { data } = await axios(`${config.api}/categories/${postId?.queryKey[1]}/products`);
+  const { data } = await axios(
+    `${config.api}/categories/${postId?.queryKey[1]}/products`
+  );
   return data.docs;
 };
 
@@ -20,6 +22,8 @@ const useProductByCategory = (postId) => {
   return useQuery(["categoriesProduct", postId], getProductByCategory, {
     staleTime: 5000,
     keepPreviousData: true,
+    refetchIntervalInBackground: false,
+    refetchOnWindowFocus: false,
   });
 };
 
