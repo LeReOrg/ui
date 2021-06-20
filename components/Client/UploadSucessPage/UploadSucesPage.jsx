@@ -16,8 +16,7 @@ const UploadSuccessPage = () => {
   let requiredLicenses2 = "";
   let requiredLicenses3 = "";
 
-  console.log(productAddDetail);
-  if (productAddDetail.requiredLicenses) {
+  if (productAddDetail?.requiredLicenses) {
     productAddDetail.requiredLicenses.includes("1")
       ? (requiredLicenses1 = "CMND")
       : (requiredLicenses1 = "");
@@ -49,7 +48,7 @@ const UploadSuccessPage = () => {
       </div>
     ));
   const renderImagesSub = () =>
-    productAddDetail?.images.map((item, index) => {
+    productAddDetail?.images?.map((item, index) => {
       if (index > 0) {
         return (
           <Image
