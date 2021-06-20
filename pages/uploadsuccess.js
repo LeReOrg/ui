@@ -1,12 +1,10 @@
-import { Link } from "@material-ui/core";
 import React from "react";
-
+import UploadSuccessPage from "../components/Client/UploadSucessPage/UploadSucesPage";
 function UploadSuccess() {
   return (
-    <div>
-      Upload Suceess
-      <Link href="/uploadproduct">Đăng sản phẩm khác</Link>
-    </div>
+    <>
+      <UploadSuccessPage />
+    </>
   );
 }
 export default UploadSuccess;

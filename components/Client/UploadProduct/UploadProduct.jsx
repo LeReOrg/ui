@@ -8,8 +8,8 @@ import UploadPrice from "./UploadPrice";
 import { UploadProductButton } from "./UploadProductStyled";
 import { customCurrency } from "../../../utils/FunctionUses";
 import SideBarCustomer from "../Customer/SideBarCustomer";
-import { userState } from "../../../lib/recoil-root";
-import { useRecoilValue } from "recoil";
+import { userState, listAddressState } from "../../../lib/recoil-root";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { useAddProduct } from "../../../hooks/useProduct";
 import { useRouter } from "next/router";
 const UploadProduct = () => {
@@ -18,8 +18,13 @@ const UploadProduct = () => {
   const [disabled, setDisabled] = useState(true);
   const [imageList, setImageList] = useState();
   const [licenseInfo, setLicenseInfo] = useState();
+  const [proviceName, setProviceName] = useState();
+  const [districtName, setDistrictName] = useState();
+  const [wardName, setWardName] = useState();
+
   const currentUser = useRecoilValue(userState);
   const [discountDateItems, setDiscountDateItems] = useState([]);
+  const [listAddress, setListAddress] = useRecoilState(listAddressState);
 
   let price = watch("price");
   let depositPrice = watch("depositPrice");
@@ -33,7 +38,22 @@ const UploadProduct = () => {
   let street = watch("street");
   let rent_date = watch("rent_date");
   let percent_discount = watch("percent_discount");
-  console.log(imageList);
+  useEffect(() => {
+    if (listAddress !== "") {
+      const cityName = listAddress?.city.filter(
+        (item, index) => item.idProvince == province
+      );
+      setProviceName(cityName);
+      const districtItem = listAddress?.district.filter(
+        (item, index) => item.idDistrict == district
+      );
+      setDistrictName(districtItem);
+      const warItem = listAddress?.ward.filter(
+        (item, index) => item.idCoummune == ward
+      );
+      setWardName(warItem);
+    }
+  }, [province, district, ward]);
   const breadcrumbs = [
     {
       name: categoryId,
@@ -46,7 +66,11 @@ const UploadProduct = () => {
       name &&
       description &&
       categoryId &&
-      // imageList &&
+      imageList &&
+      ward &&
+      district &&
+      province &&
+      street &&
       price &&
       depositPrice
     ) {
@@ -79,6 +103,8 @@ const UploadProduct = () => {
       imageList.map((item, index) => {
         let objectImages = {};
         objectImages.base64 = item.data_url;
+        objectImages.isLandingImage = item?.isLandingImage;
+
         arrayImages.push(objectImages);
       });
       paramsUpdate.images = arrayImages;
@@ -92,9 +118,9 @@ const UploadProduct = () => {
     paramsUpdate.token = currentUser.token;
     paramsUpdate.breadcrumbs = breadcrumbs;
     paramsUpdate.address = {
-      province,
-      ward,
-      district,
+      province: proviceName[0]?.name,
+      ward: wardName[0]?.name,
+      district: districtName[0]?.name,
       street,
     };
     delete paramsUpdate.province;
@@ -103,12 +129,22 @@ const UploadProduct = () => {
     delete paramsUpdate.street;
     delete paramsUpdate.percent_discount;
     delete paramsUpdate.rent_date;
-    console.log(paramsUpdate);
-    const a = mutate(paramsUpdate);
-    console.log(a);
+    mutate(paramsUpdate);
   };
   if (isSuccess) {
-    router.push("/uploadsuccess");
+    if (
+      name &&
+      description &&
+      categoryId &&
+      imageList &&
+      ward &&
+      district &&
+      province &&
+      street &&
+      price &&
+      depositPrice
+    )
+      router.push("/uploadsuccess");
   }
   const getDiscountItems = (val) => {
     setDiscountDateItems([...discountDateItems, val]);

@@ -7,6 +7,7 @@ import CustomForm from "../../../utils/CustomForm.js";
 const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
   const useStyled = makeStyles(styles);
   const [discountList, setDiscountList] = useState([""]);
+  const [listDiscount, setListDiscount] = useState([]);
   const classes = useStyled();
   const renderDisCountItem = () =>
     discountList.map((item) => (
@@ -33,9 +34,17 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
       days: rent_date,
       discount: percent_discount,
     };
-    // setItemDiscount(item);
+    setListDiscount([...listDiscount, item]);
     discountItems(item);
   };
+  const renderDiscount = () =>
+    listDiscount.map((item, index) => (
+      <div key={index} className={classes.itemDiscount}>
+        <>
+          {item.days} ngày {item.discount}%
+        </>
+      </div>
+    ));
   return (
     <>
       <Grid container spacing={3}>
@@ -89,7 +98,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <p className={classes.titleText}>Min Date:</p>
+              <p className={classes.titleText}>Min days:</p>
               <p className={classes.titleNumberText}>Ngày</p>
             </Box>
 
@@ -124,7 +133,12 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
             <Box>{renderDisCountItem()}</Box>
           </Box>
         </Grid>
-        <Grid item lg={2} md={2}>
+        <Grid
+          item
+          lg={2}
+          md={2}
+          style={{ maxWidth: 130, borderRight: "3px solid #111E16" }}
+        >
           <Box
             className={classes.addDiscountItem}
             onClick={() => addItemList()}
@@ -132,8 +146,17 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
             Thêm vào
           </Box>
         </Grid>
-        <Grid item lg={5} md={5}>
-          <p>Bạn không có giảm giá nào</p>
+        <Grid
+          item
+          lg={5}
+          md={5}
+          className={classes.uploadMain_InfoItemDetailDes}
+        >
+          {listDiscount && listDiscount.length > 0 ? (
+            renderDiscount()
+          ) : (
+            <p>Bạn không có giảm giá nào</p>
+          )}
         </Grid>
       </Grid>
     </>

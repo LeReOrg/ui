@@ -28,7 +28,6 @@ const useAddProduct = () => {
   const [productAddDetail, setProductAddDetail] = useRecoilState(
     productAddDetailState
   );
-
   return useMutation(addProduct, {
     onSuccess: async (data) => {
       setProductAddDetail(data);

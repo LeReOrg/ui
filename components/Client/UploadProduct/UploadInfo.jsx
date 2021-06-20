@@ -9,6 +9,9 @@ import { isMobileDevice } from "../../../utils/FunctionUses";
 import { TagPicker } from "rsuite";
 import { Checkbox } from "rsuite";
 import { useCity, useDistrict, useWard } from "../../../hooks/useLocation";
+import { useRecoilState } from "recoil";
+import { listAddressState } from "../../../lib/recoil-root";
+import { clone } from "lodash";
 
 const UploadInfo = ({
   descriptionNumber,
@@ -20,11 +23,17 @@ const UploadInfo = ({
   districtChoose,
 }) => {
   const [images, setImages] = useState(null);
+  const [listAddress, setListAddress] = useRecoilState(listAddressState);
   const { data: categories, isLoading, error } = useCategories();
   const { data: city } = useCity();
   const { data: district } = useDistrict(cityChoose);
   const { data: ward } = useWard(districtChoose);
-
+  useEffect(() => {
+    city && setListAddress((preState) => ({ ...preState, city: city }));
+    district &&
+      setListAddress((preState) => ({ ...preState, district: district }));
+    ward && setListAddress((preState) => ({ ...preState, ward: ward }));
+  }, [city, district, ward]);
   const maxNumberImage = 10;
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
@@ -43,13 +52,19 @@ const UploadInfo = ({
       value: "3",
     },
   ];
-
   useEffect(() => {
     picture(images);
   }, [images]);
   const setCoverImage = (image) => {
-    console.log(image);
+    images.map((item, index) => {
+      if (item.file.name === image.file.name) {
+        const imagesClone = clone(images);
+        imagesClone[index].isLandingImage = true;
+        setImages(imagesClone);
+      }
+    });
   };
+  console.log(images);
   const useStyled = makeStyles(styles);
   const styledTag = { borderRadius: 4, backgroundColor: "#ffffff" };
   const classes = useStyled();
@@ -86,7 +101,7 @@ const UploadInfo = ({
             dragProps,
           }) => (
             <div className={classes.upload__image_wrapper}>
-              {imageList.map((image, index) => (
+              {imageList?.map((image, index) => (
                 <div className={classes.upload__image_eachItem} key={index}>
                   <img
                     src={image.data_url}
@@ -144,7 +159,7 @@ const UploadInfo = ({
               className={classes.inputTag}
               name={name}
               inputType="input"
-              nameInput="labelProduct"
+              nameInput="label"
               placeholder="Nhãn hàng"
             />
           </Box>

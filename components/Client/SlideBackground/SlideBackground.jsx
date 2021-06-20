@@ -11,9 +11,7 @@ import { useMediaQuery } from "@material-ui/core";
 const SlideBackground = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-
   const isMobile = useMediaQuery("(max-width:600px)");
-  console.log(isMobile);
   return (
     <div className={classes.root} id="background">
       <div>

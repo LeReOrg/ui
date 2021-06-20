@@ -16,7 +16,7 @@ const ForGotPasswordPage = (props) => {
   });
   const [showCode, setShowCode] = useState(true);
   const [disabled, setDisabled] = useState(true);
-  const [emailState,setEmailState] = useState("")
+  const [emailState, setEmailState] = useState("");
   const { register, handleSubmit, watch, errors, setValue } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
@@ -97,11 +97,10 @@ const CodePasswordPage = (props) => {
   }, [errors, code]);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  
+
   const getCodeHandle = (data) => {
     let paramUpdate = data;
     paramUpdate.email = props.email;
-    console.log(paramUpdate);
   };
   return (
     <>

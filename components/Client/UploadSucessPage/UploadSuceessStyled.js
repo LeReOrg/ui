@@ -1,6 +1,8 @@
 import { makeStyles, Button } from "@material-ui/core";
 import InfoIcon from "../../../assets/infoUpload.svg";
 import UploadImageIcon from "../../../assets/UploadImageIcon.svg";
+import BackIcon from "../../../assets/BackButton.svg";
+
 const styles = (theme) => ({
   uploadMain: {
     width: "80%",
@@ -12,6 +14,9 @@ const styles = (theme) => ({
   },
   uploadMain_sideBar: {
     borderRight: "1px solid #000000",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
   },
   uploadMain_Info: {
     border: "1px solid rgba(0, 0, 0, 0.15)",
@@ -35,12 +40,13 @@ const styles = (theme) => ({
   rowInfoTextArea: {
     marginTop: 20,
   },
-  uploadMain_Info__Title: {
+  uploadMain_InfoSuccess__Title: {
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 24,
     lineHeight: "32px",
     marginBottom: 20,
+    color: " #2FAF62",
     // [theme.breakpoints.down("xs")]: {
     //   marginBottom: 20,
     // },
@@ -87,6 +93,32 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 16,
     lineHeight: "22px",
+  },
+  itemDiscount: {
+    border: "1px solid #2F80ED;",
+    borderRadius: 5,
+    background: "#FFFFFF",
+    padding: "4px 11px",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 10,
+    lineHeight: "13px",
+    color: "#2F80ED",
+    marginLeft: 7,
+    marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
+  },
+  uploadMain_InfoItemDetailDes: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexBasis: "50%",
+    justifyContent: "flex-end",
+  },
+  uploadMain_InfoItemDetail: {
+    marginTop: "0 !important",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 14,
+    lineHeight: "20px",
   },
   uploadMain_InfoIconText: {
     color: " #2F80ED",
@@ -154,23 +186,6 @@ const styles = (theme) => ({
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
-  },
-  itemDiscount: {
-    border: "1px solid #2F80ED;",
-    borderRadius: 5,
-    background: "#FFFFFF",
-    padding: "4px 11px",
-    fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: 10,
-    lineHeight: "13px",
-    color: "#2F80ED",
-    marginLeft: 7,
-    marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
-  },
-  uploadMain_InfoItemDetailDes: {
-    display: "flex",
-    flexWrap: "wrap",
   },
   inputTag: {
     padding: "9px 12px",
@@ -241,6 +256,18 @@ const styles = (theme) => ({
       marginTop: 0,
     },
   },
+  main_recipent__paymentButtonDetails: {
+    maxWidth: "30%",
+    display: "flex",
+    justifyContent: "space-around",
+    marginBottom: 100,
+    marginTop: 50,
+    margin: "auto",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: 10,
+      marginTop: 0,
+    },
+  },
   image_item: {
     width: 120,
     height: 120,
@@ -265,12 +292,43 @@ const styles = (theme) => ({
     fontSize: 12,
     padding: "5px 10px",
   },
+  uploadMain_left: {
+    borderRight: "1px solid #000000",
+    paddingTop: "0 !important",
+  },
+  uploadMain_right: {
+    paddingTop: "0 !important",
+  },
   image_item__btn_deleteImage: {
     backgroundColor: "#FFFFFF",
     borderRadius: 4,
     fontSize: 12,
     color: "#F94444",
     padding: "5px 10px",
+  },
+  uploadMain_ImageDetails: {
+    padding: "23px 46px 0 34px",
+    "& h3": {
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: 10,
+      lineHeight: "13px",
+    },
+  },
+  uploadMain_ImageItem: {
+    borderRadius: 8,
+  },
+  uploadMain_ImageContainer: {
+    marginBottom: 30,
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: 15,
+    },
+  },
+  uploadMain_InfoItem: {
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 14,
+    lineHeight: "20px",
   },
   upload__image_eachItem: {
     position: "relative",
@@ -291,23 +349,53 @@ const styles = (theme) => ({
   main_recipent__Button: {
     backgroundColor: (props) =>
       props.isDisabled == true ? "#E7E9E8" : "#2FAF62",
-    padding: "15px 100px",
+    padding: "9px 16px",
     borderRadius: 4,
     fontWeight: "bold",
     fontSize: 16,
+    lineHeight: "22px",
+    display: "flex",
+    alignItems: "center",
+    textTransform: "capitalize",
+    cursor: "pointer",
     color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
+  },
+  main_recipent__ButtonIcon: {
+    background: `url(${BackIcon})`,
+    backgroundSize: "cover",
+    width: 24,
+    height: 24,
+    marginRight: 12,
   },
 });
 
 const useStyles = makeStyles(styles);
-export function UploadProductButton(props) {
+
+export function HomeButton(props) {
   const { type, ...other } = props;
   const classes = useStyles(props);
   return (
-    <button type="submit" className={classes.main_recipent__Button} {...other}>
-      Đăng sản phẩm
-    </button>
+    <div
+      onClick={() => props.backHome()}
+      className={classes.main_recipent__Button}
+      {...other}
+    >
+      <div className={classes.main_recipent__ButtonIcon}></div>
+      Home
+    </div>
   );
 }
-
+export function UploadAnotherProductButton(props) {
+  const { type, ...other } = props;
+  const classes = useStyles(props);
+  return (
+    <div
+      onClick={() => props.backAddProduct()}
+      className={classes.main_recipent__Button}
+      {...other}
+    >
+      Đăng sản phẩm khác
+    </div>
+  );
+}
 export default styles;

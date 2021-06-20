@@ -36,7 +36,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     image: images[0],
     depositPrice: depositPrice,
   });
-  console.log(_id);
   useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,
@@ -45,7 +44,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   }, [quantity]);
   const [cart, setCart] = useRecoilState(cartState);
   const addToCart = (items) => {
-    console.log(items);
     const newCart = addCart(cart, items);
     setCart(newCart);
   };

@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 const Upload_Product = () => {
   const user = useRecoilValue(userState);
   const router = useRouter();
-  console.log(user);
   useEffect(() => {
     if (user == "") router.push("/login");
   }, []);
