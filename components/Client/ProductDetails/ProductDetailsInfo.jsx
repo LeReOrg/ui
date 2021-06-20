@@ -16,7 +16,22 @@ import { useRecoilState } from "recoil";
 
 const ProductDetailsInfo = ({ detailsProduct }) => {
   const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
-  const { name, images, owner_id, price, _id, depositPrice } = detailsProduct;
+  const {
+    name,
+    images,
+    price,
+    _id,
+    depositPrice,
+    label,
+    term,
+    shortestHiredDays,
+    address,
+    discounts,
+    user,
+    requiredLicenses,
+    category,
+    quantity,
+  } = detailsProduct;
   let arrayImages = [];
   images.map((item, index) => {
     let objectImages = {};
@@ -24,10 +39,10 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     objectImages.thumbnail = item.url;
     arrayImages.push(objectImages);
   });
-  const [quantity, setQuantity] = useState(1);
+  console.log(arrayImages);
+  const [quantityItem, setQuantityItem] = useState(1);
   const [itemAdd, setItemAdd] = useState({
     id: _id,
-    owner_id: owner_id,
     name: name,
     formDate: "",
     toDate: "",
@@ -39,14 +54,22 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,
-      quantityIncrease: quantity,
+      quantityIncrease: quantityItem,
     }));
-  }, [quantity]);
+  }, [quantityItem]);
   const [cart, setCart] = useRecoilState(cartState);
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
     setCart(newCart);
   };
+  const renderDiscount = () =>
+    discounts.map((item, index) => (
+      <div key={index} className={classes.itemDiscount}>
+        <>
+          {item.days} ngày {item.discount}%
+        </>
+      </div>
+    ));
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const StyledButton = withStyles((theme) => ({
@@ -75,13 +98,13 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
 
   // Handle Quantity
   const handleIncreaseQuantity = () => {
-    let newState = quantity + 1;
-    setQuantity(newState);
+    let newState = quantityItem + 1;
+    setQuantityItem(newState);
   };
   const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      let newState = quantity - 1;
-      setQuantity(newState);
+    if (quantityItem > 1) {
+      let newState = quantityItem - 1;
+      setQuantityItem(newState);
     }
   };
   const getValueDatePiker = (values) => {
@@ -94,31 +117,58 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   return (
     <div className={classes.main_list}>
       <Grid container spacing={8}>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={6} xs={12} className={classes.main_list_Left}>
           <ImageGallery
             showNav={false}
             showPlayButton={false}
             autoPlay={true}
             slideDuration={1000}
             items={arrayImages}
-            slideOnThumbnailOver={true}
-            useBrowserFullscreen={false}
+            slideOnThumbnailOver={false}
+            showFullscreenButton={false}
           />
         </Grid>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={6} xs={12} className={classes.main_list_Right}>
+          <Box className={classes.main_list_firstRow}>
+            {discounts && discounts.length > 0 && renderDiscount()}
+            <Typography className={classes.poster_info} align="left">
+              Đăng bởi: <b className={classes.poster}>{user.displayName}</b>
+            </Typography>
+          </Box>
+
           <Typography className={classes.titleDetailInfo} align="left">
             {name && name}
           </Typography>
-          <Typography className={classes.prices} align="left">
-            {price?.toLocaleString("en-US")}đ/ngày
-          </Typography>
-          <Typography className={classes.poster_info} align="left">
-            Đăng bởi:{" "}
-            <b className={classes.poster}>
-              {/* {owner_id.first_name + "" + owner_id.last_name} */}
-            </b>
-          </Typography>
-          <hr />
+          <Box className={classes.prices}>
+            <Box display="flex" alignItems="center">
+              <div className="priceLogo"></div>
+              <p>Giá thuê:</p>
+              {price?.toLocaleString("en-US")}đ/ngày
+            </Box>
+            <Box display="flex" alignItems="center">
+              <div className="depositpriceLogo"></div>
+              <p>Đặt cọc:</p>
+              {depositPrice?.toLocaleString("en-US")}vnđ
+            </Box>
+          </Box>
+          <Box className={classes.lable}>
+            {label && (
+              <Box
+                className={classes.lableContent}
+                display="flex"
+                alignItems="center"
+              >
+                <p>Nhãn hàng:</p>
+                <span>{label}</span>
+              </Box>
+            )}
+
+            <Box display="flex" alignItems="center">
+              <p>Danh mục:</p>
+              <span>{category && category?.name}</span>
+            </Box>
+          </Box>
+          <hr style={{ borderTop: "1px solid #C3C7C5" }} />
           <Grid container>
             <Grid item lg={4} md={6} xs={12}>
               <div className="quantity_web">
@@ -129,13 +179,13 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                   <Grid container className={classes.quantity_space}>
                     <RemoveCircleOutlineSharpIcon
                       className={
-                        quantity == 1
+                        quantityItem == 1
                           ? classes.button_color_minus_1
                           : classes.button_color_minus
                       }
                       onClick={handleDecreaseQuantity}
                     />
-                    <b className={classes.quantity}>{quantity}</b>
+                    <b className={classes.quantity}>{quantityItem}</b>
                     <AddCircleOutlineSharpIcon
                       className={classes.button_color_plus}
                       onClick={handleIncreaseQuantity}
@@ -167,7 +217,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                         className={classes.button_color_minus}
                         onClick={handleDecreaseQuantity}
                       />
-                      <b className={classes.quantity}>{quantity}</b>
+                      <b className={classes.quantity}>{quantityItem}</b>
                       <AddCircleOutlineSharpIcon
                         className={classes.button_color_plus}
                         onClick={handleIncreaseQuantity}

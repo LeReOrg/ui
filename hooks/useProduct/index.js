@@ -45,6 +45,8 @@ const prefetchProductByDetails = (postId) => {
 const useProductDetails = (postId) => {
   return useQuery(["product", postId], getProductDetails, {
     staleTime: 2000,
+    refetchIntervalInBackground: false,
+    refetchOnWindowFocus: false,
   });
 };
 

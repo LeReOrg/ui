@@ -163,10 +163,13 @@ const styles = (theme) => ({
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 10,
+    marginLeft: 7,
     lineHeight: "13px",
     color: "#2F80ED",
-    marginLeft: 7,
     marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
+    "&:first-child": {
+      marginLeft: 0,
+    },
   },
   uploadMain_InfoItemDetailDes: {
     display: "flex",

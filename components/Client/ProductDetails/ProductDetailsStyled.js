@@ -1,6 +1,8 @@
+import PriceLogo from "../../../assets/pricedetail.svg";
+import DepositPriceLogo from "../../../assets/depositprice.svg";
+
 const styles = (theme) => ({
   main_list: {
-    width: "92%",
     margin: "40px auto",
     [theme.breakpoints.down("sm")]: {
       margin: "0px auto",
@@ -9,14 +11,35 @@ const styles = (theme) => ({
   main_list_related: {
     marginTop: "1%",
   },
-  datePicker:{
+  itemDiscount: {
+    border: "1px solid #2F80ED;",
+    borderRadius: 5,
+    background: "#FFFFFF",
+    padding: "4px 11px",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 10,
+    marginLeft: 7,
+    lineHeight: "13px",
+    color: "#2F80ED",
+    marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
+    "&:first-child": {
+      marginLeft: 0,
+    },
+  },
+  main_list_firstRow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  datePicker: {
     border: "1px solid #E7E9E8",
     bordeRadius: 4,
-    padding : "9px 16px",
-    width : "100%"
+    padding: "9px 16px",
+    width: "100%",
   },
-  imageGallery:{
-    height: 200
+  imageGallery: {
+    height: 200,
   },
   title: {
     color: "#111E16",
@@ -42,9 +65,9 @@ const styles = (theme) => ({
     fontSize: 16,
     marginTop: "2%",
     fontWeight: "bold",
-    "&:hover":{
+    "&:hover": {
       cursor: "pointer",
-    }
+    },
   },
   media_160: {
     height: "160px",
@@ -56,17 +79,76 @@ const styles = (theme) => ({
   },
   prices: {
     color: "#2FAF62",
-    fontSize: 24,
+    fontSize: 16,
+    lineHeight: "22px",
     fontWeight: "bold",
-    marginTop: "1%",
+    marginTop: 20,
+    marginBottom: 20,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    "& .priceLogo": {
+      background: `url(${PriceLogo})`,
+      width: 24,
+      height: 17,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
+    "& .depositpriceLogo": {
+      background: `url(${DepositPriceLogo})`,
+      width: 24,
+      height: 20,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
+    "& p": {
+      fontSize: 16,
+      marginLeft: 5,
+      marginRight: 20,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      lineHeight: "22px",
+      color: "#000000",
+    },
+  },
+  main_list_Right: {
+    "& hr": {
+      marginTop: 10,
+      marginBottom: 20,
+    },
+  },
+  lable: {
+    display: "flex",
+    alignItems: "center",
+    "& p": {
+      fontSize: 14,
+      fontWeight: "normal",
+      fontStyle: "normal",
+      lineHeight: "20px",
+      color: "#888E8A",
+    },
+    "& span": {
+      fontSize: 14,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      lineHeight: "20px",
+      color: "#2F80ED",
+      marginLeft: 5,
+    },
+  },
+  lableContent: {
+    marginRight: 15,
   },
   poster_info: {
-    fontSize: 14,
-    marginTop: "1%",
+    fontSize: 12,
+    fontWeight: "normal",
+    lineHeight: "18px",
     color: "#888E8A",
   },
   poster: {
+    fontSize: 13,
     color: "#2F80ED",
+    fontWeight: "bold",
   },
   quantity_space: {
     marginTop: "2%",
@@ -87,20 +169,27 @@ const styles = (theme) => ({
   button_color_plus: {
     fill: "#2FAF62",
     cursor: "pointer",
+    width: 32,
+    height: 32,
   },
   button_color_minus_1: {
     fill: "#C3C7C5",
     cursor: "pointer",
+    width: 32,
+    height: 32,
   },
   button_color_minus: {
     fill: "#2FAF62",
     cursor: "pointer",
+    width: 32,
+    height: 32,
   },
   quantity: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#111E16",
-    padding: "0px 2%",
+    lineHeight: "22px",
+    padding: "5px 16px",
   },
   formControl: {
     marginTop: theme.spacing(1),

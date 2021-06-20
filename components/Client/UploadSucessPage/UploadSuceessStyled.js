@@ -106,6 +106,9 @@ const styles = (theme) => ({
     color: "#2F80ED",
     marginLeft: 7,
     marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
+    "&:first-child": {
+      marginLeft: 0,
+    },
   },
   uploadMain_InfoItemDetailDes: {
     display: "flex",

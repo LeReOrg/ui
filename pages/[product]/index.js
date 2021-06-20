@@ -13,7 +13,10 @@ import { dehydrate } from "react-query/hydration";
 const ProductDetail = () => {
   const router = useRouter();
   const useStyled = makeStyles((theme) => ({
-    main_list: {},
+    main_list: {
+      maxWidth: "1440px",
+      margin: "auto",
+    },
   }));
   const classes = useStyled();
   const { data: productDetail, isLoading, error } = useProductDetails(

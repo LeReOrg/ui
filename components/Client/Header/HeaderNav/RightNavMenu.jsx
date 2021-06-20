@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
@@ -29,6 +28,7 @@ const RightNavMenu = ({ ...props }) => {
           onMouseLeave={() => setIsHovering(false)}
           className={classes.showLogin}
         >
+          {user && <div className={classes.logoAccount}></div>}
           <a>{user ? user.displayName : "Tài khoản"}</a>
           {isHovering ? (
             !user ? (

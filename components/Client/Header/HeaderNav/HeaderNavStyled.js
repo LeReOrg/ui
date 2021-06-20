@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import LogoAccount from "../../../../assets/account.svg";
 const StyledBurger = styled.div`
   width: 1.5rem;
   height: 1.5rem;
@@ -113,20 +113,30 @@ const RightNav = styled.ul`
   }
 `;
 const styles = (theme) => ({
-    right_nav_main: {
-        display: "flex",
-      },
-      uploadproduct: {
-        color: "#2faf62 !important",
-      },
-      right_nav_main_test: {
-        position: "absoulute",
-      },
-      showLogin: {
-        position: "relative",
-        "&:hover": {
-          cursor: "pointer",
-        },
-      },
-  });
-export { StyledBurger, Nav, RightNav,styles };
+  right_nav_main: {
+    display: "flex",
+  },
+  uploadproduct: {
+    color: "#2faf62 !important",
+  },
+  right_nav_main_test: {
+    position: "absoulute",
+  },
+  showLogin: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  logoAccount: {
+    background: `url(${LogoAccount})`,
+    width: 18,
+    height: 18,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    marginRight: 10,
+  },
+});
+export { StyledBurger, Nav, RightNav, styles };
