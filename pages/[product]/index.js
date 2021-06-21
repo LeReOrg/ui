@@ -62,7 +62,7 @@ export async function getStaticPaths() {
   const paths = products.docs.map((post) => ({
     params: { product: post._id },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 }
 export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();
@@ -77,5 +77,6 @@ export async function getStaticProps({ params }) {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 10,
   };
 }
