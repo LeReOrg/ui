@@ -1,15 +1,16 @@
 const styles = (theme) => ({
   main_list: {
-    width: "92%",
-    margin: "40px auto",
-    [theme.breakpoints.down("sm")]: {
-      margin: "0px auto",
-    },
+    maxWidth: "1440px",
+    margin: "auto",
+    backgroundColor: "white",
   },
   main_filter: {
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
+  },
+  main_list_container: {
+    paddingTop: 50,
   },
 });
 

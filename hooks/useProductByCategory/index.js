@@ -3,23 +3,31 @@ import axios from "axios";
 import config from "../../config";
 import { queryClient } from "../index";
 const getProductByCategory = async (postId) => {
-  const { data } = await axios(
-    `${config.api}/categories/${postId?.queryKey[1]}/products`
+  const params = {
+    populate: "category",
+    sort: "price:asc",
+    limit: 12,
+  };
+  const { data } = await axios.get(
+    `${config.api}/categories/${postId?.queryKey[1]}/products`,
+    {
+      params,
+    }
   );
   return data.docs;
 };
 
-const prefetchProductByCate = (postId) => {
+const prefetchProductByCate = (postId, params) => {
   queryClient.prefetchQuery(
-    ["categoriesProduct", String(postId)],
+    ["categoriesProduct", String(postId), params],
     getProductByCategory,
     {
       staleTime: 5000,
     }
   );
 };
-const useProductByCategory = (postId) => {
-  return useQuery(["categoriesProduct", postId], getProductByCategory, {
+const useProductByCategory = (postId, params) => {
+  return useQuery(["categoriesProduct", postId, params], getProductByCategory, {
     staleTime: 5000,
     keepPreviousData: true,
     refetchIntervalInBackground: false,

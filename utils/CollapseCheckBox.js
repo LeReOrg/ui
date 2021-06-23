@@ -15,9 +15,7 @@ import { green } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/styles";
 import { isMobileDevice } from "./FunctionUses";
 
-
 const CollapseCheckbox = ({ ...props }) => {
- 
   const GreenCheckbox = withStyles({
     root: {
       "&$checked": {
@@ -75,11 +73,19 @@ const CollapseCheckbox = ({ ...props }) => {
           <FormControlLabel
             key={value._id}
             control={
-              <GreenCheckbox checked={stateCollapse.checked.indexOf(value._id) !== -1} onChange={(e, checkValue) =>
+              <GreenCheckbox
+                checked={stateCollapse.checked.indexOf(value._id) !== -1}
+                onChange={(e, checkValue) =>
                   handleToggle(value._id, checkValue)
-                } name="checkedG" />  
+                }
+                name="checkedG"
+              />
             }
-            label={<Box fontSize={14} component="div" fontWeight="normal" >{value.name}</Box>}
+            label={
+              <Box fontSize={14} component="div" fontWeight="normal">
+                {value.name}
+              </Box>
+            }
           ></FormControlLabel>
         ))
       : null;
@@ -88,7 +94,7 @@ const CollapseCheckbox = ({ ...props }) => {
       <List>
         <ListItem
           onClick={() => handleClick()}
-          style={{ padding: "10px 23px 10px 0", width: "60%" }}
+          style={{ padding: "0 20px 0 0" }}
         >
           <ListItemText
             primary={

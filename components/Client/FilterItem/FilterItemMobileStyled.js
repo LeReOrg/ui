@@ -1,4 +1,8 @@
 const styles = (theme) => ({
+  filter_main_desktop: {
+    maxWidth: 250,
+    borderRight: "1px solid #E7E9E8",
+  },
   filter_main_mobile: {
     backgroundColor: "#FFF",
     width: "50%",
@@ -19,10 +23,10 @@ const styles = (theme) => ({
     overflowX: "hidden",
     overflowY: "hidden",
   },
-  filter_main_mobileClose :{
+  filter_main_mobileClose: {
     fontSize: 20,
     fontWeight: "bold",
-    paddingTop: 21
+    paddingTop: 21,
   },
 });
 export default styles;

@@ -1,7 +1,7 @@
 const places = [
   {
     _id: 1,
-    name: 'Quận 1',
+    name: "Quận 1",
   },
   {
     _id: 2,
@@ -24,7 +24,7 @@ const places = [
 const price = [
   {
     _id: 0,
-    name: "Any",
+    name: "Tất cả",
     array: [],
   },
   {
@@ -46,27 +46,22 @@ const price = [
     _id: 4,
     name: "Trên 500,000đ",
     array: [500000, 200000000],
-  }
+  },
 ];
 
 const sort = [
   {
     id: 0,
     name: "Mặc định",
-   
   },
   {
     id: 1,
     name: "Giá Thấp",
-   
   },
   {
     id: 2,
     name: "Giá cao",
-   
   },
-  
 ];
-
 
 export { places, price, sort };

@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import styles from "./ListItemByTypeProductStyled";
 
-const ListItemByTypeProduct = ({ listProduct, nameTypeProduct }) => {
+const ListItemByTypeProduct = ({ listProduct }) => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const renderCards = listProduct?.map((items, index) => (
@@ -31,7 +31,7 @@ const ListItemByTypeProduct = ({ listProduct, nameTypeProduct }) => {
       <Typography component="div">
         <div className={classes.title_main}>
           <Box className={classes.interested_title}>
-            {nameTypeProduct && capitalize(nameTypeProduct)}
+            {listProduct && capitalize(listProduct[0]?.category?.name)}
           </Box>
           <Box
             className={classes.mobile_mode_filter}
@@ -40,7 +40,11 @@ const ListItemByTypeProduct = ({ listProduct, nameTypeProduct }) => {
             <FontAwesomeIcon icon={faSlidersH} className="icon" />
             <span>Lọc</span>
           </Box>
-          <Sort initState={false} />
+          <Sort
+            typeProductId={
+              listProduct && capitalize(listProduct[0]?.category?._id)
+            }
+          />
         </div>
 
         <Grid

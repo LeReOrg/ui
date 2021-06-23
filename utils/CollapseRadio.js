@@ -13,16 +13,17 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Box } from "@material-ui/core";
 import { isMobileDevice } from "./FunctionUses";
 
-
 const CollapseRadio = ({ ...props }) => {
-
   const useStyles = makeStyles((theme) => ({
     listItemRadio: {
-      padding: "10px 23px 10px 0",
-      width: "60%",
+      padding: "0",
+      paddingRight: 20,
       [theme.breakpoints.down("xs")]: {
         width: "100%",
       },
+    },
+    listItemContainerRadio: {
+      paddingTop: 0,
     },
   }));
   const classes = useStyles();
@@ -71,7 +72,7 @@ const CollapseRadio = ({ ...props }) => {
       : null;
   return (
     <div>
-      <List>
+      <List className={classes.listItemContainerRadio}>
         <ListItem
           onClick={() => handleClick()}
           className={classes.listItemRadio}
