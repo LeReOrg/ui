@@ -9,15 +9,16 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { prefetchProductByCate } from "../../../hooks/useProductByCategory";
-const Sort = ({ typeProductId }) => {
+import { useRecoilState } from "recoil";
+import { filterState } from "../../../lib/recoil-root";
+const Sort = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
   const [title, setTitle] = useState(sort[0].name);
+  const [filter, setFilter] = useRecoilState(filterState);
   const handleToggle = () => {
     setOpen(!open);
   };
-
   const handleClose = (event, value) => {
     setOpen(false);
   };
@@ -26,9 +27,11 @@ const Sort = ({ typeProductId }) => {
       return;
     }
     const { textContent } = event.target;
-    // if (textContent === "Giá Thấp") {
-    //   prefetchProductByCate();
-    // }
+    if (textContent === "Giá Thấp") {
+      setFilter((preState) => ({ ...preState, sort: "price:asc" }));
+    } else {
+      setFilter((preState) => ({ ...preState, sort: "price:desc" }));
+    }
     setTitle(textContent);
     setOpen(false);
   };

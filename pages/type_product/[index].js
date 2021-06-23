@@ -6,20 +6,26 @@ import FilterItem from "../../components/Client/FilterItem/FilterItem";
 import ListItemByTypeProduct from "../../components/Client/ListItemByTypeProduct/ListItemByTypeProduct";
 import { makeStyles } from "@material-ui/styles";
 import styles from "../../styles/ListProductByTypeStyled";
-import { QueryClient, useQueryClient } from "react-query";
+import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import {
   useProductByCategory,
   getProductByCategory,
 } from "../../hooks/useProductByCategory";
+import { useRecoilValue } from "recoil";
+import { filterState } from "../../lib/recoil-root";
 const ListProductByType = (props) => {
   const useStyled = makeStyles(styles);
+  const filter = useRecoilValue(filterState);
   const classes = useStyled();
   const router = useRouter();
-  const { data: productByCate, isLoading, error } = useProductByCategory(
-    router.query.index
-  );
-  console.log(productByCate);
+  const {
+    data: productByCate,
+    isLoading,
+    error,
+    isSuccess,
+  } = useProductByCategory(router.query.index, filter);
+
   return (
     <>
       {/* <BreadCrumb
@@ -30,7 +36,7 @@ const ListProductByType = (props) => {
       <div className={classes.main_list}>
         <Grid container className={classes.main_list_container}>
           <Grid item lg={3} md={3} className={classes.main_filter}>
-            <FilterItem />
+            <FilterItem productByCate={productByCate} />
           </Grid>
           <Grid item lg={9} md={9} xs={12}>
             <ListItemByTypeProduct listProduct={productByCate} />

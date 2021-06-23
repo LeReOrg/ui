@@ -15,7 +15,7 @@ import { green } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/styles";
 import { isMobileDevice } from "./FunctionUses";
 
-const CollapseCheckbox = ({ ...props }) => {
+const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
   const GreenCheckbox = withStyles({
     root: {
       "&$checked": {
@@ -27,19 +27,21 @@ const CollapseCheckbox = ({ ...props }) => {
   const collapse = {
     open: false,
     checked: [],
+    nameDistrict: [],
   };
+
   const [stateCollapse, setStateCollapse] = useState(collapse);
   useEffect(() => {
-    if (props.initState) {
+    if (initState) {
       setStateCollapse((preState) => ({
         ...preState,
-        open: props.initState,
+        open: initState,
       }));
     }
   }, []);
   useEffect(() => {
-    props.handleFilters(stateCollapse.checked);
-  }, [stateCollapse.checked]);
+    handleFilters(stateCollapse.nameDistrict);
+  }, [stateCollapse.nameDistrict]);
   const handleClick = () => {
     setStateCollapse((preState) => ({
       ...preState,
@@ -52,43 +54,47 @@ const CollapseCheckbox = ({ ...props }) => {
     ) : (
       <FontAwesomeIcon icon={faAngleDown} className="icon" />
     );
-  const handleToggle = (val, check) => {
-    const { checked } = stateCollapse;
+  const handleToggle = (val, name) => {
+    const { checked, nameDistrict } = stateCollapse;
     const currentIndex = checked.indexOf(val);
     const newChecked = [...checked];
+    const newDistrict = [...nameDistrict];
     if (currentIndex === -1) {
       newChecked.push(val);
+      newDistrict.push(name);
     } else {
       newChecked.splice(currentIndex, 1);
+      newDistrict.splice(currentIndex, 1);
     }
     setStateCollapse((preState) => ({
       ...preState,
       checked: newChecked,
+      nameDistrict: newDistrict,
     }));
   };
 
   const renderList = () =>
-    props.list
-      ? props.list.map((value) => (
-          <FormControlLabel
-            key={value._id}
-            control={
-              <GreenCheckbox
-                checked={stateCollapse.checked.indexOf(value._id) !== -1}
-                onChange={(e, checkValue) =>
-                  handleToggle(value._id, checkValue)
-                }
-                name="checkedG"
-              />
+    list &&
+    list?.map((value) => (
+      <FormControlLabel
+        key={value._id}
+        control={
+          <GreenCheckbox
+            checked={stateCollapse.checked.indexOf(value._id) !== -1}
+            onChange={(e, checkValue) =>
+              handleToggle(value._id, value.district)
             }
-            label={
-              <Box fontSize={14} component="div" fontWeight="normal">
-                {value.name}
-              </Box>
-            }
-          ></FormControlLabel>
-        ))
-      : null;
+            name="checkedG"
+          />
+        }
+        label={
+          <Box fontSize={14} component="div" fontWeight="normal">
+            {value.district}
+          </Box>
+        }
+      ></FormControlLabel>
+    ));
+
   return (
     <div className="collapse_items_wrapper">
       <List>
@@ -99,7 +105,7 @@ const CollapseCheckbox = ({ ...props }) => {
           <ListItemText
             primary={
               <Box fontWeight="bold" fontSize={16}>
-                {props.title}
+                {title}
               </Box>
             }
           />

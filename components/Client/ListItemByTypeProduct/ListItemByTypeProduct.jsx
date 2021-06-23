@@ -40,11 +40,7 @@ const ListItemByTypeProduct = ({ listProduct }) => {
             <FontAwesomeIcon icon={faSlidersH} className="icon" />
             <span>Lọc</span>
           </Box>
-          <Sort
-            typeProductId={
-              listProduct && capitalize(listProduct[0]?.category?._id)
-            }
-          />
+          <Sort />
         </div>
 
         <Grid
