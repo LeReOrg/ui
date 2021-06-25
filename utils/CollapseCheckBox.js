@@ -14,6 +14,7 @@ import { Box } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/styles";
 import { isMobileDevice } from "./FunctionUses";
+import { clone } from "lodash";
 
 const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
   const GreenCheckbox = withStyles({
@@ -29,7 +30,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
     checked: [],
     nameDistrict: [],
   };
-
+  const [listItems, setListItem] = useState(list);
   const [stateCollapse, setStateCollapse] = useState(collapse);
   useEffect(() => {
     if (initState) {
@@ -40,8 +41,8 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
     }
   }, []);
   useEffect(() => {
-    handleFilters(stateCollapse.nameDistrict);
-  }, [stateCollapse.nameDistrict]);
+    handleFilters(stateCollapse.nameDistrict, true);
+  }, [stateCollapse.checked]);
   const handleClick = () => {
     setStateCollapse((preState) => ({
       ...preState,
@@ -74,8 +75,8 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
   };
 
   const renderList = () =>
-    list &&
-    list?.map((value) => (
+    listItems &&
+    listItems?.map((value) => (
       <FormControlLabel
         key={value._id}
         control={

@@ -11,9 +11,13 @@ const FilterItem = ({ productByCate }) => {
   const classes = useStyled();
   const [filter, setFilter] = useRecoilState(filterState);
   const listPlaces = [];
-  const handleFilters = (filters, cate) => {
+  const handleFilters = (filters, cate, isChecked) => {
     if (filters.length > 0) {
       setFilter((preState) => ({ ...preState, districts: filters.toString() }));
+    } else {
+      if (filter.districts) {
+        setFilter((preState) => ({ ...preState, districts: undefined }));
+      }
     }
   };
   if (productByCate) {
@@ -34,7 +38,9 @@ const FilterItem = ({ productByCate }) => {
         initState={true}
         title="Địa điểm"
         list={listPlaces}
-        handleFilters={(filters) => handleFilters(filters, "places")}
+        handleFilters={(filters, isChecked = false) =>
+          handleFilters(filters, "places", isChecked)
+        }
       />
     </div>
   );
