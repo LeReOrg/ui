@@ -15,12 +15,7 @@ const CardProductType = ({ info }) => {
   return (
     <>
       <Link as={link} href="/type_product/[index]">
-        <a
-          className={classes.linkTypeProduct}
-          onMouseEnter={() => {
-            prefetchProductByCate(info._id);
-          }}
-        >
+        <a className={classes.linkTypeProduct}>
           <Image
             className={classes.media}
             src={info.thumbnail.url}

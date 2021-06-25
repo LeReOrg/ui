@@ -41,8 +41,14 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
     }
   }, []);
   useEffect(() => {
-    handleFilters(stateCollapse.nameDistrict, true);
-  }, [stateCollapse.checked]);
+    if (listItems.length == 0) {
+      setListItem(list);
+    }
+  }, [list]);
+  useEffect(() => {
+    handleFilters(stateCollapse.nameDistrict);
+  }, [stateCollapse.nameDistrict]);
+  console.log(listItems);
   const handleClick = () => {
     setStateCollapse((preState) => ({
       ...preState,
@@ -76,7 +82,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
 
   const renderList = () =>
     listItems &&
-    listItems?.map((value) => (
+    listItems.map((value) => (
       <FormControlLabel
         key={value._id}
         control={

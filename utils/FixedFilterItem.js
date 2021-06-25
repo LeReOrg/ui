@@ -1,26 +1,3 @@
-const places = [
-  {
-    _id: 1,
-    name: "Quận 1",
-  },
-  {
-    _id: 2,
-    name: "Quận Bình Thạnh",
-  },
-  {
-    _id: 3,
-    name: "Quận Gò Vấp",
-  },
-  {
-    _id: 4,
-    name: "Quận 4",
-  },
-  {
-    _id: 5,
-    name: "Quận 10",
-  },
-];
-
 const price = [
   {
     _id: 0,
@@ -64,4 +41,4 @@ const sort = [
   },
 ];
 
-export { places, price, sort };
+export { price, sort };

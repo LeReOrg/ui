@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CollapseRadio from "../../../utils/CollapseRadio";
-import { price, places } from "../../../utils/FixedFilterItem";
+import { price } from "../../../utils/FixedFilterItem";
 import { makeStyles } from "@material-ui/styles";
 import CollapseCheckbox from "../../../utils/CollapseCheckBox";
 import styles from "./FilterItemMobileStyled";
@@ -11,13 +11,12 @@ const FilterItem = ({ productByCate }) => {
   const classes = useStyled();
   const [filter, setFilter] = useRecoilState(filterState);
   const listPlaces = [];
-  const handleFilters = (filters, cate, isChecked) => {
+  const handleFilters = (filters, cate) => {
     if (filters.length > 0) {
       setFilter((preState) => ({ ...preState, districts: filters.toString() }));
     } else {
-      if (filter.districts) {
+      if (filter.districts)
         setFilter((preState) => ({ ...preState, districts: undefined }));
-      }
     }
   };
   if (productByCate) {
@@ -38,9 +37,7 @@ const FilterItem = ({ productByCate }) => {
         initState={true}
         title="Địa điểm"
         list={listPlaces}
-        handleFilters={(filters, isChecked = false) =>
-          handleFilters(filters, "places", isChecked)
-        }
+        handleFilters={(filters) => handleFilters(filters, "place")}
       />
     </div>
   );

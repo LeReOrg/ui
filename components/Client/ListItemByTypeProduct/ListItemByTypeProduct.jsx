@@ -8,7 +8,7 @@ import PaginationRounded from "../../../utils/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
-import FilterItemMobile from "../FilterItem/FilterItemMobile";
+// import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import styles from "./ListItemByTypeProductStyled";
 
 const ListItemByTypeProduct = ({ listProduct }) => {
@@ -55,12 +55,12 @@ const ListItemByTypeProduct = ({ listProduct }) => {
         numPage={props.listProduct?.numPage}
         onChangePage={(e, page) => onChangePage(e, page)}
       /> */}
-      {isMobileDevice() ? (
+      {/* {isMobileDevice() ? (
         <FilterItemMobile
           onChangeDisplay={onChangeDisplay}
           display={displayFilter}
         />
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
