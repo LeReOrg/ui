@@ -10,14 +10,14 @@ import { RightNav, styles } from "./HeaderNavStyled";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../lib/recoil-root";
 
-const RightNavMenu = ({ ...props }) => {
+const RightNavMenu = ({ mobileMode }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [isHovering, setIsHovering] = useState(false);
   const { user } = useRecoilValue(userState);
   return (
     <div className={classes.right_nav_main}>
-      <RightNav open={props.open}>
+      <RightNav>
         <li>
           <Link href="/about">
             <a>Về chúng tôi</a>
@@ -44,7 +44,7 @@ const RightNavMenu = ({ ...props }) => {
           </Link>
         </li>
       </RightNav>
-      <HeaderCart />
+      {!mobileMode && <HeaderCart />}
     </div>
   );
 };

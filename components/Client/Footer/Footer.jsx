@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import Link from 'next/link'
+import Link from "next/link";
 import styles from "./FooterStyled";
 
 const useStyles = makeStyles(styles);
@@ -20,7 +20,9 @@ const Footer = () => {
           </div>
         </div>
         <div className={classes.footer_term}>
-          <Link href="/term"><a>Terms & Policy</a></Link>
+          <Link href="/term">
+            <a>Terms & Policy</a>
+          </Link>
         </div>
       </div>
     </footer>

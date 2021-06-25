@@ -59,7 +59,7 @@ const Search = () => {
                 id={"search"}
                 formData={search.searchData.search}
                 change={(element) => updateSearch(element)}
-                useClasses = {true}
+                useClasses={true}
               />
             </div>
           </Grid>

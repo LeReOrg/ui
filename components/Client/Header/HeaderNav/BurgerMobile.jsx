@@ -1,31 +1,11 @@
-import React, { useRef } from "react";
-import { StyledBurger } from "./HeaderNavStyled";
-import { disabledMainLayout } from "../../../../utils/helper";
-import { useClickOutside } from "../../../../hooks/useOnClickOutSide";
-
-const BurgerMobile = ({ open, openBurger }) => {
-  const menuRef = useRef();
-  const showBurger = () => {
-    disabledMainLayout(open);
-    openBurger();
-  };
-  const onClickOutSide = () => {
-    disabledMainLayout(open);
-    openBurger();
-  };
-  useClickOutside(menuRef, onClickOutSide);
+import React from "react";
+import { slide as Menu } from "react-burger-menu";
+import RightNavMenu from "./RightNavMenu";
+const BurgerMobile = (props) => {
   return (
-    <StyledBurger
-      ref={menuRef}
-      open={open}
-      onClick={() => {
-        showBurger();
-      }}
-    >
-      <div />
-      <div />
-      <div />
-    </StyledBurger>
+    <Menu pageWrapId={"container-fluid"} right outerContainerId={"__next"}>
+      <RightNavMenu mobileMode />
+    </Menu>
   );
 };
 export default BurgerMobile;

@@ -1,6 +1,6 @@
 import { useTheme } from "@material-ui/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import React from 'react'
+import React from "react";
 // Capitalize first Letter
 function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
@@ -8,7 +8,7 @@ function capitalize(s) {
 const splitAt = (index) => (x) => [x.slice(0, index), x.slice(index)];
 
 // Check mobile device
-function isMobileDevice () {
+function isMobileDevice() {
   const theme = useTheme();
   const isMobileXs = useMediaQuery(theme.breakpoints.down("xs"), {
     defaultMatches: true,
@@ -23,4 +23,4 @@ const customCurrency = (valuePrice) => {
   }
 };
 
-export { capitalize, splitAt,isMobileDevice,customCurrency};
+export { capitalize, splitAt, isMobileDevice, customCurrency };

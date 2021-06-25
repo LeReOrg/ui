@@ -22,7 +22,7 @@ const styles = (theme) => ({
       marginTop: 14,
     },
   },
-  type_product__slide:{
+  type_product__slide: {
     display: "flex",
   },
 });

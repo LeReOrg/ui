@@ -66,11 +66,7 @@ const CustomerInfo = (props) => {
                     <option value="green">Green</option>
                     <option value="blue">Blue</option>
                   </Field>
-                  <MyButton
-                    type="submit"
-                  >
-                    Cập nhật
-                  </MyButton>
+                  <MyButton type="submit">Cập nhật</MyButton>
                 </Form>
               )}
             </Formik>

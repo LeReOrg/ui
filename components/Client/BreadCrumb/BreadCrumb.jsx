@@ -24,22 +24,24 @@ const BreadCrumb = (props) => {
   //   ));
   return (
     <Breadcrumb className={classes.breadcrumb_main}>
-        <Link href="/" as="/">
+      <Link href="/" as="/">
+        <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
+          <span>Trang chủ</span>
+        </LinkStyle>
+      </Link>
+      {props.listBreadCrumb?.map((item, index) => (
+        <Link
+          href="/type_product/[index]"
+          as={`/type_product/${item.id}`}
+          key={item}
+        >
           <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
-            <span>Trang chủ</span>
+            <span className={classes.breadcrumb_main_linkspan}>
+              {item.itemName}
+            </span>
           </LinkStyle>
         </Link>
-        {props.listBreadCrumb?.map((item, index) => (
-          
-            <Link  href="/type_product/[index]" as={`/type_product/${item.id}`} key={item}>
-              <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
-                <span className={classes.breadcrumb_main_linkspan}>{item.itemName}</span>
-              </LinkStyle>
-            </Link>
-          
-         ))
-        
-        }
+      ))}
     </Breadcrumb>
     // <Breadcrumbs aria-label="breadcrumb"  className={classes.breadcrumb_main}>
     //   <Link href="/" as="/">

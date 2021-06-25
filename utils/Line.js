@@ -5,9 +5,7 @@ import styles from "../styles/LineStyled";
 const Line = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  return (
-    <hr className={classes.main} />
-  );
+  return <hr className={classes.main} />;
 };
 
 export default Line;

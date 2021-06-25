@@ -52,6 +52,4 @@ const ward = [
     name: "Pho Ha Noi w",
   },
 ];
-export  {
-    city,ward,district
-}
+export { city, ward, district };

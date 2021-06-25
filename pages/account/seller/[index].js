@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Bar } from "react-chartjs-2";
 const data = {
   labels: ["1", "2", "3", "4", "5", "6"],
@@ -13,7 +13,6 @@ const data = {
       data: [2, 3, 20, 5, 1, 4],
       backgroundColor: "rgb(54, 162, 235)",
     },
-   
   ],
 };
 const options = {
@@ -28,22 +27,22 @@ const options = {
   },
 };
 const Seller = () => {
-    return (
-      <>
-        <div className="header">
-          <h1 className="title">Grouped Bar Chart</h1>
-          <div className="links">
-            <a
-              className="btn btn-gh"
-              href="https://github.com/reactchartjs/react-chartjs-2/blob/react16/example/src/charts/GroupedBar.js"
-            >
-              Github Source
-            </a>
-          </div>
+  return (
+    <>
+      <div className="header">
+        <h1 className="title">Grouped Bar Chart</h1>
+        <div className="links">
+          <a
+            className="btn btn-gh"
+            href="https://github.com/reactchartjs/react-chartjs-2/blob/react16/example/src/charts/GroupedBar.js"
+          >
+            Github Source
+          </a>
         </div>
-        <Bar data={data} options={options} />
-      </>
-    );
+      </div>
+      <Bar data={data} options={options} />
+    </>
+  );
 };
 
 export default Seller;

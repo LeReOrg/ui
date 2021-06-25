@@ -4,7 +4,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Button, Box } from "@material-ui/core";
-import styles from '../styles/ShippingItemStyled'
+import styles from "../styles/ShippingItemStyled";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const ShippingItem = ({ item, addItem }) => {
   const { name, price, coc, quantity, image } = item.item;
@@ -26,9 +26,7 @@ const ShippingItem = ({ item, addItem }) => {
             </CardActionArea>
           </Grid>
           <Grid item lg={9} xs={9} className={classes.infoContent}>
-            <Typography className={classes.nameItem}>
-              {name}
-            </Typography>
+            <Typography className={classes.nameItem}>{name}</Typography>
             <Typography className={classes.infoItem}>
               {/* <span>x{quantity}</span> <span>{totalDateRent} ngày</span> */}
               <span>

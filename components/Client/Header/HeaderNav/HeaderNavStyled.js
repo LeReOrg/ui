@@ -65,11 +65,14 @@ const RightNav = styled.ul`
   @media (max-width: 1024px) {
     margin-right: 0;
     padding-left: 0;
+    flex-direction: column;
   }
   li {
     padding: 0px 23px;
     @media (max-width: 1024px) {
-      padding: 0px 20px;
+      padding: 0;
+      padding-top: 24px;
+      text-align: right;
     }
     a {
       color: black;
@@ -83,38 +86,11 @@ const RightNav = styled.ul`
       }
     }
   }
-  @media (max-width: 1023px) {
-    flex-flow: column nowrap;
-    background-color: #ffffff;
-    position: fixed;
-    z-index: 3;
-    margin-right: 0;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    box-shadow: ${({ open }) =>
-      open ? "-4px 0px 10px rgba(0, 0, 0, 0.3);" : "unset"};
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 30%;
-    align-items: flex-end;
-    padding-top: 5rem;
-    li {
-      padding-top: 25px;
-      a {
-        color: black;
-      }
-      &:nth-child(3) {
-        display: none;
-      }
-    }
-  }
-  @media (max-width: 414px) {
-    width: 50%;
-  }
 `;
 const styles = (theme) => ({
   right_nav_main: {
     display: "flex",
+    justifyContent: "flex-end",
   },
   uploadproduct: {
     color: "#2faf62 !important",

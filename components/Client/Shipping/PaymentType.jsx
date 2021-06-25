@@ -3,9 +3,9 @@ import { makeStyles } from "@material-ui/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import CircleChecked1 from "@material-ui/icons/RadioButtonCheckedOutlined";
 import CircleChecked from "@material-ui/icons/RadioButtonUnchecked";
-import styles from './ShippingStyled'
+import styles from "./ShippingStyled";
 const PaymentInfo = (props) => {
-  const useStyled = makeStyles(styles)
+  const useStyled = makeStyles(styles);
   const classes = useStyled();
   return (
     <div className={classes.main_paymentType}>

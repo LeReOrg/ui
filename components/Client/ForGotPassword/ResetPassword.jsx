@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useForm } from "react-hook-form";
 import styles from "./ForGotPasswordStyled";
@@ -23,18 +23,18 @@ const ResetPasswordPage = (props) => {
   let newPassword = watch("newPassword");
   let reNewPassword = watch("reNewPassword");
   useEffect(() => {
-    if(newPassword && reNewPassword && isErrors ){
-      setDisabled(false)
-    }else{
-      setDisabled(true)
+    if (newPassword && reNewPassword && isErrors) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
     }
-  }, [errors,newPassword,reNewPassword]);
+  }, [errors, newPassword, reNewPassword]);
   const [disabled, setDisabled] = useState(true);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const resetPassword = (data) => {
-    if(data.newPassword === data.reNewPassword){
-      setDone(true)
+    if (data.newPassword === data.reNewPassword) {
+      setDone(true);
     }
   };
   return (

@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const CustomerDetail = () => {
-    return (
-        <div>
-            ttttt
-        </div>
-    );
+  return <div>ttttt</div>;
 };
 
 export default CustomerDetail;

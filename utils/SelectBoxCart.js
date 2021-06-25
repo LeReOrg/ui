@@ -58,19 +58,20 @@ const SelectBoxCart = (props) => {
     },
   }));
   const classes = useStyles();
-  const addItem  = () => {
-    console.log(cart)
-  
-    setCart([...cart].map(object => {
-      if(object.id === props.cartItem.id) {
-        return {
-          ...object,
-          quantity : quantity + 1
-        }
-      }
-      else return object;
-    }))
-  }
+  const addItem = () => {
+    console.log(cart);
+
+    setCart(
+      [...cart].map((object) => {
+        if (object.id === props.cartItem.id) {
+          return {
+            ...object,
+            quantity: quantity + 1,
+          };
+        } else return object;
+      })
+    );
+  };
   return (
     <>
       <div className={classes.itemSelect}>
@@ -87,7 +88,7 @@ const SelectBoxCart = (props) => {
         <Fab
           className={classes.addIcon}
           aria-label="add"
-          onClick = {() => addItem() }
+          onClick={() => addItem()}
         >
           <AddIcon />
         </Fab>
