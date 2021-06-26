@@ -33,12 +33,9 @@ facebookProvider.setCustomParameters({ prompt: "select_account" });
 const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 const signInWithFacebook = () => auth.signInWithPopup(facebookProvider);
 const logOut = () => {
-  console.log("aaaa");
   auth
     .signOut()
     .then(() => {
-      console.log("bb");
-
       setCurrentUser("");
     })
     .catch((error) => {

@@ -64,7 +64,6 @@ const UploadInfo = ({
       }
     });
   };
-  console.log(images);
   const useStyled = makeStyles(styles);
   const styledTag = { borderRadius: 4, backgroundColor: "#ffffff" };
   const classes = useStyled();

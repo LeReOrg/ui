@@ -18,7 +18,6 @@ const getProductDetails = (postId) => {
 const addProduct = async (params) => {
   const token = clone(params.token);
   delete params.token;
-  console.log(params);
   const { data } = await axios.post(`${config.api}/products`, params, {
     headers: { Authorization: `Bearer ${token}` },
   });

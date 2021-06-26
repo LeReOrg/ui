@@ -27,7 +27,6 @@ const FilterItem = ({ productByCate }) => {
         setFilter((preState) => ({ ...preState, priceRange: undefined }));
       } else {
         const prices = price.filter((item) => item._id == filters);
-        console.log(filters, prices);
         setFilter((preState) => ({
           ...preState,
           priceRange: prices[0]?.array,
