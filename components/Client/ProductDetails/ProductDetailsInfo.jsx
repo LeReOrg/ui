@@ -116,7 +116,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   // Handle Quantity
   const handleIncreaseQuantity = () => {
     let newState = quantityItem + 1;
-    setQuantityItem(newState);
+    if (newState <= quantity) setQuantityItem(newState);
   };
   const handleDecreaseQuantity = () => {
     if (quantityItem > 1) {
@@ -150,7 +150,10 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
         </Grid>
         <Grid item lg={6} md={6} xs={12} className={classes.main_list_Right}>
           <Box className={classes.main_list_firstRow}>
-            {discounts && discounts.length > 0 && renderDiscount()}
+            <Box display="flex" alignItems="center">
+              {discounts && discounts.length > 0 && renderDiscount()}
+            </Box>
+
             <Typography className={classes.poster_info} align="left">
               Đăng bởi: <b className={classes.poster}>{user.displayName}</b>
             </Typography>
@@ -206,7 +209,11 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                   />
                   <b className={classes.quantity}>{quantityItem}</b>
                   <AddCircleOutlineSharpIcon
-                    className={classes.button_color_plus}
+                    className={
+                      quantityItem == quantity
+                        ? classes.button_color_minus_1
+                        : classes.button_color_minus
+                    }
                     onClick={handleIncreaseQuantity}
                   />
                 </Box>
