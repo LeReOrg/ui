@@ -5,8 +5,9 @@ import React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      marginTop: theme.spacing(2),
+      marginTop: 40,
       float: "right",
+      marginRight: 35,
     },
   },
 }));

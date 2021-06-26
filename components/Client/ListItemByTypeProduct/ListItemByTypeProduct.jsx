@@ -12,16 +12,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import styles from "./ListItemByTypeProductStyled";
 import { useDetailCategory } from "../../../hooks/useCategories";
 import { useRouter } from "next/router";
-
+import { useRecoilState } from "recoil";
+import { filterState } from "../../../lib/recoil-root";
 const ListItemByTypeProduct = ({ listProduct }) => {
   const router = useRouter();
+  const [filter, setFilter] = useRecoilState(filterState);
+
   const { data: categoryData, isError, isSuccess } = useDetailCategory(
     router.query.index
   );
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const renderCards = () =>
-    listProduct?.map((items, index) => (
+    listProduct?.docs?.map((items, index) => (
       <Grid item lg={3} xs={6} key={index}>
         <CardProduct item={items} itemByType={true} />
       </Grid>
@@ -55,17 +58,22 @@ const ListItemByTypeProduct = ({ listProduct }) => {
           spacing={isMobileDevice() ? 4 : 8}
           className={classes.typeProduct_content}
         >
-          {listProduct?.length > 0 ? (
+          {listProduct?.docs?.length > 0 ? (
             renderCards()
           ) : (
             <p>Không có sản phẩm nào</p>
           )}
         </Grid>
       </Typography>
-      {/* <PaginationRounded
-        numPage={props.listProduct?.numPage}
-        onChangePage={(e, page) => onChangePage(e, page)}
-      /> */}
+      {listProduct?.totalPages > 1 && (
+        <PaginationRounded
+          numPage={listProduct?.totalPages}
+          onChangePage={(e, page) =>
+            setFilter((preState) => ({ ...preState, page: page }))
+          }
+        />
+      )}
+
       {/* {isMobileDevice() ? (
         <FilterItemMobile
           onChangeDisplay={onChangeDisplay}

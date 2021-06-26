@@ -7,8 +7,9 @@ import { capitalize } from "../../../utils/FunctionUses";
 import styles from "./BreadCrumbStyled";
 import { Breadcrumb } from "rsuite";
 
-const BreadCrumb = (props) => {
+const BreadCrumb = ({ listBreadCrumb }) => {
   const useStyled = makeStyles(styles);
+  console.log(listBreadCrumb);
   // const arrayBreadCrumb = [];
   // arrayBreadCrumb.push(props.listBreadCrumb);
   // const item = props.activeBread;
@@ -29,7 +30,7 @@ const BreadCrumb = (props) => {
           <span>Trang chủ</span>
         </LinkStyle>
       </Link>
-      {props.listBreadCrumb?.map((item, index) => (
+      {/* {listBreadCrumb?.map((item, index) => (
         <Link
           href="/type_product/[index]"
           as={`/type_product/${item.id}`}
@@ -41,7 +42,7 @@ const BreadCrumb = (props) => {
             </span>
           </LinkStyle>
         </Link>
-      ))}
+      ))} */}
     </Breadcrumb>
     // <Breadcrumbs aria-label="breadcrumb"  className={classes.breadcrumb_main}>
     //   <Link href="/" as="/">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import CardProductRelated from "../../../utils/CardProductRelated";
+import CardProduct from "../../../utils/CardProduct";
 import styles from "./ProductDetailsStyled";
 import { useProductByCategory } from "../../../hooks/useProductByCategory";
 
@@ -13,9 +13,9 @@ const ProductRelated = ({ detailsProduct }) => {
     detailsProduct?.category?._id
   );
   const renderRelatedItem = () =>
-    relatedItem?.map((item, index) => (
+    relatedItem?.docs?.map((item, index) => (
       <Grid item lg={3} xs={6}>
-        <CardProductRelated item={item} itemByType={true} />
+        <CardProduct item={item} itemByType={true} />
       </Grid>
     ));
   return (

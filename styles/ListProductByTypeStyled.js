@@ -3,6 +3,7 @@ const styles = (theme) => ({
     maxWidth: "1440px",
     margin: "auto",
     backgroundColor: "white",
+    marginBottom: 80,
   },
   main_filter: {
     [theme.breakpoints.down("sm")]: {

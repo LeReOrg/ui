@@ -9,7 +9,7 @@ const getProductByCategory = async (postId) => {
       params: postId?.queryKey[2],
     }
   );
-  return data.docs;
+  return data;
 };
 
 const prefetchProductByCate = (postId, params) => {
