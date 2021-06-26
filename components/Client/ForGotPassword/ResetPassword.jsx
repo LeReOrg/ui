@@ -3,22 +3,32 @@ import { makeStyles } from "@material-ui/styles";
 import { useForm } from "react-hook-form";
 import styles from "./ForGotPasswordStyled";
 import BackGroundLogin from "../../../assets/background_login.png";
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { MyButton } from "./ForGotPasswordStyled";
 import { isEmpty } from "lodash";
 import CustomForm from "../../../utils/CustomForm.js";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 import * as yup from "yup";
+import { useRecoilValue } from "recoil";
+import { tokenOTPState } from "../../../lib/recoil-root";
+import { useChangePassword } from "../../../hooks/useUser/";
 const schema = yup.object().shape({
   newPassword: yup.string().required().min(8),
   reNewPassword: yup.string().required().min(8),
 });
-const ResetPasswordPage = (props) => {
+const ResetPasswordPage = () => {
+  const tokenOTP = useRecoilValue(tokenOTPState);
+  const router = useRouter();
+  const { mutate, data, isLoading, isSuccess } = useChangePassword();
+
   const { register, handleSubmit, watch, setValue, errors } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
   });
   const [done, setDone] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [countDown, setCountDown] = useState(5);
   const isErrors = isEmpty(errors);
   let newPassword = watch("newPassword");
   let reNewPassword = watch("reNewPassword");
@@ -29,12 +39,32 @@ const ResetPasswordPage = (props) => {
       setDisabled(true);
     }
   }, [errors, newPassword, reNewPassword]);
-  const [disabled, setDisabled] = useState(true);
+  useEffect(() => {
+    if (data) {
+      setDone(true);
+    }
+  }, [isSuccess]);
+  useEffect(() => {
+    const intervel = setInterval(() => {
+      setCountDown(countDown - 1);
+    }, 1000);
+    if (countDown === 0) {
+      clearInterval(intervel);
+      router.push("/login");
+    }
+    return () => {
+      clearInterval(intervel);
+    };
+  }, [countDown]);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const resetPassword = (data) => {
     if (data.newPassword === data.reNewPassword) {
-      setDone(true);
+      const params = {
+        password: data.newPassword,
+        token: tokenOTP,
+      };
+      mutate(params);
     }
   };
   return (
@@ -79,6 +109,17 @@ const ResetPasswordPage = (props) => {
             ) : (
               <div>
                 <p>Oke, chúng tôi đã đặt lại mật khẩu cho bạn 👌</p>
+                <Box mt={3}>
+                  <p style={{ marginBottom: 10 }}>
+                    Bạn sẽ tự động về trang đăng nhập sau {countDown}s
+                  </p>
+                  <div
+                    onClick={() => router.push("/login")}
+                    className={classes.reLogin}
+                  >
+                    Đăng Nhập Lại
+                  </div>
+                </Box>
               </div>
             )}
           </div>

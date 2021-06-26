@@ -25,6 +25,17 @@ const styles = (theme) => ({
       display: "none",
     },
   },
+  reLogin: {
+    padding: "10px 40px",
+    backgroundColor: "#2FAF62",
+    borderRadius: 4,
+    fontWeight: "bold",
+    fontSize: 16,
+    lineHeight: "22px",
+    textAlign: "center",
+    color: "white",
+    cursor: "pointer",
+  },
   main_page_background: {
     paddingTop: 70,
   },

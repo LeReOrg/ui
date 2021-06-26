@@ -9,14 +9,15 @@ import { useForm } from "react-hook-form";
 import CustomForm from "../../../utils/CustomForm.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
-const ForGotPasswordPage = (props) => {
+import { useResetPassWord, useVerifyOTP } from "../../../hooks/useUser";
+import { useRouter } from "next/router";
+const ForGotPasswordPage = () => {
   const schema = yup.object().shape({
     email: yup.string().required(),
   });
   const [showCode, setShowCode] = useState(true);
   const [disabled, setDisabled] = useState(true);
-  const [emailState, setEmailState] = useState("");
+  const { mutate, data, isLoading } = useResetPassWord();
   const { register, handleSubmit, watch, errors, setValue } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
@@ -32,8 +33,8 @@ const ForGotPasswordPage = (props) => {
   }, [errors, email]);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const forgotPasswordHandle = (data) => {
-    setEmailState(data.email);
+  const forgotPasswordHandle = async (data) => {
+    mutate(data.email);
     setShowCode(false);
   };
   return (
@@ -68,7 +69,7 @@ const ForGotPasswordPage = (props) => {
                 </>
               </form>
             ) : (
-              <CodePasswordPage email={emailState} />
+              <CodePasswordPage tokenOTP={data} />
             )}
           </div>
         </Grid>
@@ -76,8 +77,9 @@ const ForGotPasswordPage = (props) => {
     </div>
   );
 };
-const CodePasswordPage = (props) => {
+const CodePasswordPage = ({ tokenOTP }) => {
   const [disabled, setDisabled] = useState(true);
+  const router = useRouter();
   const schema = yup.object().shape({
     code: yup.string().required(),
   });
@@ -85,6 +87,12 @@ const CodePasswordPage = (props) => {
     mode: "all",
     resolver: yupResolver(schema),
   });
+  const { mutate, data, isLoading, isSuccess } = useVerifyOTP();
+  useEffect(() => {
+    if (data?.status === "OK") {
+      router.push("/resetPassword");
+    }
+  }, [isSuccess]);
   let code = watch("code");
   const isErrors = isEmpty(errors);
 
@@ -99,8 +107,11 @@ const CodePasswordPage = (props) => {
   const classes = useStyles();
 
   const getCodeHandle = (data) => {
-    let paramUpdate = data;
-    paramUpdate.email = props.email;
+    const params = {
+      otpCode: data,
+      token: tokenOTP,
+    };
+    mutate(params);
   };
   return (
     <>
