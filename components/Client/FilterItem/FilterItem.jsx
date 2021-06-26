@@ -12,11 +12,27 @@ const FilterItem = ({ productByCate }) => {
   const [filter, setFilter] = useRecoilState(filterState);
   const listPlaces = [];
   const handleFilters = (filters, cate) => {
-    if (filters.length > 0) {
-      setFilter((preState) => ({ ...preState, districts: filters.toString() }));
+    if (cate === "place") {
+      if (filters.length > 0) {
+        setFilter((preState) => ({
+          ...preState,
+          districts: filters.toString(),
+        }));
+      } else {
+        if (filter.districts)
+          setFilter((preState) => ({ ...preState, districts: undefined }));
+      }
     } else {
-      if (filter.districts)
-        setFilter((preState) => ({ ...preState, districts: undefined }));
+      if (filters === 0) {
+        setFilter((preState) => ({ ...preState, priceRange: undefined }));
+      } else {
+        const prices = price.filter((item) => item._id == filters);
+        console.log(filters, prices);
+        setFilter((preState) => ({
+          ...preState,
+          priceRange: prices[0]?.array,
+        }));
+      }
     }
   };
   if (productByCate) {

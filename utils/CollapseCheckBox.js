@@ -14,7 +14,6 @@ import { Box } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/styles";
 import { isMobileDevice } from "./FunctionUses";
-import { clone } from "lodash";
 
 const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
   const GreenCheckbox = withStyles({
@@ -30,6 +29,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
     checked: [],
     nameDistrict: [],
   };
+  const [itemShow, setItemShow] = useState(5);
   const [listItems, setListItem] = useState(list);
   const [stateCollapse, setStateCollapse] = useState(collapse);
   useEffect(() => {
@@ -48,7 +48,13 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
   useEffect(() => {
     handleFilters(stateCollapse.nameDistrict);
   }, [stateCollapse.nameDistrict]);
-  console.log(listItems);
+  const showMore = () => {
+    if (itemShow === 5) {
+      setItemShow(listItems.length);
+    } else {
+      setItemShow(5);
+    }
+  };
   const handleClick = () => {
     setStateCollapse((preState) => ({
       ...preState,
@@ -82,7 +88,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
 
   const renderList = () =>
     listItems &&
-    listItems.map((value) => (
+    listItems.slice(0, itemShow).map((value) => (
       <FormControlLabel
         key={value._id}
         control={
@@ -123,6 +129,36 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
             <FormGroup>{renderList()}</FormGroup>
           </FormControl>
         </Collapse>
+        {listItems && listItems.length > 5 && listItems.length !== itemShow && (
+          <p
+            style={{
+              fontWeight: "bold",
+              fontSize: 10,
+              lineHeight: "13px",
+              textAlign: "center",
+              marginTop: 8,
+              cursor: "pointer",
+            }}
+            onClick={() => showMore()}
+          >
+            Hiển thị thêm
+          </p>
+        )}
+        {listItems.length === itemShow && (
+          <p
+            style={{
+              fontWeight: "bold",
+              fontSize: 10,
+              lineHeight: "13px",
+              textAlign: "center",
+              marginTop: 8,
+              cursor: "pointer",
+            }}
+            onClick={() => showMore()}
+          >
+            Thu gọn
+          </p>
+        )}
       </List>
     </div>
   );

@@ -2,27 +2,27 @@ const price = [
   {
     _id: 0,
     name: "Tất cả",
-    array: [],
+    value: 0,
   },
   {
     _id: 1,
     name: "Dưới 100,000đ",
-    array: [0, 100000],
+    array: -100000,
   },
   {
     _id: 2,
     name: "Dưới 300,000đ",
-    array: [0, 3000000],
+    array: -300000,
   },
   {
     _id: 3,
     name: "Dưới 500,000đ",
-    array: [0, 5000000],
+    array: -500000,
   },
   {
     _id: 4,
     name: "Trên 500,000đ",
-    array: [500000, 200000000],
+    array: 500000 - 2000000,
   },
 ];
 

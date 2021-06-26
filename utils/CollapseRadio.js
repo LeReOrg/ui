@@ -13,7 +13,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Box } from "@material-ui/core";
 import { isMobileDevice } from "./FunctionUses";
 
-const CollapseRadio = ({ ...props }) => {
+const CollapseRadio = ({ initState, handleFilters, list, title }) => {
   const useStyles = makeStyles((theme) => ({
     listItemRadio: {
       padding: "0",
@@ -32,10 +32,10 @@ const CollapseRadio = ({ ...props }) => {
     value: "0",
   });
   useEffect(() => {
-    if (props.initState) {
+    if (initState) {
       setRadioState((preState) => ({
         ...preState,
-        open: props.initState,
+        open: initState,
       }));
     }
   }, []);
@@ -53,15 +53,15 @@ const CollapseRadio = ({ ...props }) => {
       <FontAwesomeIcon icon={faAngleDown} className="icon" />
     );
   const handleChange = (event) => {
-    props.handleFilters(event.target.value);
+    handleFilters(event.target.value);
     setRadioState((preState) => ({
       ...preState,
       value: event.target.value,
     }));
   };
   const renderList = () =>
-    props.list
-      ? props.list.map((val) => (
+    list
+      ? list.map((val) => (
           <FormControlLabel
             key={val._id}
             value={`${val._id}`}
@@ -80,7 +80,7 @@ const CollapseRadio = ({ ...props }) => {
           <ListItemText
             primary={
               <Box fontWeight="bold" fontSize={16}>
-                {props.title}
+                {title}
               </Box>
             }
             className="collapse_title"

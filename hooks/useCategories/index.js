@@ -12,4 +12,15 @@ const useCategories = () => {
   });
 };
 
-export { useCategories, getCategories };
+const getDetailCategory = async (categoryId) => {
+  const { data } = await axios.get(
+    `${config.api}/categories/${categoryId.queryKey[1]}`
+  );
+  return data;
+};
+
+const useDetailCategory = (categoryId) => {
+  return useQuery(["categoryDetail", String(categoryId)], getDetailCategory);
+};
+
+export { useCategories, getCategories, getDetailCategory, useDetailCategory };

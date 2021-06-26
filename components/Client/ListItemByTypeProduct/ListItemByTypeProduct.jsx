@@ -10,15 +10,22 @@ import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
 // import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import styles from "./ListItemByTypeProductStyled";
+import { useDetailCategory } from "../../../hooks/useCategories";
+import { useRouter } from "next/router";
 
 const ListItemByTypeProduct = ({ listProduct }) => {
+  const router = useRouter();
+  const { data: categoryData, isError, isSuccess } = useDetailCategory(
+    router.query.index
+  );
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const renderCards = listProduct?.map((items, index) => (
-    <Grid item lg={3} xs={6} key={index}>
-      <CardProduct item={items} itemByType={true} />
-    </Grid>
-  ));
+  const renderCards = () =>
+    listProduct?.map((items, index) => (
+      <Grid item lg={3} xs={6} key={index}>
+        <CardProduct item={items} itemByType={true} />
+      </Grid>
+    ));
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
     setDisplayFilter(true);
@@ -31,7 +38,7 @@ const ListItemByTypeProduct = ({ listProduct }) => {
       <Typography component="div">
         <div className={classes.title_main}>
           <Box className={classes.interested_title}>
-            {listProduct && capitalize(listProduct[0]?.category?.name)}
+            {categoryData && capitalize(categoryData.name)}
           </Box>
           <Box
             className={classes.mobile_mode_filter}
@@ -48,7 +55,11 @@ const ListItemByTypeProduct = ({ listProduct }) => {
           spacing={isMobileDevice() ? 4 : 8}
           className={classes.typeProduct_content}
         >
-          {renderCards}
+          {listProduct?.length > 0 ? (
+            renderCards()
+          ) : (
+            <p>Không có sản phẩm nào</p>
+          )}
         </Grid>
       </Typography>
       {/* <PaginationRounded
