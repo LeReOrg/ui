@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "react-query";
 import axios from "axios";
 import config from "../../config";
 import { useRecoilState } from "recoil";
-import { userState } from "../../lib/recoil-root";
+import { userState, errorCodeState } from "../../lib/recoil-root";
 
 const saveLoginByFireBase = async (params) => {
   const { data } = await axios.post(
@@ -11,17 +11,33 @@ const saveLoginByFireBase = async (params) => {
   );
   return data;
 };
+const useSignUp = () => {
+  const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
+  const [currentUser, setcurrentUser] = useRecoilState(userState);
+
+  return useMutation(signUp, {
+    onSuccess: (data) => {
+      setcurrentUser(data);
+      return data;
+    },
+    onError: (error) => {
+      error &&
+        setErrorCode((preState) => ({
+          ...preState,
+          status: error.response.status,
+          message: error.response.data,
+          code: 2,
+        }));
+    },
+  });
+};
 
 const signUp = async (params) => {
-  try {
-    const { data } = await axios.post(
-      `${config.api}/authentication/register`,
-      params
-    );
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await axios.post(
+    `${config.api}/authentication/register`,
+    params
+  );
+  return data;
 };
 const useLoginByFireBase = () => {
   const [currentUser, setcurrentUser] = useRecoilState(userState);
@@ -35,19 +51,37 @@ const useLoginByFireBase = () => {
   });
 };
 const logInEmailAndPassword = async (params) => {
-  try {
-    const { data } = await axios.post(
-      `${config.api}/authentication/login`,
-      params
-    );
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await axios.post(
+    `${config.api}/authentication/login`,
+    params
+  );
+  return data;
+};
+const useLogin = () => {
+  const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
+  const [currentUser, setcurrentUser] = useRecoilState(userState);
+
+  return useMutation(logInEmailAndPassword, {
+    onSuccess: (data) => {
+      setcurrentUser(data);
+      return data;
+    },
+    onError: (error) => {
+      error &&
+        setErrorCode((preState) => ({
+          ...preState,
+          status: error.response.status,
+          message: error.response.data,
+          code: 3,
+        }));
+    },
+  });
 };
 export {
   saveLoginByFireBase,
   useLoginByFireBase,
   signUp,
   logInEmailAndPassword,
+  useSignUp,
+  useLogin,
 };

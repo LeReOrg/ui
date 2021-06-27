@@ -11,8 +11,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import * as yup from "yup";
-import { signUp } from "../../../hooks/useAuthentication";
-import { userState } from "../../../lib/recoil-root";
+import { useSignUp } from "../../../hooks/useAuthentication";
+import { userState, errorCodeState } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 const schema = yup.object().shape({
   email: yup.string().required().email().max(100),
@@ -23,7 +23,9 @@ const schema = yup.object().shape({
 const SignUpPage = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [currentUser, setcurrentUser] = useRecoilState(userState);
-
+  const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
+  const { mutate, data, isLoading } = useSignUp();
+  console.log(errorCode);
   const useStyles = makeStyles(styles);
   const { register, handleSubmit, watch, setValue, errors } = useForm({
     mode: "all",
@@ -42,9 +44,7 @@ const SignUpPage = (props) => {
     }
   }, [errors, email, password, phoneNumber, displayName]);
   const registerHandle = async (data) => {
-    let params = data;
-    const res = await signUp(params);
-    res && setcurrentUser(res);
+    mutate(data);
   };
   const classes = useStyles();
   return (
@@ -108,7 +108,11 @@ const SignUpPage = (props) => {
               <p style={{ color: "red", fontStyle: "italic" }}>
                 {errors.password?.message}
               </p>
-
+              {errorCode.code === 2 && (
+                <p style={{ color: "red", fontStyle: "italic" }}>
+                  Email đã tồn tại
+                </p>
+              )}
               <MyButton type="submit" isDisabled={disabled} disabled={disabled}>
                 Tạo tài khoản
               </MyButton>

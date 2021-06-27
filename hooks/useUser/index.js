@@ -2,7 +2,11 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import config from "../../config";
 import { useRecoilState } from "recoil";
-import { userState, tokenOTPState } from "../../lib/recoil-root";
+import {
+  userState,
+  tokenOTPState,
+  errorCodeState,
+} from "../../lib/recoil-root";
 
 const updateUser = async (params) => {
   const dataParams = { isHirer: params.isHirer };
@@ -23,14 +27,21 @@ const resetPassWord = async (params) => {
 };
 const useResetPassWord = () => {
   const [tokenOTP, setTokenOTP] = useRecoilState(tokenOTPState);
+  const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
 
   return useMutation(resetPassWord, {
-    onSuccess: async (data) => {
+    onSuccess: (data) => {
       setTokenOTP(data);
       return data;
     },
-    onError: async (error) => {
-      return error;
+    onError: (error) => {
+      error &&
+        setErrorCode((preState) => ({
+          ...preState,
+          status: error.response.status,
+          message: error.response.data,
+          code: 1,
+        }));
     },
   });
 };

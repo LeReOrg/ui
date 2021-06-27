@@ -17,17 +17,22 @@ import {
 } from "../../../firebase/firenase.utils";
 import { logInEmailAndPassword } from "../../../hooks/useAuthentication";
 import { useLoginByFireBase } from "../../../hooks/useAuthentication";
-import { userState } from "../../../lib/recoil-root";
+import { userState, errorCodeState } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
+import { useLogin } from "../../../hooks/useAuthentication";
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required().min(8),
 });
 
-const LoginPage = (props) => {
+const LoginPage = () => {
+  const { mutate: loginManual, data } = useLogin();
+  const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
   const { register, handleSubmit, watch, setValue, errors } = useForm({
-    mode: "all",
-    resolver: yupResolver(schema),
+    criteriaMode: "all",
+    reValidateMode: "onChange",
+    mode: "onChange",
+    resolver: yupResolver(schema, { abortEarly: false }),
   });
   const [currentUser, setcurrentUser] = useRecoilState(userState);
   const router = useRouter();
@@ -35,6 +40,7 @@ const LoginPage = (props) => {
   const { mutate, isLoading } = useLoginByFireBase();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
+
   useEffect(() => {
     if (currentUser !== "") {
       router.back();
@@ -82,6 +88,16 @@ const LoginPage = (props) => {
   let email = watch("email");
   let password = watch("password");
   useEffect(() => {
+    if (email || password) {
+      setErrorCode((preState) => ({
+        ...preState,
+        status: "",
+        message: "",
+        code: "",
+      }));
+    }
+  }, [email, password]);
+  useEffect(() => {
     if (email && password && isErrors) {
       setDisabled(false);
     } else {
@@ -89,9 +105,7 @@ const LoginPage = (props) => {
     }
   }, [errors, email, password]);
   const loginHandle = async (data) => {
-    let paramsUpdate = data;
-    const res = await logInEmailAndPassword(paramsUpdate);
-    res && setcurrentUser(res);
+    loginManual(data);
   };
 
   return (
@@ -114,9 +128,16 @@ const LoginPage = (props) => {
                 name={register}
                 placeholder="Nhập Email hoặc số điện thoại"
               />
-              <p style={{ color: "red", fontStyle: "italic" }}>
-                {errors.email?.message}
-              </p>
+              {errors.email?.type === "email" && (
+                <p style={{ color: "red", fontStyle: "italic" }}>
+                  Email cần đúng định dạng
+                </p>
+              )}
+              {errors.email?.type === "required" && (
+                <p style={{ color: "red", fontStyle: "italic" }}>
+                  Vui lòng điền vào mục này.
+                </p>
+              )}
               <p className={classes.passwordTitle}>Mật khẩu</p>
               <CustomForm
                 className={classes.passwordFormLogin}
@@ -126,9 +147,16 @@ const LoginPage = (props) => {
                 inputOption="password"
                 inputType="input"
               />
-              <p style={{ color: "red", fontStyle: "italic" }}>
-                {errors.password?.message}
-              </p>
+              {errors.password?.type === "required" && (
+                <p style={{ color: "red", fontStyle: "italic" }}>
+                  Vui lòng điền vào mục này.
+                </p>
+              )}
+              {errorCode.code === 3 && email && password && (
+                <p style={{ color: "red", fontStyle: "italic" }}>
+                  Xin vui lòng kiểm tra lại email/password
+                </p>
+              )}
               <Link href="/forgotPassword">
                 <a style={{ textDecoration: "none" }}>
                   <Box

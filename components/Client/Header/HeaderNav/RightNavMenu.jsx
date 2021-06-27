@@ -14,7 +14,7 @@ const RightNavMenu = ({ mobileMode }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [isHovering, setIsHovering] = useState(false);
-  const { user } = useRecoilValue(userState);
+  const user = useRecoilValue(userState);
   return (
     <div className={classes.right_nav_main}>
       <RightNav>
@@ -29,7 +29,7 @@ const RightNavMenu = ({ mobileMode }) => {
           className={classes.showLogin}
         >
           {user && <div className={classes.logoAccount}></div>}
-          <a>{user ? user.displayName : "Tài khoản"}</a>
+          <a>{user && user ? user.displayName : "Tài khoản"}</a>
           {isHovering ? (
             !user ? (
               <ShowLogin />

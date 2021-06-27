@@ -11,12 +11,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useResetPassWord, useVerifyOTP } from "../../../hooks/useUser";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { errorCodeState } from "../../../lib/recoil-root";
 const ForGotPasswordPage = () => {
   const schema = yup.object().shape({
     email: yup.string().required(),
   });
   const [showCode, setShowCode] = useState(true);
   const [disabled, setDisabled] = useState(true);
+  const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
+
   const { mutate, data, isLoading } = useResetPassWord();
   const { register, handleSubmit, watch, errors, setValue } = useForm({
     mode: "all",
@@ -31,12 +35,19 @@ const ForGotPasswordPage = () => {
       setDisabled(true);
     }
   }, [errors, email]);
+  useEffect(() => {
+    if (errorCode) {
+      setShowCode(true);
+    } else {
+      setShowCode(false);
+    }
+  }, [errorCode]);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const forgotPasswordHandle = async (data) => {
     mutate(data.email);
-    setShowCode(false);
   };
+
   return (
     <div className={classes.main_page_login}>
       <Grid container spacing={2}>
@@ -59,6 +70,7 @@ const ForGotPasswordPage = () => {
                     name={register}
                     placeholder="Địa chỉ Email"
                   />
+                  {errorCode.code === 1 && <p>Fail</p>}
                   <MyButton
                     type="submit"
                     isDisabled={disabled}
