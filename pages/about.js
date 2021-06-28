@@ -4,6 +4,7 @@ import styles from "../styles/AboutStyled";
 import Image from "next/image";
 import FirstImage from "../assets/aboutus_first.png";
 import BackGroudAbout from "../assets/aboutbackground2.png";
+import { getLayout } from "../container/MainLayout";
 
 const About = () => {
   const useStyled = makeStyles(styles);
@@ -87,4 +88,6 @@ const About = () => {
     </div>
   );
 };
+About.getLayout = getLayout;
+
 export default About;

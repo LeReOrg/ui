@@ -97,6 +97,17 @@ const LoginPage = () => {
       }));
     }
   }, [email, password]);
+  console.log(errorCode);
+  // useEffect(() => {
+  //   return () => {
+  //     setErrorCode((preState) => ({
+  //       ...preState,
+  //       status: "",
+  //       message: "",
+  //       code: "",
+  //     }));
+  //   };
+  // }, [errorCode]);
   useEffect(() => {
     if (email && password && isErrors) {
       setDisabled(false);

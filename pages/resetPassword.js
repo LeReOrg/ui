@@ -1,5 +1,7 @@
 import React from "react";
 import ResetPasswordPage from "../components/Client/ForGotPassword/ResetPassword";
+import { getLayout } from "../container/MainLayout";
+
 const ResetPassWord = () => {
   return (
     <>
@@ -7,5 +9,6 @@ const ResetPassWord = () => {
     </>
   );
 };
+ResetPassWord.getLayout = getLayout;
 
 export default ResetPassWord;

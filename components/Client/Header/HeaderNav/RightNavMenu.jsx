@@ -29,14 +29,12 @@ const RightNavMenu = ({ mobileMode }) => {
           className={classes.showLogin}
         >
           {user && <div className={classes.logoAccount}></div>}
-          <a>{user && user ? user.displayName : "Tài khoản"}</a>
-          {isHovering ? (
-            !user ? (
-              <ShowLogin />
-            ) : (
-              <AccountList user={user} />
-            )
-          ) : null}
+          <a>
+            {user && user
+              ? user.displayName || user.user.displayName
+              : "Tài khoản"}
+          </a>
+          {isHovering ? !user ? <ShowLogin /> : <AccountList /> : null}
         </li>
         <li>
           <Link href="/uploadproduct">

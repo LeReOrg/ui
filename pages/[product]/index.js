@@ -9,6 +9,7 @@ import ProductRelated from "../../components/Client/ProductDetails/ProductRelate
 import { getProductDetails, useProductDetails } from "../../hooks/useProduct";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
+import { getLayout } from "../../container/MainLayout";
 
 const ProductDetail = () => {
   const router = useRouter();
@@ -51,6 +52,7 @@ const ProductDetail = () => {
     </>
   );
 };
+ProductDetail.getLayout = getLayout;
 
 export default ProductDetail;
 

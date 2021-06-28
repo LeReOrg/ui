@@ -14,6 +14,8 @@ import {
 } from "../../hooks/useProductByCategory";
 import { useRecoilValue } from "recoil";
 import { filterState } from "../../lib/recoil-root";
+import { getLayout } from "../../container/MainLayout";
+
 const ListProductByType = (props) => {
   const useStyled = makeStyles(styles);
   const filter = useRecoilValue(filterState);
@@ -42,6 +44,7 @@ const ListProductByType = (props) => {
     </>
   );
 };
+ListProductByType.getLayout = getLayout;
 
 export async function getStaticPaths() {
   const res = await fetch(

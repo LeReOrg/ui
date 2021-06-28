@@ -21,6 +21,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
 import { useMediaQuery } from "react-responsive";
 import BurgerMobile from "../components/Client/Header/HeaderNav/BurgerMobile";
+import ProfileLayout from "../container/ProfileContainer";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -29,7 +30,8 @@ Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
   const queryClientRef = React.useRef();
   const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
-
+  const getLayout =
+    Component.getLayout || ((page) => <ProfileLayout children={page} />);
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient();
   }
@@ -72,11 +74,9 @@ const MyApp = ({ Component, pageProps }) => {
             <RecoilRoot>
               {isMobile && <BurgerMobile />}
               <div className="container-fluid" id="container-fluid">
-                <Header />
                 <div id="main-container" className={classes.page_container}>
-                  <Component {...pageProps} />
+                  {getLayout(<Component {...pageProps} />)}
                 </div>
-                <Footer />
               </div>
             </RecoilRoot>
           </ThemeProvider>

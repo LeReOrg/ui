@@ -6,7 +6,7 @@ import { auth, logOut } from "../../../../firebase/firenase.utils";
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import { userState } from "../../../../lib/recoil-root";
-const AccountList = ({ user }) => {
+const AccountList = () => {
   const useStyled = makeStyles(styles);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const router = useRouter();
@@ -17,19 +17,64 @@ const AccountList = ({ user }) => {
       router.push("/");
     });
   };
+  console.log(currentUser);
   const classes = useStyled();
   return (
     <div className={classes.mainShow}>
       <div className={classes.mainShowBody}>
-        <div className={classes.registerContentButton}>
-          <Link
-            href={{
-              pathname: `/account/customer/${user?.uid}`,
-              query: { name: `${user?.displayName}` },
-            }}
-          >
-            <div className={classes.registerButton}>Tài khoản của tôi</div>
-          </Link>
+        <div>
+          <div className={classes.registerContentButton}>
+            <Link
+              href={{
+                pathname: "/account/customer/profile",
+              }}
+            >
+              <div className={classes.registerButton}>Tài khoản của tôi</div>
+            </Link>
+          </div>
+          <div className={classes.registerContentButton}>
+            <Link
+              href={{
+                pathname: `/account/customer/purchase`,
+              }}
+            >
+              <div className={classes.registerButton}>Đơn hàng của tôi</div>
+            </Link>
+          </div>
+
+          {currentUser?.user.isHirer && (
+            <>
+              <div className={classes.registerContentButton}>
+                <Link
+                  href={{
+                    pathname: `/account/lease/order`,
+                  }}
+                >
+                  <div className={classes.registerButton}>Quản lý cho thuê</div>
+                </Link>
+              </div>
+              <div className={classes.registerContentButton}>
+                <Link
+                  href={{
+                    pathname: `/account/lease/summary`,
+                  }}
+                >
+                  <div className={classes.registerButton}>
+                    Thống kê doanh thu
+                  </div>
+                </Link>
+              </div>
+              <div className={classes.registerContentButton}>
+                <Link
+                  href={{
+                    pathname: `/account/lease/product`,
+                  }}
+                >
+                  <div className={classes.registerButton}>Quản lý sản phẩm</div>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
         <div className={classes.loginContentButton}>
           <div

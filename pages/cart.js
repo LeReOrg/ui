@@ -10,6 +10,8 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { cartState, cartTotal } from "../lib/recoil-root";
 import { userState } from "../lib/recoil-root";
 import Router from "next/router";
+import { getLayout } from "../container/MainLayout";
+
 const Cart = (props) => {
   const [cart, setCart] = useRecoilState(cartState);
   const { user } = useRecoilValue(userState);
@@ -101,5 +103,6 @@ const Cart = (props) => {
     </>
   );
 };
+Cart.getLayout = getLayout;
 
 export default Cart;

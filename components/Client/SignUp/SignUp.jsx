@@ -39,10 +39,26 @@ const SignUpPage = (props) => {
   useEffect(() => {
     if (email && password && isErrors && displayName && phoneNumber) {
       setDisabled(false);
+      setErrorCode((preState) => ({
+        ...preState,
+        status: "",
+        message: "",
+        code: "",
+      }));
     } else {
       setDisabled(true);
     }
   }, [errors, email, password, phoneNumber, displayName]);
+  // useEffect(() => {
+  //   return () => {
+  //     setErrorCode((preState) => ({
+  //       ...preState,
+  //       status: "",
+  //       message: "",
+  //       code: "",
+  //     }));
+  //   };
+  // }, [errorCode]);
   const registerHandle = async (data) => {
     mutate(data);
   };

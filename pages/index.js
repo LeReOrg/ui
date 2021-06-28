@@ -2,6 +2,7 @@ import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import { getCategories } from "../hooks/useCategories";
 import HomePage from "../components/Client/Home/Home";
+import { getLayout } from "../container/MainLayout";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
     </>
   );
 }
+Home.getLayout = getLayout;
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();

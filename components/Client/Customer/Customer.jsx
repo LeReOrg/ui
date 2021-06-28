@@ -31,32 +31,9 @@ const CustomerPage = () => {
     };
   }, []);
   return (
-    <div className={classes.main_customerProfile}>
-      {!matches ? (
-        <Grid container spacing={4}>
-          <Grid
-            item
-            lg={2}
-            md={3}
-            className={classes.main_customerProfileContent}
-          >
-            <SideBarCustomer />
-          </Grid>
-
-          <Grid item lg={10} md={9}>
-            <Box className={classes.customerProcessInfo}>
-              {historyCart ? (
-                <CustomerHistory isMobile={false} />
-              ) : (
-                <CustomerInfo />
-              )}
-            </Box>
-          </Grid>
-        </Grid>
-      ) : (
-        <CustomerMobile />
-      )}
-    </div>
+    <Box className={classes.customerProcessInfo}>
+      {historyCart ? <CustomerHistory isMobile={false} /> : <CustomerInfo />}
+    </Box>
   );
 };
 

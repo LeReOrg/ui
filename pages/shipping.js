@@ -13,6 +13,7 @@ import * as yup from "yup";
 import { useRecoilValue } from "recoil";
 import { cartState, cartTotal } from "../lib/recoil-root";
 import { city, ward, district } from "../components/Client/dataEx";
+import { getLayout } from "../container/MainLayout";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required").min(6).max(100),
@@ -123,5 +124,6 @@ const Shipping = (props) => {
     </div>
   );
 };
+Shipping.getLayout = getLayout;
 
 export default Shipping;

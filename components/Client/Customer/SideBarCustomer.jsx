@@ -15,8 +15,16 @@ const SideBarCustomer = () => {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
 
   const router = useRouter();
+  console.log(router);
   const { mutate, isLoading } = useUpdateUser();
 
+  // switch (router) {
+  //   case value:
+  //     break;
+
+  //   default:
+  //     break;
+  // }
   const registerHired = async () => {
     const updateHire = { isHirer: true, token: currentUser.token };
     try {
@@ -45,17 +53,6 @@ const SideBarCustomer = () => {
           }}
         />
         <Box component="div" display="flex" alignItems="center" mb={4}>
-          <div className={classes.customerInfo_imageHistory}></div>
-          <div
-            className={classes.customerInfo_textHistoryActive}
-            onClick={() => {
-              setHistoryCart(true);
-            }}
-          >
-            Lịch sử đơn hàng
-          </div>
-        </Box>
-        <Box component="div" display="flex" alignItems="center" mb={4}>
           <div className={classes.customerInfo_imageCustomerDetail}></div>
           <div
             className={classes.customerInfo_textCustomerDetailInActive}
@@ -66,6 +63,18 @@ const SideBarCustomer = () => {
             Thông tin tài khoản
           </div>
         </Box>
+        <Box component="div" display="flex" alignItems="center" mb={4}>
+          <div className={classes.customerInfo_imageHistory}></div>
+          <div
+            className={classes.customerInfo_textHistoryActive}
+            onClick={() => {
+              setHistoryCart(true);
+            }}
+          >
+            Lịch sử đơn hàng
+          </div>
+        </Box>
+
         {currentUser?.user?.isHirer && <HireTabs />}
       </Box>
 

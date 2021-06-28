@@ -1,5 +1,7 @@
 import History from "../../../assets/history_cart.svg";
-import AccountDetail from "../../../assets/accountDetail.svg";
+import HistoryOrder from "../../../assets/historyOrder.svg";
+import HistoryActiveOrder from "../../../assets/historyOrder_active.svg";
+
 import Ring from "../../../assets/ring.svg";
 const styles = (theme) => ({
   main_customerProfile: {
@@ -194,7 +196,14 @@ const styles = (theme) => ({
     },
   },
   customerInfo_imageCustomerDetail: {
-    background: `url(${AccountDetail})`,
+    background: `url(${HistoryOrder})`,
+    width: 22,
+    height: 22,
+    backgroundSize: "cover",
+    marginRight: 15,
+  },
+  customerInfo_imageCustomerDetailActive: {
+    background: `url(${HistoryActiveOrder})`,
     width: 22,
     height: 22,
     backgroundSize: "cover",

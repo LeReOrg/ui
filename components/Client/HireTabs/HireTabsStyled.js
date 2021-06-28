@@ -1,8 +1,9 @@
-import AccountDetail from "../../../assets/accountDetail.svg";
+import Coin from "../../../assets/coins.svg";
+import CoinActive from "../../../assets/coins_active.svg";
 
 const styles = (theme) => ({
   customerInfo_imageCustomerDetail: {
-    background: `url(${AccountDetail})`,
+    background: `url(${Coin})`,
     width: 22,
     height: 22,
     backgroundSize: "cover",
