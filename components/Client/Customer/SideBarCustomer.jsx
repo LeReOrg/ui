@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@material-ui/core";
 import { MyButton } from "../Login/LoginPageStyled";
-import HireTabs from "../HireTabs/HireTabs";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../lib/recoil-root";
 import { useRouter } from "next/router";
@@ -13,18 +12,39 @@ const SideBarCustomer = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const [currentUser, setCurrentUser] = useRecoilState(userState);
-
+  const [tabActive, setTabActive] = useState(0);
   const router = useRouter();
-  console.log(router);
   const { mutate, isLoading } = useUpdateUser();
+  useEffect(() => {
+    switch (router.pathname) {
+      case "/account/customer/profile":
+        setTabActive(1);
+        break;
+      case "/account/customer/purchase":
+        setTabActive(2);
+        break;
+      case "/account/lease/order":
+        setTabActive(3);
 
-  // switch (router) {
-  //   case value:
-  //     break;
+        break;
+      case "/account/lease/summary":
+        setTabActive(4);
 
-  //   default:
-  //     break;
-  // }
+        break;
+      case "/account/lease/product":
+        setTabActive(5);
+
+        break;
+
+      default:
+        break;
+    }
+    return () => {
+      setTabActive(0);
+    };
+  }, [router]);
+
+  console.log(tabActive);
   const registerHired = async () => {
     const updateHire = { isHirer: true, token: currentUser.token };
     try {
@@ -52,30 +72,126 @@ const SideBarCustomer = () => {
             marginBottom: 32,
           }}
         />
-        <Box component="div" display="flex" alignItems="center" mb={4}>
-          <div className={classes.customerInfo_imageCustomerDetail}></div>
+        <Box
+          className={classes.sideBarItem}
+          component="div"
+          display="flex"
+          alignItems="center"
+          mb={4}
+        >
           <div
-            className={classes.customerInfo_textCustomerDetailInActive}
+            className={`${
+              tabActive === 1
+                ? classes.customerInfo_imageCustomerDetailActive
+                : classes.customerInfo_imageCustomerDetail
+            }`}
+          ></div>
+          <div
+            className={`${tabActive === 1 ? "active" : ""}`}
             onClick={() => {
-              setHistoryCart(false);
+              router.push("/account/customer/profile");
             }}
           >
             Thông tin tài khoản
           </div>
         </Box>
-        <Box component="div" display="flex" alignItems="center" mb={4}>
-          <div className={classes.customerInfo_imageHistory}></div>
+        <Box
+          className={classes.sideBarItem}
+          component="div"
+          display="flex"
+          alignItems="center"
+          mb={4}
+        >
           <div
-            className={classes.customerInfo_textHistoryActive}
+            className={`${
+              tabActive === 2
+                ? classes.customerInfo_imageHistoryActive
+                : classes.customerInfo_imageHistory
+            }`}
+          ></div>
+          <div
+            className={`${tabActive === 2 ? "active" : ""}`}
             onClick={() => {
-              setHistoryCart(true);
+              router.push("/account/customer/purchase");
             }}
           >
-            Lịch sử đơn hàng
+            Quản lý đơn hàng
           </div>
         </Box>
 
-        {currentUser?.user?.isHirer && <HireTabs />}
+        {currentUser?.user?.isHirer && (
+          <>
+            <Box
+              className={classes.sideBarItem}
+              component="div"
+              display="flex"
+              alignItems="center"
+              mb={4}
+            >
+              <div
+                className={`${
+                  tabActive === 3
+                    ? classes.customerInfo_imageIconActive
+                    : classes.customerInfo_imageIcon
+                }`}
+              ></div>
+              <div
+                className={`${tabActive === 3 ? "active" : ""}`}
+                onClick={() => {
+                  router.push("/account/lease/order");
+                }}
+              >
+                Quản lý cho thuê
+              </div>
+            </Box>
+            <Box
+              className={classes.sideBarItem}
+              component="div"
+              display="flex"
+              alignItems="center"
+              mb={4}
+            >
+              <div
+                className={`${
+                  tabActive === 4
+                    ? classes.customerInfo_imageIconActive
+                    : classes.customerInfo_imageIcon
+                }`}
+              ></div>
+              <div
+                className={`${tabActive === 4 ? "active" : ""}`}
+                onClick={() => {
+                  router.push("/account/lease/summary");
+                }}
+              >
+                Quản lý doanh thu
+              </div>
+            </Box>
+            <Box
+              className={classes.sideBarItem}
+              component="div"
+              display="flex"
+              alignItems="center"
+              mb={4}
+            >
+              <div
+                className={`${
+                  tabActive === 5
+                    ? classes.customerInfo_imageIconActive
+                    : classes.customerInfo_imageIcon
+                }`}
+              ></div>
+              <div
+                className={`${tabActive === 5 ? "active" : ""}`}
+                onClick={() => {
+                  router.push("/account/lease/product");
+                }}
+              >
+                Quản lý sản phẩm
+              </div>
+            </Box>
+          </>
+        )}
       </Box>
 
       {currentUser?.user?.isHirer ? (

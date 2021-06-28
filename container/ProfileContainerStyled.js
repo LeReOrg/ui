@@ -26,6 +26,10 @@ const styles = (theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  customerProcessInfo: {
+    borderRadius: 8,
+    backgroundColor: "#FFFFFF",
+  },
 });
 
 export default styles;

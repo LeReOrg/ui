@@ -37,7 +37,7 @@ const ProfileLayout = ({ children }) => {
           </Grid>
 
           <Grid item lg={10} md={9}>
-            {children}
+            <Box className={classes.customerProcessInfo}>{children}</Box>
           </Grid>
         </Grid>
       ) : (

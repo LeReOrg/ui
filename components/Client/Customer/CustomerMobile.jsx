@@ -33,7 +33,6 @@ const CustomerMobile = (props) => {
               <Box component="div" display="flex" alignItems="center">
                 <div className={classes.customerInfo_imageHistory}></div>
                 <div
-                  className={classes.customerInfo_textHistoryActive}
                   onClick={() => {
                     goToDetailCusMobile(1);
                   }}

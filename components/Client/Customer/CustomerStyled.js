@@ -1,7 +1,11 @@
 import History from "../../../assets/history_cart.svg";
-import HistoryOrder from "../../../assets/historyOrder.svg";
-import HistoryActiveOrder from "../../../assets/historyOrder_active.svg";
 
+import Coin from "../../../assets/coins.svg";
+import CoinActive from "../../../assets/coins_active.svg";
+import Profile from "../../../assets/profile.svg";
+import ProfileActive from "../../../assets/profile_active.svg";
+import PurChase from "../../../assets/purchase.svg";
+import PurChaseActive from "../../../assets/purchase_active.svg";
 import Ring from "../../../assets/ring.svg";
 const styles = (theme) => ({
   main_customerProfile: {
@@ -154,60 +158,62 @@ const styles = (theme) => ({
     borderRadius: "8px 8px 0 0",
   },
 
-  customerInfo_textHistoryInActive: {
-    fontSize: 14,
-    fontWeight: "normal",
-    color: "rgba(0, 0, 0, 0.85)",
-    "&:hover": {
-      color: "#2FAF62",
-      cursor: "pointer",
-      fontWeight: "bold",
-    },
-    "&:active": {
-      color: "#2FAF62",
-      fontWeight: "bold",
-    },
-  },
-  customerInfo_textHistoryActive: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#2FAF62",
-    "&:hover": {
-      color: "#2FAF62",
-      cursor: "pointer",
-      fontWeight: "bold",
-    },
-  },
-  customerInfo_imageHistory: {
-    background: `url(${History})`,
+  customerInfo_imageIcon: {
+    background: `url(${Coin})`,
     width: 22,
     height: 22,
     backgroundSize: "cover",
     marginRight: 15,
   },
-  customerInfo_textCustomerDetailInActive: {
-    fontSize: 14,
-    fontWeight: "normal",
-    color: "rgba(0, 0, 0, 0.85)",
-    "&:hover": {
-      color: "#2FAF62",
-      cursor: "pointer",
-      fontWeight: "bold",
-    },
+  customerInfo_imageIconActive: {
+    background: `url(${CoinActive})`,
+    width: 22,
+    height: 22,
+    backgroundSize: "cover",
+    marginRight: 15,
+  },
+
+  customerInfo_imageHistory: {
+    background: `url(${PurChase})`,
+    width: 22,
+    height: 22,
+    backgroundSize: "cover",
+    marginRight: 15,
+  },
+  customerInfo_imageHistoryActive: {
+    background: `url(${PurChaseActive})`,
+    width: 22,
+    height: 22,
+    backgroundSize: "cover",
+    marginRight: 15,
   },
   customerInfo_imageCustomerDetail: {
-    background: `url(${HistoryOrder})`,
+    background: `url(${Profile})`,
     width: 22,
     height: 22,
     backgroundSize: "cover",
     marginRight: 15,
   },
   customerInfo_imageCustomerDetailActive: {
-    background: `url(${HistoryActiveOrder})`,
+    background: `url(${ProfileActive})`,
     width: 22,
     height: 22,
     backgroundSize: "cover",
     marginRight: 15,
+  },
+  sideBarItem: {
+    cursor: "pointer",
+    color: "#888E8A",
+    "&:hover": {
+      color: "#2FAF62",
+      fontWeight: "bold",
+    },
+    "& .active": {
+      fontSize: 14,
+      fontWeight: "normal",
+      lineHeight: "20px",
+      color: "#2FAF62",
+    },
   },
 });
 
