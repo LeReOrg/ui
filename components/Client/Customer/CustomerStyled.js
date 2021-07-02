@@ -25,12 +25,48 @@ const styles = (theme) => ({
   },
   customerInfoContainer: {
     padding: "30px",
-    maxWidth: "500px",
+    maxWidth: "600px",
+  },
+  emailFormLogin: {
+    maxWidth: "400px",
+    padding: "10px 0 10px 12px",
+    width: 400,
+    borderRadius: 4,
+    border: "1px solid rgba(0, 0, 0, 0.15)",
+    fontSize: 14,
+    lineHeight: "20px",
+  },
+  emailFormLogin2: {
+    width: 80,
+    borderRadius: 4,
+    border: "1px solid rgba(0, 0, 0, 0.15)",
+    padding: "7px 0 7px 12px",
+    marginRight: 24,
+  },
+  buttonUpdate: {
+    backgroundColor: "#2FAF62",
+    padding: "7px 34px",
+    fontSize: 14,
+    lineHeight: "18px",
+    textTransform: "capitalize",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#2FAF62",
+    },
   },
   customerInfoRow: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    marginBottom: 15,
+    "& p": {
+      fontSize: 14,
+      lineHeight: "18px",
+      width: 110,
+    },
+    "& span": {
+      fontSize: 14,
+      lineHeight: "18px",
+    },
   },
   customerInfo: {
     borderRadius: 8,

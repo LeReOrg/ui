@@ -7,14 +7,7 @@ import {
   tokenOTPState,
   errorCodeState,
 } from "../../lib/recoil-root";
-
-const updateUser = async (params) => {
-  const dataParams = { isHirer: params.isHirer };
-  const { data } = await axios.patch(`${config.api}/users`, dataParams, {
-    headers: { Authorization: `Bearer ${params.token}` },
-  });
-  return data;
-};
+import { clone } from "lodash";
 
 const resetPassWord = async (params) => {
   const { data } = await axios.post(
@@ -90,6 +83,13 @@ const useChangePassword = () => {
     },
   });
 };
+const updateUser = async (params) => {
+  const { data } = await axios.patch(`${config.api}/users`, params, {
+    headers: { Authorization: `Bearer ${params.token}` },
+  });
+  return data;
+};
+
 const useUpdateUser = () => {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
 

@@ -2,128 +2,198 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import styles from "./CustomerStyled";
 import { MyButton } from "../Login/LoginPageStyled";
-import { userState, errorCodeState } from "../../../lib/recoil-root";
+import { userState } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
-import { Grid, Box } from "@material-ui/core";
-import * as yup from "yup";
-
-// import { MyButton } from "./SignUpPageStyled";
-import Link from "next/link";
-import { isEmpty } from "lodash";
+import {
+  Box,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+} from "@material-ui/core";
 import CustomForm from "../../../utils/CustomForm";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-const schema = yup.object().shape({
-  email: yup.string().required().email().max(100),
-  password: yup.string().required().min(8).max(100),
-  phoneNumber: yup.string().min(10).max(100),
-  displayName: yup.string().required().max(100),
-});
+import { useUpdateUser } from "../../../hooks/useUser";
+
 const CustomerInfo = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [currentUser, setcurrentUser] = useRecoilState(userState);
-  // const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
-  // const { mutate, data, isLoading } = useSignUp();
+  const [years, setYears] = useState();
+  const [months, setMonths] = useState();
+  const [dates, setDates] = useState();
+  const [gender, setGender] = useState(currentUser?.user?.gender);
+  const { mutate, data, isLoading } = useUpdateUser();
   const useStyles = makeStyles(styles);
-  const classes = useStyles();
-
-  const { register, handleSubmit, watch, setValue, errors } = useForm({
-    mode: "all",
-    resolver: yupResolver(schema),
-  });
-  const isErrors = isEmpty(errors);
-  let email = watch("email");
-  let password = watch("password");
-  let phoneNumber = watch("phoneNumber");
-  let displayName = watch("displayName");
-  useEffect(() => {
-    if (email && password && isErrors && displayName && phoneNumber) {
-      setDisabled(false);
-      setErrorCode((preState) => ({
-        ...preState,
-        status: "",
-        message: "",
-        code: "",
-      }));
-    } else {
-      setDisabled(true);
+  const generateYearOptions = () => {
+    const arr = [];
+    const startYear = 1900;
+    const endYear = new Date().getFullYear();
+    for (let i = endYear; i >= startYear; i--) {
+      arr.push({ id: i, name: i });
     }
-  }, [errors, email, password, phoneNumber, displayName]);
-  // useEffect(() => {
-  //   return () => {
-  //     setErrorCode((preState) => ({
-  //       ...preState,
-  //       status: "",
-  //       message: "",
-  //       code: "",
-  //     }));
-  //   };
-  // }, [errorCode]);
+    return arr;
+  };
+  const generateDatesOptions = () => {
+    const arr = [];
+    const startDate = 1;
+    const endDate = 31;
+    for (let i = endDate; i >= startDate; i--) {
+      arr.push({ id: i, name: i });
+    }
+    return arr;
+  };
+  const generateMonthsOptions = () => {
+    const arr = [];
+    const startYear = 1;
+    const endYear = 12;
+    for (let i = endYear; i >= startYear; i--) {
+      arr.push({ id: i, name: i });
+    }
+    return arr;
+  };
+  const updateSelection = (event, value) => {
+    event.persist();
+    setGender(value);
+  };
+  useEffect(() => {
+    const getYears = generateYearOptions();
+    const getDates = generateDatesOptions();
+    getDates.reverse();
+    const getMonths = generateMonthsOptions();
+    getMonths.reverse();
+    setMonths(getMonths);
+    setDates(getDates);
+    setYears(getYears);
+  }, []);
+  const classes = useStyles();
+  const { register, handleSubmit, watch, setValue } = useForm({
+    mode: "all",
+  });
+  let yearChoose = watch("years");
+  let monthChoose = watch("months");
+  let dateChoose = watch("dates");
+  let displayName = watch("displayName");
+  let phoneNumber = watch("phoneNumber");
+  const test = currentUser?.user?.birthDay.toString();
+  const year = test.substr(0, 4);
+  const month = test.substr(5, 2);
+  const date = test.substr(8, 2);
   const updateUserHandler = async (data) => {
-    // mutate(data);
+    const updateUser = {};
+    if (gender) {
+      updateUser.gender = gender.genderValue;
+    }
+
+    if (yearChoose && monthChoose && dateChoose) {
+      updateUser.birthDay = `${yearChoose}-${monthChoose}-${dateChoose}`;
+    }
+    if (displayName) {
+      updateUser.displayName = displayName;
+    }
+    if (phoneNumber) {
+      updateUser.phoneNumber = phoneNumber;
+    }
+    updateUser.token = currentUser.token;
+    mutate(updateUser);
   };
   return (
     <div className={classes.customerInfoContainer}>
       <form onSubmit={handleSubmit(updateUserHandler)}>
         <Box className={classes.customerInfoRow}>
-          <p className={classes.emailTitle}>Họ và tên</p>
+          <p className={classes.emailTitle}>Họ và tên:</p>
           <CustomForm
             inputType="input"
             className={classes.emailFormLogin}
             nameInput="displayName"
             name={register}
             placeholder="Nhập họ và tên đầy đủ"
+            value={currentUser?.user?.displayName}
           />
         </Box>
-        <p style={{ color: "red", fontStyle: "italic" }}>
-          {errors.displayName?.message}
-        </p>
         <Box className={classes.customerInfoRow}>
-          <p className={classes.emailTitle}>Địa chỉ Email</p>
+          <p className={classes.emailTitle}>Địa chỉ Email:</p>
           <CustomForm
             inputType="input"
             className={classes.emailFormLogin}
             name={register}
-            placeholder="Nhập Email"
             nameInput="email"
+            disabled
+            value={currentUser?.user?.email}
           />
         </Box>
 
-        <p style={{ color: "red", fontStyle: "italic" }}>
-          {errors.email?.message}
-        </p>
-        <p className={classes.emailTitle}>Số điện thoại</p>
-        <CustomForm
-          inputType="number"
-          className={classes.emailFormLogin}
-          nameInput="phoneNumber"
-          name={register}
-          placeholder="Nhập số điện thoại"
-        />
-        <p style={{ color: "red", fontStyle: "italic" }}>
-          {errors.phoneNumber?.message}
-        </p>
+        <Box className={classes.customerInfoRow}>
+          <p className={classes.emailTitle}>Số điện thoại:</p>
+          <CustomForm
+            inputType="number"
+            className={classes.emailFormLogin}
+            nameInput="phoneNumber"
+            name={register}
+            placeholder="Nhập số điện thoại"
+            value={currentUser?.user?.phoneNumber}
+          />
+        </Box>
 
-        <p className={classes.passwordTitle}>Nhập mật khẩu</p>
-        <CustomForm
-          className={classes.passwordFormLogin}
-          nameInput="password"
-          name={register}
-          placeholder="Tối thiểu 8 ký tự"
-          inputOption="password"
-          inputType="input"
-        />
-        <p style={{ color: "red", fontStyle: "italic" }}>
-          {errors.password?.message}
-        </p>
-        {/* {errorCode.code === 2 && (
-            <p style={{ color: "red", fontStyle: "italic" }}>
-              Email đã tồn tại
-            </p>
-          )} */}
-        {/* <MyButton type="submit" isDisabled={disabled} disabled={disabled}>
-            Tạo tài khoản
-          </MyButton> */}
+        <Box className={classes.customerInfoRow}>
+          <p className={classes.passwordTitle}>Giới tính:</p>
+          <FormControl component="fieldset">
+            <RadioGroup
+              onChange={updateSelection}
+              row
+              aria-label="position"
+              name="position"
+              defaultValue="top"
+              value={gender}
+            >
+              <FormControlLabel
+                value="MALE"
+                control={<Radio size="small" color="primary" />}
+                label="Nam"
+              />
+              <FormControlLabel
+                value="FEMALE"
+                control={<Radio size="small" color="primary" />}
+                label="Nữ"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Box>
+
+        <Box className={classes.customerInfoRow}>
+          <p className={classes.emailTitle}>Ngày sinh:</p>
+          <CustomForm
+            inputType="select"
+            className={classes.emailFormLogin2}
+            placeholder="Ngày"
+            nameSelect={date}
+            valueOptions={dates}
+            nameInput="dates"
+            name={register}
+          />
+          <CustomForm
+            inputType="select"
+            className={classes.emailFormLogin2}
+            placeholder="Tháng"
+            nameSelect={month}
+            valueOptions={months}
+            nameInput="months"
+            name={register}
+          />
+          <CustomForm
+            inputType="select"
+            className={classes.emailFormLogin2}
+            placeholder="Năm"
+            nameSelect={year}
+            valueOptions={years}
+            nameInput="years"
+            name={register}
+          />
+        </Box>
+        <Box display="flex" justifyContent="center">
+          <MyButton type="submit" className={classes.buttonUpdate}>
+            Cập nhật
+          </MyButton>
+        </Box>
       </form>
     </div>
   );
