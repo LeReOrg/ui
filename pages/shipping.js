@@ -86,7 +86,7 @@ const Shipping = () => {
   }, [province, district, ward]);
 
   const shippingPayment = (data) => {
-    console.log(data);
+    // console.log(data);
   };
 
   return (

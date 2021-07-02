@@ -37,7 +37,6 @@ const Cart = (props) => {
     },
   });
   const classes = useStyled();
-  console.log(cart);
   const renderItemCart = () =>
     cart.map((item, index) => <CartItem item={item.item} key={index} />);
   return (

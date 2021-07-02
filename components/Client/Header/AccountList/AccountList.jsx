@@ -17,7 +17,6 @@ const AccountList = () => {
       router.push("/");
     });
   };
-  console.log(currentUser);
   const classes = useStyled();
   return (
     <div className={classes.mainShow}>

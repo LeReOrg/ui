@@ -9,7 +9,7 @@ import { Breadcrumb } from "rsuite";
 
 const BreadCrumb = ({ listBreadCrumb }) => {
   const useStyled = makeStyles(styles);
-  console.log(listBreadCrumb);
+  // console.log(listBreadCrumb);
   // const arrayBreadCrumb = [];
   // arrayBreadCrumb.push(props.listBreadCrumb);
   // const item = props.activeBread;

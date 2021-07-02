@@ -74,10 +74,10 @@ const CustomerInfo = (props) => {
   let dateChoose = watch("dates");
   let displayName = watch("displayName");
   let phoneNumber = watch("phoneNumber");
-  const test = currentUser?.user?.birthDay.toString();
-  const year = test.substr(0, 4);
-  const month = test.substr(5, 2);
-  const date = test.substr(8, 2);
+  const test = currentUser?.user?.birthDay?.toString();
+  const year = test?.substr(0, 4);
+  const month = test?.substr(5, 2);
+  const date = test?.substr(8, 2);
   const updateUserHandler = async (data) => {
     const updateUser = {};
     if (gender) {

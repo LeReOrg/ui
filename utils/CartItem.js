@@ -18,7 +18,6 @@ const CartItem = ({ item, clearItem }) => {
     quantity,
     image,
   } = item;
-  console.log(item);
   // useEffect(() => {
   //   let priceUpdate = 0;
   //   priceUpdate = item.quantity * item.price;

@@ -59,8 +59,6 @@ const SelectBoxCart = (props) => {
   }));
   const classes = useStyles();
   const addItem = () => {
-    console.log(cart);
-
     setCart(
       [...cart].map((object) => {
         if (object.id === props.cartItem.id) {

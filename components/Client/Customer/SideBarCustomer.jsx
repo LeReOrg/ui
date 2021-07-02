@@ -44,7 +44,6 @@ const SideBarCustomer = () => {
     };
   }, [router]);
 
-  console.log(tabActive);
   const registerHired = async () => {
     const updateHire = { isHirer: true, token: currentUser.token };
     try {

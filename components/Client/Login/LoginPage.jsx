@@ -97,7 +97,6 @@ const LoginPage = () => {
       }));
     }
   }, [email, password]);
-  console.log(errorCode);
   // useEffect(() => {
   //   return () => {
   //     setErrorCode((preState) => ({

@@ -30,7 +30,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     category,
     quantity,
   } = detailsProduct;
-  console.log(detailsProduct);
   let arrayImages = [];
   images.map((item, index) => {
     let objectImages = {};
@@ -51,7 +50,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     depositPrice: depositPrice,
     user: user,
   });
-  console.log(itemAdd);
   useEffect(() => {
     let background = document.getElementById("container-fluid");
     background.classList.add("customerPage");
@@ -72,7 +70,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
 
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
-    console.log(newCart);
     setCart(newCart);
   };
   const renderDiscount = () =>

@@ -25,7 +25,6 @@ const SignUpPage = (props) => {
   const [currentUser, setcurrentUser] = useRecoilState(userState);
   const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
   const { mutate, data, isLoading } = useSignUp();
-  console.log(errorCode);
   const useStyles = makeStyles(styles);
   const { register, handleSubmit, watch, setValue, errors } = useForm({
     mode: "all",

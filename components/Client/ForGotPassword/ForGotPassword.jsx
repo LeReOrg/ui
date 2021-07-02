@@ -35,7 +35,6 @@ const ForGotPasswordPage = () => {
       setDisabled(true);
     }
   }, [errors, email]);
-  console.log(errorCode);
   useEffect(() => {
     if (errorCode || errorCode.code === "") {
       setShowCode(true);
@@ -43,7 +42,6 @@ const ForGotPasswordPage = () => {
       setShowCode(false);
     }
   }, [errorCode]);
-  console.log(showCode);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const forgotPasswordHandle = async (data) => {
