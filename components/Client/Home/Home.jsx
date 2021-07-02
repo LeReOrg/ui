@@ -8,7 +8,7 @@ const HomePage = (props) => {
   return (
     <>
       <SlideBackground />
-      <div style={{ width: "95%", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <ProductType />
         <MoreInfo />
         <InterestedItem />

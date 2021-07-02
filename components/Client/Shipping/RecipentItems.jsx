@@ -17,6 +17,7 @@ const RecipentItems = ({ cartItem, totalPrice }) => {
   const classes = useStyled({
     disabled: disabled,
   });
+  console.log(cartItem);
   const paymentAccess = () => {
     alert("Bạn đã than toán thành công");
     Router.push("/");

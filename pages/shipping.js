@@ -1,125 +1,116 @@
 import React, { useState, useEffect } from "react";
 import ShippingInfo from "../components/Client/Shipping/ShippingInfo";
-import RecipentItems from "../components/Client/Shipping/RecipentItems";
+import Button from "@material-ui/core/Button";
 import PaymentType from "../components/Client/Shipping/PaymentType";
 import { makeStyles } from "@material-ui/styles";
-import Grid from "@material-ui/core/Grid";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
 import styles from "../styles/ShippingStyled";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useRecoilValue } from "recoil";
-import { cartState, cartTotal } from "../lib/recoil-root";
-import { city, ward, district } from "../components/Client/dataEx";
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  cartState,
+  cartTotal,
+  listAddressState,
+  userState,
+} from "../lib/recoil-root";
 import { getLayout } from "../container/MainLayout";
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required").min(6).max(100),
-  email: yup.string().required("Email is required").min(10).max(100),
   telephoneNumber: yup.number().required("TelephoneNumber is required"),
   city: yup.number().required("City is required").min(0),
   district: yup.number().required("District is required").min(0),
   ward: yup.number().required("Ward is required").min(0),
 });
-const Shipping = (props) => {
+const Shipping = () => {
   const [showSubAddress, setshowSubAddress] = useState(false);
   const cart = useRecoilValue(cartState);
-  const [districtState, setDistrictState] = useState();
-  const [wardState, setWardState] = useState();
-  const totalPrice = useRecoilValue(cartTotal);
+  const [proviceName, setProviceName] = useState();
+  const [districtName, setDistrictName] = useState();
+  const [wardName, setWardName] = useState();
+  const [listAddress, setListAddress] = useRecoilState(listAddressState);
+
   const useStyled = makeStyles(styles);
   const classes = useStyled();
-  const { register, handleSubmit, watch, setValue, errors } = useForm({
-    mode: "all",
-    resolver: yupResolver(schema),
+  const { register, handleSubmit, watch, setValue, errors } = useForm();
+  let province = watch("province");
+  let district = watch("district");
+  let ward = watch("ward");
+  const user = useRecoilValue(userState);
+  const router = useRouter();
+  useEffect(() => {
+    if (user == "") router.push("/login");
+  }, []);
+
+  const theme = createMuiTheme({
+    overrides: {
+      MuiButton: {
+        text: {
+          background: "#2FAF62",
+          borderRadius: 4,
+          border: 0,
+          color: "white",
+          height: 48,
+          padding: "0 30px",
+          fontWeight: "bold",
+          width: "100%",
+          fontSize: 16,
+          maxWidth: 350,
+          "&:hover": {
+            background: "red",
+          },
+        },
+      },
+    },
   });
-  const cityChosen = watch("city");
-  const districtChosen = watch("district");
   useEffect(() => {
-    if (cityChosen) {
-      const districtByCity = district.filter(
-        (e) => e.idCity == parseInt(cityChosen)
+    if (listAddress !== "") {
+      const cityName = listAddress?.city?.filter(
+        (item, index) => item.idProvince == province
       );
-      setDistrictState(districtByCity);
-    }
-  }, [cityChosen]);
-  useEffect(() => {
-    if (districtChosen) {
-      const wardByDistrict = ward.filter(
-        (e) => e.idDistrict == parseInt(districtChosen)
+      setProviceName(cityName);
+      const districtItem = listAddress?.district?.filter(
+        (item, index) => item.idDistrict == district
       );
-      setWardState(wardByDistrict);
+      setDistrictName(districtItem);
+      const warItem = listAddress?.ward?.filter(
+        (item, index) => item.idCoummune == ward
+      );
+      setWardName(warItem);
     }
-  }, [districtChosen]);
+  }, [province, district, ward]);
 
-  // useEffect(() => {
-  //   if (cartItem) {
-  //     let totalPrices = cartItem.cartItems.reduce(function (accumulator, item) {
-  //       return accumulator + item.quantity * item.price;
-  //     }, 0);
-  //     setTotalPrice(totalPrices);
-  //   }
-  // }, [cartItem.cartItems]);
-
-  // const payment = (values) => {
-  //   values.totalPrice = totalPrice;
-  //   setTimeout(() => {
-  //     alert(JSON.stringify(values, null, 2));
-  //     console.log(values);
-  //   }, 1000);
-  // };
   const shippingPayment = (data) => {
     console.log(data);
   };
-  const showMenuAddressSub = () => {
-    setshowSubAddress(true);
-  };
-  const getValueBack = () => {
-    setshowSubAddress(false);
-  };
+
   return (
     <div className={classes.main_shipping}>
       <form onSubmit={handleSubmit(shippingPayment)}>
-        <Grid container spacing={3} className={classes.main_shipping__rootLeft}>
-          {!showSubAddress ? (
-            <>
-              <Grid item lg={8} md={7} xs={12}>
-                <Box>
-                  <Box className={classes.main_shipping__contentLeft}>
-                    <h1 className={classes.main_shipping__contentLeftTitle}>
-                      Thông tin nhận hàng
-                    </h1>
-                    <Box className={classes.main_shipping__contentLeftInfo}>
-                      <ShippingInfo
-                        name={register}
-                        showMenuSubAddress={showMenuAddressSub}
-                        city={city}
-                        ward={wardState}
-                        district={districtState}
-                      />
-                    </Box>
-                  </Box>
-                  <hr className={classes.main_shipping__mobileHr} />
-                  <Box className={classes.main_shipping__contentBottom}>
-                    <h1 className={classes.main_shipping__contentPaymentTitle}>
-                      Thông tin thanh toán
-                    </h1>
-                    <PaymentType />
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item lg={4} md={5} xs={12}>
-                <Box className={classes.main_shipping__contentRight}>
-                  <RecipentItems cartItem={cart} totalPrice={totalPrice} />
-                </Box>
-              </Grid>
-            </>
-          ) : (
-            <AddAddressMobile getValueBack={getValueBack} />
-          )}
-        </Grid>
+        <Box>
+          <Box className={classes.main_shipping__contentLeft}>
+            <h1 className={classes.main_shipping__contentLeftTitle}>
+              Địa chỉ giao hàng
+            </h1>
+            <Box className={classes.main_shipping__contentLeftInfo}>
+              <ShippingInfo
+                cityChoose={province}
+                districtChoose={district}
+                name={register}
+              />
+              <div className={classes.main_cart__totalButton}>
+                <ThemeProvider theme={theme}>
+                  <Button type="submit">Giao đến địa chỉ này</Button>
+                </ThemeProvider>
+              </div>
+            </Box>
+          </Box>
+        </Box>
       </form>
     </div>
   );

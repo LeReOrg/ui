@@ -23,6 +23,15 @@ const styles = (theme) => ({
       width: "100%",
     },
   },
+  customerInfoContainer: {
+    padding: "30px",
+    maxWidth: "500px",
+  },
+  customerInfoRow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   customerInfo: {
     borderRadius: 8,
     backgroundColor: "#FFFFFF",

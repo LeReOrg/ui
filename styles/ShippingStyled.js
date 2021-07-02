@@ -12,9 +12,10 @@ const styles = (theme) => ({
     },
   },
   main_shipping: {
-    margin: "30px 80px",
+    margin: "30px auto",
+    maxWidth: 1440,
     [theme.breakpoints.down("xs")]: {
-      margin: "10px 15px",
+      margin: "10px auto",
     },
   },
   main_shipping__content: {},
@@ -38,7 +39,7 @@ const styles = (theme) => ({
     },
   },
   main_shipping__contentLeftInfo: {
-    width: "90%",
+    maxWidth: 500,
     margin: "20px auto",
     [theme.breakpoints.down("xs")]: {
       width: "100%",

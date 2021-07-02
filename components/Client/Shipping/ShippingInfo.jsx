@@ -3,105 +3,91 @@ import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import styles from "./ShippingStyled";
 import CustomForm from "../../../utils/CustomForm.js";
+import { useCity, useDistrict, useWard } from "../../../hooks/useLocation";
+import { listAddressState } from "../../../lib/recoil-root";
+import { useRecoilState } from "recoil";
 
-const ShippingInfo = (props) => {
+const ShippingInfo = ({ cityChoose, districtChoose, name }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
+  const [listAddress, setListAddress] = useRecoilState(listAddressState);
+
+  const { data: city } = useCity();
+  const { data: district } = useDistrict(cityChoose);
+  const { data: ward } = useWard(districtChoose);
+  useEffect(() => {
+    city && setListAddress((preState) => ({ ...preState, city: city }));
+    district &&
+      setListAddress((preState) => ({ ...preState, district: district }));
+    ward && setListAddress((preState) => ({ ...preState, ward: ward }));
+  }, [city, district, ward]);
   return (
     <>
       <Box mb={2}>
         <p className={classes.titleText}>Họ và tên</p>
         <CustomForm
           className={classes.inputTag}
-          name={props.name}
+          name={name}
           nameInput="fullName"
           placeholder="Họ và tên"
           inputType="input"
         />
       </Box>
       <Box mb={2}>
-        <Grid container spacing={2}>
-          <Grid item lg={6}>
-            <p className={classes.titleText}>Địa chỉ Email</p>
-            <CustomForm
-              className={classes.inputTag}
-              name={props.name}
-              nameInput="email"
-              placeholder="VD:dsdsd@gmail.com"
-              inputType="input"
-            />
-          </Grid>
-          <Grid item lg={6}>
-            <p className={classes.titleText}>Số điện thoại</p>
-            <CustomForm
-              className={classes.inputTag}
-              nameInput="telephoneNumber"
-              inputType="number"
-              name={props.name}
-              placeholder="02323242"
-            />
-          </Grid>
-        </Grid>
+        <p className={classes.titleText}>Điện thoại di động</p>
+        <CustomForm
+          className={classes.inputTag}
+          nameInput="telephoneNumber"
+          inputType="number"
+          name={name}
+          placeholder="02323242"
+        />
       </Box>
       <Box mb={2} className={classes.addAddressMobile}>
         <p className={classes.titleText}>Địa chỉ nhận hàng</p>
-        {/* {props.values.city !== -1 &&
-        props.values.district !== -1 &&
-        props.values.ward !== -1 &&
-        props.values.address !== "" ? (
-          <p>{`${props.values.address}, ${props.values.ward}, ${props.values.district}, ${props.values.city}`}</p>
-        ) : (
-          <p onClick={props.showMenuSubAddress}>+ Thêm địa chỉ</p>
-        )} */}
       </Box>
       <Box mb={2} className={classes.city}>
         <p className={classes.titleText}>Tỉnh/Thành phố</p>
         <CustomForm
-          className={classes.inputTag}
-          name={props.name}
-          nameInput="city"
           inputType="select"
-          nameSelect="Chọn tỉnh/thành phố"
-          valueOptions={props.city}
+          className={classes.inputTag}
+          name={name}
+          nameInput="province"
+          placeholder="Tỉnh/Thành phố"
+          nameSelect="Tỉnh/Thành phố"
+          valueOptions={city}
         />
       </Box>
       <Box mb={2} className={classes.district}>
-        <Grid container spacing={2}>
-          {props.district ? (
-            <Grid item lg={6}>
-              <p className={classes.titleText}>Quận/Huyện</p>
-              <CustomForm
-                className={classes.selectTag}
-                nameInput="district"
-                inputType="select"
-                name={props.name}
-                nameSelect="Chọn quận/huyện"
-                valueOptions={props.district}
-              />
-            </Grid>
-          ) : null}
-          {props.ward ? (
-            <Grid item lg={6}>
-              <p className={classes.titleText}>Phường/Xã</p>
-              <CustomForm
-                className={classes.selectTag}
-                nameInput="ward"
-                name={props.name}
-                nameSelect="Chọn phường/xã"
-                inputType="select"
-                valueOptions={props.ward}
-              />
-            </Grid>
-          ) : null}
-        </Grid>
+        <p className={classes.titleText}>Quận/Huyện</p>
+        <CustomForm
+          className={classes.selectTag}
+          nameInput="district"
+          inputType="select"
+          name={name}
+          nameSelect="Chọn quận/huyện"
+          valueOptions={district}
+        />
+      </Box>
+      <Box mb={2} className={classes.ward}>
+        <p className={classes.titleText}>Phường/Xã</p>
+        <CustomForm
+          inputType="select"
+          className={classes.inputTag}
+          name={name}
+          nameInput="ward"
+          placeholder="Phường/Xã"
+          nameSelect="Phường/Xã"
+          valueOptions={ward}
+        />
       </Box>
       <Box mb={2} className={classes.ward}>
         <p className={classes.titleText}>Địa chỉ cụ thể</p>
         <CustomForm
           placeholder="VD: 253/4 Lê Duẩn"
-          className={classes.inputTag2}
-          name={props.name}
-          inputType="input"
+          className={classes.inputTag}
+          name={name}
+          inputType="textarea"
           nameInput="address"
         />
       </Box>

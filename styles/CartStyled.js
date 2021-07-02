@@ -11,7 +11,7 @@ const styles = (theme) => ({
     },
   },
   main_cart: {
-    width: "90%",
+    maxWidth: 1440,
     margin: "32px auto 0 auto",
     [theme.breakpoints.down("xs")]: {
       margin: "16px auto 0 auto",
@@ -70,11 +70,7 @@ const styles = (theme) => ({
     color: "#2FAF62",
   },
   main_cart__totalButton: {
-    width: "50%",
     margin: "0 auto",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-    },
   },
 });
 

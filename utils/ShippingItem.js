@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import { Grid, Button, Box } from "@material-ui/core";
 import styles from "../styles/ShippingItemStyled";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import Image from "next/image";
+
 const ShippingItem = ({ item, addItem }) => {
   const { name, price, coc, quantity, image } = item.item;
   const useStyles = makeStyles(styles);
@@ -16,14 +18,13 @@ const ShippingItem = ({ item, addItem }) => {
       <div className={classes.cartBody}>
         <Grid container spacing={2}>
           <Grid item lg={3} xs={3}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                image={image}
-                title="Contemplative Reptile"
-                className={classes.smallImage}
-              />
-            </CardActionArea>
+            <Image
+              src={image.url}
+              title={image.name}
+              width={88}
+              height={88}
+              className={classes.smallImage}
+            />
           </Grid>
           <Grid item lg={9} xs={9} className={classes.infoContent}>
             <Typography className={classes.nameItem}>{name}</Typography>

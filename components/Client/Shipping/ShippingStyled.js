@@ -111,13 +111,7 @@ const styles = (theme) => ({
     padding: "10px 12px",
     backgroundColor: "white",
   },
-  inputTag2: {
-    width: "100%",
-    border: "1px solid #C3C7C5",
-    borderRadius: 4,
-    padding: "10px 12px",
-    backgroundColor: "white",
-  },
+
   selectTag: {
     width: 350,
     border: "1px solid #C3C7C5",

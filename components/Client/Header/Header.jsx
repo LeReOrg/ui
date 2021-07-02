@@ -13,7 +13,7 @@ const Header = (props) => {
     });
     window.onscroll = function () {
       var doc = document.documentElement;
-      if (doc.scrollTop < 5) {
+      if (doc.scrollTop < 2) {
         setScroll(false);
       }
     };

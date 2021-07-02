@@ -9,17 +9,11 @@ import styles from "../styles/CartStyled";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { cartState, cartTotal } from "../lib/recoil-root";
 import { userState } from "../lib/recoil-root";
-import Router from "next/router";
 import { getLayout } from "../container/MainLayout";
 
 const Cart = (props) => {
   const [cart, setCart] = useRecoilState(cartState);
   const { user } = useRecoilValue(userState);
-  // useEffect(() => {
-  //   if (nameUser === "" ) {
-  //     Router.push("/login");
-  //   }
-  // }, []);
   const totalPrice = useRecoilValue(cartTotal);
   const useStyled = makeStyles(styles);
   const theme = createMuiTheme({
@@ -43,7 +37,7 @@ const Cart = (props) => {
     },
   });
   const classes = useStyled();
-
+  console.log(cart);
   const renderItemCart = () =>
     cart.map((item, index) => <CartItem item={item.item} key={index} />);
   return (
@@ -54,14 +48,14 @@ const Cart = (props) => {
           {cart.length !== 0 ? (
             <div className={classes.main_cart__content}>
               <Grid container className={classes.root} spacing={2}>
-                <Grid item lg={7} xs={12}>
+                <Grid item lg={9} xs={12}>
                   <div className={classes.main_cart__info}>
                     <div className={classes.main_cart__infoItem}>
                       {renderItemCart()}
                     </div>
                   </div>
                 </Grid>
-                <Grid item lg={5} xs={12}>
+                <Grid item lg={3} xs={12}>
                   <div className={classes.main_cart__summary}>
                     <div className={classes.main_cart__summaryContent}>
                       <div className={classes.main_cart__provisionalTotal}>
@@ -85,7 +79,7 @@ const Cart = (props) => {
                         <Link href="/shipping">
                           <a>
                             <ThemeProvider theme={theme}>
-                              <Button>Tiến hành thanh toán</Button>
+                              <Button>Đặt mua</Button>
                             </ThemeProvider>
                           </a>
                         </Link>

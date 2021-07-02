@@ -30,6 +30,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     category,
     quantity,
   } = detailsProduct;
+  console.log(detailsProduct);
   let arrayImages = [];
   images.map((item, index) => {
     let objectImages = {};
@@ -40,14 +41,17 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   const [quantityItem, setQuantityItem] = useState(1);
   const [itemAdd, setItemAdd] = useState({
     id: _id,
+    productId: _id,
     name: name,
     formDate: "",
     toDate: "",
     price: price,
-    quantityIncrease: 0,
+    quantity: quantityItem,
     image: images[0],
     depositPrice: depositPrice,
+    user: user,
   });
+  console.log(itemAdd);
   useEffect(() => {
     let background = document.getElementById("container-fluid");
     background.classList.add("customerPage");
@@ -58,14 +62,17 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,
-      quantityIncrease: quantityItem,
+      quantity: quantityItem,
     }));
   }, [quantityItem]);
   const [cart, setCart] = useRecoilState(cartState);
   const [totalDays, setTotalDays] = useState();
+  const [disabled, setDisabled] = useState(true);
+  const [moreThanMinDate, setMoreThanMinDate] = useState(false);
 
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
+    console.log(newCart);
     setCart(newCart);
   };
   const renderDiscount = () =>
@@ -125,14 +132,28 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     }
   };
   const getValueDatePiker = (values) => {
-    const totoDate =
-      (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);
-    setTotalDays(totoDate);
-    setItemAdd((preState) => ({
-      ...preState,
-      formDate: values[0],
-      toDate: values[1],
-    }));
+    if (values) {
+      const fromFormat = `${values[0].getFullYear()}-${
+        values[0].getMonth() + 1
+      }-${values[0].getDate()}`;
+      const toFormat = `${values[0].getFullYear()}-${
+        values[0].getMonth() + 1
+      }-${values[0].getDate()}`;
+      const totalDate =
+        (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);
+      setTotalDays(totalDate);
+      if (totalDate > shortestHiredDays) {
+        setItemAdd((preState) => ({
+          ...preState,
+          formDate: fromFormat,
+          toDate: toFormat,
+        }));
+        setMoreThanMinDate(false);
+        setDisabled(false);
+      } else {
+        setMoreThanMinDate(true);
+      }
+    }
   };
   return (
     <div className={classes.main_list}>
@@ -309,6 +330,9 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
               <Box mt={2}>{renderRequire()}</Box>
             </Grid>
           </Grid>
+          {moreThanMinDate && (
+            <p>Vui lòng chọn số ngày thuê nhiều hơn {shortestHiredDays} ngày</p>
+          )}
           <hr style={{ borderTop: "1px solid #C3C7C5" }} />
           <div className={classes.button_cart}>
             <Box>
@@ -316,6 +340,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                 onClick={() => addToCart(itemAdd)}
                 variant="contained"
                 color="primary"
+                disabled={disabled}
               >
                 Thêm Giỏ Hàng
               </StyledButton>

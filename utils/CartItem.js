@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SelectBoxCart from "../utils/SelectBoxCart";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Button } from "@material-ui/core";
 // import { clearItemFromCart } from "../store/action/cart_actions";
+import Image from "next/image";
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 const CartItem = ({ item, clearItem }) => {
@@ -14,12 +12,13 @@ const CartItem = ({ item, clearItem }) => {
     id,
     name,
     price,
-    owner_id,
+    user,
     totalDateRent,
     depositPrice,
-    quantityIncrease,
+    quantity,
     image,
   } = item;
+  console.log(item);
   // useEffect(() => {
   //   let priceUpdate = 0;
   //   priceUpdate = item.quantity * item.price;
@@ -29,10 +28,6 @@ const CartItem = ({ item, clearItem }) => {
   //   }));
   // }, [item.quantity]);
   const useStyles = makeStyles((theme) => ({
-    smallImage: {
-      //   height: 88,
-      //   width: 88,
-    },
     cartBody: {
       display: "flex",
       alignItems: "center",
@@ -68,6 +63,10 @@ const CartItem = ({ item, clearItem }) => {
       [theme.breakpoints.down("xs")]: {
         display: "none",
       },
+    },
+    cartBodyText: {
+      marginLeft: 16,
+      textTransform: "capitalize",
     },
     hrCart: {
       marginRight: 24,
@@ -109,44 +108,33 @@ const CartItem = ({ item, clearItem }) => {
     <>
       <div className={classes.cartBody}>
         <Grid container spacing={2}>
-          <Grid item lg={2} xs={3}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                image={image.url}
-                title="Contemplative Reptile"
-                className={classes.smallImage}
-              />
-            </CardActionArea>
+          <Grid item lg={4} xs={3} style={{ display: "flex" }}>
+            <Image src={image.url} title={image.name} width={88} height={88} />
+
+            <Typography className={classes.cartBodyText}>
+              <Typography>
+                {name === undefined
+                  ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
+                  : name}
+              </Typography>
+              Cung cấp bởi
+              <span style={{ paddingLeft: 5 }} className={classes.nameProvided}>
+                {user.displayName}
+              </span>
+            </Typography>
           </Grid>
-          <Grid item lg={10} xs={9}>
+          <Grid item lg={8} xs={9}>
             <Grid container>
-              <Grid item lg={5} xs={10}>
-                <Typography>
-                  {name === undefined
-                    ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
-                    : name}
-                </Typography>
-                <Typography>
-                  Cung cấp bởi
-                  <span
-                    style={{ paddingLeft: 5 }}
-                    className={classes.nameProvided}
-                  >
-                    {/* {owner_id.last_name}{owner_id.first_name} */}
-                  </span>
-                </Typography>
-              </Grid>
               <Grid item className={classes.deleteButtonMobile} xs={2}>
                 <Button className={classes.deleteButton}>
                   <DeleteOutlineIcon />
                 </Button>
               </Grid>
-              <Grid item lg={2} xs={12} className={classes.selectedBoxCart}>
+              <Grid item lg={3} xs={12} className={classes.selectedBoxCart}>
                 <SelectBoxCart
                   cartItem={item}
                   // numberDate={totalDateRent}
-                  quantity={quantityIncrease}
+                  quantity={quantity}
                 />
               </Grid>
               <Grid item lg={5} xs={12} className={classes.infoAmount}>
@@ -154,6 +142,9 @@ const CartItem = ({ item, clearItem }) => {
                   {price.toLocaleString("en-US")}đ/ngày
                 </Typography>
                 <Typography>Cọc : {depositPrice}đ/ngày</Typography>
+              </Grid>
+
+              <Grid item lg={4} xs={12}>
                 <Button
                   onClick={() => clearItem(item)}
                   className={classes.deleteButtonDeskTop}
