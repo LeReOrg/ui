@@ -183,14 +183,13 @@ const styles = (theme) => ({
       width: "100%",
     },
   },
-  buttonActions: {},
   tabInfo_contentRightAmount: {
     fontWeight: "bold",
     fontSize: 16,
     color: "#111E16",
     paddingBottom: 10,
   },
-  tabInfo_contentRightQuantity: {},
+
   selectedTab: {
     color: "#2F6BFF !important",
     fontWeight: "500",

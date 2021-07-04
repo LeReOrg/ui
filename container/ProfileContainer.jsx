@@ -6,12 +6,35 @@ import { makeStyles } from "@material-ui/core/styles";
 import SideBarCustomer from "../components/Client/Customer/SideBarCustomer";
 import CustomerMobile from "../components/Client/Customer/CustomerMobile";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useRouter } from "next/router";
 
 const ProfileLayout = ({ children }) => {
   const useStyles = makeStyles(styles);
+  const router = useRouter();
   const classes = useStyles();
+  const [titlePage, setTitlePage] = useState();
+  useEffect(() => {
+    switch (router.pathname) {
+      case "/account/customer/profile":
+        setTitlePage("Thông tin tài khoản");
+        break;
+      case "/account/customer/purchase":
+        setTitlePage("Lịch sử đơn hàng");
+        break;
+      case "/account/lease/order":
+        setTitlePage("Quản lý cho thuê");
+        break;
+      case "/account/lease/summary":
+        setTitlePage("Thống kê doanh thu");
+        break;
+      case "/account/lease/product":
+        setTitlePage("Quản lý sản phẩm");
+        break;
+      default:
+        break;
+    }
+  }, [router]);
   const isMobile = useMediaQuery("(max-width:768px)");
-
   useEffect(() => {
     let background = document.getElementById("container-fluid");
     if (!isMobile) {
@@ -37,6 +60,7 @@ const ProfileLayout = ({ children }) => {
           </Grid>
 
           <Grid item lg={10} md={9}>
+            <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
             <Box className={classes.customerProcessInfo}>{children}</Box>
           </Grid>
         </Grid>

@@ -35,6 +35,7 @@ const LoginPage = () => {
     resolver: yupResolver(schema, { abortEarly: false }),
   });
   const [currentUser, setcurrentUser] = useRecoilState(userState);
+  console.log(currentUser);
   const router = useRouter();
   const [disabled, setDisabled] = useState(true);
   const { mutate, isLoading } = useLoginByFireBase();

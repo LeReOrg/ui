@@ -34,6 +34,7 @@ const UploadInfo = ({
       setListAddress((preState) => ({ ...preState, district: district }));
     ward && setListAddress((preState) => ({ ...preState, ward: ward }));
   }, [city, district, ward]);
+
   const maxNumberImage = 10;
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);

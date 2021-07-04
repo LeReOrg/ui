@@ -47,10 +47,10 @@ const UploadProduct = () => {
         (item, index) => item.idDistrict == district
       );
       setDistrictName(districtItem);
-      const warItem = listAddress?.ward?.filter(
-        (item, index) => item.idCoummune == ward
+      const wardItem = listAddress?.ward?.filter(
+        (item, index) => item.idCommune == ward
       );
-      setWardName(warItem);
+      setWardName(wardItem);
     }
   }, [province, district, ward]);
   const breadcrumbs = [
@@ -154,14 +154,14 @@ const UploadProduct = () => {
         <Grid container spacing={4}>
           <Grid
             item
-            lg={3}
+            lg={2}
             md={3}
             xs={0}
             className={classes.uploadMain_sideBar}
           >
             <SideBarCustomer />
           </Grid>
-          <Grid item lg={9} md={9} xs={12}>
+          <Grid item lg={10} md={9} xs={12}>
             <h1 className={classes.uploadMain_Info__Title}>
               Đăng sản phẩm cho thuê
             </h1>

@@ -7,7 +7,6 @@ import {
   tokenOTPState,
   errorCodeState,
 } from "../../lib/recoil-root";
-import { clone } from "lodash";
 
 const resetPassWord = async (params) => {
   const { data } = await axios.post(

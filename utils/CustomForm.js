@@ -49,7 +49,7 @@ const CustomForm = ({
                   key={index}
                   value={
                     item._id ||
-                    item.idCoummune ||
+                    item.idCommune ||
                     item.idDistrict ||
                     item.idProvince
                   }

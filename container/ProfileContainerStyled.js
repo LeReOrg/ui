@@ -7,9 +7,6 @@ const styles = (theme) => ({
     [theme.breakpoints.between("sm", "md")]: {
       width: "95%",
     },
-    // [theme.breakpoints.between("md", "lg")]: {
-    //   width: "90%",
-    // },
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
@@ -25,10 +22,17 @@ const styles = (theme) => ({
   main_customerProfileContent: {
     display: "flex",
     flexDirection: "column",
+    borderRight: "1px solid #000000",
   },
   customerProcessInfo: {
     borderRadius: 8,
     backgroundColor: "#FFFFFF",
+  },
+  customerTiltlePage: {
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 24,
+    lineHeight: "32px",
   },
 });
 

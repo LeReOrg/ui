@@ -19,6 +19,7 @@ import {
 } from "../lib/recoil-root";
 import { getLayout } from "../container/MainLayout";
 import { useRouter } from "next/router";
+import { useAddressUser, useGetAddressUser } from "../hooks/useAddress";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required").min(6).max(100),
@@ -34,19 +35,32 @@ const Shipping = () => {
   const [districtName, setDistrictName] = useState();
   const [wardName, setWardName] = useState();
   const [listAddress, setListAddress] = useRecoilState(listAddressState);
-
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const { register, handleSubmit, watch, setValue, errors } = useForm();
+
+  const { mutate, isLoading, data } = useAddressUser();
   let province = watch("province");
   let district = watch("district");
   let ward = watch("ward");
-  const user = useRecoilValue(userState);
+  const [user, setUser] = useRecoilState(userState);
   const router = useRouter();
+  const { data: addresItem } = useGetAddressUser();
   useEffect(() => {
     if (user == "") router.push("/login");
   }, []);
-
+  useEffect(() => {
+    if (addresItem?.docs?.length > 0) {
+      setUser((preState) => ({ ...preState, address: addresItem }));
+      router.push("/payment");
+    }
+  }, [addresItem]);
+  console.log(user);
+  useEffect(() => {
+    if (data) {
+      router.push("/payment");
+    }
+  }, [data]);
   const theme = createMuiTheme({
     overrides: {
       MuiButton: {
@@ -78,15 +92,20 @@ const Shipping = () => {
         (item, index) => item.idDistrict == district
       );
       setDistrictName(districtItem);
-      const warItem = listAddress?.ward?.filter(
-        (item, index) => item.idCoummune == ward
+      const wardItem = listAddress?.ward?.filter(
+        (item, index) => item.idCommune == ward
       );
-      setWardName(warItem);
+      setWardName(wardItem);
     }
   }, [province, district, ward]);
-
   const shippingPayment = (data) => {
-    // console.log(data);
+    const params = data;
+    params.token = user.token;
+    params.province = proviceName[0]?.name;
+    params.ward = wardName[0]?.name;
+    params.district = districtName[0]?.name;
+    console.log(params);
+    mutate(params);
   };
 
   return (

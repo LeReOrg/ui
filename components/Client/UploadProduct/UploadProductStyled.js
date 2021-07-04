@@ -3,12 +3,9 @@ import InfoIcon from "../../../assets/infoUpload.svg";
 import UploadImageIcon from "../../../assets/UploadImageIcon.svg";
 const styles = (theme) => ({
   uploadMain: {
-    width: "80%",
+    maxWidth: 1440,
     margin: "37px auto 0 auto",
     marginTop: 80,
-    [theme.breakpoints.down("sm")]: {
-      width: "95%",
-    },
   },
   uploadMain_sideBar: {
     borderRight: "1px solid #000000",
