@@ -23,6 +23,9 @@ const styles = (theme) => ({
       width: "100%",
     },
   },
+  tabContainer: {
+    margin: " 0 30px",
+  },
   customerInfoContainer: {
     padding: "30px",
     maxWidth: "600px",

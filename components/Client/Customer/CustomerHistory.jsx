@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -7,6 +7,9 @@ import SwipeableViews from "react-swipeable-views";
 import { Box } from "@material-ui/core";
 import styles from "./CustomerStyled";
 import OrderAllItems from "../OrderStatus/OrderAllItems";
+import { useOrderLessor } from "../../../hooks/useOrder";
+import { userState } from "../../../lib/recoil-root";
+import { useRecoilValue } from "recoil";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -61,6 +64,13 @@ const CustomerHistory = (props) => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const theme = useTheme();
+  const user = useRecoilValue(userState);
+  const [filter, setFilter] = useState({
+    lessorId: user?.user?._id,
+    populate: "detail,product,lessor,lessee,lessorAddress,lesseeAddress",
+  });
+
+  const { data: orders, isLoading, isSuccess } = useOrderLessor(filter);
   const [value, setValue] = useState(0);
   const [tabs, setTabs] = useState(tabValue);
   const handleChange = (event, newValue) => {
@@ -105,8 +115,13 @@ const CustomerHistory = (props) => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <OrderAllItems />
+        <TabPanel
+          className={classes.tabContainer}
+          value={value}
+          index={0}
+          dir={theme.direction}
+        >
+          <OrderAllItems orders={orders} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}></TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>

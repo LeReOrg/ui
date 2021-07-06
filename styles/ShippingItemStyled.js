@@ -1,22 +1,22 @@
 const styles = (theme) => ({
-  smallImage: {
-    // height: 88,
-    // width: 88,
-    [theme.breakpoints.down("xs")]: {
-      height: 64,
-    },
-  },
   nameItem: {
     //   color: "#111E16 !important",
   },
   cartBody: {
     display: "flex",
     margin: "16px 0",
-    border: "none",
+    border: "1px solid rgb(239, 239, 239)",
+    borderRadius: 4,
     flexDirection: "column",
     [theme.breakpoints.down("xs")]: {
       margin: 0,
     },
+  },
+  cartContainer: {
+    padding: 16,
+  },
+  cartName: {
+    paddingLeft: 20,
   },
   hrCart: {
     background: "#E7E9E8",

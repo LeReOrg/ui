@@ -45,12 +45,15 @@ const styles = (theme) => ({
   tabInfo: {
     border: "1px solid #888E8A",
     borderRadius: 5,
-
+    marginTop: 20,
     display: "flex",
     flexDirection: "column",
     [theme.breakpoints.down("xs")]: {
       border: "none",
       padding: 0,
+    },
+    "&:first-child": {
+      marginTop: 40,
     },
   },
   tabInfo_contentLeft: {

@@ -67,7 +67,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   const [totalDays, setTotalDays] = useState();
   const [disabled, setDisabled] = useState(true);
   const [moreThanMinDate, setMoreThanMinDate] = useState(false);
-
+  console.log(cart);
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
     setCart(newCart);
@@ -133,9 +133,9 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
       const fromFormat = `${values[0].getFullYear()}-${
         values[0].getMonth() + 1
       }-${values[0].getDate()}`;
-      const toFormat = `${values[0].getFullYear()}-${
-        values[0].getMonth() + 1
-      }-${values[0].getDate()}`;
+      const toFormat = `${values[1].getFullYear()}-${
+        values[1].getMonth() + 1
+      }-${values[1].getDate()}`;
       const totalDate =
         (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);
       setTotalDays(totalDate);

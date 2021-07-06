@@ -16,20 +16,23 @@ const ShippingItem = ({ item, addItem }) => {
   return (
     <>
       <div className={classes.cartBody}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className={classes.cartContainer}>
           <Grid item lg={3} xs={3}>
-            <Image
-              src={image.url}
-              title={image.name}
-              width={88}
-              height={88}
-              className={classes.smallImage}
-            />
+            <Box display="flex">
+              <Image
+                src={image.url}
+                title={image.name}
+                width={88}
+                height={88}
+              />
+              <Box className={classes.cartName}>
+                <Typography className={classes.nameItem}>{name}</Typography>
+                <p>SL: x{quantity}</p>
+              </Box>
+            </Box>
           </Grid>
           <Grid item lg={9} xs={9} className={classes.infoContent}>
-            <Typography className={classes.nameItem}>{name}</Typography>
             <Typography className={classes.infoItem}>
-              {/* <span>x{quantity}</span> <span>{totalDateRent} ngày</span> */}
               <span>
                 {price?.toLocaleString("en-US")}
                 đ/ngày
@@ -43,7 +46,6 @@ const ShippingItem = ({ item, addItem }) => {
           </Box>
         ) : null}
       </div>
-      <hr className={classes.hrCart} />
     </>
   );
 };
