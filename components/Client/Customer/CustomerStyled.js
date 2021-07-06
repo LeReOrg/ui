@@ -262,6 +262,53 @@ const styles = (theme) => ({
       color: "#2FAF62",
     },
   },
+  orderDetailContainer: {
+    padding: "30px 27px 42px 27px",
+    "& span": {
+      fontSize: 14,
+      fontWeight: "bold",
+      lineHeight: "20px",
+      color: "#2F80ED",
+    },
+    "& hr": {
+      border: "1px solid #000000",
+      marginTop: 0,
+      marginBottom: 30,
+    },
+  },
+  orderDetailStatus: {
+    fontSize: 14,
+    fontWeight: "400",
+    lineHeight: "20px",
+    color: "rgba(0, 0, 0, 0.45);",
+    marginBottom: 15,
+  },
+  orderDetailTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    lineHeight: "22px",
+    color: "#000000",
+    marginBottom: 15,
+  },
+  orderDetailItem: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: 13,
+  },
+  orderDetailItemTitle: {
+    minWidth: 150,
+    color: "rgba(0, 0, 0, 0.45)",
+    fontSize: 14,
+    lineHeight: "20px",
+  },
+  orderDetailItemValue: {
+    color: "#111E16",
+    fontSize: 16,
+    lineHeight: "20px",
+  },
+  firstBox: {
+    marginBottom: 30,
+  },
 });
 
 export default styles;

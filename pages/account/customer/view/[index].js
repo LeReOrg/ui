@@ -1,9 +1,16 @@
 import React from "react";
-import CustomerDetail from "../../../../components/Client/Customer/CustomerDetail";
+import OrderDetailItem from "../../../../components/Client/Customer/OrderDetailItem";
 import { getLayout } from "../../../../container/ProfileContainer";
+import { useOrderLessorDetail } from "../../../../hooks/useOrder";
+import { useRouter } from "next/router";
 
 const OrderDetail = () => {
-  return <CustomerDetail />;
+  const router = useRouter();
+  const { data: orderDetail, isLoading, error } = useOrderLessorDetail(
+    router.query.index
+  );
+  console.log(orderDetail);
+  return <OrderDetailItem orderDetail={orderDetail} />;
 };
 OrderDetail.getLayout = getLayout;
 

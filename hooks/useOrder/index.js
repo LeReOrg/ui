@@ -26,6 +26,14 @@ const getOrderLessor = async (params) => {
     return data;
   }
 };
+const getOrderLessorDetail = async (params) => {
+  if (params) {
+    const { data } = await axios.get(
+      `${config.api}/orders/${params?.queryKey[1]}`
+    );
+    return data;
+  }
+};
 const useOrderLessor = (id) => {
   return useQuery(["orderLessor", id], getOrderLessor, {
     staleTime: 1000,
@@ -34,5 +42,19 @@ const useOrderLessor = (id) => {
     refetchIntervalInBackground: false,
   });
 };
+const useOrderLessorDetail = (id) => {
+  return useQuery(["orderLessorDetail", id], getOrderLessorDetail, {
+    staleTime: 1000,
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+    refetchIntervalInBackground: false,
+  });
+};
 
-export { useMakeOrder, useOrderLessor, getOrderLessor };
+export {
+  useMakeOrder,
+  useOrderLessor,
+  getOrderLessor,
+  useOrderLessorDetail,
+  getOrderLessorDetail,
+};

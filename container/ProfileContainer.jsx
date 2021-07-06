@@ -30,6 +30,9 @@ const ProfileLayout = ({ children }) => {
       case "/account/lease/product":
         setTitlePage("Quản lý sản phẩm");
         break;
+      case "/account/customer/view/[index]":
+        setTitlePage("Chi tiết đơn hàng");
+        break;
       default:
         break;
     }
@@ -60,7 +63,19 @@ const ProfileLayout = ({ children }) => {
           </Grid>
 
           <Grid item lg={10} md={9}>
-            <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
+            <Box display="flex" justifyContent="space-between">
+              <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
+              {router.pathname === "/account/customer/view/[index]" && (
+                <div
+                  className={classes.backButton}
+                  onClick={() => router.back()}
+                >
+                  <div className={classes.backButtonIcon}></div>
+                  Lịch sử đơn hàng
+                </div>
+              )}
+            </Box>
+
             <Box className={classes.customerProcessInfo}>{children}</Box>
           </Grid>
         </Grid>

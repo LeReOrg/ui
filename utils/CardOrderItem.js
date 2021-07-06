@@ -120,7 +120,7 @@ const CardOrderItem = ({ item }) => {
             <p>Đơn hàng của bạn đang chờ xác nhận...</p>
           </div>
           <div>
-            <Link href={`/account/customer/view/234214`}>
+            <Link href={`/account/customer/view/${String(_id)}`}>
               <div className={classes.buttonDetail}>Chi tiết đơn hàng</div>
             </Link>
           </div>

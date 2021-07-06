@@ -1,3 +1,4 @@
+import backIcon from "../assets/backIcon.svg";
 const styles = (theme) => ({
   main_customerProfile: {
     maxWidth: 1440,
@@ -33,6 +34,23 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 24,
     lineHeight: "32px",
+  },
+  backButton: {
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 12,
+    lineHeight: "18px",
+    color: "#2F80ED",
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+  },
+  backButtonIcon: {
+    background: `url(${backIcon})`,
+    width: 12,
+    height: 12,
+    backgroundRepeat: "no-repeat",
+    marginRight: 8,
   },
 });
 
