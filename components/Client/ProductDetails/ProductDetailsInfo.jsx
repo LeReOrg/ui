@@ -37,6 +37,10 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     objectImages.thumbnail = item.url;
     arrayImages.push(objectImages);
   });
+  const [cart, setCart] = useRecoilState(cartState);
+  const [totalDays, setTotalDays] = useState();
+  const [disabled, setDisabled] = useState(true);
+  const [moreThanMinDate, setMoreThanMinDate] = useState(false);
   const [quantityItem, setQuantityItem] = useState(1);
   const [itemAdd, setItemAdd] = useState({
     id: _id,
@@ -49,6 +53,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     image: images[0],
     depositPrice: depositPrice,
     user: user,
+    totalDays: totalDays,
   });
   useEffect(() => {
     let background = document.getElementById("container-fluid");
@@ -63,10 +68,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
       quantity: quantityItem,
     }));
   }, [quantityItem]);
-  const [cart, setCart] = useRecoilState(cartState);
-  const [totalDays, setTotalDays] = useState();
-  const [disabled, setDisabled] = useState(true);
-  const [moreThanMinDate, setMoreThanMinDate] = useState(false);
+
   console.log(cart);
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
@@ -139,6 +141,10 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
       const totalDate =
         (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);
       setTotalDays(totalDate);
+      setItemAdd((preState) => ({
+        ...preState,
+        totalDays: totalDate,
+      }));
       if (totalDate > shortestHiredDays) {
         setItemAdd((preState) => ({
           ...preState,

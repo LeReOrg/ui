@@ -3,11 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import SelectBoxCart from "../utils/SelectBoxCart";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Button } from "@material-ui/core";
-// import { clearItemFromCart } from "../store/action/cart_actions";
+import { useRecoilValue, useRecoilState } from "recoil";
 import Image from "next/image";
+import { cartState } from "../lib/recoil-root";
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-const CartItem = ({ item, clearItem }) => {
+const CartItem = ({ item }) => {
   const {
     id,
     name,
@@ -18,6 +19,8 @@ const CartItem = ({ item, clearItem }) => {
     quantity,
     image,
   } = item;
+  const [cart, setCart] = useRecoilState(cartState);
+  console.log(cart);
   // useEffect(() => {
   //   let priceUpdate = 0;
   //   priceUpdate = item.quantity * item.price;
@@ -103,6 +106,10 @@ const CartItem = ({ item, clearItem }) => {
     },
   }));
   const classes = useStyles();
+  const clearItem = (item) => {
+    const newItem = cart.filter((itemCart) => itemCart.id !== item.id);
+    setCart(newItem);
+  };
   return (
     <>
       <div className={classes.cartBody}>
