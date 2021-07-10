@@ -271,9 +271,28 @@ const styles = (theme) => ({
       color: "#2F80ED",
     },
     "& hr": {
-      border: "1px solid #000000",
+      backgroundColor: "#000000",
       marginTop: 0,
       marginBottom: 30,
+    },
+  },
+  sumaryTotalItem: {
+    marginTop: 30,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    textAlign: "right",
+  },
+  sumaryTotalItemFirstRow: {
+    display: "flex",
+    width: "100%",
+    maxWidth: "380px",
+    marginBottom: 12,
+    justifyContent: "space-between",
+    "& p": {
+      fontSize: 14,
+      lineHeight: "20px",
+      color: "#888E8A",
     },
   },
   orderDetailStatus: {
@@ -289,6 +308,51 @@ const styles = (theme) => ({
     lineHeight: "22px",
     color: "#000000",
     marginBottom: 15,
+  },
+  orderEachItem: {
+    display: "flex",
+  },
+  orderEachItemText: {
+    marginLeft: 16,
+    fontSize: 14,
+    lineHeight: "20px",
+    color: "#111E16",
+  },
+  orderEachLessor: {
+    lineHeight: "18px",
+    fontSize: 12,
+    color: "#888E8A",
+    "& span": {
+      color: "#2F80ED",
+    },
+  },
+  orderEachTotal: {
+    textAlign: "right",
+    "& div:first-child": {
+      fontSize: 16,
+      fontWeight: "bold",
+      lineHeight: "22px",
+      color: "#111E16",
+      marginBottom: 11,
+    },
+    "& div:nth-child(2)": {
+      fontSize: 14,
+      lineHeight: "20px",
+      color: "#888E8A",
+      marginBottom: 10,
+    },
+    "& div:last-child": {
+      fontSize: 14,
+      lineHeight: "20px",
+      color: "#888E8A",
+      marginBottom: 10,
+    },
+  },
+  orderEachItemContainer: {
+    display: "flex",
+    alignItems: "center",
+    paddingBottom: 10,
+    borderBottom: "1px solid #E7E9E8",
   },
   orderDetailItem: {
     display: "flex",

@@ -55,6 +55,7 @@ const CustomerInfo = (props) => {
     event.persist();
     setGender(value);
   };
+  console.log(gender);
   useEffect(() => {
     const getYears = generateYearOptions();
     const getDates = generateDatesOptions();
@@ -81,7 +82,7 @@ const CustomerInfo = (props) => {
   const updateUserHandler = async (data) => {
     const updateUser = {};
     if (gender) {
-      updateUser.gender = gender.genderValue;
+      updateUser.gender = gender;
     }
 
     if (yearChoose && monthChoose && dateChoose) {
@@ -93,6 +94,7 @@ const CustomerInfo = (props) => {
     if (phoneNumber) {
       updateUser.phoneNumber = phoneNumber;
     }
+    console.log(updateUser);
     updateUser.token = currentUser.token;
     mutate(updateUser);
   };
