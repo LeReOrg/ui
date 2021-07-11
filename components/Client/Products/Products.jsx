@@ -25,9 +25,8 @@ const Products = () => {
 
   const user = useRecoilValue(userState);
   const { data: products, isLoading, isSuccess } = useProductLessor(
-    user.user._id
+    user?.user?._id
   );
-  console.log(products);
   const renderItems = () =>
     products?.docs?.map((item, index) => (
       <ProductLessor item={item} key={index} />
