@@ -94,8 +94,8 @@ const Payment = (props) => {
                 </div>
                 <div className={classes.main_recipent__rePayment}>
                   <p>
-                    Tiền cọc (nếu có) sẽ được hoàn trả qua ví điện tử Momo khi
-                    bạn đã trả hàng thành công
+                    Tiền cọc (nếu có) sẽ được hoàn trả sau khi bạn đã trả hàng
+                    thành công
                   </p>
                 </div>
                 <div className={classes.main_recipent__paymentButton}>

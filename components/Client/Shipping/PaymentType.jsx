@@ -10,7 +10,7 @@ const PaymentInfo = (props) => {
   return (
     <div className={classes.main_paymentType}>
       <div className={classes.main_paymentType__sub}>
-        <p>Hiện tại chúng tôi chỉ hỗ trợ thanh toán qua Momo ^^</p>
+        {/* <p>Hiện tại chúng tôi chỉ hỗ trợ thanh toán qua Momo ^^</p> */}
       </div>
       <div className={classes.main_paymentType__select}>
         <div>
@@ -20,9 +20,9 @@ const PaymentInfo = (props) => {
             checkedIcon={<CircleChecked1 />}
           />
         </div>
-        <div className={classes.main_paymentType__selectImage}></div>
+        {/* <div className={classes.main_paymentType__selectImage}></div> */}
         <div className={classes.main_paymentType__selectContent}>
-          <p>Ví điện tử Momo</p>
+          <p>COD</p>
         </div>
       </div>
     </div>

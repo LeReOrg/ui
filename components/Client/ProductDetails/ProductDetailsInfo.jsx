@@ -133,10 +133,14 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   const getValueDatePiker = (values) => {
     if (values) {
       const fromFormat = `${values[0].getFullYear()}-${
-        values[0].getMonth() + 1
+        values[0].getMonth() + 1 > 10
+          ? values[0].getMonth() + 1
+          : `0${values[0].getMonth() + 1}`
       }-${values[0].getDate()}`;
       const toFormat = `${values[1].getFullYear()}-${
-        values[1].getMonth() + 1
+        values[1].getMonth() + 1 > 10
+          ? values[1].getMonth() + 1
+          : `0${values[1].getMonth() + 1}`
       }-${values[1].getDate()}`;
       const totalDate =
         (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);

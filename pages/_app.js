@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/globals.css";
 import NProgress from "nprogress"; //nprogress module
 import "nprogress/nprogress.css"; //styles of nprogress
-import Footer from "../components/Client/Footer/Footer";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +9,6 @@ import "../styles/globals.css";
 import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/swiper.scss";
-import Header from "../components/Client/Header/Header";
 import theme from "../styles/theme";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "../styles/AppStyled"; // styles of component
@@ -22,7 +20,7 @@ import { RecoilRoot } from "recoil";
 import { useMediaQuery } from "react-responsive";
 import BurgerMobile from "../components/Client/Header/HeaderNav/BurgerMobile";
 import ProfileLayout from "../container/ProfileContainer";
-
+import OverPlay from "../utils/OverPlay";
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
@@ -37,6 +35,7 @@ const MyApp = ({ Component, pageProps }) => {
   }
   const useStyles = makeStyles(styles);
   const classes = useStyles();
+
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -75,6 +74,7 @@ const MyApp = ({ Component, pageProps }) => {
               {isMobile && <BurgerMobile />}
               <div className="container-fluid" id="container-fluid">
                 <div id="main-container" className={classes.page_container}>
+                  <OverPlay />
                   {getLayout(<Component {...pageProps} />)}
                 </div>
               </div>

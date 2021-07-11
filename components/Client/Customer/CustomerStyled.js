@@ -1,5 +1,3 @@
-import History from "../../../assets/history_cart.svg";
-
 import Coin from "../../../assets/coins.svg";
 import CoinActive from "../../../assets/coins_active.svg";
 import Profile from "../../../assets/profile.svg";

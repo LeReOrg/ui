@@ -4,11 +4,15 @@ import FormField from "../../../../utils/FormField";
 import { update } from "../../../../utils/FormAction";
 import styles from "./SearchItemHeaderStyled";
 import SearchBox from "../SearchBox/SearchBox";
-import { disabledMainLayout } from "../../../../utils/helper";
+import { useRecoilState } from "recoil";
+import { overPlayState } from "../../../../lib/recoil-root";
 
 const SearchItemHeader = () => {
   const useStyles = makeStyles(styles);
   const [searchBox, setShowSearchBox] = useState(false);
+
+  const [showOverPlay, setShowOverPlay] = useRecoilState(overPlayState);
+
   const searchInfos = {
     searchError: false,
     searchSuccess: false,
@@ -38,11 +42,11 @@ const SearchItemHeader = () => {
       searchError: false,
       searchData: newFormData,
     };
-    await setSearch(newFormData_Input);
+    setSearch(newFormData_Input);
   };
   const showSearchBox = () => {
-    setShowSearchBox(true);
-    disabledMainLayout(searchBox);
+    setShowSearchBox(!searchBox);
+    setShowOverPlay(true);
   };
   return (
     <div className={classes.search_main} onClick={() => showSearchBox()}>
@@ -58,7 +62,14 @@ const SearchItemHeader = () => {
         />
         <div className={classes.searchIcon}></div>
       </div>
-      {searchBox && <SearchBox changeSearBox={() => setShowSearchBox(false)} />}
+      {searchBox && (
+        <SearchBox
+          changeSearBox={() => {
+            setShowSearchBox(false);
+            setShowOverPlay(false);
+          }}
+        />
+      )}
     </div>
   );
 };

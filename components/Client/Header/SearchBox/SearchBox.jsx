@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import ItemTop from "../../../../assets/testSearchTop.png";
 import TypeProduct from "../../../../assets/testTypePRoductSearch.png";
 import { useClickOutside } from "../../../../hooks/useOnClickOutSide";
-import { disabledMainLayout } from "../../../../utils/helper";
 
 const SearchBox = ({ changeSearBox }) => {
   const searchBoxRef = useRef();
@@ -14,7 +13,6 @@ const SearchBox = ({ changeSearBox }) => {
 
   const onClickOutSide = () => {
     changeSearBox();
-    disabledMainLayout(true);
   };
   useClickOutside(searchBoxRef, onClickOutSide);
   return (

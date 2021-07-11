@@ -2,6 +2,7 @@ const styles = (theme) => ({
   header: {
     position: "relative",
     background: "#FFFFFF",
+    zIndex: 1000,
   },
 });
 

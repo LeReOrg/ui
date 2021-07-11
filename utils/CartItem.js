@@ -14,21 +14,27 @@ const CartItem = ({ item }) => {
     name,
     price,
     user,
-    totalDateRent,
+    totalDays,
     depositPrice,
     quantity,
     image,
+    formDate,
+    toDate,
   } = item;
+
   const [cart, setCart] = useRecoilState(cartState);
-  console.log(cart);
-  // useEffect(() => {
-  //   let priceUpdate = 0;
-  //   priceUpdate = item.quantity * item.price;
-  //   setParamCart((preState) => ({
-  //     ...preState,
-  //     price: priceUpdate,
-  //   }));
-  // }, [item.quantity]);
+  console.log(item);
+  let startDateFormat = formDate?.slice(0, 10);
+  let startDay = `${startDateFormat.substr(-2, 2)}/${startDateFormat.substr(
+    -5,
+    2
+  )}/${startDateFormat.substr(0, 4)}`;
+  let endDateFormat = toDate?.slice(0, 10);
+  let endDay = `${endDateFormat.substr(-2, 2)}/${endDateFormat.substr(
+    -5,
+    2
+  )}/${endDateFormat.substr(0, 4)}`;
+
   const useStyles = makeStyles((theme) => ({
     cartBody: {
       display: "flex",
@@ -44,6 +50,7 @@ const CartItem = ({ item }) => {
       fontStyle: "normal",
       fontWeight: "bold",
       fontSize: 12,
+      lineHeight: "18px",
     },
     infoAmount: {
       textAlign: "right",
@@ -69,6 +76,12 @@ const CartItem = ({ item }) => {
     cartBodyText: {
       marginLeft: 16,
       textTransform: "capitalize",
+      "& p": {
+        fontSize: 12,
+        lineHeight: "18px",
+        color: "#888E8A",
+        textTransform: "initial",
+      },
     },
     hrCart: {
       marginRight: 24,
@@ -91,10 +104,18 @@ const CartItem = ({ item }) => {
     infoAmountNumber: {
       fontWeight: "bold",
       fontSize: 16,
+      marginBottom: "15px !important",
+      lineHeight: "22px",
+
       [theme.breakpoints.down("xs")]: {
         color: "#2FAF62",
         fontSize: 14,
       },
+    },
+    depositNumber: {
+      color: "#888E8A",
+      fontSize: 14,
+      lineHeight: "20px",
     },
     selectedBoxCart: {
       [theme.breakpoints.down("xs")]: {
@@ -103,6 +124,11 @@ const CartItem = ({ item }) => {
         alignItems: "center",
         order: 2,
       },
+    },
+    cartBodyTextName: {
+      fontSize: "14px !important",
+      lineHeight: "20px !important",
+      color: "#111E16 !important",
     },
   }));
   const classes = useStyles();
@@ -116,17 +142,19 @@ const CartItem = ({ item }) => {
         <Grid container spacing={2}>
           <Grid item lg={4} xs={3} style={{ display: "flex" }}>
             <Image src={image.url} title={image.name} width={88} height={88} />
-
             <Typography className={classes.cartBodyText}>
-              <Typography>
-                {name === undefined
-                  ? "Go Pro 5 con xin 99% ,mới được mua còn bảo hành 3 tháng còn bảo hành abcxyz"
-                  : name}
+              <Typography className={classes.cartBodyTextName}>
+                {name}
               </Typography>
-              Cung cấp bởi
-              <span style={{ paddingLeft: 5 }} className={classes.nameProvided}>
-                {user.displayName}
-              </span>
+              <p>
+                Cung cấp bởi
+                <span
+                  style={{ paddingLeft: 5 }}
+                  className={classes.nameProvided}
+                >
+                  {user.displayName}
+                </span>
+              </p>
             </Typography>
           </Grid>
           <Grid item lg={8} xs={9}>
@@ -137,17 +165,18 @@ const CartItem = ({ item }) => {
                 </Button>
               </Grid>
               <Grid item lg={3} xs={12} className={classes.selectedBoxCart}>
-                <SelectBoxCart
-                  cartItem={item}
-                  // numberDate={totalDateRent}
-                  quantity={quantity}
-                />
+                <SelectBoxCart cartItem={item} quantity={quantity} />
               </Grid>
               <Grid item lg={5} xs={12} className={classes.infoAmount}>
                 <Typography className={classes.infoAmountNumber}>
                   {price.toLocaleString("en-US")}đ/ngày
                 </Typography>
-                <Typography>Cọc : {depositPrice}đ/ngày</Typography>
+                <Typography className={classes.depositNumber}>
+                  Cọc : {depositPrice.toLocaleString("en-US")}đ
+                </Typography>
+                <Typography className={classes.depositNumber}>
+                  {startDay} - {endDay} | {totalDays} ngày
+                </Typography>
               </Grid>
 
               <Grid item lg={4} xs={12}>
