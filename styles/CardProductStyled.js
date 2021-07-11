@@ -1,3 +1,6 @@
+import AvailableIcon from "../assets/ic_24system_check.svg";
+import UnAvailableIcon from "../assets/ic_24system_close.svg";
+
 const styles = (theme) => ({
   root: {
     maxWidth: 345,
@@ -35,6 +38,33 @@ const styles = (theme) => ({
       transform: "scale(1.2)",
       transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
     },
+  },
+  contentLessorItemName: {
+    fontWeight: "normal",
+    fontSize: 14,
+    marginLeft: 12,
+    color: "#111E16",
+    lineHeight: "20px",
+  },
+  productLessorContainer: {},
+  productLessorLink: {
+    display: "flex",
+  },
+  price_item_lessor: {
+    fontSize: 14,
+    lineHeight: "20px",
+    color: "#111E16",
+  },
+  contentLessorItemHr: {
+    background: " rgba(0, 0, 0, 0.09)",
+    marginLeft: "-24px",
+    marginRight: "-24px",
+  },
+  contentLessorItemCheck: {
+    background: (props) =>
+      props.available ? `url(${AvailableIcon})` : `url(${UnAvailableIcon})`,
+    width: 24,
+    height: 24,
   },
 });
 export default styles;

@@ -49,9 +49,23 @@ const useProductDetails = (postId) => {
   });
 };
 
+const getProductLessor = (params) =>
+  axios
+    .get(`${config.api}/users/${params?.queryKey[1]}/products`)
+    .then((res) => res.data);
+
+const useProductLessor = (userId) => {
+  return useQuery(["productLessor", String(userId)], getProductLessor, {
+    refetchIntervalInBackground: false,
+    refetchOnWindowFocus: false,
+  });
+};
+
 export {
   useProductDetails,
   getProductDetails,
   prefetchProductByDetails,
   useAddProduct,
+  useProductLessor,
+  getProductLessor,
 };

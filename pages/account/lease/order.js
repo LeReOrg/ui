@@ -1,8 +1,8 @@
 import React from "react";
 import { getLayout } from "../../../container/ProfileContainer";
-
+import OrderLease from "../../../components/Client/OrderLease/OrderLease";
 const Order = () => {
-  return <div>Order Page</div>;
+  return <OrderLease />;
 };
 Order.getLayout = getLayout;
 export default Order;

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useUpdateUser } from "../../../hooks/useUser";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "./CustomerStyled";
+import Link from "next/link";
 
 const SideBarCustomer = () => {
   const useStyles = makeStyles(styles);
@@ -194,9 +195,13 @@ const SideBarCustomer = () => {
       </Box>
 
       {currentUser?.user?.isHirer ? (
-        <Box component="div" className={classes.customerInfoButton}>
-          <MyButton>Đăng sản phẩm</MyButton>
-        </Box>
+        <Link href="/uploadproduct">
+          <a>
+            <Box component="div" className={classes.customerInfoButton}>
+              <MyButton>Đăng sản phẩm</MyButton>
+            </Box>
+          </a>
+        </Link>
       ) : (
         <Box
           component="div"
