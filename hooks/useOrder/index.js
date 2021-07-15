@@ -51,10 +51,33 @@ const useOrderLessorDetail = (id) => {
   });
 };
 
+const cancelOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/cancel`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useCancelOrder = () => {
+  return useMutation(cancelOrder, {
+    onSuccess: async (data) => {
+      //   setCurrentUser((preState) => ({ ...preState, user: data }));
+    },
+    onError: async (error) => {
+      console.log(error, "there was an error");
+    },
+  });
+};
+
 export {
   useMakeOrder,
   useOrderLessor,
   getOrderLessor,
   useOrderLessorDetail,
   getOrderLessorDetail,
+  useCancelOrder,
+  cancelOrder,
 };

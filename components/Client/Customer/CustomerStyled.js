@@ -287,11 +287,33 @@ const styles = (theme) => ({
     maxWidth: "380px",
     marginBottom: 12,
     justifyContent: "space-between",
+    alignItems: "center",
     "& p": {
       fontSize: 14,
       lineHeight: "20px",
       color: "#888E8A",
     },
+  },
+  sumaryProduct: {
+    fontSize: 16,
+    fontWeight: "600",
+    lineHeight: "22px",
+    color: "#000000",
+  },
+  sumaryProductDelivery: {
+    fontSize: 16,
+    fontWeight: "600",
+    lineHeight: "22px",
+    color: "#2FAF62",
+  },
+  sumaryTotalItemFirstRowHr: {
+    borderBottom: "1px solid rgba(0, 0, 0, 0.09)",
+  },
+  sumaryTotalSum: {
+    fontSize: 24,
+    fontWeight: "600",
+    lineHeight: "33px",
+    color: "#2FAF62",
   },
   orderDetailStatus: {
     fontSize: 14,

@@ -9,7 +9,6 @@ const styles = (theme) => ({
   tabContainer: {
     margin: " 0 30px",
   },
-
   rootTab: {
     textTransform: "none",
     fontSize: 16,
@@ -18,6 +17,12 @@ const styles = (theme) => ({
       minWidth: 120,
       padding: "3px 5px",
     },
+  },
+  customerInfo_headerAppBar: {
+    boxShadow: "unset",
+    backgroundColor: "white",
+    borderBottom: "1px solid #E7E9E8",
+    borderRadius: "8px 8px 0 0",
   },
   tabInfo: {
     border: "1px solid #E7E9E8",

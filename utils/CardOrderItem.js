@@ -7,7 +7,7 @@ import { MyButton } from "../components/Client/Login/LoginPageStyled";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
 
-const CardOrderItem = ({ item }) => {
+const CardOrderItem = ({ item, deleteOrder }) => {
   const {
     amount,
     deposit,
@@ -31,19 +31,24 @@ const CardOrderItem = ({ item }) => {
     2
   )}-${endDateFormat.substr(0, 4)}`;
   const [valueStatus, setValueStatus] = useState();
+  const [valueSub, setValueSub] = useState();
   useEffect(() => {
     switch (status) {
       case "PENDING CONFIRM":
         setValueStatus("Chờ xác nhận");
+        setValueSub("Đơn hàng của bạn đang chờ xác nhận...");
         break;
       case "AWAITING PICKUP":
         setValueStatus("Chờ lấy hàng");
+        setValueSub("Tài xế đang đi lấy hàng...");
         break;
       case "DELIVERING":
         setValueStatus("Đang giao hàng");
+        setValueSub("Tài xế đang đi đến vị trí của bạn...");
         break;
       case "DELIVERED":
         setValueStatus("Đã giao hàng");
+        setValueSub("Đon hàng được giao thành công");
         break;
       case "AWAITING RETURN PICKUP":
         setValueStatus("Chờ xác nhận");
@@ -55,7 +60,8 @@ const CardOrderItem = ({ item }) => {
         setValueStatus("Chờ xác nhận");
         break;
       case "CANCELLED":
-        setValueStatus("Chờ xác nhận");
+        setValueStatus("Đơn hàng đã hủy");
+        setValueSub("Đơn hàng của bạn đã hủy");
         break;
       default:
         break;
@@ -71,9 +77,16 @@ const CardOrderItem = ({ item }) => {
         <Grid item lg={4} md={4}>
           <div className={classes.tabInfoCode}>Mã đơn hàng LERE {_id}</div>
         </Grid>
-        <Grid item lg={4} md={4}>
-          <div className={classes.cancelOrder}>Hủy đơn hàng</div>
-        </Grid>
+        {status === "PENDING CONFIRM" && (
+          <Grid item lg={4} md={4}>
+            <div
+              onClick={() => deleteOrder(item)}
+              className={classes.cancelOrder}
+            >
+              Hủy đơn hàng
+            </div>
+          </Grid>
+        )}
       </Grid>
       <Grid className={classes.tabInfobody} container>
         <Grid item lg={5} md={5}>
@@ -117,7 +130,7 @@ const CardOrderItem = ({ item }) => {
         <div className={classes.buttonActions_Content}>
           <div className={classes.buttonActions_ContentStatus}>
             <div className={classes.buttonActions_ContentIcon}></div>
-            <p>Đơn hàng của bạn đang chờ xác nhận...</p>
+            <p>{valueSub}</p>
           </div>
           <div>
             <Link href={`/account/customer/view/${String(_id)}`}>

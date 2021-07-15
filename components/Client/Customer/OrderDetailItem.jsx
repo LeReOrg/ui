@@ -135,15 +135,22 @@ const OrderDetailItem = ({ orderDetail }) => {
       <Box className={classes.sumaryTotalItem}>
         <Box className={classes.sumaryTotalItemFirstRow}>
           <p>Tổng tiền sản phẩm:</p>
-          <Box>{Math.round(orderDetail?.amount).toLocaleString("en-US")} đ</Box>
+          <Box className={classes.sumaryProduct}>
+            {Math.round(orderDetail?.amount).toLocaleString("en-US")} đ
+          </Box>
         </Box>
-        <Box className={classes.sumaryTotalItemFirstRow}>
+        <Box
+          className={`${classes.sumaryTotalItemFirstRow} ${classes.sumaryTotalItemFirstRowHr} `}
+        >
           <p>Phí vận chuyển:</p>
-          <Box>Miễn phí</Box>
+          <Box className={classes.sumaryProductDelivery}>Miễn phí</Box>
         </Box>
+
         <Box className={classes.sumaryTotalItemFirstRow}>
           <p>Tổng thanh toán:</p>
-          <Box>{Math.round(orderDetail?.amount).toLocaleString("en-US")} đ</Box>
+          <Box className={classes.sumaryTotalSum}>
+            {Math.round(orderDetail?.amount).toLocaleString("en-US")} đ
+          </Box>
         </Box>
       </Box>
     </div>

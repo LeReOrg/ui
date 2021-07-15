@@ -41,6 +41,7 @@ const styles = (theme) => ({
     lineHeight: "13px",
     color: "#000000",
     textAlign: "right",
+    cursor: "pointer",
   },
   tabInfo: {
     border: "1px solid #888E8A",

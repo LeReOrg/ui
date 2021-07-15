@@ -10,6 +10,7 @@ import OrderAllItems from "../OrderStatus/OrderAllItems";
 import { useOrderLessor } from "../../../hooks/useOrder";
 import { userState } from "../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
+import OrderCancel from "../OrderStatus/OrderCancel";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -73,6 +74,38 @@ const CustomerHistory = (props) => {
   const { data: orders, isLoading, isSuccess } = useOrderLessor(filter);
   const [value, setValue] = useState(0);
   const [tabs, setTabs] = useState(tabValue);
+  useEffect(() => {
+    switch (value) {
+      case 0:
+        setFilter((preState) => ({
+          ...preState,
+          status: undefined,
+        }));
+        break;
+      case 1:
+        setFilter((preState) => ({ ...preState, status: "AWAITING PICKUP" }));
+        break;
+
+      case 2:
+        setFilter((preState) => ({ ...preState, status: "DELIVERING" }));
+        break;
+
+      case 3:
+        setFilter((preState) => ({ ...preState, status: "DELIVERED" }));
+        break;
+
+      case 4:
+        setFilter((preState) => ({ ...preState, status: "RETURNED" }));
+        break;
+
+      case 5:
+        setFilter((preState) => ({ ...preState, status: "CANCELLED" }));
+        break;
+
+      default:
+        break;
+    }
+  }, [value]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -125,16 +158,16 @@ const CustomerHistory = (props) => {
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}></TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          <OrderCancel orders={orders} />
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-          Item Four
+          <OrderCancel orders={orders} />
         </TabPanel>
         <TabPanel value={value} index={4} dir={theme.direction}>
-          Item Five
+          <OrderCancel orders={orders} />
         </TabPanel>
         <TabPanel value={value} index={5} dir={theme.direction}>
-          Item Six
+          <OrderCancel orders={orders} />
         </TabPanel>
       </SwipeableViews>
     </>
