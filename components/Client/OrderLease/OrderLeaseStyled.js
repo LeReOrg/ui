@@ -1,10 +1,3 @@
-import Coin from "../../../assets/coins.svg";
-import CoinActive from "../../../assets/coins_active.svg";
-import Profile from "../../../assets/profile.svg";
-import ProfileActive from "../../../assets/profile_active.svg";
-import PurChase from "../../../assets/purchase.svg";
-import PurChaseActive from "../../../assets/purchase_active.svg";
-import Ring from "../../../assets/ring.svg";
 const styles = (theme) => ({
   tabContainer: {
     margin: " 0 30px",
@@ -13,6 +6,7 @@ const styles = (theme) => ({
     textTransform: "none",
     fontSize: 16,
     fontWeight: "500",
+    minWidth: 140,
     [theme.breakpoints.between("sm", "md")]: {
       minWidth: 120,
       padding: "3px 5px",

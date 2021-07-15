@@ -112,6 +112,10 @@ const styles = (theme) => ({
     textTransform: "none",
     fontSize: 16,
     fontWeight: "500",
+    minWidth: 140,
+    [theme.breakpoints.between("md", "lg")]: {
+      padding: "3px 5px",
+    },
     [theme.breakpoints.between("sm", "md")]: {
       minWidth: 120,
       padding: "3px 5px",

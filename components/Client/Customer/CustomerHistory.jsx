@@ -59,6 +59,14 @@ const CustomerHistory = (props) => {
     },
     {
       key: 5,
+      value: "Chờ Trả Hàng",
+    },
+    {
+      key: 6,
+      value: "Đang trả",
+    },
+    {
+      key: 7,
       value: "Đã huỷ",
     },
   ];
@@ -85,23 +93,27 @@ const CustomerHistory = (props) => {
       case 1:
         setFilter((preState) => ({ ...preState, status: "AWAITING PICKUP" }));
         break;
-
       case 2:
         setFilter((preState) => ({ ...preState, status: "DELIVERING" }));
         break;
-
       case 3:
         setFilter((preState) => ({ ...preState, status: "DELIVERED" }));
         break;
-
       case 4:
+        setFilter((preState) => ({
+          ...preState,
+          status: "AWAITING RETURN PICKUP",
+        }));
+        break;
+      case 5:
+        setFilter((preState) => ({ ...preState, status: "RETURNING" }));
+        break;
+      case 6:
         setFilter((preState) => ({ ...preState, status: "RETURNED" }));
         break;
-
-      case 5:
+      case 7:
         setFilter((preState) => ({ ...preState, status: "CANCELLED" }));
         break;
-
       default:
         break;
     }
@@ -156,7 +168,9 @@ const CustomerHistory = (props) => {
         >
           <OrderAllItems orders={orders} />
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}></TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          <OrderCancel orders={orders} />
+        </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <OrderCancel orders={orders} />
         </TabPanel>
@@ -167,6 +181,12 @@ const CustomerHistory = (props) => {
           <OrderCancel orders={orders} />
         </TabPanel>
         <TabPanel value={value} index={5} dir={theme.direction}>
+          <OrderCancel orders={orders} />
+        </TabPanel>
+        <TabPanel value={value} index={6} dir={theme.direction}>
+          <OrderCancel orders={orders} />
+        </TabPanel>
+        <TabPanel value={value} index={7} dir={theme.direction}>
           <OrderCancel orders={orders} />
         </TabPanel>
       </SwipeableViews>
