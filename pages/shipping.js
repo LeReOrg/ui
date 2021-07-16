@@ -29,7 +29,6 @@ const schema = yup.object().shape({
   ward: yup.number().required("Ward is required").min(0),
 });
 const Shipping = () => {
-  const [showSubAddress, setshowSubAddress] = useState(false);
   const cart = useRecoilValue(cartState);
   const [proviceName, setProviceName] = useState();
   const [districtName, setDistrictName] = useState();
@@ -38,7 +37,7 @@ const Shipping = () => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const { register, handleSubmit, watch, setValue, errors } = useForm();
-
+  console.log(listAddress);
   const { mutate, isLoading, data } = useAddressUser();
   let province = watch("province");
   let district = watch("district");

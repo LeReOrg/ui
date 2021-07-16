@@ -6,11 +6,10 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import { Box } from "@material-ui/core";
 import styles from "./OrderLeaseStyled";
-import OrderAllItems from "../OrderStatus/OrderAllItems";
-import { useOrderLessor } from "../../../hooks/useOrder";
+import OrderStatus from "../OrderStatus/OrderStatus";
+import { useOrderLessorAndLesse } from "../../../hooks/useOrder";
 import { userState } from "../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
-import OrderCancel from "../OrderStatus/OrderCancel";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -79,7 +78,7 @@ const OrderLease = (props) => {
     populate: "detail,product,lessor,lessee,lessorAddress,lesseeAddress",
   });
 
-  const { data: orders, isLoading, isSuccess } = useOrderLessor(filter);
+  const { data: orders, isLoading, isSuccess } = useOrderLessorAndLesse(filter);
   const [value, setValue] = useState(0);
   const [tabs, setTabs] = useState(tabValue);
   useEffect(() => {
@@ -91,27 +90,30 @@ const OrderLease = (props) => {
         }));
         break;
       case 1:
-        setFilter((preState) => ({ ...preState, status: "AWAITING PICKUP" }));
+        setFilter((preState) => ({ ...preState, status: "PENDING CONFIRM" }));
         break;
       case 2:
-        setFilter((preState) => ({ ...preState, status: "DELIVERING" }));
+        setFilter((preState) => ({ ...preState, status: "AWAITING PICKUP" }));
         break;
       case 3:
-        setFilter((preState) => ({ ...preState, status: "DELIVERED" }));
+        setFilter((preState) => ({ ...preState, status: "DELIVERING" }));
         break;
       case 4:
+        setFilter((preState) => ({ ...preState, status: "DELIVERED" }));
+        break;
+      case 5:
         setFilter((preState) => ({
           ...preState,
           status: "AWAITING RETURN PICKUP",
         }));
         break;
-      case 5:
+      case 6:
         setFilter((preState) => ({ ...preState, status: "RETURNING" }));
         break;
-      case 6:
+      case 7:
         setFilter((preState) => ({ ...preState, status: "RETURNED" }));
         break;
-      case 7:
+      case 8:
         setFilter((preState) => ({ ...preState, status: "CANCELLED" }));
         break;
       default:
@@ -166,36 +168,60 @@ const OrderLease = (props) => {
           index={0}
           dir={theme.direction}
         >
-          <OrderAllItems orders={orders} />
+          {orders?.docs?.length > 0 ? (
+            <OrderStatus orders={orders} />
+          ) : (
+            <p>Bạn ko có sản phẩm nào</p>
+          )}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           {orders?.docs?.length > 0 ? (
-            <OrderCancel />
+            <OrderStatus orders={orders} />
           ) : (
             <p>Bạn ko có sản phẩm nào</p>
           )}
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           {orders?.docs?.length > 0 ? (
-            <OrderCancel />
+            <OrderStatus orders={orders} />
           ) : (
             <p>Bạn ko có sản phẩm nào</p>
           )}
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-          Item Four
+          {orders?.docs?.length > 0 ? (
+            <OrderStatus orders={orders} />
+          ) : (
+            <p>Bạn ko có sản phẩm nào</p>
+          )}
         </TabPanel>
         <TabPanel value={value} index={4} dir={theme.direction}>
-          Item Five
+          {orders?.docs?.length > 0 ? (
+            <OrderStatus orders={orders} />
+          ) : (
+            <p>Bạn ko có sản phẩm nào</p>
+          )}
         </TabPanel>
         <TabPanel value={value} index={5} dir={theme.direction}>
-          <OrderCancel orders={orders} />
+          {orders?.docs?.length > 0 ? (
+            <OrderStatus orders={orders} />
+          ) : (
+            <p>Bạn ko có sản phẩm nào</p>
+          )}
         </TabPanel>
         <TabPanel value={value} index={6} dir={theme.direction}>
-          <OrderCancel orders={orders} />
+          {orders?.docs?.length > 0 ? (
+            <OrderStatus orders={orders} />
+          ) : (
+            <p>Bạn ko có sản phẩm nào</p>
+          )}
         </TabPanel>
         <TabPanel value={value} index={7} dir={theme.direction}>
-          <OrderCancel orders={orders} />
+          {orders?.docs?.length > 0 ? (
+            <OrderStatus orders={orders} />
+          ) : (
+            <p>Bạn ko có sản phẩm nào</p>
+          )}
         </TabPanel>
       </SwipeableViews>
     </>

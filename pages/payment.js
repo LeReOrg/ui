@@ -71,6 +71,27 @@ const Payment = (props) => {
           </Grid>
           <Grid item lg={4} md={5} xs={12}>
             <Box className={classes.main_shipping__contentRight}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <p>Giao tới</p>
+                <div>Thay đổi</div>
+              </Box>
+              <div>
+                <div>
+                  {user.address?.docs[0]?.fullName} |
+                  {user.address?.docs[0]?.phoneNumber}
+                </div>
+                <div>
+                  {user.address?.docs[0]?.street}, {user.address?.docs[0]?.ward}
+                  , {user.address?.docs[0]?.district},
+                  {user.address?.docs[0]?.district}
+                </div>
+              </div>
+            </Box>
+            <Box className={classes.main_shipping__contentRight}>
               <div className={classes.main_recipent__summary}>
                 <div className={classes.main_recipent__summaryProvisional}>
                   <p>Tạm tính:</p>

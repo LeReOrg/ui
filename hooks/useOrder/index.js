@@ -34,12 +34,11 @@ const getOrderLessorDetail = async (params) => {
     return data;
   }
 };
-const useOrderLessor = (id) => {
-  return useQuery(["orderLessor", id], getOrderLessor, {
+const useOrderLessorAndLesse = (id) => {
+  return useQuery(["useOrderLessorAndLesse", id], getOrderLessor, {
     staleTime: 1000,
     keepPreviousData: true,
     refetchOnWindowFocus: false,
-    refetchIntervalInBackground: false,
   });
 };
 const useOrderLessorDetail = (id) => {
@@ -62,22 +61,107 @@ const cancelOrder = async (params) => {
   return data;
 };
 const useCancelOrder = () => {
-  return useMutation(cancelOrder, {
-    onSuccess: async (data) => {
-      //   setCurrentUser((preState) => ({ ...preState, user: data }));
-    },
-    onError: async (error) => {
-      console.log(error, "there was an error");
-    },
-  });
+  return useMutation(cancelOrder);
 };
 
+const confirmOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/confirm`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useConfirmOrder = () => {
+  return useMutation(confirmOrder);
+};
+
+const deliveryOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/delivery`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useDeliveryOrder = () => {
+  return useMutation(deliveryOrder);
+};
+const receiveOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/receive`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useReceiveOrder = () => {
+  return useMutation(receiveOrder);
+};
+
+const waitReturnOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/wait-return`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useWaitReturnOrder = () => {
+  return useMutation(waitReturnOrder);
+};
+const returnOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/return`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useReturnOrder = () => {
+  return useMutation(returnOrder);
+};
+const confirmReturnedOrder = async (params) => {
+  const { data } = await axios.post(
+    `${config.api}/orders/${params.orderId}/confirm-returned`,
+    params,
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
+  return data;
+};
+const useConfirmReturnedOrder = () => {
+  return useMutation(confirmReturnedOrder);
+};
 export {
   useMakeOrder,
-  useOrderLessor,
+  useOrderLessorAndLesse,
   getOrderLessor,
   useOrderLessorDetail,
   getOrderLessorDetail,
   useCancelOrder,
   cancelOrder,
+  useConfirmOrder,
+  confirmOrder,
+  useDeliveryOrder,
+  deliveryOrder,
+  useReceiveOrder,
+  receiveOrder,
+  useWaitReturnOrder,
+  waitReturnOrder,
+  useReturnOrder,
+  returnOrder,
+  useConfirmReturnedOrder,
+  confirmReturnedOrder,
 };

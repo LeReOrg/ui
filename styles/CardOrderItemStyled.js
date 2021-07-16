@@ -8,6 +8,10 @@ const styles = (theme) => ({
     padding: "8px 18px",
     borderBottom: "1px solid #888E8A",
   },
+  buttonActionsContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
   tabInfobody: {
     padding: "24px 18px 27px 18px",
     borderBottom: "1px solid #F3F4F3",
@@ -116,6 +120,9 @@ const styles = (theme) => ({
     fontSize: 16,
     lineHeight: "22px",
     cursor: "pointer",
+    "&:first-child": {
+      marginRight: 16,
+    },
   },
   buttonActions: {
     padding: "10px 18px 10px 18px",

@@ -7,7 +7,7 @@ import { MyButton } from "../components/Client/Login/LoginPageStyled";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
 
-const CardOrderItem = ({ item, deleteOrder }) => {
+const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
   const {
     amount,
     deposit,
@@ -19,6 +19,7 @@ const CardOrderItem = ({ item, deleteOrder }) => {
     detail,
     lessee,
   } = item;
+  console.log(customerTab);
   const useStyles = makeStyles(styles);
   let startDateFormat = startDate.slice(0, 10);
   let startDay = `${startDateFormat.substr(-2, 2)}-${startDateFormat.substr(
@@ -132,7 +133,16 @@ const CardOrderItem = ({ item, deleteOrder }) => {
             <div className={classes.buttonActions_ContentIcon}></div>
             <p>{valueSub}</p>
           </div>
-          <div>
+          <div className={classes.buttonActionsContainer}>
+            {status === "PENDING CONFIRM" && !customerTab && (
+              <div
+                className={classes.buttonDetail}
+                onClick={() => confirmOrder(item)}
+              >
+                Xác nhận đơn hàng
+              </div>
+            )}
+
             <Link href={`/account/customer/view/${String(_id)}`}>
               <div className={classes.buttonDetail}>Chi tiết đơn hàng</div>
             </Link>

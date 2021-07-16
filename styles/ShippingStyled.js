@@ -71,6 +71,8 @@ const styles = (theme) => ({
   main_shipping__contentRight: {
     border: "1px solid #C3C7C5",
     borderRadius: 8,
+    maxWidth: 315,
+    padding: 15,
     [theme.breakpoints.down("xs")]: {
       border: "none",
     },
