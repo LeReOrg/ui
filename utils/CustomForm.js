@@ -32,7 +32,7 @@ const CustomForm = ({
               name={nameInput}
               ref={name}
               {...inputProp}
-              rows="4"
+              rows="3"
             />
           </>
         );
@@ -41,7 +41,7 @@ const CustomForm = ({
         formTemplate = (
           <>
             <select type={inputType} name={nameInput} ref={name} {...inputProp}>
-              <option value="" style={{ color: "#C3C7C5" }}>
+              <option value="" disabled selected hidden>
                 {nameSelect}
               </option>
               {valueOptions?.map((item, index) => (

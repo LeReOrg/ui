@@ -40,18 +40,15 @@ const Shipping = () => {
   useEffect(() => {
     if (user == "") router.push("/login");
   }, []);
-
+  console.log(user);
   const changeAddress = useRecoilValue(changeAddressState);
   useEffect(() => {
     if (addresItem?.docs?.length > 0 && !changeAddress) {
       setUser((preState) => ({ ...preState, address: addresItem }));
       router.push("/payment");
       setOpenAddProduct(false);
-    } else {
-      setOpenAddProduct(true);
     }
   }, [addresItem]);
-  console.log(user);
   useEffect(() => {
     if (listAddress !== "") {
       const cityName = listAddress?.city?.filter(
@@ -77,24 +74,39 @@ const Shipping = () => {
     mutate(params);
   };
 
+  const renderAddressItem = () =>
+    user?.address?.docs?.map((item, index) => (
+      <AddressItem item={item} key={index} />
+    ));
+  console.log(openAddProduct);
   return (
     <div className={classes.main_shipping}>
-      {addresItem?.docs?.length > 0 && <AddressItem />}
+      <Box>
+        <h1>Địa chỉ giao hàng</h1>
+        <p>Chọn địa chỉ giao hàng bên dưới:</p>
+      </Box>
+      <Box display="flex">
+        {addresItem?.docs?.length > 0 && renderAddressItem()}
+      </Box>
+
       {addresItem?.docs?.length > 0 && (
         <p>
           Bạn muốn giao hàng đến địa chỉ khác?
-          <span onClick={() => setOpenAddProduct(true)}>
+          <span
+            className={classes.main_shipping_add_address}
+            onClick={() => setOpenAddProduct(true)}
+          >
             Thêm địa chỉ giao hàng mới
           </span>
         </p>
       )}
       {openAddProduct && (
-        <form onSubmit={handleSubmit(shippingPayment)}>
+        <form
+          onSubmit={handleSubmit(shippingPayment)}
+          style={{ background: "rgb(247, 247, 247)" }}
+        >
           <Box>
             <Box className={classes.main_shipping__contentLeft}>
-              <h1 className={classes.main_shipping__contentLeftTitle}>
-                Địa chỉ giao hàng
-              </h1>
               <Box className={classes.main_shipping__contentLeftInfo}>
                 <ShippingInfo
                   cityChoose={province}

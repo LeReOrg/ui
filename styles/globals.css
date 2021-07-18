@@ -90,6 +90,10 @@ a {
 :focus {
   outline: 0;
 }
+select:invalid {
+  color: gray;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

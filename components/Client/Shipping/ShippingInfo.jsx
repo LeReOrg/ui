@@ -41,7 +41,7 @@ const ShippingInfo = ({ cityChoose, districtChoose, name }) => {
           nameInput="phoneNumber"
           inputType="number"
           name={name}
-          placeholder="02323242"
+          placeholder="Nhập số điện thoại"
         />
       </Box>
       <Box mb={2} className={classes.addAddressMobile}>
@@ -54,8 +54,7 @@ const ShippingInfo = ({ cityChoose, districtChoose, name }) => {
           className={classes.inputTag}
           name={name}
           nameInput="province"
-          placeholder="Tỉnh/Thành phố"
-          nameSelect="Tỉnh/Thành phố"
+          nameSelect=" Chọn Tỉnh/Thành phố"
           valueOptions={city}
         />
       </Box>
@@ -66,7 +65,7 @@ const ShippingInfo = ({ cityChoose, districtChoose, name }) => {
           nameInput="district"
           inputType="select"
           name={name}
-          nameSelect="Chọn quận/huyện"
+          nameSelect="Chọn Quận/Huyện"
           valueOptions={district}
         />
       </Box>
@@ -77,8 +76,7 @@ const ShippingInfo = ({ cityChoose, districtChoose, name }) => {
           className={classes.inputTag}
           name={name}
           nameInput="ward"
-          placeholder="Phường/Xã"
-          nameSelect="Phường/Xã"
+          nameSelect="Chọn Phường/Xã"
           valueOptions={ward}
         />
       </Box>

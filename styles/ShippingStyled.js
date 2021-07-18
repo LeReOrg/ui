@@ -65,8 +65,22 @@ const styles = (theme) => ({
     [theme.breakpoints.down("xs")]: {
       margin: "10px auto",
     },
+    "& h1": {
+      fontSize: 20,
+    },
+    "& p": {
+      fontSize: 14,
+      fontWeight: "600",
+      marginBottom: "12px !important",
+    },
   },
-  main_shipping__content: {},
+  main_shipping_add_address: {
+    fontSize: 14,
+    fontWeight: "400",
+    color: "rgb(0, 127, 240)",
+    cursor: "pointer",
+    marginLeft: 4,
+  },
   main_shipping__contentLeft: {
     border: "1px solid #C3C7C5",
     borderRadius: 8,
