@@ -29,7 +29,6 @@ const Shipping = () => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const { register, handleSubmit, watch, setValue, errors } = useForm();
-  console.log(listAddress);
   const { mutate, isLoading, data } = useAddressUser();
   let province = watch("province");
   let district = watch("district");
@@ -37,11 +36,16 @@ const Shipping = () => {
   const [user, setUser] = useRecoilState(userState);
   const router = useRouter();
   const { data: addresItem } = useGetAddressUser();
+  const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
   useEffect(() => {
     if (user == "") router.push("/login");
+    return () => {
+      setChangeAddress(false);
+    };
   }, []);
+  console.log(addresItem);
   console.log(user);
-  const changeAddress = useRecoilValue(changeAddressState);
+
   useEffect(() => {
     if (addresItem?.docs?.length > 0 && !changeAddress) {
       setUser((preState) => ({ ...preState, address: addresItem }));
@@ -72,25 +76,25 @@ const Shipping = () => {
     params.ward = wardName[0]?.name;
     params.district = districtName[0]?.name;
     mutate(params);
+    router.push("/payment");
   };
 
   const renderAddressItem = () =>
-    user?.address?.docs?.map((item, index) => (
+    addresItem?.docs?.map((item, index) => (
       <AddressItem item={item} key={index} />
     ));
-  console.log(openAddProduct);
   return (
     <div className={classes.main_shipping}>
       <Box>
         <h1>Địa chỉ giao hàng</h1>
         <p>Chọn địa chỉ giao hàng bên dưới:</p>
       </Box>
-      <Box display="flex">
+      <Box className={classes.addressItems}>
         {addresItem?.docs?.length > 0 && renderAddressItem()}
       </Box>
 
       {addresItem?.docs?.length > 0 && (
-        <p>
+        <p className={classes.main_shipping_subTitle}>
           Bạn muốn giao hàng đến địa chỉ khác?
           <span
             className={classes.main_shipping_add_address}

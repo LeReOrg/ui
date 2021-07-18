@@ -68,11 +68,11 @@ const styles = (theme) => ({
     "& h1": {
       fontSize: 20,
     },
-    "& p": {
-      fontSize: 14,
-      fontWeight: "600",
-      marginBottom: "12px !important",
-    },
+  },
+  main_shipping_subTitle: {
+    fontSize: 14,
+    fontWeight: "600",
+    marginBottom: "12px !important",
   },
   main_shipping_add_address: {
     fontSize: 14,
@@ -172,6 +172,11 @@ const styles = (theme) => ({
   },
   main_shipping__contentRightButton: {
     maxWidth: 315,
+  },
+  addressItems: {
+    marginLeft: "-20px",
+    display: "flex",
+    flexWrap: "wrap",
   },
 });
 const theme = createMuiTheme({

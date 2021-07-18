@@ -6,7 +6,7 @@ const styles = (theme) => ({
     boxShadow: "none",
     borderRadius: 4,
     border: "1px dotted rgb(0, 153, 0)",
-    margin: "0px 0px 20px 0px",
+    margin: "0px 0px 20px 20px",
     maxWidth: "calc(40% - 20px)",
     padding: "10px 15px",
   },
@@ -33,6 +33,7 @@ const styles = (theme) => ({
     color: "#FFFFFF",
     borderRadius: 4,
     cursor: "pointer",
+    border: "1px solid #2FAF62",
   },
   addressItemAction2: {
     padding: "6px 14px",
@@ -40,6 +41,7 @@ const styles = (theme) => ({
     borderRadius: 4,
     border: "1px solid rgb(204, 204, 204)",
     cursor: "pointer",
+    marginRight: 8,
   },
 });
 

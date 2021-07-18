@@ -21,7 +21,6 @@ const ShippingInfo = ({ cityChoose, districtChoose, name }) => {
       setListAddress((preState) => ({ ...preState, district: district }));
     ward && setListAddress((preState) => ({ ...preState, ward: ward }));
   }, [city, district, ward]);
-  console.log(ward);
   return (
     <>
       <Box mb={2}>

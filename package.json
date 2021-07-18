@@ -47,6 +47,7 @@
     "react-images-uploading": "^3.1.2",
     "react-query": "^3.5.6",
     "react-responsive": "^8.2.0",
+    "react-search-autocomplete": "^5.4.2",
     "react-swipeable-views": "^0.13.9",
     "recoil": "^0.1.2",
     "recoil-persist": "^2.9.0",

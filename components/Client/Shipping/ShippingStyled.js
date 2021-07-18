@@ -11,7 +11,6 @@ const styles = (theme) => ({
   main_paymentType__select: {
     display: "flex",
     alignItems: "center",
-    paddingTop: 30,
     marginLeft: -9,
     [theme.breakpoints.down("xs")]: {
       paddingTop: 15,

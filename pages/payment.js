@@ -20,7 +20,7 @@ import { getLayout } from "../container/MainLayout";
 import { useMakeOrder } from "../hooks/useOrder";
 import { useRouter } from "next/router";
 const Payment = (props) => {
-  const cart = useRecoilValue(cartState);
+  const [cart, setCart] = useRecoilState(cartState);
   const user = useRecoilValue(userState);
   const [items, setItems] = useState([]);
   const totalPrice = useRecoilValue(cartTotal);
@@ -53,7 +53,8 @@ const Payment = (props) => {
       token: user.token,
     };
     mutate(params);
-    // alert("Bạn đã than toán thành công");
+    setCart([]);
+    router.push("/paymentSuccess");
   };
   const totalPayment = parseInt(transportValue) + parseInt(totalPrice);
   const changeAddressItem = () => {

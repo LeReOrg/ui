@@ -8,8 +8,9 @@ import { prefetchProductByDetails } from "../hooks/useProduct";
 
 const ProductLessor = ({ item }) => {
   const useStyled = makeStyles(styles);
+
   const classes = useStyled({
-    available: false,
+    available: item.quantity > 0 ? true : false,
   });
   return (
     <div className={classes.productLessorContainer}>

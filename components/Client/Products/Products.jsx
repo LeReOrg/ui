@@ -28,9 +28,19 @@ const Products = () => {
     user?.user?._id
   );
   const renderItems = () =>
-    products?.docs?.map((item, index) => (
-      <ProductLessor item={item} key={index} />
-    ));
+    products?.docs
+      ?.filter((item) => {
+        if (available !== "0") {
+          if (available === "2") {
+            return item.quantity === 0;
+          } else {
+            return item.quantity > 0;
+          }
+        } else {
+          return item;
+        }
+      })
+      .map((item, index) => <ProductLessor item={item} key={index} />);
   return (
     <div>
       <Box className={classes.productsContainer}>
