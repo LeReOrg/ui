@@ -1,38 +1,30 @@
 import React, { useState, useEffect } from "react";
 import ShippingInfo from "../components/Client/Shipping/ShippingInfo";
 import Button from "@material-ui/core/Button";
-import PaymentType from "../components/Client/Shipping/PaymentType";
 import { makeStyles } from "@material-ui/styles";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
-import styles from "../styles/ShippingStyled";
+import styles, { theme } from "../styles/ShippingStyled";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   cartState,
-  cartTotal,
+  changeAddressState,
   listAddressState,
   userState,
 } from "../lib/recoil-root";
 import { getLayout } from "../container/MainLayout";
 import { useRouter } from "next/router";
 import { useAddressUser, useGetAddressUser } from "../hooks/useAddress";
+import AddressItem from "../utils/AddressItem";
 
-const schema = yup.object().shape({
-  fullName: yup.string().required("Full Name is required").min(6).max(100),
-  telephoneNumber: yup.number().required("TelephoneNumber is required"),
-  city: yup.number().required("City is required").min(0),
-  district: yup.number().required("District is required").min(0),
-  ward: yup.number().required("Ward is required").min(0),
-});
 const Shipping = () => {
   const cart = useRecoilValue(cartState);
   const [proviceName, setProviceName] = useState();
   const [districtName, setDistrictName] = useState();
   const [wardName, setWardName] = useState();
+  const [openAddProduct, setOpenAddProduct] = useState(false);
   const [listAddress, setListAddress] = useRecoilState(listAddressState);
   const useStyled = makeStyles(styles);
   const classes = useStyled();
@@ -48,39 +40,18 @@ const Shipping = () => {
   useEffect(() => {
     if (user == "") router.push("/login");
   }, []);
+
+  const changeAddress = useRecoilValue(changeAddressState);
   useEffect(() => {
-    if (addresItem?.docs?.length > 0) {
+    if (addresItem?.docs?.length > 0 && !changeAddress) {
       setUser((preState) => ({ ...preState, address: addresItem }));
       router.push("/payment");
+      setOpenAddProduct(false);
+    } else {
+      setOpenAddProduct(true);
     }
   }, [addresItem]);
   console.log(user);
-  useEffect(() => {
-    if (data) {
-      router.push("/payment");
-    }
-  }, [data]);
-  const theme = createMuiTheme({
-    overrides: {
-      MuiButton: {
-        text: {
-          background: "#2FAF62",
-          borderRadius: 4,
-          border: 0,
-          color: "white",
-          height: 48,
-          padding: "0 30px",
-          fontWeight: "bold",
-          width: "100%",
-          fontSize: 16,
-          maxWidth: 350,
-          "&:hover": {
-            background: "red",
-          },
-        },
-      },
-    },
-  });
   useEffect(() => {
     if (listAddress !== "") {
       const cityName = listAddress?.city?.filter(
@@ -103,33 +74,43 @@ const Shipping = () => {
     params.province = proviceName[0]?.name;
     params.ward = wardName[0]?.name;
     params.district = districtName[0]?.name;
-    console.log(params);
     mutate(params);
   };
 
   return (
     <div className={classes.main_shipping}>
-      <form onSubmit={handleSubmit(shippingPayment)}>
-        <Box>
-          <Box className={classes.main_shipping__contentLeft}>
-            <h1 className={classes.main_shipping__contentLeftTitle}>
-              Địa chỉ giao hàng
-            </h1>
-            <Box className={classes.main_shipping__contentLeftInfo}>
-              <ShippingInfo
-                cityChoose={province}
-                districtChoose={district}
-                name={register}
-              />
-              <div className={classes.main_cart__totalButton}>
-                <ThemeProvider theme={theme}>
-                  <Button type="submit">Giao đến địa chỉ này</Button>
-                </ThemeProvider>
-              </div>
+      {addresItem?.docs?.length > 0 && <AddressItem />}
+      {addresItem?.docs?.length > 0 && (
+        <p>
+          Bạn muốn giao hàng đến địa chỉ khác?
+          <span onClick={() => setOpenAddProduct(true)}>
+            Thêm địa chỉ giao hàng mới
+          </span>
+        </p>
+      )}
+      {openAddProduct && (
+        <form onSubmit={handleSubmit(shippingPayment)}>
+          <Box>
+            <Box className={classes.main_shipping__contentLeft}>
+              <h1 className={classes.main_shipping__contentLeftTitle}>
+                Địa chỉ giao hàng
+              </h1>
+              <Box className={classes.main_shipping__contentLeftInfo}>
+                <ShippingInfo
+                  cityChoose={province}
+                  districtChoose={district}
+                  name={register}
+                />
+                <div className={classes.main_cart__totalButton}>
+                  <ThemeProvider theme={theme}>
+                    <Button type="submit">Giao đến địa chỉ này</Button>
+                  </ThemeProvider>
+                </div>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </form>
+        </form>
+      )}
     </div>
   );
 };

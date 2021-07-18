@@ -3,26 +3,31 @@ import RecipentItems from "../components/Client/Shipping/RecipentItems";
 import PaymentType from "../components/Client/Shipping/PaymentType";
 import { makeStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { customCurrency } from "../utils/FunctionUses";
 import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
-import styles from "../styles/ShippingStyled";
-import { useRecoilValue } from "recoil";
+import styles, { theme } from "../styles/ShippingStyled";
+import { useRecoilValue, useRecoilState } from "recoil";
 import {
   cartState,
   cartTotal,
   cartTotalItem,
   userState,
+  changeAddressState,
 } from "../lib/recoil-root";
 import { getLayout } from "../container/MainLayout";
 import { useMakeOrder } from "../hooks/useOrder";
+import { useRouter } from "next/router";
 const Payment = (props) => {
   const cart = useRecoilValue(cartState);
   const user = useRecoilValue(userState);
   const [items, setItems] = useState([]);
   const totalPrice = useRecoilValue(cartTotal);
   const [transportValue, setTransportValue] = useState(0);
-  const totalItem = useRecoilValue(cartTotalItem);
+  // const totalItem = useRecoilValue(cartTotalItem);
+  const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
+
   useEffect(() => {
     if (cart) {
       cart.map((item) => {
@@ -36,11 +41,10 @@ const Payment = (props) => {
       });
     }
   }, []);
-  console.log(user);
 
   const useStyled = makeStyles(styles);
   const classes = useStyled();
-
+  const router = useRouter();
   const { mutate, isLoading } = useMakeOrder();
   const paymentAccess = () => {
     const params = {
@@ -52,7 +56,10 @@ const Payment = (props) => {
     // alert("Bạn đã than toán thành công");
   };
   const totalPayment = parseInt(transportValue) + parseInt(totalPrice);
-
+  const changeAddressItem = () => {
+    setChangeAddress(true);
+    router.push("/shipping");
+  };
   return (
     <div className={classes.main_shipping}>
       <Grid container spacing={3} className={classes.main_shipping__rootLeft}>
@@ -64,27 +71,28 @@ const Payment = (props) => {
             <hr className={classes.main_shipping__mobileHr} />
             <Box className={classes.main_shipping__contentBottom}>
               <h1 className={classes.main_shipping__contentPaymentTitle}>
-                Thông tin thanh toán
+                Phương phức giao hàng
               </h1>
               <PaymentType />
             </Box>
           </Grid>
           <Grid item lg={4} md={5} xs={12}>
             <Box className={classes.main_shipping__contentRight}>
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
+              <Box className={classes.main_shipping__contentRightFirstRow}>
                 <p>Giao tới</p>
-                <div>Thay đổi</div>
+                <div
+                  onClick={() => changeAddressItem()}
+                  className={classes.main_shipping__contentRightChangeAddress}
+                >
+                  Thay đổi
+                </div>
               </Box>
               <div>
-                <div>
-                  {user.address?.docs[0]?.fullName} |
-                  {user.address?.docs[0]?.phoneNumber}
+                <div className={classes.main_shipping__contentRightUser}>
+                  <p>{user.address?.docs[0]?.fullName}</p>
+                  <p>{user.address?.docs[0]?.phoneNumber}</p>
                 </div>
-                <div>
+                <div className={classes.main_shipping__contentRightUserSub}>
                   {user.address?.docs[0]?.street}, {user.address?.docs[0]?.ward}
                   , {user.address?.docs[0]?.district},
                   {user.address?.docs[0]?.district}
@@ -95,20 +103,17 @@ const Payment = (props) => {
               <div className={classes.main_recipent__summary}>
                 <div className={classes.main_recipent__summaryProvisional}>
                   <p>Tạm tính:</p>
-                  {/* <p>{customCurrency(totalPrice)}đ</p> */}
+                  <p>{customCurrency(totalPayment.toString())}đ</p>
                 </div>
                 <div className={classes.main_recipent__summaryTransport}>
                   <p>Vận chuyển:</p>
-                  <p>{transportValue} d</p>
+                  <p>{transportValue}đ</p>
                 </div>
                 <hr />
               </div>
               <div className={classes.main_recipent__finalPayment}>
-                <p className={classes.main_recipent__totalNumber}>
-                  {totalItem} sản phẩm
-                </p>
                 <div className={classes.main_recipent__totalPayment}>
-                  <div>Tổng tiền</div>
+                  <div>Tổng cộng</div>
                   <div className={classes.main_recipent__totalPaymentNumber}>
                     <p>{customCurrency(totalPayment.toString())}đ</p>
                   </div>
@@ -119,12 +124,14 @@ const Payment = (props) => {
                     thành công
                   </p>
                 </div>
-                <div className={classes.main_recipent__paymentButton}>
-                  <button onClick={() => paymentAccess()}>
-                    Tiến hành thanh toán
-                  </button>
-                </div>
               </div>
+            </Box>
+            <Box className={classes.main_shipping__contentRightButton}>
+              <ThemeProvider theme={theme}>
+                <Button type="submit" onClick={() => paymentAccess()}>
+                  Tiến hành thanh toán
+                </Button>
+              </ThemeProvider>
             </Box>
           </Grid>
         </>

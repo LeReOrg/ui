@@ -38,6 +38,9 @@ const SideBarCustomer = () => {
       case "/uploadproduct":
         setTabActive(5);
         break;
+      case "/uploadsuccess":
+        setTabActive(5);
+        break;
       default:
         break;
     }

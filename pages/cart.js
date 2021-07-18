@@ -10,32 +10,12 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { cartState, cartTotal } from "../lib/recoil-root";
 import { userState } from "../lib/recoil-root";
 import { getLayout } from "../container/MainLayout";
-
+import { theme } from "../styles/ShippingStyled";
 const Cart = (props) => {
   const [cart, setCart] = useRecoilState(cartState);
   const { user } = useRecoilValue(userState);
   const totalPrice = useRecoilValue(cartTotal);
   const useStyled = makeStyles(styles);
-  const theme = createMuiTheme({
-    overrides: {
-      MuiButton: {
-        text: {
-          background: "#2FAF62",
-          borderRadius: 4,
-          border: 0,
-          color: "white",
-          height: 48,
-          padding: "0 30px",
-          fontWeight: "bold",
-          fontSize: 16,
-          width: "100%",
-          "&:hover": {
-            background: "red",
-          },
-        },
-      },
-    },
-  });
   const classes = useStyled();
   const renderItemCart = () =>
     cart.map((item, index) => <CartItem item={item.item} key={index} />);
