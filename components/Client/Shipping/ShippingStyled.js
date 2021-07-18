@@ -27,7 +27,6 @@ const styles = (theme) => ({
     paddingLeft: 12,
   },
   main_recipent: {
-    padding: 24,
     [theme.breakpoints.down("xs")]: {
       padding: 0,
     },

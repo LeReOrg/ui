@@ -34,9 +34,10 @@ const SideBarCustomer = () => {
         break;
       case "/account/lease/product":
         setTabActive(5);
-
         break;
-
+      case "/uploadproduct":
+        setTabActive(5);
+        break;
       default:
         break;
     }

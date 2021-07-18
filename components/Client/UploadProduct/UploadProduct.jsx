@@ -103,7 +103,6 @@ const UploadProduct = () => {
         let objectImages = {};
         objectImages.base64 = item.data_url;
         objectImages.isLandingImage = item?.isLandingImage;
-
         arrayImages.push(objectImages);
       });
       paramsUpdate.images = arrayImages;
@@ -117,6 +116,8 @@ const UploadProduct = () => {
     paramsUpdate.token = currentUser.token;
     paramsUpdate.breadcrumbs = breadcrumbs;
     paramsUpdate.address = {
+      fullName: "",
+      phoneNumber: "",
       province: proviceName[0]?.name,
       ward: wardName[0]?.name,
       district: districtName[0]?.name,
