@@ -46,6 +46,7 @@ const styles = (theme) => ({
     marginLeft: 24,
     marginTop: 10,
     marginBottom: 25,
+    width: 350,
   },
   searchCheckBoxs: {
     display: "flex",
