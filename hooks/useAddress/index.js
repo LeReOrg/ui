@@ -21,14 +21,15 @@ const useGetAddressUser = () => {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   return useQuery(
     ["categoryDetail", String(currentUser.token)],
-    getAddressUser
+    getAddressUser,{
+      refetchOnWindowFocus : true
+    }
   );
 };
 
 const useAddressUser = () => {
   return useMutation(updateAddressUser, {
     onSuccess: async (data) => {
-      //   setCurrentUser((preState) => ({ ...preState, user: data }));
     },
     onError: async (error) => {
       console.log(error, "there was an error");

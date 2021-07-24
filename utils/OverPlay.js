@@ -8,6 +8,5 @@ export default function OverPlay() {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const showOverPlay = useRecoilValue(overPlayState);
-  console.log(showOverPlay);
   return <>{showOverPlay && <div className={classes.over_play}></div>}</>;
 }

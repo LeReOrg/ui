@@ -24,7 +24,7 @@ const ListItemByTypeProduct = ({ listProduct }) => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const renderCards = () =>
-    listProduct?.docs?.map((items, index) => (
+    listProduct?.docs?.filter(item => item.quantity > 0).map((items, index) => (
       <Grid item lg={3} xs={6} key={index}>
         <CardProduct item={items} itemByType={true} />
       </Grid>

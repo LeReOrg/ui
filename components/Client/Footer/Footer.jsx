@@ -1,11 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import Link from "next/link";
 import styles from "./FooterStyled";
 
-const useStyles = makeStyles(styles);
 
 const Footer = () => {
+  const useStyles = makeStyles(styles);
   const classes = useStyles();
   return (
     <footer className={classes.footer_main}>

@@ -10,8 +10,8 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
   const [listDiscount, setListDiscount] = useState([]);
   const classes = useStyled();
   const renderDisCountItem = () =>
-    discountList.map((item) => (
-      <Box display="flex">
+    discountList.map((item , index) => (
+      <Box display="flex" key={index}>
         <CustomForm
           inputType="input"
           className={`${classes.inputTagPrice} ${classes.inputTagDateRent}`}

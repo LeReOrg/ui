@@ -58,7 +58,7 @@ const Cart = (props) => {
                         <Link href="/shipping">
                           <a>
                             <ThemeProvider theme={theme}>
-                              <Button>Đặt mua</Button>
+                              <Button>Thuê sẩn phẩm</Button>
                             </ThemeProvider>
                           </a>
                         </Link>

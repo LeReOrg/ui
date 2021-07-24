@@ -98,15 +98,12 @@ const styles = (theme) => ({
     background: `url(${Ring})`,
     width: 100,
     height: 100,
+    "& div" : {
+      top : 7
+    }
   },
   customerImage: {
-    width: 85,
-    height: 85,
-    objectFit: "contain",
     borderRadius: "50%",
-    position: "absolute",
-    left: 8,
-    top: 8,
   },
   rootTab: {
     textTransform: "none",

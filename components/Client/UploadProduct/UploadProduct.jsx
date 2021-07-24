@@ -157,7 +157,6 @@ const UploadProduct = () => {
             item
             lg={2}
             md={3}
-            xs={0}
             className={classes.uploadMain_sideBar}
           >
             <SideBarCustomer />
@@ -229,7 +228,7 @@ const UploadProduct = () => {
               </Grid>
             </Grid>
             <div className={classes.main_recipent__paymentButton}>
-              <UploadProductButton isDisabled={disabled} disabled={disabled} />
+              <UploadProductButton disabledProps={disabled} disabled={disabled} />
             </div>
           </Grid>
         </Grid>

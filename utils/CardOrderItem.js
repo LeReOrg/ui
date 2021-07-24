@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid } from "@material-ui/core";
-import HistoryCart from "../assets/imagetest2.png";
 import Image from "next/image";
 import styles from "../styles/CardOrderItemStyled";
-import { MyButton } from "../components/Client/Login/LoginPageStyled";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
 
