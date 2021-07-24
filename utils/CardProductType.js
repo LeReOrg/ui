@@ -5,7 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
 import { prefetchProductByCate } from "../hooks/useProductByCategory";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "../styles/CardProductTypeStyled";
 import Image from "next/image";
 const CardProductType = ({ info }) => {

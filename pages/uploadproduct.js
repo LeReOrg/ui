@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import UploadProduct from "../components/Client/UploadProduct/UploadProduct";
 import { useRecoilValue } from "recoil";
 import { userState } from "../lib/recoil-root";
 import { useRouter } from "next/router";
 import { getLayout } from "../container/MainLayout";
+import dynamic from 'next/dynamic'
 
 const Upload_Product = () => {
   const user = useRecoilValue(userState);
@@ -11,9 +11,13 @@ const Upload_Product = () => {
   useEffect(() => {
     if (user == "") router.push("/login");
   }, []);
+  const UploadProductWithNoSSR = dynamic(
+    () => import('../components/Client/UploadProduct/UploadProduct'),
+    { ssr: false }
+  )
   return (
     <>
-      <UploadProduct />
+      <UploadProductWithNoSSR />
     </>
   );
 };

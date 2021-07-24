@@ -149,7 +149,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
         ...preState,
         totalDays: totalDate,
       }));
-      if (totalDate > shortestHiredDays) {
+      if (totalDate >= shortestHiredDays) {
         setItemAdd((preState) => ({
           ...preState,
           formDate: fromFormat,

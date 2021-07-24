@@ -1,7 +1,11 @@
 import React from "react";
-import SignUpPage from "../components/Client/SignUp/SignUp";
 import { getLayout } from "../container/MainLayout";
+import dynamic from 'next/dynamic'
 
+const SignUpPage = dynamic(
+  () => import('../components/Client/SignUp/SignUp'),
+  { ssr: false }
+)
 const Signup = () => {
   return (
     <>

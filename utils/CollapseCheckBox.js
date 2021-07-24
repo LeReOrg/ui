@@ -12,7 +12,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import { Box } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { isMobileDevice } from "./FunctionUses";
 
 const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {

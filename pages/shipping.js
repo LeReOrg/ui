@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShippingInfo from "../components/Client/Shipping/ShippingInfo";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
@@ -43,14 +43,16 @@ const Shipping = () => {
       setChangeAddress(false);
     };
   }, []);
-  console.log(addresItem);
   console.log(user);
+  console.log(addresItem);
 
   useEffect(() => {
     if (addresItem?.docs?.length > 0 && !changeAddress) {
       setUser((preState) => ({ ...preState, address: addresItem }));
       router.push("/payment");
       setOpenAddProduct(false);
+    }else{
+      setUser((preState) => ({ ...preState, address: addresItem }));
     }
   }, [addresItem]);
   useEffect(() => {
@@ -87,7 +89,9 @@ const Shipping = () => {
     <div className={classes.main_shipping}>
       <Box>
         <h1>Địa chỉ giao hàng</h1>
-        <p>Chọn địa chỉ giao hàng bên dưới:</p>
+        {addresItem?.docs?.length > 0 && (
+          <p>Chọn địa chỉ giao hàng bên dưới:</p>
+        )}
       </Box>
       <Box className={classes.addressItems}>
         {addresItem?.docs?.length > 0 && renderAddressItem()}
@@ -103,6 +107,14 @@ const Shipping = () => {
             Thêm địa chỉ giao hàng mới
           </span>
         </p>
+      )}
+      {addresItem?.docs?.length === 0 && (
+        <span
+          className={classes.main_shipping_add_address}
+          onClick={() => setOpenAddProduct(true)}
+        >
+          Thêm địa chỉ giao hàng mới
+        </span>
       )}
       {openAddProduct && (
         <form

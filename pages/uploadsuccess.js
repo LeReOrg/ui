@@ -1,6 +1,11 @@
 import React from "react";
-import UploadSuccessPage from "../components/Client/UploadSucessPage/UploadSucesPage";
 import { getLayout } from "../container/MainLayout";
+import dynamic from 'next/dynamic'
+
+const UploadSuccessPage = dynamic(
+  () => import('../components/Client/UploadSucessPage/UploadSucesPage'),
+  { ssr: false }
+)
 function UploadSuccess() {
   return (
     <>
