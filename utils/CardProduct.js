@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
 import Image from "next/image";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "../styles/CardProductStyled";
 import { prefetchProductByDetails } from "../hooks/useProduct";
 const CardProduct = ({ item }) => {

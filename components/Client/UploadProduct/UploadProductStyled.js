@@ -290,21 +290,21 @@ const styles = (theme) => ({
   },
   main_recipent__Button: {
     backgroundColor: (props) =>
-      props.isDisabled == true ? "#E7E9E8" : "#2FAF62",
+      props.disabledProps  ? "#E7E9E8" : "#2FAF62",
     padding: "15px 100px",
     borderRadius: 4,
     fontWeight: "bold",
     fontSize: 16,
-    color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
+    color: (props) => (props.disabledProps  ? "#C3C7C5" : "#FFFFFF"),
   },
 });
 
 const useStyles = makeStyles(styles);
 export function UploadProductButton(props) {
-  const { type, ...other } = props;
+  const { type, disabledProps ,...other } = props;
   const classes = useStyles(props);
   return (
-    <button type="submit" className={classes.main_recipent__Button} {...other}>
+    <button type="submit" className={classes.main_recipent__Button} {...other} >
       Đăng sản phẩm
     </button>
   );

@@ -2,7 +2,7 @@
 // import CollapseRadio from "../../../utils/CollapseRadio";
 // import { price, places } from "../../../utils/FixedFilterItem";
 // import CollapseCheckbox from "../../../utils/CollapseCheckBox";
-// import { makeStyles } from "@material-ui/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 // import { useEffect } from "react";
 // import styles from "./FilterItemMobileStyled";
 

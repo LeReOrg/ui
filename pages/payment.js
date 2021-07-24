@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RecipentItems from "../components/Client/Shipping/RecipentItems";
 import PaymentType from "../components/Client/Shipping/PaymentType";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Box, Button } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -22,6 +22,7 @@ import { useRouter } from "next/router";
 const Payment = (props) => {
   const [cart, setCart] = useRecoilState(cartState);
   const user = useRecoilValue(userState);
+  console.log(user)
   const [items, setItems] = useState([]);
   const totalPrice = useRecoilValue(cartTotal);
   const [transportValue, setTransportValue] = useState(0);
@@ -45,7 +46,8 @@ const Payment = (props) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const router = useRouter();
-  const { mutate, isLoading } = useMakeOrder();
+  const { mutate, isLoading , data } = useMakeOrder();
+  useEffect(() => {})
   const paymentAccess = () => {
     const params = {
       orders: items,
@@ -54,7 +56,9 @@ const Payment = (props) => {
     };
     mutate(params);
     setCart([]);
-    router.push("/paymentSuccess");
+    router.push("/paymentSuccess",{
+      params : data
+    });
   };
   const totalPayment = parseInt(transportValue) + parseInt(totalPrice);
   const changeAddressItem = () => {

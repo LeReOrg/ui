@@ -1,18 +1,14 @@
 import React from "react";
 import "../styles/globals.css";
-import NProgress from "nprogress"; //nprogress module
-import "nprogress/nprogress.css"; //styles of nprogress
+import NextNProgress from 'nextjs-progressbar';
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
-import "../styles/globals.css";
 import Head from "next/head";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/swiper.scss";
 import theme from "../styles/theme";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "../styles/AppStyled"; // styles of component
-import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -21,9 +17,6 @@ import { useMediaQuery } from "react-responsive";
 import BurgerMobile from "../components/Client/Header/HeaderNav/BurgerMobile";
 import ProfileLayout from "../container/ProfileContainer";
 import OverPlay from "../utils/OverPlay";
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
 
 const MyApp = ({ Component, pageProps }) => {
   const queryClientRef = React.useRef();
@@ -37,7 +30,6 @@ const MyApp = ({ Component, pageProps }) => {
   const classes = useStyles();
 
   React.useEffect(() => {
-    // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -51,7 +43,6 @@ const MyApp = ({ Component, pageProps }) => {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         <link
           href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css"
           rel="stylesheet"
@@ -75,6 +66,7 @@ const MyApp = ({ Component, pageProps }) => {
               <div className="container-fluid" id="container-fluid">
                 <div id="main-container" className={classes.page_container}>
                   <OverPlay />
+                  <NextNProgress height={2} color="#2faf62" />
                   {getLayout(<Component {...pageProps} />)}
                 </div>
               </div>

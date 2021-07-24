@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./UploadSuceessStyled";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Link } from "@material-ui/core";
 import { HomeButton, UploadAnotherProductButton } from "./UploadSuceessStyled";
 import SideBarCustomer from "../Customer/SideBarCustomer";

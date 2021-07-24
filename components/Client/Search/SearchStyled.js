@@ -1,5 +1,3 @@
-import BackGround from "../../../assets/background.png";
-
 const styles = (theme) => ({
   search_body: {
     position: "absolute",
@@ -23,6 +21,13 @@ const styles = (theme) => ({
       left: 0,
       top: "20%",
     },
+  },
+  inputSearch: {
+    maxWidth: 400,
+    width: "100%",
+    padding: "17px 16px",
+    border: "none",
+    borderRadius: 8
   },
   search_contain: {
     width: "100%",

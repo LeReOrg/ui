@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 import styles from "../styles/AddressItemStyled";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const AddressItem = ({ item }) => {
   const useStyled = makeStyles(styles);

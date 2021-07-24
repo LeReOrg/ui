@@ -4,7 +4,7 @@ import BreadCrumb from "../../components/Client/BreadCrumb/BreadCrumb";
 import { Grid } from "@material-ui/core";
 import FilterItem from "../../components/Client/FilterItem/FilterItem";
 import ListItemByTypeProduct from "../../components/Client/ListItemByTypeProduct/ListItemByTypeProduct";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../styles/ListProductByTypeStyled";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";

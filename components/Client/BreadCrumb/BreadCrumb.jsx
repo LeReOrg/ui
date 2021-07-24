@@ -1,7 +1,7 @@
 import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import LinkStyle from "@material-ui/core/Link";
 import { capitalize } from "../../../utils/FunctionUses";
 import styles from "./BreadCrumbStyled";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Line from "../../utils/Line";
 import BreadCrumb from "../../components/Client/BreadCrumb/BreadCrumb";
 import ProductDetailsInfo from "../../components/Client/ProductDetails/ProductDetailsInfo";

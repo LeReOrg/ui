@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles, { theme } from "../styles/PaymentSuccessStyled";
 import { Box, Button } from "@material-ui/core";
 import { getLayout } from "../container/MainLayout";

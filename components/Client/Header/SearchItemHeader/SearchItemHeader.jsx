@@ -50,7 +50,6 @@ const SearchItemHeader = () => {
   };
   return (
     <div className={classes.search_main} onClick={() => showSearchBox()}>
-      <div>
         <FormField
           id={"search"}
           formData={search.searchData.search}
@@ -61,7 +60,6 @@ const SearchItemHeader = () => {
           className={classes.inputSearch}
         />
         <div className={classes.searchIcon}></div>
-      </div>
       {searchBox && (
         <SearchBox
           changeSearBox={() => {

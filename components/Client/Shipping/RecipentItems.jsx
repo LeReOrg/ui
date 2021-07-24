@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import ShippingItem from "../../../utils/ShippingItem";
 import { useState } from "react";
 import styles from "./ShippingStyled";

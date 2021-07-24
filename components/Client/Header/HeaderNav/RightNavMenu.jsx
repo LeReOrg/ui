@@ -28,7 +28,7 @@ const RightNavMenu = ({ mobileMode }) => {
           onMouseLeave={() => setIsHovering(false)}
           className={classes.showLogin}
         >
-          {user && <div className={classes.logoAccount}></div>}
+          {user && <span className={classes.logoAccount} ></span>}
           <a>
             {user && user
               ? user.displayName || user.user.displayName

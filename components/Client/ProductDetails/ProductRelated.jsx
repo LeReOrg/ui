@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import CardProduct from "../../../utils/CardProduct";
 import styles from "./ProductDetailsStyled";
 import { useProductByCategory } from "../../../hooks/useProductByCategory";

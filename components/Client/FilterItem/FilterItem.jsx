@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CollapseRadio from "../../../utils/CollapseRadio";
 import { price } from "../../../utils/FixedFilterItem";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import CollapseCheckbox from "../../../utils/CollapseCheckBox";
 import styles from "./FilterItemMobileStyled";
 import { useRecoilState } from "recoil";

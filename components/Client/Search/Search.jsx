@@ -57,9 +57,11 @@ const Search = () => {
             <div className={classes.search_input}>
               <FormField
                 id={"search"}
+                type="text"
                 formData={search.searchData.search}
                 change={(element) => updateSearch(element)}
-                useClasses={true}
+                useClasses={false}
+                className={classes.inputSearch}
               />
             </div>
           </Grid>

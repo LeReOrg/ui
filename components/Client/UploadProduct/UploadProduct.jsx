@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./UploadProductStyled";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Link } from "@material-ui/core";
 import UploadInfo from "./UploadInfo";
 import UploadPrice from "./UploadPrice";

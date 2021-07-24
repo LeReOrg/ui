@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "./UploadProductStyled";
 import CustomForm from "../../../utils/CustomForm.js";
 

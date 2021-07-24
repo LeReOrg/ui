@@ -18,10 +18,6 @@ const styles = (theme) => ({
     },
   },
   linkTypeProduct: {
-    "&:hover": {
-      textDecoration: "none",
-      fontSize: 26,
-    },
     color: "#111E16",
     fontStyle: "normal",
     fontWeight: "normal",

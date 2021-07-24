@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "../styles/AboutStyled";
 import Image from "next/image";
 import FirstImage from "../assets/aboutus_first.png";

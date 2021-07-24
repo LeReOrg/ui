@@ -1,7 +1,11 @@
 import React from "react";
-import CustomerHistory from "../../../components/Client/Customer/CustomerHistory";
 import { getLayout } from "../../../container/ProfileContainer";
+import dynamic from 'next/dynamic'
 
+const CustomerHistory = dynamic(
+  () => import('../../../components/Client/Customer/CustomerHistory'),
+  { ssr: false }
+)
 const Purchase = () => {
   return <CustomerHistory />;
 };
