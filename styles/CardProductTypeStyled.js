@@ -29,10 +29,7 @@ const styles = (theme) => ({
   },
   media: {
     borderRadius: 8,
-    "&:hover": {
-      transform: "scale(1.2)",
-      transition: "transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
-    },
+
     [theme.breakpoints.down("xs")]: {
       height: 72,
     },

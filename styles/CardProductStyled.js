@@ -24,20 +24,10 @@ const styles = (theme) => ({
     fontWeight: "bold",
   },
   linkTypeProduct: {
-    "&:hover": {
-      textDecoration: "none",
-      transition: "transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
-    },
     color: "#111E16",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 16,
-  },
-  media: {
-    "&:hover": {
-      transform: "scale(1.2)",
-      transition: "transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)",
-    },
   },
   contentLessorItemName: {
     fontWeight: "normal",
