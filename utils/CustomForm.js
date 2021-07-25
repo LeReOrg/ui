@@ -7,7 +7,6 @@ const CustomForm = ({
   nameSelect,
   inputOption,
   valueOptions,
-  curentValue,
   ...inputProp
 }) => {
   const renderTemplate = () => {
@@ -41,8 +40,8 @@ const CustomForm = ({
       case "select":
         formTemplate = (
           <>
-            <select type={inputType}  defaultValue={nameSelect} value={nameSelect}  name={nameInput} ref={name} {...inputProp}>
-              <option value="" selected hidden >
+            <select type={inputType} name={nameInput} ref={name} {...inputProp}>
+              <option value="" disabled selected hidden>
                 {nameSelect}
               </option>
               {valueOptions?.map((item, index) => (

@@ -15,7 +15,6 @@ import {
   signInWithGoogle,
   signInWithFacebook,
 } from "../../../firebase/firenase.utils";
-import { logInEmailAndPassword } from "../../../hooks/useAuthentication";
 import { useLoginByFireBase } from "../../../hooks/useAuthentication";
 import { userState, errorCodeState } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
@@ -98,16 +97,6 @@ const LoginPage = () => {
       }));
     }
   }, [email, password]);
-  // useEffect(() => {
-  //   return () => {
-  //     setErrorCode((preState) => ({
-  //       ...preState,
-  //       status: "",
-  //       message: "",
-  //       code: "",
-  //     }));
-  //   };
-  // }, [errorCode]);
   useEffect(() => {
     if (email && password && isErrors) {
       setDisabled(false);
