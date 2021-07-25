@@ -13,13 +13,7 @@ const saveLoginByFireBase = async (params) => {
 };
 const useSignUp = () => {
   const [errorCode, setErrorCode] = useRecoilState(errorCodeState);
-  const [currentUser, setcurrentUser] = useRecoilState(userState);
-
   return useMutation(signUp, {
-    onSuccess: (data) => {
-      setcurrentUser(data);
-      return data;
-    },
     onError: (error) => {
       error &&
         setErrorCode((preState) => ({
@@ -63,7 +57,7 @@ const useLogin = () => {
 
   return useMutation(logInEmailAndPassword, {
     onSuccess: (data) => {
-      setcurrentUser(data);
+      setcurrentUser(preState => ({...preState, user : data}));
       return data;
     },
     onError: (error) => {

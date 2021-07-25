@@ -1,5 +1,5 @@
 import BoxSuccess from "../assets/box.png";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   paymentSuccess_main: {
@@ -33,7 +33,7 @@ const styles = (theme) => ({
     marginBottom: 40,
   },
 });
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiButton: {
       text: {

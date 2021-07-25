@@ -4,7 +4,7 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import { makeStyles } from "@material-ui/core/styles";
 // import { city, ward, district } from "../dataEx";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import styles from "./ShippingStyled";
 
 const AddAddressMobile = (props) => {
@@ -12,7 +12,7 @@ const AddAddressMobile = (props) => {
   useEffect(() => {
     if (props.values.city != -1) setDisabled(false);
   }, [props.values.city]);
-  const theme = createMuiTheme({
+  const theme = createTheme({
     overrides: {
       MuiButton: {
         text: {

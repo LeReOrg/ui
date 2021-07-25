@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   root: {
@@ -179,7 +179,7 @@ const styles = (theme) => ({
     flexWrap: "wrap",
   },
 });
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiButton: {
       text: {

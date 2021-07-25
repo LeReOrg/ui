@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/globals.css";
-import NextNProgress from 'nextjs-progressbar';
+import NextNProgress from "nextjs-progressbar";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,7 +17,11 @@ import { useMediaQuery } from "react-responsive";
 import BurgerMobile from "../components/Client/Header/HeaderNav/BurgerMobile";
 import ProfileLayout from "../container/ProfileContainer";
 import OverPlay from "../utils/OverPlay";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 
+const cache = createCache({ key: "css" });
+cache.compat = true;
 const MyApp = ({ Component, pageProps }) => {
   const queryClientRef = React.useRef();
   const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
@@ -37,44 +41,46 @@ const MyApp = ({ Component, pageProps }) => {
   }, []);
   return (
     <React.Fragment>
-      <Head>
-        <title>Le&Re Org</title>s
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-        <link
-          href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css"
-          rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <QueryClientProvider client={queryClientRef.current}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <RecoilRoot>
-              {isMobile && <BurgerMobile />}
-              <div className="container-fluid" id="container-fluid">
-                <div id="main-container" className={classes.page_container}>
-                  <OverPlay />
-                  <NextNProgress height={2} color="#2faf62" />
-                  {getLayout(<Component {...pageProps} />)}
+      <CacheProvider value={cache}>
+        <Head>
+          <title>Le&Re Org</title>s
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+          <link
+            href="https://cdn.jsdelivr.net/npm/rsuite@3.2.9/dist/styles/rsuite.min.css"
+            rel="stylesheet"
+          />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <QueryClientProvider client={queryClientRef.current}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <RecoilRoot>
+                {isMobile && <BurgerMobile />}
+                <div className="container-fluid" id="container-fluid">
+                  <div id="main-container" className={classes.page_container}>
+                    <OverPlay />
+                    <NextNProgress height={2} color="#2faf62" />
+                    {getLayout(<Component {...pageProps} />)}
+                  </div>
                 </div>
-              </div>
-            </RecoilRoot>
-          </ThemeProvider>
-        </Hydrate>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+              </RecoilRoot>
+            </ThemeProvider>
+          </Hydrate>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </CacheProvider>
     </React.Fragment>
   );
 };
