@@ -165,6 +165,7 @@ const styles = (theme) => ({
   },
   quantity_space: {
     marginTop: "2%",
+    display: "flex",
   },
   hire_time_space: {
     marginTop: "12px",

@@ -50,13 +50,19 @@ const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
         setValueSub("Đon hàng được giao thành công");
         break;
       case "AWAITING RETURN PICKUP":
-        setValueStatus("Chờ xác nhận");
+        setValueStatus("Chờ trả hàng");
+        setValueSub("Đon hàng của bạn đang đợi tài xế đến lấy...");
+
         break;
       case "RETURNING":
-        setValueStatus("Chờ xác nhận");
+        setValueStatus("Chờ trả hàng");
+        setValueSub("Đon hàng đang được trả lại...");
+
         break;
       case "RETURNED":
-        setValueStatus("Chờ xác nhận");
+        setValueStatus("Trả hàng thành công");
+        setValueSub("Đon hàng được trả thành công");
+
         break;
       case "CANCELLED":
         setValueStatus("Đơn hàng đã hủy");
@@ -138,6 +144,14 @@ const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
                 onClick={() => confirmOrder(item)}
               >
                 Xác nhận đơn hàng
+              </div>
+            )}
+            {status === "RETURNED" && !customerTab && (
+              <div
+                className={classes.buttonDetail}
+                onClick={() => confirmOrder(item)}
+              >
+                Xác nhận đơn hàng đã trả thành công
               </div>
             )}
 
