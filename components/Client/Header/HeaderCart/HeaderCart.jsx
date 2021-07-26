@@ -4,8 +4,9 @@ import Link from "next/link";
 import styles from "./HeaderCartStyled";
 import { cartTotalItem } from "../../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
-const useStyles = makeStyles(styles);
 const HeaderCart = (props) => {
+  const useStyles = makeStyles(styles);
+
   const classes = useStyles();
   const totalItem = useRecoilValue(cartTotalItem);
   return (

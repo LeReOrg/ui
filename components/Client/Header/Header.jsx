@@ -3,9 +3,10 @@ import Navbar from "./HeaderNav/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "./HeaderStyled";
 
-const useStyles = makeStyles(styles);
 const Header = (props) => {
   const [scroll, setScroll] = useState(false);
+  const useStyles = makeStyles(styles);
+
   const classes = useStyles();
   useEffect(() => {
     window.addEventListener("scroll", () => {

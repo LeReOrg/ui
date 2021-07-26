@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 
 const CustomerHistory = dynamic(
   () => import('../../../components/Client/Customer/CustomerHistory'),
-  { ssr: false }
 )
 const Purchase = () => {
   return <CustomerHistory />;

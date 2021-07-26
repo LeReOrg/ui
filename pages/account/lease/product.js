@@ -4,7 +4,8 @@ import dynamic from 'next/dynamic'
 
 const Products = dynamic(
   () => import('../../../components/Client/Products/Products'),
-  { ssr: false }
+  {ssr : false}
+ 
 )
 const Product = () => {
   return <Products />;
