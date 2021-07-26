@@ -8,7 +8,7 @@ import { useUpdateUser } from "../../../hooks/useUser";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "./CustomerStyled";
 import Link from "next/link";
-import Image from "next/image";
+import defaultAvatar from "../../../assets/icon.png";
 const SideBarCustomer = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
@@ -63,12 +63,10 @@ const SideBarCustomer = () => {
       <Box component="div" className={classes.customerInfo}>
         <Box component="div" className={classes.customerInfoImage}>
           {currentUser && (
-            <Image
-              src={currentUser?.user?.avatar}
-              className={classes.customerImage}
-              width={85}
-              height={85}
-            />
+             <img
+             src={currentUser?.user?.avatar || defaultAvatar}
+             className={classes.customerImage}
+           />
           )}
         </Box>
         <p className={classes.customerInfo_title}>{router?.query.name}</p>

@@ -57,7 +57,7 @@ const useLogin = () => {
 
   return useMutation(logInEmailAndPassword, {
     onSuccess: (data) => {
-      setcurrentUser(preState => ({...preState, user : data}));
+      setcurrentUser(data);
       return data;
     },
     onError: (error) => {
