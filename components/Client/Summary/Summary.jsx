@@ -1,13 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 import { useRecoilValue } from "recoil";
 import { useIncomeMonthly } from "../../../hooks/useSummary";
 import { userState } from "../../../lib/recoil-root";
-import {Box } from '@material-ui/core'
+import {
+  Box,
+  ClickAwayListener,
+  Popper,
+  Button,
+  Grow,
+  Paper,
+  MenuList,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import styles from "./SummaryStyled";
 const Summary = () => {
+  const useStyles = makeStyles(styles);
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+  const handleClose = (event, value) => {
+    setOpen(false);
+  };
+
   const user = useRecoilValue(userState);
   const year = new Date().getFullYear();
   const month = new Date().getMonth() + 1;
+  const parseMonth = `${month < 10 ? `0${month}` : month}`;
+  const [title, setTitle] = useState(year);
   const [month1, setMonth1] = useState({ isHave: false, value: 0 });
   const [month2, setMonth2] = useState({ isHave: false, value: 0 });
   const [month3, setMonth3] = useState({ isHave: false, value: 0 });
@@ -20,17 +45,39 @@ const Summary = () => {
   const [month10, setMonth10] = useState({ isHave: false, value: 0 });
   const [month11, setMonth11] = useState({ isHave: false, value: 0 });
   const [month12, setMonth12] = useState({ isHave: false, value: 0 });
-  const params = {
+  const [params, setParams] = useState({
     startDate: `${year}-01-01`,
     endDate: `${year}-12-31`,
-  };
+  });
+  const [paramsCurrentMonth, setParamsCurrentMonth] = useState({
+    startDate: `${year}-${parseMonth}-01`,
+    endDate: `${year}-${parseMonth}-${month === 2 ? "29" : "31"}`,
+  });
+  const totalMount =
+    month1.value +
+    month2.value +
+    month3.value +
+    month4.value +
+    month5.value +
+    month6.value +
+    month7.value +
+    month8.value +
+    month9.value +
+    month10.value +
+    month11.value +
+    month12.value;
   const userId = {
     userId: user?.user?._id,
     token: user.token,
   };
   const { data: dataMonth, isLoading } = useIncomeMonthly(params, userId);
+  const { data: dataCurrentMonth } = useIncomeMonthly(
+    paramsCurrentMonth,
+    userId
+  );
+
   useEffect(() => {
-    if (dataMonth) {
+    if (dataMonth && dataMonth.docs.length > 0) {
       dataMonth?.docs.map((item, index) => {
         switch (item.timestamp.substr(5, 2)) {
           case "01":
@@ -105,10 +152,58 @@ const Summary = () => {
               value: item.amount,
             });
             break;
-
           default:
             break;
         }
+      });
+    } else {
+      setMonth1({
+        isHave: false,
+        value: 0,
+      });
+      setMonth2({
+        isHave: false,
+        value: 0,
+      });
+      setMonth3({
+        isHave: false,
+        value: 0,
+      });
+      setMonth4({
+        isHave: false,
+        value: 0,
+      });
+      setMonth5({
+        isHave: false,
+        value: 0,
+      });
+      setMonth6({
+        isHave: false,
+        value: 0,
+      });
+      setMonth7({
+        isHave: false,
+        value: 0,
+      });
+      setMonth8({
+        isHave: false,
+        value: 0,
+      });
+      setMonth9({
+        isHave: false,
+        value: 0,
+      });
+      setMonth10({
+        isHave: false,
+        value: 0,
+      });
+      setMonth11({
+        isHave: false,
+        value: 0,
+      });
+      setMonth12({
+        isHave: false,
+        value: 0,
       });
     }
   }, [dataMonth]);
@@ -155,39 +250,133 @@ const Summary = () => {
         {
           ticks: {
             beginAtZero: true,
-            callback: function(value, index, values) {
-                if(parseInt(value) >= 1000){
-                  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'VNĐ';
-                } else {
-                  return value + 'VNĐ';
-                }
+            callback: function (value, index, values) {
+              if (parseInt(value) >= 1000) {
+                return (
+                  value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "VNĐ"
+                );
+              } else {
+                return value + "VNĐ";
               }
+            },
           },
         },
       ],
     },
     tooltips: {
-        callbacks: {
-            label: function(t, d) {
-                var xLabel = d.datasets[t.datasetIndex].label;
-                var yLabel = t.yLabel >= 1000 ?
-                    t.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'VNĐ':
-                   t.yLabel + 'VNĐ';
-                return xLabel + ': ' + yLabel;
-            }
-        }
-    }
+      callbacks: {
+        label: function (t, d) {
+          var xLabel = d.datasets[t.datasetIndex].label;
+          var yLabel =
+            t.yLabel >= 1000
+              ? t.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                "VNĐ"
+              : t.yLabel + "VNĐ";
+          return xLabel + ": " + yLabel;
+        },
+      },
+    },
   };
+  const handleClick = (event, value) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    const { textContent } = event.target;
+    const getYearDropdown = parseInt(textContent.slice(-4));
+    setParams((preState) => ({
+      ...preState,
+      startDate: `${getYearDropdown}-01-01`,
+      endDate: `${getYearDropdown}-12-31`,
+    }));
+    setParamsCurrentMonth((preState) => ({
+      ...preState,
+      startDate: `${getYearDropdown}-${parseMonth}-01`,
+      endDate: `${getYearDropdown}-${parseMonth}-${month === 2 ? "29" : "31"}`,
+    }));
+    setTitle(textContent);
+    setOpen(false);
+  };
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
   return (
-    <Box>
-        <Box>
-        <Box><p>Năm nay</p><p>2222222222 đ</p></Box>
-            <Box><p>Tháng hiện tại {month}</p><p>2222222222 đ</p></Box>
+    <Box className={classes.summaryContainer}>
+      <Box className={classes.summaryMoneyYear}>
+        <Box className={classes.summaryMoney}>
+          <Box className={classes.currentYear}>
+            <p>Năm nay</p>
+            <p>{totalMount.toLocaleString("en-US")} đ</p>
+          </Box>
+          <Box className={classes.currentMonth}>
+            <p>Tháng hiện tại {month}</p>
+            <p>
+              {dataCurrentMonth?.docs.length > 0
+                ? dataCurrentMonth?.docs[0]?.amount?.toLocaleString("en-US")
+                : 0}{" "}
+              đ
+            </p>
+          </Box>
         </Box>
         <Box>
-            <p>Năm {year}</p>
+          <Button
+            ref={anchorRef}
+            aria-haspopup="true"
+            onClick={handleToggle}
+            style={{ textTransform: "none", letterSpacing: 0 }}
+            aria-controls={open ? "menu-list-grow" : undefined}
+          >
+            {`${title == year ? "Năm:" : ""} ${title}`}
+            {!open ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+          </Button>
+
+          <Popper
+            open={open}
+            anchorEl={anchorRef.current}
+            style={{
+              zIndex: 2,
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
+              borderRadius: "4px",
+            }}
+            role={undefined}
+            transition
+            placement={"bottom-end"}
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow {...TransitionProps} style={{}}>
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      <div
+                        onClick={(e) => handleClick(e)}
+                        className={classes.yearDropDown}
+                      >
+                        Năm: {year}
+                      </div>
+                      <div
+                        onClick={(e) => handleClick(e)}
+                        className={classes.yearDropDown}
+                      >
+                        Năm: {year - 1}
+                      </div>
+                      <div
+                        onClick={(e) => handleClick(e)}
+                        className={classes.yearDropDown}
+                      >
+                        Năm: {year - 2}
+                      </div>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
         </Box>
-      <Bar data={data} options={options} />
+      </Box>
+
+      <Bar height="80px" width="200px" data={data} options={options} />
     </Box>
   );
 };

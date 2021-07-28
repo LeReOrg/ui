@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { sort } from "../../../utils/FixedFilterItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import faAngleDown from "@fortawesome/fontawesome-free-solid/faAngleDown";
 import MenuItem from "@material-ui/core/MenuItem";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import MenuList from "@material-ui/core/MenuList";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
@@ -68,11 +68,7 @@ const Sort = () => {
         aria-controls={open ? "menu-list-grow" : undefined}
       >
         {`Sắp xếp :  ${title}`}
-        <FontAwesomeIcon
-          icon={faAngleDown}
-          className="icon"
-          style={{ marginLeft: "10px" }}
-        />
+        {!open ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
       </Button>
 
       <Popper
