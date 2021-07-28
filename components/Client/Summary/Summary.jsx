@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 import { useRecoilValue } from "recoil";
-import { useIncomeMonthly } from "../../../hooks/useSummary";
+import { useIncomeMonthly, useIncomeList } from "../../../hooks/useSummary";
 import { userState } from "../../../lib/recoil-root";
 import {
   Box,
@@ -11,11 +11,13 @@ import {
   Grow,
   Paper,
   MenuList,
+  Grid,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import styles from "./SummaryStyled";
+import moment from "moment";
 const Summary = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
@@ -70,12 +72,12 @@ const Summary = () => {
     userId: user?.user?._id,
     token: user.token,
   };
+  const { data: orderList } = useIncomeList(params, userId);
   const { data: dataMonth, isLoading } = useIncomeMonthly(params, userId);
   const { data: dataCurrentMonth } = useIncomeMonthly(
     paramsCurrentMonth,
     userId
   );
-
   useEffect(() => {
     if (dataMonth && dataMonth.docs.length > 0) {
       dataMonth?.docs.map((item, index) => {
@@ -296,12 +298,36 @@ const Summary = () => {
     setTitle(textContent);
     setOpen(false);
   };
-  function handleListKeyDown(event) {
+  const handleListKeyDown = (event) => {
     if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
     }
-  }
+  };
+  console.log(orderList);
+  const renderOrder = () =>
+    orderList?.docs?.map((item, index) => (
+      <>
+        <Grid item lg={8} md={8}>
+          <Grid container>
+            <Grid item lg={3} md={3}>
+              <p className={classes.time}>{moment(item.createdAt).format("hh:mm:ss")}</p>
+              <p  className={classes.date}>{moment(item.createdAt).format("DD/MM/YYYY")}</p>
+            </Grid>
+            <Grid item lg={9} md={9} className={classes.secondRow}>
+              <Box>Doanh thu từ đơn hàng #{item._id}</Box>
+              <Box>Thuê từ {item._id}</Box>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item lg={4} md={4}>
+          <Box align="right" className={classes.thridRow}>
+            + {item.lessorEarned.toLocaleString("en-US")}
+          </Box>
+        </Grid>
+        <hr />
+      </>
+    ));
   return (
     <Box className={classes.summaryContainer}>
       <Box className={classes.summaryMoneyYear}>
@@ -375,8 +401,30 @@ const Summary = () => {
           </Popper>
         </Box>
       </Box>
-
       <Bar height="80px" width="200px" data={data} options={options} />
+      <Box className={classes.transactionList}>
+        <p className={classes.transactionListRecent}>Các giao dịch gần đây</p>
+        <Box className={classes.transactionListRecentTable}>
+          <Grid container>
+            <Grid item lg={8} md={8}>
+              <Grid container>
+                <Grid item lg={3} md={3}>
+                  Thời gian
+                </Grid>
+                <Grid item lg={9} md={9}>
+                  Sản phẩm
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item lg={4} md={4}>
+              <Box align="right">Số tiền (đ)</Box>
+            </Grid>
+          </Grid>
+        </Box>
+        <Box className={classes.transactionListTableContent}>
+          <Grid container>{orderList && renderOrder()}</Grid>
+        </Box>
+      </Box>
     </Box>
   );
 };
