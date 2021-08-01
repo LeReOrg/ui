@@ -62,7 +62,7 @@ const OrderLease = (props) => {
     },
     {
       key: 6,
-      value: "Đang trả",
+      value: "Đã trả",
     },
     {
       key: 7,
@@ -108,12 +108,9 @@ const OrderLease = (props) => {
         }));
         break;
       case 6:
-        setFilter((preState) => ({ ...preState, status: "RETURNING" }));
-        break;
-      case 7:
         setFilter((preState) => ({ ...preState, status: "RETURNED" }));
         break;
-      case 8:
+      case 7:
         setFilter((preState) => ({ ...preState, status: "CANCELLED" }));
         break;
       default:

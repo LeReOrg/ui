@@ -17,7 +17,7 @@ const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
     detail,
     lessee,
   } = item;
-  console.log(customerTab);
+  console.log(status);
   const useStyles = makeStyles(styles);
   let startDateFormat = startDate.slice(0, 10);
   let startDay = `${startDateFormat.substr(-2, 2)}-${startDateFormat.substr(
@@ -52,17 +52,14 @@ const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
       case "AWAITING RETURN PICKUP":
         setValueStatus("Chờ trả hàng");
         setValueSub("Đon hàng của bạn đang đợi tài xế đến lấy...");
-
         break;
       case "RETURNING":
         setValueStatus("Chờ trả hàng");
         setValueSub("Đon hàng đang được trả lại...");
-
         break;
       case "RETURNED":
         setValueStatus("Trả hàng thành công");
         setValueSub("Đon hàng được trả thành công");
-
         break;
       case "CANCELLED":
         setValueStatus("Đơn hàng đã hủy");
