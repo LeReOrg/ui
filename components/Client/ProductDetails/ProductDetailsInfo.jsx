@@ -79,6 +79,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
     setCart(newCart);
+    setShowModalAddCart(false);
     setShowModalAddCart(true);
   };
   const renderDiscount = () =>
