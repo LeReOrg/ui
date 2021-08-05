@@ -4,20 +4,23 @@ import Link from "next/link";
 import styles from "./HeaderCartStyled";
 import { cartTotalItem } from "../../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
-const HeaderCart = (props) => {
+import AddProductModal from "../../Modal/AddProductModal";
+const HeaderCart = () => {
   const useStyles = makeStyles(styles);
-
   const classes = useStyles();
   const totalItem = useRecoilValue(cartTotalItem);
   return (
-    <Link href="/cart">
-      <a>
-        <div className={classes.header_cart_main}>
-          <div className={classes.header_cart_icon}></div>
-          <div className={classes.header_cart_countItem}>({totalItem})</div>
-        </div>
-      </a>
-    </Link>
+    <div className={classes.header_cart_container}>
+      <Link href="/cart">
+        <a>
+          <div className={classes.header_cart_main}>
+            <div className={classes.header_cart_icon}></div>
+            <div className={classes.header_cart_countItem}>({totalItem})</div>
+          </div>
+        </a>
+      </Link>
+      <AddProductModal />
+    </div>
   );
 };
 export default HeaderCart;

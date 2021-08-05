@@ -2,6 +2,9 @@ import ShoppingBag from "../../../../assets/shopping_bag.svg";
 import ShoppingBagMobile from "../../../../assets/ic_shoppingbag_mobile.svg";
 
 const styles = (theme) => ({
+  header_cart_container: {
+    position: "relative",
+  },
   header_cart_main: {
     border: "1px solid #2FAF62",
     borderRadius: 4,

@@ -10,7 +10,11 @@ import ImageGallery from "react-image-gallery";
 import { DateRangePicker } from "rsuite";
 import styles from "./ProductDetailsStyled";
 import { isMobileDevice } from "../../../utils/FunctionUses";
-import { cartState, addCart } from "../../../lib/recoil-root";
+import {
+  cartState,
+  addCart,
+  showModalAddProduct,
+} from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 
 const ProductDetailsInfo = ({ detailsProduct }) => {
@@ -30,6 +34,8 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     category,
     quantity,
   } = detailsProduct;
+  const [showModalAddCart, setShowModalAddCart] =
+    useRecoilState(showModalAddProduct);
   let arrayImages = [];
   images.map((item, index) => {
     let objectImages = {};
@@ -73,6 +79,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
     setCart(newCart);
+    setShowModalAddCart(true);
   };
   const renderDiscount = () =>
     discounts.map((item, index) => (
