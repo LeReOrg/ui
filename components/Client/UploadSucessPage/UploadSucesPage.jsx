@@ -47,22 +47,22 @@ const UploadSuccessPage = () => {
         </>
       </div>
     ));
-  const renderImagesSub = () =>
-    productAddDetail?.images?.map((item, index) => {
-      if (index > 0) {
-        return (
-          <Image
-            key={index}
-            className={classes.uploadMain_ImageItem}
-            src={item.url}
-            width={120}
-            height={120}
-            layout="fixed"
-            quality={100}
-          />
-        );
-      }
-    });
+  // const renderImagesSub = () =>
+  //   productAddDetail?.images?.map((item, index) => {
+  //     if (index > 0) {
+  //       return (
+  //         <Image
+  //           key={index}
+  //           className={classes.uploadMain_ImageItem}
+  //           src={item.url}
+  //           width={120}
+  //           height={120}
+  //           layout="fixed"
+  //           quality={100}
+  //         />
+  //       );
+  //     }
+  //   });
 
   return (
     <div className={classes.uploadMain}>
@@ -269,7 +269,7 @@ const UploadSuccessPage = () => {
                   <Box className={classes.uploadMain_ImageDetails}>
                     <h3>Ảnh bìa</h3>
                     <Box className={classes.uploadMain_ImageContainer}>
-                      <Image
+                      {/* <Image
                         className={classes.uploadMain_ImageItem}
                         src={
                           productAddDetail && productAddDetail.images[0]?.url
@@ -278,22 +278,31 @@ const UploadSuccessPage = () => {
                         height={120}
                         layout="fixed"
                         quality={100}
-                      />
+                      /> */}
                     </Box>
                     <h3>Ảnh con</h3>
                     <Box className={classes.uploadMain_ImageContainer}>
-                      {renderImagesSub()}
+                      {/* {renderImagesSub()} */}
                     </Box>
                   </Box>
                 </Grid>
               </Grid>
             </Box>
           </Box>
-
-          <div className={classes.main_recipent__paymentButtonDetails}>
-            <HomeButton backHome={() => router.push("/")} />
-            <UploadAnotherProductButton backAddProduct={() => router.back()} />
-          </div>
+          <Grid
+            container
+            spacing={3}
+            className={classes.main_recipent__paymentButtonDetails}
+          >
+            <Grid item lg={6} md={6}>
+              <HomeButton backHome={() => router.push("/")} />
+            </Grid>
+            <Grid item lg={6} md={6}>
+              <UploadAnotherProductButton
+                backAddProduct={() => router.back()}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </div>

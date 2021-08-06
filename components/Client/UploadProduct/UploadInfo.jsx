@@ -74,15 +74,8 @@ const UploadInfo = ({
   return (
     <>
       <Box mb={4} className={classes.rowInfo}>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          className={classes.rowInfoContent}
-        >
-          {!isMobileDevice() ? (
-            <p className={classes.titleText}>Ảnh sản phẩm:</p>
-          ) : null}
+        <Box className={classes.rowInfoContent}>
+          <p className={classes.titleText}>Ảnh sản phẩm:</p>
           <div className={classes.upload__image_span}>(Tối đa 10 hình)</div>
         </Box>
         <ImageUploading

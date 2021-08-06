@@ -155,13 +155,14 @@ const UploadProduct = () => {
         <Grid container spacing={4}>
           <Grid
             item
-            lg={2}
+            xl={3}
+            lg={3}
             md={3}
             className={classes.uploadMain_sideBar}
           >
             <SideBarCustomer />
           </Grid>
-          <Grid item lg={10} md={9} xs={12}>
+          <Grid item xl={9} lg={9} md={9} xs={12}>
             <h1 className={classes.uploadMain_Info__Title}>
               Đăng sản phẩm cho thuê
             </h1>
@@ -181,11 +182,7 @@ const UploadProduct = () => {
                   <h2 className={classes.uploadMain_InfoContentTitle}>
                     Thông tin sản phẩm
                   </h2>
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
+                  <Box className={classes.uploadMain_helpUpload}>
                     <div className={classes.iconInfo}></div>
                     <p className={classes.uploadMain_InfoIconText}>
                       Tìm hiểu về Upload Sản phẩm
@@ -228,7 +225,10 @@ const UploadProduct = () => {
               </Grid>
             </Grid>
             <div className={classes.main_recipent__paymentButton}>
-              <UploadProductButton disabledProps={disabled} disabled={disabled} />
+              <UploadProductButton
+                disabledProps={disabled}
+                disabled={disabled}
+              />
             </div>
           </Grid>
         </Grid>

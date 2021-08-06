@@ -1,32 +1,55 @@
 import { makeStyles, Button } from "@material-ui/core";
 import InfoIcon from "../../../assets/infoUpload.svg";
 import UploadImageIcon from "../../../assets/UploadImageIcon.svg";
+import UploadImageIconMobile from "../../../assets/addImageMobile.svg";
+
 const styles = (theme) => ({
   uploadMain: {
     maxWidth: 1440,
-    margin: "37px auto 0 auto",
-    marginTop: 80,
+    margin: 0,
+    marginTop: 2,
+    [theme.breakpoints.up("md")]: {
+      margin: "80px 10px 0 10px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      margin: "80px 20px 0 20px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      margin: "80px 40px 0 40px",
+    },
+    [theme.breakpoints.up("xll")]: {
+      margin: "80px auto 0 auto",
+    },
   },
   uploadMain_sideBar: {
     borderRight: "1px solid #000000",
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
   },
   uploadMain_Info: {
     border: "1px solid rgba(0, 0, 0, 0.15)",
-    borderRadius: "8px",
     marginBottom: 24,
     backgroundColor: "#ffffff",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.up("md")]: {
       border: "none",
       marginBottom: 0,
+      borderRadius: "8px",
+    },
+  },
+  uploadMain_helpUpload: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
     },
   },
   uploadMain_InfoContent: {
-    paddingLeft: 40,
-    paddingTop: 30,
-    paddingBottom: 40,
-    paddingRight: 40,
-    [theme.breakpoints.down("xs")]: {
-      padding: 0,
+    padding: "30px 15px",
+    [theme.breakpoints.up("md")]: {
+      padding: "30px 40px",
     },
   },
   rowInfoTextArea: {
@@ -38,9 +61,10 @@ const styles = (theme) => ({
     fontSize: 24,
     lineHeight: "32px",
     marginBottom: 20,
-    // [theme.breakpoints.down("xs")]: {
-    //   marginBottom: 20,
-    // },
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
   },
   upload__image_span: {
     color: "rgba(0, 0, 0, 0.45)",
@@ -48,30 +72,51 @@ const styles = (theme) => ({
     lineHeight: "13px",
   },
   upload__imageIcon_wrapper: {
-    background: `url(${UploadImageIcon})`,
-    width: 30,
-    height: 30,
+    background: `url(${UploadImageIconMobile})`,
+    width: 20,
+    height: 20,
     backgroundRepeat: "no-repeat",
+    position: "absolute",
+    right: 25,
+    top: 25,
+    [theme.breakpoints.up("md")]: {
+      background: `url(${UploadImageIcon})`,
+      width: 30,
+      height: 30,
+      right: 0,
+      top: 0,
+      position: "relative",
+      backgroundRepeat: "no-repeat",
+    },
   },
   upload__imageIconText: {
     position: "absolute",
-    bottom: 8,
-    left: 30,
+    bottom: 2,
+    left: 10,
     color: "#888E8A",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 12,
-    lineHeight: "18px",
+    fontSize: 10,
+    lineHeight: "13px",
+    [theme.breakpoints.up("md")]: {
+      left: 30,
+      bottom: 8,
+      fontSize: 12,
+      lineHeight: "18px",
+    },
   },
   upload__image_button: {
     border: "1px solid #888E8A",
     borderRadius: 5,
-    padding: "45px",
+    padding: 35,
     color: "#FA8C16",
     backgroundColor: "#F3F4F3",
     position: "relative",
-    maxWidth: 120,
-    maxHeight: 120,
+    maxWidth: 70,
+    maxHeight: 70,
+    [theme.breakpoints.up("md")]: {
+      maxWidth: 120,
+      maxHeight: 120,
+      padding: 45,
+    },
   },
   uploadMain_InfoBody: {
     margin: "0 auto",
@@ -124,8 +169,15 @@ const styles = (theme) => ({
     backgroundColor: "#ffffff",
   },
   rowInfoContent: {
-    marginTop: 30,
-    paddingBottom: 24,
+    marginTop: 20,
+    paddingBottom: 10,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    [theme.breakpoints.up("md")]: {
+      marginTop: 30,
+      paddingBottom: 24,
+    },
   },
   rowInfo: {
     display: "flex",
@@ -134,14 +186,13 @@ const styles = (theme) => ({
     // width: "65%",
     // alignItems: "center",
 
-    [theme.breakpoints.between("sm", "md")]: {
-      // width: "95%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-      flexDirection: "column",
-      alignItems: "flex-start",
-    },
+    // [theme.breakpoints.between("sm", "md")]: {
+    // },
+    // [theme.breakpoints.down("xs")]: {
+    //   width: "100%",
+    //   flexDirection: "column",
+    //   alignItems: "flex-start",
+    // },
   },
   upload__image_wrapper: {
     display: "flex",
@@ -242,9 +293,13 @@ const styles = (theme) => ({
     },
   },
   image_item: {
-    width: 120,
-    height: 120,
+    width: 70,
+    height: 70,
     borderRadius: 8,
+    [theme.breakpoints.up("md")]: {
+      width: 120,
+      height: 120,
+    },
   },
   image_item__btn_wrapper: {
     display: "flex",
@@ -289,22 +344,21 @@ const styles = (theme) => ({
     },
   },
   main_recipent__Button: {
-    backgroundColor: (props) =>
-      props.disabledProps  ? "#E7E9E8" : "#2FAF62",
+    backgroundColor: (props) => (props.disabledProps ? "#E7E9E8" : "#2FAF62"),
     padding: "15px 100px",
     borderRadius: 4,
     fontWeight: "bold",
     fontSize: 16,
-    color: (props) => (props.disabledProps  ? "#C3C7C5" : "#FFFFFF"),
+    color: (props) => (props.disabledProps ? "#C3C7C5" : "#FFFFFF"),
   },
 });
 
 const useStyles = makeStyles(styles);
 export function UploadProductButton(props) {
-  const { type, disabledProps ,...other } = props;
+  const { type, disabledProps, ...other } = props;
   const classes = useStyles(props);
   return (
-    <button type="submit" className={classes.main_recipent__Button} {...other} >
+    <button type="submit" className={classes.main_recipent__Button} {...other}>
       Đăng sản phẩm
     </button>
   );

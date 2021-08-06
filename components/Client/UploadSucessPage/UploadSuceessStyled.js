@@ -5,36 +5,46 @@ import BackIcon from "../../../assets/BackButton.svg";
 
 const styles = (theme) => ({
   uploadMain: {
-    width: "80%",
-    margin: "37px auto 0 auto",
-    marginTop: 80,
-    [theme.breakpoints.down("sm")]: {
-      width: "95%",
+    maxWidth: 1440,
+    margin: 0,
+    marginTop: 2,
+    [theme.breakpoints.up("md")]: {
+      margin: "80px 10px 0 10px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      margin: "80px 20px 0 20px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      margin: "80px 40px 0 40px",
+    },
+    [theme.breakpoints.up("xll")]: {
+      margin: "80px auto 0 auto",
     },
   },
   uploadMain_sideBar: {
     borderRight: "1px solid #000000",
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
     },
   },
   uploadMain_Info: {
-    border: "1px solid rgba(0, 0, 0, 0.15)",
-    borderRadius: "8px",
-    marginBottom: 24,
+    border: "none",
+    marginBottom: 0,
     backgroundColor: "#ffffff",
-    [theme.breakpoints.down("sm")]: {
-      border: "none",
-      marginBottom: 0,
+    [theme.breakpoints.up("md")]: {
+      borderRadius: "8px",
+      marginBottom: 24,
+      border: "1px solid rgba(0, 0, 0, 0.15)",
     },
   },
   uploadMain_InfoContent: {
-    paddingLeft: 40,
-    paddingTop: 30,
-    paddingBottom: 40,
-    paddingRight: 40,
-    [theme.breakpoints.down("xs")]: {
-      padding: 0,
+    padding: "20px 15px",
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: 40,
+      paddingTop: 30,
+      paddingBottom: 40,
+      paddingRight: 40,
     },
   },
   rowInfoTextArea: {
@@ -47,9 +57,10 @@ const styles = (theme) => ({
     lineHeight: "32px",
     marginBottom: 20,
     color: " #2FAF62",
-    // [theme.breakpoints.down("xs")]: {
-    //   marginBottom: 20,
-    // },
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
   },
   upload__image_span: {
     color: "rgba(0, 0, 0, 0.45)",
@@ -260,15 +271,15 @@ const styles = (theme) => ({
     },
   },
   main_recipent__paymentButtonDetails: {
-    maxWidth: "30%",
-    display: "flex",
-    justifyContent: "space-around",
-    marginBottom: 100,
-    marginTop: 50,
-    margin: "auto",
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: 10,
-      marginTop: 0,
+    // maxWidth: "30%",
+    // display: "flex",
+    justifyContent: "center",
+    marginBottom: 10,
+    marginTop: 40,
+    // margin: "auto",
+    [theme.breakpoints.up("lg")]: {
+      marginBottom: 80,
+      marginTop: 50,
     },
   },
   image_item: {
@@ -360,14 +371,31 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     textTransform: "capitalize",
+    width: 192,
     cursor: "pointer",
     color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
+  },
+  main_recipent__HomeButton: {
+    backgroundColor: (props) =>
+      props.isDisabled == true ? "#E7E9E8" : "#2FAF62",
+    padding: "9px 16px",
+    borderRadius: 4,
+    fontWeight: "bold",
+    fontSize: 16,
+    lineHeight: "22px",
+    display: "flex",
+    alignItems: "center",
+    textTransform: "capitalize",
+    width: 120,
+    cursor: "pointer",
+    color: (props) => (props.isDisabled == true ? "#C3C7C5" : "#FFFFFF"),
+    float: "right",
   },
   main_recipent__ButtonIcon: {
     background: `url(${BackIcon})`,
     backgroundSize: "cover",
-    width: 24,
-    height: 24,
+    width: 18,
+    height: 16,
     marginRight: 12,
   },
 });
@@ -380,7 +408,7 @@ export function HomeButton(props) {
   return (
     <div
       onClick={() => props.backHome()}
-      className={classes.main_recipent__Button}
+      className={classes.main_recipent__HomeButton}
       {...other}
     >
       <div className={classes.main_recipent__ButtonIcon}></div>

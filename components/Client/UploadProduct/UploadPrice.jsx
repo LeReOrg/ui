@@ -10,7 +10,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
   const [listDiscount, setListDiscount] = useState([]);
   const classes = useStyled();
   const renderDisCountItem = () =>
-    discountList.map((item , index) => (
+    discountList.map((item, index) => (
       <Box display="flex" key={index}>
         <CustomForm
           inputType="input"
@@ -135,7 +135,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
         </Grid>
         <Grid
           item
-          lg={2}
+          lg={3}
           md={2}
           style={{ maxWidth: 130, borderRight: "3px solid #111E16" }}
         >
@@ -148,7 +148,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
         </Grid>
         <Grid
           item
-          lg={5}
+          lg={4}
           md={5}
           className={classes.uploadMain_InfoItemDetailDes}
         >
