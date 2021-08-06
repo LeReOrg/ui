@@ -22,15 +22,18 @@ const styles = (theme) => ({
     listStyle: "none",
     display: "flex",
     marginBottom: 0,
-    marginRight: 10,
-    alignItems: "center",
     paddingLeft: 0,
     flexFlow: "column nowrap",
+    textAlign: "right",
+    marginTop: 30,
     [theme.breakpoints.up("md")]: {
       flexFlow: "row nowrap",
+      alignItems: "center",
+      marginRight: 10,
+      marginTop: 0,
     },
     "& li": {
-      padding: 0,
+      paddingBottom: 24,
       [theme.breakpoints.up("md")]: {
         padding: "0px 10px",
       },
@@ -43,7 +46,7 @@ const styles = (theme) => ({
       fontStyle: "normal",
       fontWeight: "bold",
       fontSize: 13,
-      lineHeight: "22px",
+      lineHeight: "20px",
       textDecoration: "none",
       "&:hover": {
         color: "#2faf62",
@@ -63,10 +66,13 @@ const styles = (theme) => ({
   right_nav_main: {
     display: "flex",
     flexDirection: "column",
+    marginTop: 24,
+    marginRight: 20,
     [theme.breakpoints.up("md")]: {
       flexDirection: "row",
-
       justifyContent: "flex-end",
+      marginTop: 0,
+      marginRight: 0,
     },
   },
   uploadproduct: {
@@ -76,6 +82,10 @@ const styles = (theme) => ({
     position: "relative",
     display: "flex",
     alignItems: "center",
+    justifyContent: "flex-end",
+    [theme.breakpoints.up("md")]: {
+      justifyContent: "center",
+    },
     "&:hover": {
       cursor: "pointer",
     },

@@ -37,14 +37,9 @@ const BurgerMobile = () => {
       </IconButton>
       <Drawer
         anchor="right"
-        classes={classes.mobileMenu}
         open={state.right}
         onClose={toggleDrawer("right", false)}
-        // sx={{
-        //   ".MuiDrawer-paper": {
-        //     bgcolor: "primary.main",
-        //   },
-        // }}
+        classes={{ paperAnchorRight: classes.mobileMenu }}
       >
         <RightNavMenu
           updateOpen={() =>
