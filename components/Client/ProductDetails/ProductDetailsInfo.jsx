@@ -75,7 +75,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     }));
   }, [quantityItem]);
 
-  console.log(cart);
   const addToCart = (items) => {
     const newCart = addCart(cart, items);
     setCart(newCart);

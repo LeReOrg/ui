@@ -23,12 +23,12 @@ const styles = (theme) => ({
   },
   header_logo_title: {
     fontWeight: "bold",
-    fontSize: 24,
-    paddingLeft: 24,
     color: "black",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 16,
-      paddingLeft: 7,
+    fontSize: 16,
+    paddingLeft: 7,
+    [theme.breakpoints.up("xl")]: {
+      fontSize: 24,
+      paddingLeft: 24,
     },
   },
 });

@@ -11,9 +11,15 @@ const styles = (theme) => ({
     padding: "10px 15px",
     border: "1px solid #E7E9E8",
     borderRadius: 4,
-    width: 400,
-    [theme.breakpoints.down("md")]: {
+    width: 200,
+    [theme.breakpoints.up("md")]: {
       width: 250,
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: 300,
+    },
+    [theme.breakpoints.up("xl")]: {
+      width: 400,
     },
   },
   searchIcon: {

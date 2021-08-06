@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
 import ShowLogin from "../ShowLogin/ShowLogin";
 import AccountList from "../AccountList/AccountList";
-
-import { useState } from "react";
-import { RightNav, styles } from "./HeaderNavStyled";
+import { styles } from "./HeaderNavStyled";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../lib/recoil-root";
 
@@ -17,7 +15,7 @@ const RightNavMenu = ({ mobileMode }) => {
   const user = useRecoilValue(userState);
   return (
     <div className={classes.right_nav_main}>
-      <RightNav>
+      <div className={classes.right_nav_content}>
         <li>
           <Link href="/about">
             <a>Về chúng tôi</a>
@@ -28,7 +26,7 @@ const RightNavMenu = ({ mobileMode }) => {
           onMouseLeave={() => setIsHovering(false)}
           className={classes.showLogin}
         >
-          {user && <span className={classes.logoAccount} ></span>}
+          {user && <span className={classes.logoAccount}></span>}
           <a>
             {user && user
               ? user.displayName || user.user.displayName
@@ -41,7 +39,7 @@ const RightNavMenu = ({ mobileMode }) => {
             <a className={classes.uploadproduct}>Đăng sản phẩm</a>
           </Link>
         </li>
-      </RightNav>
+      </div>
       {!mobileMode && <HeaderCart />}
     </div>
   );

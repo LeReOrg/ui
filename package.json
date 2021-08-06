@@ -51,7 +51,6 @@
     "recoil-persist": "^2.9.0",
     "rsuite": "^4.8.7",
     "sass": "^1.36.0",
-    "styled-components": "^5.2.1",
     "swiper": "^6.4.5",
     "yup": "^0.32.9"
   }
