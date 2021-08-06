@@ -1,6 +1,5 @@
-const styles = (theme) => ({
+const styles = () => ({
   header: {
-    position: "relative",
     background: "#FFFFFF",
     zIndex: 1000,
   },
