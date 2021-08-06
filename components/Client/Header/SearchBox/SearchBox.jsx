@@ -4,16 +4,34 @@ import { makeStyles } from "@material-ui/core/styles";
 import ItemTop from "../../../../assets/testSearchTop.png";
 import TypeProduct from "../../../../assets/testTypePRoductSearch.png";
 import { useClickOutside } from "../../../../hooks/useOnClickOutSide";
+import { useCategories } from "../../../../hooks/useCategories";
+import Link from "next/link";
 
 const SearchBox = ({ changeSearBox }) => {
   const searchBoxRef = useRef();
-
+  useCategories;
+  const { data: categoryItems, isLoading } = useCategories();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
 
   const onClickOutSide = () => {
     changeSearBox();
   };
+  const renderCategoryItems = () =>
+    categoryItems &&
+    categoryItems.map((item, index) => (
+      <Link href={`/type_product/${item._id}`}>
+        <div key={index} className={classes.searchBox_topTypeProductItem}>
+          <img
+            className={classes.searchBox_topTypeProductItemImage}
+            src={item.thumbnail.url}
+          />
+          <div className={classes.searchBox_topTypeProductItemText}>
+            {item.name}
+          </div>
+        </div>
+      </Link>
+    ));
   useClickOutside(searchBoxRef, onClickOutSide);
   return (
     <div className={classes.searchBox_main} ref={searchBoxRef}>
@@ -82,78 +100,7 @@ const SearchBox = ({ changeSearBox }) => {
           Danh Mục Nổi Bật
         </div>
         <div className={classes.searchBox_topTypeProductItems}>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
-          <div className={classes.searchBox_topTypeProductItem}>
-            <img
-              className={classes.searchBox_topTypeProductItemImage}
-              src={TypeProduct}
-            />
-            <div className={classes.searchBox_topTypeProductItemText}>
-              Ba lô
-            </div>
-          </div>
+          {renderCategoryItems()}
         </div>
       </div>
     </div>

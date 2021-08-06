@@ -15,6 +15,12 @@ const styles = (theme) => ({
     paddingRight: 12,
     paddingTop: 15,
   },
+  searchBox_topTypeProductItemImage: {
+    height: 38,
+    width: 38,
+    borderRadius: 4,
+    objectFit: "cover",
+  },
   searchBox_historyContent: {
     display: "flex",
     alignItems: "center",
@@ -139,6 +145,10 @@ const styles = (theme) => ({
     borderRadius: 4,
     marginBottom: 10,
     minWidth: "25%",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#2FAF62",
+    },
   },
 });
 
