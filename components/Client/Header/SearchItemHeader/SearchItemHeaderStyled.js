@@ -12,11 +12,8 @@ const styles = (theme) => ({
     border: "1px solid #E7E9E8",
     borderRadius: 4,
     width: 200,
-    [theme.breakpoints.up("md")]: {
-      width: 250,
-    },
     [theme.breakpoints.up("lg")]: {
-      width: 300,
+      width: 280,
     },
     [theme.breakpoints.up("xl")]: {
       width: 400,

@@ -7,14 +7,21 @@ import AccountList from "../AccountList/AccountList";
 import { styles } from "./HeaderNavStyled";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../lib/recoil-root";
+import CloseIcon from "@material-ui/icons/Close";
+import { useMediaQuery } from "react-responsive";
 
-const RightNavMenu = ({ mobileMode }) => {
+const RightNavMenu = ({ updateOpen }) => {
   const useStyled = makeStyles(styles);
+  const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
   const classes = useStyled();
   const [isHovering, setIsHovering] = useState(false);
   const user = useRecoilValue(userState);
   return (
     <div className={classes.right_nav_main}>
+      <div className={classes.closeIconMenu} onClick={() => updateOpen()}>
+        {isMobile && <CloseIcon />}
+      </div>
+
       <div className={classes.right_nav_content}>
         <li>
           <Link href="/about">
@@ -40,7 +47,7 @@ const RightNavMenu = ({ mobileMode }) => {
           </Link>
         </li>
       </div>
-      {!mobileMode && <HeaderCart />}
+      {!isMobile && <HeaderCart />}
     </div>
   );
 };

@@ -6,35 +6,39 @@ const styles = (theme) => ({
     position: "relative",
   },
   header_cart_main: {
-    border: "1px solid #2FAF62",
-    borderRadius: 4,
-    padding: "9px 25px",
+    padding: "0 20px 0 0",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
-      border: "none",
-      padding: "0 40px 0 0",
+    border: "none",
+    [theme.breakpoints.up("md")]: {
+      padding: "5px 15px",
+      border: "1px solid #2FAF62",
+      borderRadius: 4,
+    },
+    [theme.breakpoints.up("lg")]: {
+      padding: "9px 23px",
     },
   },
   header_cart_icon: {
-    background: `url(${ShoppingBag})`,
+    background: `url(${ShoppingBagMobile})`,
+
     height: 24,
     width: 24,
     padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      background: `url(${ShoppingBagMobile})`,
+    [theme.breakpoints.up("md")]: {
+      background: `url(${ShoppingBag})`,
     },
   },
   header_cart_countItem: {
-    color: "#2FAF62",
     fontSize: 16,
     fontStyle: "normal",
     fontWeight: "bold",
-    paddingLeft: 6,
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: 3,
-      color: "black",
+    paddingLeft: 3,
+    color: "black",
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: 6,
+      color: "#2FAF62",
     },
   },
 });

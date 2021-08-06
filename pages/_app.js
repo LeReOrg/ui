@@ -13,8 +13,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
-import { useMediaQuery } from "react-responsive";
-import BurgerMobile from "../components/Client/Header/HeaderNav/BurgerMobile";
 import ProfileLayout from "../container/ProfileContainer";
 import OverPlay from "../utils/OverPlay";
 import createCache from "@emotion/cache";
@@ -24,7 +22,6 @@ const cache = createCache({ key: "css" });
 cache.compat = true;
 const MyApp = ({ Component, pageProps }) => {
   const queryClientRef = React.useRef();
-  const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
   const getLayout =
     Component.getLayout || ((page) => <ProfileLayout children={page} />);
   if (!queryClientRef.current) {
@@ -67,7 +64,6 @@ const MyApp = ({ Component, pageProps }) => {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <RecoilRoot>
-                {isMobile && <BurgerMobile />}
                 <div className="container-fluid" id="container-fluid">
                   <div id="main-container" className={classes.page_container}>
                     <OverPlay />
