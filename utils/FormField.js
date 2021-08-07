@@ -95,7 +95,7 @@ const FormField = ({ id, formData, change, useClasses, className }) => {
     }
     return formTemplate;
   };
-  return <div>{renderTemplate()}</div>;
+  return <>{renderTemplate()}</>;
 };
 
 export default FormField;

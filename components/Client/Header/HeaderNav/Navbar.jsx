@@ -7,9 +7,15 @@ import RightNavMenu from "./RightNavMenu";
 import HeaderCart from "../HeaderCart/HeaderCart";
 import { makeStyles } from "@material-ui/core/styles";
 import BurgerMobile from "./BurgerMobile";
+import { useRecoilState } from "recoil";
+import { showMobileSearchIconState } from "../../../../lib/recoil-root";
 
 const Navbar = (props) => {
   const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
+  const isMobile2 = useMediaQuery({ query: `(max-width: 414px)` });
+  const [showMobileSearchIcon, setShowMobileSearchIcon] = useRecoilState(
+    showMobileSearchIconState
+  );
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   return (
@@ -17,6 +23,12 @@ const Navbar = (props) => {
       <HeaderLogo scroll={props.scroll} />
       <SearchItemHeader />
       <div className={classes.nav_container_mobile}>
+        {isMobile2 && !showMobileSearchIcon && (
+          <div
+            onClick={() => setShowMobileSearchIcon(true)}
+            className={classes.search_main_searchMobile}
+          ></div>
+        )}
         {isMobile && <HeaderCart />}
         {isMobile && <BurgerMobile />}
       </div>

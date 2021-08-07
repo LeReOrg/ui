@@ -10,22 +10,26 @@ const styles = (theme) => ({
     },
   },
   header_logo: {
-    width: 32,
-    height: 32,
-    backgroundSize: "contain",
+    width: 18,
+    height: 18,
+    backgroundSize: "cover",
     backgroundImage: `url(${image_logo})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    [theme.breakpoints.down("xs")]: {
-      width: 18,
-      height: 18,
+    [theme.breakpoints.up("md")]: {
+      width: 32,
+      height: 32,
     },
   },
   header_logo_title: {
     fontWeight: "bold",
     color: "black",
-    fontSize: 16,
+    fontSize: 14,
     paddingLeft: 7,
+    lineHeight: "16px",
+    [theme.breakpoints.up("md")]: {
+      fontSize: 16,
+    },
     [theme.breakpoints.up("xl")]: {
       fontSize: 24,
       paddingLeft: 24,

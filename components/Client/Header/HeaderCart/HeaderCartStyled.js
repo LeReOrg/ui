@@ -6,7 +6,7 @@ const styles = (theme) => ({
     position: "relative",
   },
   header_cart_main: {
-    padding: "0 20px 0 0",
+    padding: "0 10px 0 0",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -31,13 +31,15 @@ const styles = (theme) => ({
     },
   },
   header_cart_countItem: {
-    fontSize: 16,
+    fontSize: 14,
     fontStyle: "normal",
     fontWeight: "bold",
     paddingLeft: 3,
     color: "black",
+    lineHeight: "20px",
     [theme.breakpoints.up("md")]: {
       paddingLeft: 6,
+      fontSize: 16,
       color: "#2FAF62",
     },
   },

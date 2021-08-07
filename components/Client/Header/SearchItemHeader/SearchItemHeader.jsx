@@ -4,15 +4,19 @@ import FormField from "../../../../utils/FormField";
 import { update } from "../../../../utils/FormAction";
 import styles from "./SearchItemHeaderStyled";
 import SearchBox from "../SearchBox/SearchBox";
-import { useRecoilState } from "recoil";
-import { overPlayState } from "../../../../lib/recoil-root";
-
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  overPlayState,
+  showMobileSearchIconState,
+} from "../../../../lib/recoil-root";
+import { useMediaQuery } from "react-responsive";
 const SearchItemHeader = () => {
   const useStyles = makeStyles(styles);
+  const isMobile = useMediaQuery({ query: `(max-width: 414px)` });
   const [searchBox, setShowSearchBox] = useState(false);
-
   const [showOverPlay, setShowOverPlay] = useRecoilState(overPlayState);
-
+  const [showSearchMobile, setShowSearchMobile] = useState(false);
+  const showMobileSearchIcon = useRecoilValue(showMobileSearchIconState);
   const searchInfos = {
     searchError: false,
     searchSuccess: false,
@@ -49,26 +53,30 @@ const SearchItemHeader = () => {
     setShowOverPlay(true);
   };
   return (
-    <div className={classes.search_main} onClick={() => showSearchBox()}>
-        <FormField
-          id={"search"}
-          formData={search.searchData.search}
-          change={(element) => updateSearch(element)}
-          type="text"
-          placeholder="Tìm kiếm"
-          useClasses={false}
-          className={classes.inputSearch}
-        />
-        <div className={classes.searchIcon}></div>
-      {searchBox && (
-        <SearchBox
-          changeSearBox={() => {
-            setShowSearchBox(false);
-            setShowOverPlay(false);
-          }}
-        />
-      )}
-    </div>
+    <>
+      {showMobileSearchIcon || !isMobile ? (
+        <div className={classes.search_main} onClick={() => showSearchBox()}>
+          <FormField
+            id={"search"}
+            formData={search.searchData.search}
+            change={(element) => updateSearch(element)}
+            type="text"
+            placeholder="Tìm kiếm"
+            useClasses={false}
+            className={classes.inputSearch}
+          />
+          <div className={classes.searchIcon}></div>
+          {searchBox && (
+            <SearchBox
+              changeSearBox={() => {
+                setShowSearchBox(false);
+                setShowOverPlay(false);
+              }}
+            />
+          )}
+        </div>
+      ) : null}
+    </>
   );
 };
 

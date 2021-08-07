@@ -271,12 +271,9 @@ const styles = (theme) => ({
     },
   },
   main_recipent__paymentButtonDetails: {
-    // maxWidth: "30%",
-    // display: "flex",
     justifyContent: "center",
     marginBottom: 10,
-    marginTop: 40,
-    // margin: "auto",
+    marginTop: 10,
     [theme.breakpoints.up("lg")]: {
       marginBottom: 80,
       marginTop: 50,
@@ -307,11 +304,24 @@ const styles = (theme) => ({
     padding: "5px 10px",
   },
   uploadMain_left: {
-    borderRight: "1px solid #000000",
     paddingTop: "0 !important",
+    order: 1,
+    [theme.breakpoints.up("md")]: {
+      borderRight: "1px solid #000000",
+      order: 0,
+    },
+  },
+  uploadSuccessMain_helpUpload: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
   },
   uploadMain_right: {
     paddingTop: "0 !important",
+    paddingBottom: "0 !important",
   },
   image_item__btn_deleteImage: {
     backgroundColor: "#FFFFFF",
@@ -321,16 +331,28 @@ const styles = (theme) => ({
     padding: "5px 10px",
   },
   uploadMain_ImageDetails: {
-    padding: "23px 46px 0 34px",
+    padding: "20px 0 0 0",
     "& h3": {
       fontStyle: "normal",
       fontWeight: "bold",
       fontSize: 10,
       lineHeight: "13px",
+      marginBottom: 5,
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "23px 46px 0 34px",
     },
   },
   uploadMain_ImageItem: {
-    borderRadius: 8,
+    borderRadius: 4,
+    width: 70,
+    height: 70,
+    objectFit: "cover",
+    [theme.breakpoints.up("md")]: {
+      width: 120,
+      height: 120,
+      borderRadius: 8,
+    },
   },
   uploadMain_ImageContainer: {
     marginBottom: 30,

@@ -1,4 +1,5 @@
 import LogoAccount from "../../../../assets/account.svg";
+import SearHeaderIconMobile from "../../../../assets/searchIconMobile.svg";
 
 const styles = (theme) => ({
   nav_container: {
@@ -97,6 +98,13 @@ const styles = (theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     marginRight: 10,
+  },
+  search_main_searchMobile: {
+    backgroundImage: `url(${SearHeaderIconMobile})`,
+    height: 18,
+    width: 18,
+    backgroundRepeat: "no-repeat",
+    marginRight: 14,
   },
 });
 export { styles };

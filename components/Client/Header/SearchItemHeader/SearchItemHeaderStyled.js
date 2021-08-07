@@ -3,17 +3,19 @@ import SearHeaderIcon from "../../../../assets/searchHeaderIcon.svg";
 const styles = (theme) => ({
   search_main: {
     position: "relative",
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
-    },
   },
   inputSearch: {
-    padding: "10px 15px",
     border: "1px solid #E7E9E8",
     borderRadius: 4,
-    width: 200,
+    width: 140,
+    padding: "10px",
+    [theme.breakpoints.up("sm")]: {
+      width: 220,
+      padding: "8px 13px",
+    },
     [theme.breakpoints.up("lg")]: {
       width: 280,
+      padding: "10px 15px",
     },
     [theme.breakpoints.up("xl")]: {
       width: 400,

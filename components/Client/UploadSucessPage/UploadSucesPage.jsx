@@ -47,22 +47,18 @@ const UploadSuccessPage = () => {
         </>
       </div>
     ));
-  // const renderImagesSub = () =>
-  //   productAddDetail?.images?.map((item, index) => {
-  //     if (index > 0) {
-  //       return (
-  //         <Image
-  //           key={index}
-  //           className={classes.uploadMain_ImageItem}
-  //           src={item.url}
-  //           width={120}
-  //           height={120}
-  //           layout="fixed"
-  //           quality={100}
-  //         />
-  //       );
-  //     }
-  //   });
+  const renderImagesSub = () =>
+    productAddDetail?.images?.map((item, index) => {
+      if (index > 0) {
+        return (
+          <img
+            key={index}
+            className={classes.uploadMain_ImageItem}
+            src={item.url}
+          />
+        );
+      }
+    });
 
   return (
     <div className={classes.uploadMain}>
@@ -86,11 +82,7 @@ const UploadSuccessPage = () => {
                 <h2 className={classes.uploadMain_InfoContentTitle}>
                   Thông tin sản phẩm
                 </h2>
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
+                <Box className={classes.uploadSuccessMain_helpUpload}>
                   <div className={classes.iconInfo}></div>
                   <p className={classes.uploadMain_InfoIconText}>
                     Tìm hiểu về Upload Sản phẩm
@@ -102,7 +94,7 @@ const UploadSuccessPage = () => {
                   item
                   lg={6}
                   md={6}
-                  xs={6}
+                  xs={12}
                   className={classes.uploadMain_left}
                 >
                   <Box
@@ -260,7 +252,7 @@ const UploadSuccessPage = () => {
                   item
                   lg={6}
                   md={6}
-                  xs={6}
+                  xs={12}
                   className={classes.uploadMain_right}
                 >
                   <h2 className={classes.uploadMain_InfoItem}>
@@ -269,20 +261,16 @@ const UploadSuccessPage = () => {
                   <Box className={classes.uploadMain_ImageDetails}>
                     <h3>Ảnh bìa</h3>
                     <Box className={classes.uploadMain_ImageContainer}>
-                      {/* <Image
+                      <img
                         className={classes.uploadMain_ImageItem}
                         src={
                           productAddDetail && productAddDetail.images[0]?.url
                         }
-                        width={120}
-                        height={120}
-                        layout="fixed"
-                        quality={100}
-                      /> */}
+                      />
                     </Box>
                     <h3>Ảnh con</h3>
                     <Box className={classes.uploadMain_ImageContainer}>
-                      {/* {renderImagesSub()} */}
+                      {renderImagesSub()}
                     </Box>
                   </Box>
                 </Grid>
