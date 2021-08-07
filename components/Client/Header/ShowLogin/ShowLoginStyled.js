@@ -1,12 +1,22 @@
 const styles = (theme) => ({
   mainShow: {
     position: "absolute",
-    top: 20,
+    top: 30,
     zIndex: 10,
     width: 200,
     background: "#FFFFFF",
     boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16)",
     borderRadius: 8,
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      bottom: "100%",
+      right: 85,
+      borderWidth: 8,
+      borderStyle: "solid",
+      borderColor: "transparent transparent rgb(255, 255, 255)",
+      borderImage: "initial",
+    },
   },
   mainShowBody: {
     display: "flex",
@@ -26,9 +36,9 @@ const styles = (theme) => ({
     fontSize: "14px !important",
   },
   registerContentButton: {
-    paddingLeft: 16,
     paddingTop: 10,
     paddingBottom: 10,
+    textAlign: "center",
     "&:hover": {
       background: "#F3F4F3",
       "& $registerButton": {
@@ -37,9 +47,9 @@ const styles = (theme) => ({
     },
   },
   loginContentButton: {
-    paddingLeft: 16,
     paddingTop: 10,
     paddingBottom: 10,
+    textAlign: "center",
     "&:hover": {
       background: "#F3F4F3",
       "& $loginButton": {

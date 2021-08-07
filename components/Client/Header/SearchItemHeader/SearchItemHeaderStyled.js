@@ -16,7 +16,11 @@ const styles = (theme) => ({
     width: 140,
     padding: "10px",
     [theme.breakpoints.up("sm")]: {
-      width: 220,
+      width: 250,
+      padding: "8px 13px",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: 200,
       padding: "8px 13px",
     },
     [theme.breakpoints.up("lg")]: {

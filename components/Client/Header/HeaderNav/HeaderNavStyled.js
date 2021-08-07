@@ -10,14 +10,14 @@ const styles = (theme) => ({
     alignItems: "center",
     padding: "0 0 0 15px",
     [theme.breakpoints.up("md")]: {
-      padding: "20px",
+      padding: "10px",
     },
     [theme.breakpoints.up("xll")]: {
       padding: "10px 80px 18px 80px",
     },
   },
   mobileMenu: {
-    minWidth: "40%",
+    minWidth: "50%",
   },
   right_nav_content: {
     listStyle: "none",
@@ -36,7 +36,7 @@ const styles = (theme) => ({
     "& li": {
       paddingBottom: 24,
       [theme.breakpoints.up("md")]: {
-        padding: "0px 10px",
+        padding: "0px 5px",
       },
       [theme.breakpoints.up("lg")]: {
         padding: "0px 20px",

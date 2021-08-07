@@ -12,7 +12,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 const SearchItemHeader = () => {
   const useStyles = makeStyles(styles);
-  const isMobile = useMediaQuery({ query: `(max-width: 414px)` });
+  const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
   const [searchBox, setShowSearchBox] = useState(false);
   const [showOverPlay, setShowOverPlay] = useRecoilState(overPlayState);
   const [showSearchMobile, setShowSearchMobile] = useState(false);

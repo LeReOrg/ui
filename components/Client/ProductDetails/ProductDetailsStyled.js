@@ -3,9 +3,12 @@ import DepositPriceLogo from "../../../assets/depositprice.svg";
 
 const styles = (theme) => ({
   main_list: {
-    margin: "40px 80px",
-    [theme.breakpoints.down("sm")]: {
-      margin: "0px auto",
+    padding: "15px",
+    [theme.breakpoints.up("md")]: {
+      padding: "20px 40px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      padding: "40px 80px",
     },
   },
   main_list_related: {
@@ -61,11 +64,10 @@ const styles = (theme) => ({
   },
   titleDetailInfo: {
     color: "#111E16",
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: "bold",
-    marginRight: "25%",
-    [theme.breakpoints.down("sm")]: {
-      marginRight: "0px",
+    [theme.breakpoints.up("md")]: {
+      fontSize: 24,
     },
   },
   content: {
@@ -100,6 +102,7 @@ const styles = (theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    order: 1,
     "& .priceLogo": {
       background: `url(${PriceLogo})`,
       width: 24,
@@ -235,6 +238,16 @@ const styles = (theme) => ({
     fontWeight: "normal",
     color: "#111E16",
     lineHeight: "22px",
+    [theme.breakpoints.up("md")]: {
+      maxWidth: 280,
+    },
+  },
+  priceandtypeproduct: {
+    [theme.breakpoints.down("md")]: {
+      display: "flex",
+      marginTop: 30,
+      flexDirection: "column",
+    },
   },
   quantityItemContent: {
     display: "flex",

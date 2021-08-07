@@ -171,8 +171,8 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
   };
   return (
     <div className={classes.main_list}>
-      <Grid container spacing={8}>
-        <Grid item lg={6} md={6} xs={12} className={classes.main_list_Left}>
+      <Grid container spacing={4}>
+        <Grid item lg={6} md={12} xs={12} className={classes.main_list_Left}>
           <ImageGallery
             showNav={false}
             showPlayButton={false}
@@ -183,7 +183,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
             showFullscreenButton={false}
           />
         </Grid>
-        <Grid item lg={6} md={6} xs={12} className={classes.main_list_Right}>
+        <Grid item lg={6} md={12} xs={12} className={classes.main_list_Right}>
           <Box className={classes.main_list_firstRow}>
             <Box display="flex" alignItems="center">
               {discounts && discounts.length > 0 && renderDiscount()}
@@ -197,35 +197,38 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
           <Typography className={classes.titleDetailInfo} align="left">
             {name && name}
           </Typography>
-          <Box className={classes.prices}>
-            <Box display="flex" alignItems="center">
-              <div className="priceLogo"></div>
-              <p>Giá thuê:</p>
-              {price?.toLocaleString("en-US")}đ/ngày
-            </Box>
-            <Box display="flex" alignItems="center">
-              <div className="depositpriceLogo"></div>
-              <p>Đặt cọc:</p>
-              {depositPrice?.toLocaleString("en-US")}vnđ
-            </Box>
-          </Box>
-          <Box className={classes.lable}>
-            {label && (
-              <Box
-                className={classes.lableContent}
-                display="flex"
-                alignItems="center"
-              >
-                <p>Nhãn hàng:</p>
-                <span>{label}</span>
+          <div className={classes.priceandtypeproduct}>
+            <Box className={classes.prices}>
+              <Box display="flex" alignItems="center">
+                <div className="priceLogo"></div>
+                <p>Giá thuê:</p>
+                {price?.toLocaleString("en-US")}đ/ngày
               </Box>
-            )}
-
-            <Box display="flex" alignItems="center">
-              <p>Danh mục:</p>
-              <span>{category && category?.name}</span>
+              <Box display="flex" alignItems="center">
+                <div className="depositpriceLogo"></div>
+                <p>Đặt cọc:</p>
+                {depositPrice?.toLocaleString("en-US")}vnđ
+              </Box>
             </Box>
-          </Box>
+            <Box className={classes.lable}>
+              {label && (
+                <Box
+                  className={classes.lableContent}
+                  display="flex"
+                  alignItems="center"
+                >
+                  <p>Nhãn hàng:</p>
+                  <span>{label}</span>
+                </Box>
+              )}
+
+              <Box display="flex" alignItems="center">
+                <p>Danh mục:</p>
+                <span>{category && category?.name}</span>
+              </Box>
+            </Box>
+          </div>
+
           <hr style={{ borderTop: "1px solid #C3C7C5" }} />
           <div className="quantity_web">
             <Box className={classes.quantityItemContent}>
@@ -272,7 +275,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
               </Typography>
             </Box>
           </div>
-          <div className="quantity_mobile">
+          {/* <div className="quantity_mobile">
             <Grid container>
               <Grid item lg={6} md={6} xs={6}>
                 <Typography className={classes.quantity_title} align="left">
@@ -304,7 +307,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                 </Box>
               </div>
             </Grid>
-          </div>
+          </div> */}
           <Grid container>
             <Grid item lg={5}>
               <Typography className={classes.hire_time} align="left">

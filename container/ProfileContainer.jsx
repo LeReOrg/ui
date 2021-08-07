@@ -37,7 +37,7 @@ const ProfileLayout = ({ children }) => {
         break;
     }
   }, [router]);
-  const isMobile = useMediaQuery("(max-width:768px)");
+  const isMobile = useMediaQuery("(max-width:767px)");
   useEffect(() => {
     let background = document.getElementById("container-fluid");
     if (!isMobile) {

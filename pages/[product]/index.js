@@ -14,16 +14,19 @@ import { getLayout } from "../../container/MainLayout";
 const ProductDetail = () => {
   const router = useRouter();
   const useStyled = makeStyles((theme) => ({
-    main_list: {
+    main_list_container: {
       maxWidth: "1440px",
       margin: "auto",
       backgroundColor: "white",
+      marginTop: 5,
     },
   }));
   const classes = useStyled();
-  const { data: productDetail, isLoading, error } = useProductDetails(
-    router.query.product
-  );
+  const {
+    data: productDetail,
+    isLoading,
+    error,
+  } = useProductDetails(router.query.product);
   let breadCrumbArray = [];
   if (productDetail) {
     let categeryItem = {
@@ -40,7 +43,7 @@ const ProductDetail = () => {
   return (
     <>
       {/* <BreadCrumb listBreadCrumb = {breadCrumbArray}  /> */}
-      <div className={classes.main_list}>
+      <div className={classes.main_list_container}>
         <ProductDetailsInfo detailsProduct={productDetail && productDetail} />
         <Line />
         <ProductDetailsContent

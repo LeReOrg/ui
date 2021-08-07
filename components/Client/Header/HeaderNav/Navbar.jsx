@@ -11,8 +11,7 @@ import { useRecoilState } from "recoil";
 import { showMobileSearchIconState } from "../../../../lib/recoil-root";
 
 const Navbar = (props) => {
-  const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
-  const isMobile2 = useMediaQuery({ query: `(max-width: 414px)` });
+  const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
   const [showMobileSearchIcon, setShowMobileSearchIcon] = useRecoilState(
     showMobileSearchIconState
   );
@@ -23,7 +22,7 @@ const Navbar = (props) => {
       <HeaderLogo scroll={props.scroll} />
       <SearchItemHeader />
       <div className={classes.nav_container_mobile}>
-        {isMobile2 && !showMobileSearchIcon && (
+        {isMobile && !showMobileSearchIcon && (
           <div
             onClick={() => setShowMobileSearchIcon(true)}
             className={classes.search_main_searchMobile}
