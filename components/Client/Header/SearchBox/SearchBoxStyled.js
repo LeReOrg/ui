@@ -5,7 +5,6 @@ const styles = (theme) => ({
     backgroundColor: "#ffffff",
     position: "absolute",
     zIndex: 1000,
-    left: 0,
     width: "100%",
     boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.3)",
     border: "1px solid #E7E9E8",
@@ -14,6 +13,15 @@ const styles = (theme) => ({
     paddingBottom: 15,
     paddingRight: 12,
     paddingTop: 15,
+    left: 0,
+    [theme.breakpoints.up("md")]: {
+      width: "60%",
+      left: "20%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "100%",
+      left: 0,
+    },
   },
   searchBox_topTypeProductItemImage: {
     height: 38,

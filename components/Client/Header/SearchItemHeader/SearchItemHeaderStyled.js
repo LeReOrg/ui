@@ -3,6 +3,12 @@ import SearHeaderIcon from "../../../../assets/searchHeaderIcon.svg";
 const styles = (theme) => ({
   search_main: {
     position: "relative",
+    [theme.breakpoints.down("md")]: {
+      position: "unset",
+    },
+  },
+  search_first: {
+    position: "relative",
   },
   inputSearch: {
     border: "1px solid #E7E9E8",

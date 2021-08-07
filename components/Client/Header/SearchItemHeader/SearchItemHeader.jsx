@@ -56,16 +56,19 @@ const SearchItemHeader = () => {
     <>
       {showMobileSearchIcon || !isMobile ? (
         <div className={classes.search_main} onClick={() => showSearchBox()}>
-          <FormField
-            id={"search"}
-            formData={search.searchData.search}
-            change={(element) => updateSearch(element)}
-            type="text"
-            placeholder="Tìm kiếm"
-            useClasses={false}
-            className={classes.inputSearch}
-          />
-          <div className={classes.searchIcon}></div>
+          <div className={classes.search_first}>
+            <FormField
+              id={"search"}
+              formData={search.searchData.search}
+              change={(element) => updateSearch(element)}
+              type="text"
+              placeholder="Tìm kiếm"
+              useClasses={false}
+              className={classes.inputSearch}
+            />
+            <div className={classes.searchIcon}></div>
+          </div>
+
           {searchBox && (
             <SearchBox
               changeSearBox={() => {

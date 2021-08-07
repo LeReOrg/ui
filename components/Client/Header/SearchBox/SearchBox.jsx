@@ -20,8 +20,8 @@ const SearchBox = ({ changeSearBox }) => {
   const renderCategoryItems = () =>
     categoryItems &&
     categoryItems.map((item, index) => (
-      <Link href={`/type_product/${item._id}`}>
-        <div key={index} className={classes.searchBox_topTypeProductItem}>
+      <Link href={`/type_product/${item._id}`} key={index}>
+        <div className={classes.searchBox_topTypeProductItem}>
           <img
             className={classes.searchBox_topTypeProductItemImage}
             src={item.thumbnail.url}
