@@ -50,6 +50,9 @@ const styles = (theme) => ({
         padding: "0px 8px",
       },
       [theme.breakpoints.up("lg")]: {
+        padding: "0px 15px",
+      },
+      [theme.breakpoints.up("xl")]: {
         padding: "0px 20px",
       },
     },

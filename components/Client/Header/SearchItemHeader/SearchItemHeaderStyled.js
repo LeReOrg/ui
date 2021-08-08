@@ -20,11 +20,11 @@ const styles = (theme) => ({
       padding: "8px 13px",
     },
     [theme.breakpoints.up("md")]: {
-      width: 200,
+      width: 250,
       padding: "8px 13px",
     },
     [theme.breakpoints.up("lg")]: {
-      width: 280,
+      width: 300,
       padding: "10px 15px",
     },
     [theme.breakpoints.up("xl")]: {

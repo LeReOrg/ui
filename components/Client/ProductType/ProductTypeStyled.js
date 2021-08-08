@@ -1,15 +1,20 @@
 const styles = (theme) => ({
   type_product_title: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 20,
-      paddingBottom: 16,
+    fontSize: 20,
+    paddingBottom: 16,
+    fontWeight: "bold",
+    lineHeight: "26px",
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 30,
+      paddingBottom: 24,
+      lineHeight: "38px",
     },
   },
   type_product_main: {
-    marginTop: 40,
-    margin: "0 auto",
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 24,
+    margin: "auto",
+    marginTop: 24,
+    [theme.breakpoints.up("lg")]: {
+      marginTop: 40,
     },
   },
   spaceBetweenTwoSwipe: {

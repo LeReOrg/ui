@@ -39,16 +39,7 @@ const ProductType = () => {
   return (
     <div className={classes.type_product_main}>
       <Typography component="div">
-        <Box
-          pb={3}
-          textAlign="left"
-          fontWeight="fontWeightBold"
-          fontSize={30}
-          fontFamily="Nunito Sans"
-          className={classes.type_product_title}
-        >
-          Danh mục sản phẩm
-        </Box>
+        <Box className={classes.type_product_title}>Danh mục sản phẩm</Box>
       </Typography>
       <Swiper
         slidesPerView={4}
