@@ -4,11 +4,17 @@ import Info from "../Info/Info";
 import MoreInfo from "../MoreInfo/MoreInfo";
 import InterestedItem from "../InterestedItem/InterestedItem";
 import SlideBackground from "../SlideBackground/SlideBackground";
-const HomePage = (props) => {
+import styles from "./HomeStyled";
+import { makeStyles } from "@material-ui/core/styles";
+
+const HomePage = () => {
+  const useStyled = makeStyles(styles);
+  const classes = useStyled();
+
   return (
     <>
       <SlideBackground />
-      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+      <div className={classes.pageContainer}>
         <ProductType />
         <MoreInfo />
         <InterestedItem />

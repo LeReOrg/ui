@@ -3,8 +3,6 @@ import InfoImage from "../../../assets/Bg_opa-40.jpg";
 const styles = (theme) => ({
   info_main: {
     marginTop: 60,
-    marginLeft: "-2.5%",
-    marginRight: "-2.5%",
     [theme.breakpoints.down("xs")]: {
       marginTop: 32,
     },

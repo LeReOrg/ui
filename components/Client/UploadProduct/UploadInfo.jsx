@@ -133,7 +133,7 @@ const UploadInfo = ({
         </ImageUploading>
       </Box>
       <Grid container spacing={4}>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={12} xs={12}>
           <Box className={classes.rowInfo}>
             <p className={classes.titleText}>Tên sản phẩm:</p>
             <CustomForm
@@ -145,7 +145,7 @@ const UploadInfo = ({
             />
           </Box>
         </Grid>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={12} xs={12}>
           <Box className={classes.rowInfo}>
             <p className={classes.titleText}>Nhãn hàng:</p>
             <CustomForm
@@ -159,7 +159,7 @@ const UploadInfo = ({
         </Grid>
       </Grid>
       <Grid container spacing={4}>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={12} xs={12}>
           <Box className={classes.rowInfo}>
             <p className={classes.titleText}>Danh mục sản phẩm:</p>
             <CustomForm
@@ -173,7 +173,7 @@ const UploadInfo = ({
             />
           </Box>
         </Grid>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={12} xs={12}>
           <Box className={classes.rowInfo}>
             <p className={classes.titleText}>Yêu cầu giấy tờ:</p>
             <TagPicker

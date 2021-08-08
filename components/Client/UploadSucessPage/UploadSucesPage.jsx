@@ -63,11 +63,11 @@ const UploadSuccessPage = () => {
   return (
     <div className={classes.uploadMain}>
       <Grid container spacing={4}>
-        <Grid item lg={3} md={3} className={classes.uploadMain_sideBar}>
+        <Grid item lg={3} md={4} className={classes.uploadMain_sideBar}>
           <SideBarCustomer />
         </Grid>
 
-        <Grid item lg={9} md={9} xs={12}>
+        <Grid item lg={9} md={8} xs={12}>
           <h1 className={classes.uploadMain_InfoSuccess__Title}>
             Đăng sản phẩm thành công
           </h1>

@@ -5,8 +5,6 @@ import UploadImageIconMobile from "../../../assets/addImageMobile.svg";
 
 const styles = (theme) => ({
   uploadMain: {
-    maxWidth: 1440,
-    margin: 0,
     marginTop: 2,
     [theme.breakpoints.up("md")]: {
       margin: "80px 10px 0 10px",
@@ -15,10 +13,11 @@ const styles = (theme) => ({
       margin: "80px 20px 0 20px",
     },
     [theme.breakpoints.up("xl")]: {
-      margin: "80px 40px 0 40px",
-    },
-    [theme.breakpoints.up("xll")]: {
-      margin: "80px auto 0 auto",
+      maxWidth: 1188,
+      marginLeft: "auto",
+      marginRight: "auto",
+      marginTop: 80,
+      marginBottom: 40,
     },
   },
   uploadMain_sideBar: {
@@ -30,11 +29,11 @@ const styles = (theme) => ({
   },
   uploadMain_Info: {
     border: "1px solid rgba(0, 0, 0, 0.15)",
-    marginBottom: 24,
+    marginBottom: 16,
     backgroundColor: "#ffffff",
     [theme.breakpoints.up("md")]: {
       border: "none",
-      marginBottom: 0,
+      marginBottom: 24,
       borderRadius: "8px",
     },
   },
@@ -49,7 +48,7 @@ const styles = (theme) => ({
   uploadMain_InfoContent: {
     padding: "30px 15px",
     [theme.breakpoints.up("md")]: {
-      padding: "30px 40px",
+      padding: "30px 15px 15px 15px",
     },
   },
   rowInfoTextArea: {
@@ -251,6 +250,13 @@ const styles = (theme) => ({
     textAlign: "center",
     cursor: "pointer",
   },
+  buttonAddDiscount: {
+    maxWidth: 130,
+
+    [theme.breakpoints.up("lg")]: {
+      borderRight: "3px solid #111E16",
+    },
+  },
   inputTagPrice: {
     padding: "9px 12px",
     border: "1px solid rgba(0, 0, 0, 0.15)",
@@ -285,7 +291,6 @@ const styles = (theme) => ({
   },
   main_recipent__paymentButton: {
     textAlign: "center",
-    marginBottom: 100,
     marginTop: 24,
     [theme.breakpoints.down("xs")]: {
       marginBottom: 10,

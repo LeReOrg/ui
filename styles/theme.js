@@ -9,8 +9,7 @@ const theme = createTheme({
       sm: 414,
       md: 768,
       lg: 1024,
-      xl: 1280,
-      xll: 1440,
+      xl: 1188,
     },
   },
   palette: {

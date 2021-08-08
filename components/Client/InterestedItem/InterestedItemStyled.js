@@ -1,8 +1,7 @@
 const styles = (theme) => ({
   interested_main: {
     marginTop: 64,
-    width: "90%",
-    margin: "0 auto",
+    margin: "auto",
     [theme.breakpoints.down("sm")]: {
       marginTop: 30,
     },

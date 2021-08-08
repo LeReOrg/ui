@@ -9,7 +9,9 @@ const styles = (theme) => ({
   },
   footer_content: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    maxWidth: 1188,
+    margin: "auto",
     paddingTop: 28,
     paddingBottom: 28,
     [theme.breakpoints.down("xs")]: {

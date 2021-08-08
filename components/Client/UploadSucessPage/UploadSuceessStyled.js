@@ -5,8 +5,6 @@ import BackIcon from "../../../assets/BackButton.svg";
 
 const styles = (theme) => ({
   uploadMain: {
-    maxWidth: 1440,
-    margin: 0,
     marginTop: 2,
     [theme.breakpoints.up("md")]: {
       margin: "80px 10px 0 10px",
@@ -15,10 +13,11 @@ const styles = (theme) => ({
       margin: "80px 20px 0 20px",
     },
     [theme.breakpoints.up("xl")]: {
-      margin: "80px 40px 0 40px",
-    },
-    [theme.breakpoints.up("xll")]: {
-      margin: "80px auto 0 auto",
+      maxWidth: 1188,
+      marginLeft: "auto",
+      marginRight: "auto",
+      marginTop: 80,
+      marginBottom: 40,
     },
   },
   uploadMain_sideBar: {
@@ -39,12 +38,9 @@ const styles = (theme) => ({
     },
   },
   uploadMain_InfoContent: {
-    padding: "20px 15px",
+    padding: "30px 15px",
     [theme.breakpoints.up("md")]: {
-      paddingLeft: 40,
-      paddingTop: 30,
-      paddingBottom: 40,
-      paddingRight: 40,
+      padding: "30px 15px 15px 15px",
     },
   },
   rowInfoTextArea: {
@@ -119,6 +115,7 @@ const styles = (theme) => ({
     marginBottom: (props) => (props.lengh > 2 ? "5px" : "0"),
     "&:first-child": {
       marginLeft: 0,
+      marginBottom: 5,
     },
   },
   uploadMain_InfoItemDetailDes: {

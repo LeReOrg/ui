@@ -1,7 +1,7 @@
 const styles = (theme) => ({
   mainShow: {
     position: "absolute",
-    top: 30,
+    top: 22,
     zIndex: 10,
     width: 200,
     background: "#FFFFFF",

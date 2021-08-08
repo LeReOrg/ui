@@ -24,7 +24,6 @@ const RightNavMenu = ({ updateOpen }) => {
       router.push("/");
     });
   };
-  console.log(user);
   return (
     <div className={classes.right_nav_main}>
       <div className={classes.closeIconMenu} onClick={() => updateOpen()}>

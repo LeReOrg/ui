@@ -7,11 +7,7 @@ const styles = (theme) => ({
   },
   type_product_main: {
     marginTop: 40,
-    width: "90%",
     margin: "0 auto",
-    [theme.breakpoints.down("md")]: {
-      width: "100%",
-    },
     [theme.breakpoints.down("xs")]: {
       marginTop: 24,
     },

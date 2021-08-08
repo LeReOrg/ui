@@ -48,7 +48,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item lg={4} md={4} xs={12}>
+        <Grid item lg={4} md={6} xs={12}>
           <Box className={classes.rowInfo}>
             <Box
               display="flex"
@@ -70,7 +70,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
             </div>
           </Box>
         </Grid>
-        <Grid item lg={4} md={4} xs={12}>
+        <Grid item lg={4} md={6} xs={12}>
           <Box className={classes.rowInfo}>
             <Box
               display="flex"
@@ -91,7 +91,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
             </div>
           </Box>
         </Grid>
-        <Grid item lg={4} md={4} xs={12}>
+        <Grid item lg={4} md={12} xs={12}>
           <Box className={classes.rowInfo}>
             <Box
               display="flex"
@@ -118,14 +118,14 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
         <p className={classes.titleText}>Giảm giá thuê:</p>
       </Box>
       <Grid container spacing={2} className={classes.discountContainer}>
-        <Grid item lg={5} md={5}>
+        <Grid item lg={5} md={6} xs={12}>
           <Box>
             <Box display="flex" mb={1}>
               <Grid container>
-                <Grid item lg={6} md={6}>
+                <Grid item lg={6} md={6} xs={6}>
                   <div className={classes.titleSubDiscount}>Tổng ngày thuê</div>
                 </Grid>
-                <Grid item lg={6} md={6}>
+                <Grid item lg={6} md={6} xs={6}>
                   <div className={classes.titleSubDiscount}>% Giảm giá</div>
                 </Grid>
               </Grid>
@@ -133,12 +133,7 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
             <Box>{renderDisCountItem()}</Box>
           </Box>
         </Grid>
-        <Grid
-          item
-          lg={3}
-          md={2}
-          style={{ maxWidth: 130, borderRight: "3px solid #111E16" }}
-        >
+        <Grid item lg={3} md={6} xs={6} className={classes.buttonAddDiscount}>
           <Box
             className={classes.addDiscountItem}
             onClick={() => addItemList()}
@@ -149,7 +144,8 @@ const UploadPrice = ({ name, rent_date, percent_discount, discountItems }) => {
         <Grid
           item
           lg={4}
-          md={5}
+          md={12}
+          xs={6}
           className={classes.uploadMain_InfoItemDetailDes}
         >
           {listDiscount && listDiscount.length > 0 ? (

@@ -6,14 +6,25 @@ const styles = (theme) => ({
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+    maxWidth: 1188,
+    margin: "auto",
     alignItems: "center",
-    padding: "0 0 0 15px",
+    // padding: "0 0 0 15px",
     [theme.breakpoints.up("md")]: {
-      padding: "10px",
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 10,
+      paddingBottom: 10,
     },
-    [theme.breakpoints.up("xll")]: {
-      padding: "10px 80px 18px 80px",
+    [theme.breakpoints.up("lg")]: {
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+    },
+    [theme.breakpoints.up("xl")]: {
+      paddingLeft: 0,
+      paddingRight: 0,
     },
   },
   mobileMenu: {
@@ -36,7 +47,7 @@ const styles = (theme) => ({
     "& li": {
       paddingBottom: 24,
       [theme.breakpoints.up("md")]: {
-        padding: "0px 5px",
+        padding: "0px 8px",
       },
       [theme.breakpoints.up("lg")]: {
         padding: "0px 20px",
@@ -98,6 +109,12 @@ const styles = (theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     marginRight: 10,
+    [theme.breakpoints.up("md")]: {
+      marginRight: 5,
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginRight: 10,
+    },
   },
   search_main_searchMobile: {
     backgroundImage: `url(${SearHeaderIconMobile})`,

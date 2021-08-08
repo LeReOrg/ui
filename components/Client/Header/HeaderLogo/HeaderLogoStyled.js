@@ -1,24 +1,18 @@
 import image_logo from "../../../../assets/logo.png";
 
 const styles = (theme) => ({
-  header_wrap_logo: {
-    display: "flex",
-    alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: 0,
-      alignItems: "flex-start",
-    },
-  },
+  header_wrap_logo: {},
   header_logo: {
-    width: 18,
-    height: 18,
-    backgroundSize: "cover",
-    backgroundImage: `url(${image_logo})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
+    width: 60,
+    height: 40,
+    objectFit: "cover",
     [theme.breakpoints.up("md")]: {
-      width: 32,
-      height: 32,
+      width: 70,
+      height: 50,
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: 100,
+      height: 65,
     },
   },
   header_logo_title: {

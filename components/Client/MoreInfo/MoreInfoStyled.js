@@ -4,8 +4,7 @@ import MoreInfoBackGroundMobile from "../../../assets/moreInfoMobile.png";
 const styles = (theme) => ({
   info_main: {
     marginTop: 60,
-    width: "90%",
-    margin: "0 auto",
+    margin: "auto",
     marginBottom: 24,
     [theme.breakpoints.down("md")]: {
       width: "100%",

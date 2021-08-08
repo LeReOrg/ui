@@ -13,14 +13,14 @@ const SlideBackground = () => {
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
   return (
-    <div className={classes.root} id="background">
+    <div className={classes.rootBackGround} id="background">
       {!isMobile ? (
-        <Image src={BackGround} width={1920} height={640} layout="responsive" />
+        <Image src={BackGround} width={1920} height={700} layout="responsive" />
       ) : (
         <Image
           src={BackGroundMobile}
-          width={360}
-          height={360}
+          width={375}
+          height={375}
           layout="responsive"
         />
       )}

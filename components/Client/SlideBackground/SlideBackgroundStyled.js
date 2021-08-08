@@ -1,6 +1,7 @@
 const styles = (theme) => ({
-  root: {
-    position: "relative",
+  rootBackGround: {
+    maxWidth: 1188,
+    margin: "auto",
   },
 });
 

@@ -157,12 +157,12 @@ const UploadProduct = () => {
             item
             xl={3}
             lg={3}
-            md={3}
+            md={4}
             className={classes.uploadMain_sideBar}
           >
             <SideBarCustomer />
           </Grid>
-          <Grid item xl={9} lg={9} md={9} xs={12}>
+          <Grid item xl={9} lg={9} md={8} xs={12}>
             <h1 className={classes.uploadMain_Info__Title}>
               Đăng sản phẩm cho thuê
             </h1>
