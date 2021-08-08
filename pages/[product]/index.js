@@ -15,10 +15,19 @@ const ProductDetail = () => {
   const router = useRouter();
   const useStyled = makeStyles((theme) => ({
     main_list_container: {
-      maxWidth: "1440px",
-      margin: "auto",
       backgroundColor: "white",
       marginTop: 5,
+      [theme.breakpoints.up("md")]: {
+        margin: "5px 0 0 0",
+      },
+      [theme.breakpoints.up("lg")]: {
+        margin: "5px 0 0 0",
+      },
+      [theme.breakpoints.up("xl")]: {
+        maxWidth: 1188,
+        margin: "auto",
+        marginTop: 5,
+      },
     },
   }));
   const classes = useStyled();

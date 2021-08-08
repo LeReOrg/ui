@@ -1,9 +1,18 @@
 const styles = (theme) => ({
+  breadcrumb_main_container: {
+    width: "100%",
+    background: "rgb(239, 239, 239)",
+  },
   breadcrumb_main: {
-    background: "#F3F4F3",
-    padding: "14px 0 14px 80px",
+    padding: "14px 10px",
+    margin: 0,
+
     [theme.breakpoints.down("sm")]: {
       padding: "7px 0 7px 16px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1188,
+      margin: "auto",
     },
   },
   breadcrumb_main_link: {

@@ -13,14 +13,10 @@ const styles = (theme) => ({
   inputSearch: {
     border: "1px solid #E7E9E8",
     borderRadius: 4,
-    width: 140,
+    width: 200,
     padding: "10px",
-    [theme.breakpoints.up("sm")]: {
-      width: 250,
-      padding: "8px 13px",
-    },
     [theme.breakpoints.up("md")]: {
-      width: 250,
+      width: 245,
       padding: "8px 13px",
     },
     [theme.breakpoints.up("lg")]: {

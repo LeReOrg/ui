@@ -24,13 +24,14 @@ const BreadCrumb = ({ listBreadCrumb }) => {
   //       </Link>
   //   ));
   return (
-    <Breadcrumb className={classes.breadcrumb_main}>
-      <Link href="/" as="/">
-        <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
-          <span>Trang chủ</span>
-        </LinkStyle>
-      </Link>
-      {/* {listBreadCrumb?.map((item, index) => (
+    <div className={classes.breadcrumb_main_container}>
+      <Breadcrumb className={classes.breadcrumb_main}>
+        <Link href="/" as="/">
+          <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
+            <span>Trang chủ</span>
+          </LinkStyle>
+        </Link>
+        {/* {listBreadCrumb?.map((item, index) => (
         <Link
           href="/type_product/[index]"
           as={`/type_product/${item.id}`}
@@ -43,7 +44,9 @@ const BreadCrumb = ({ listBreadCrumb }) => {
           </LinkStyle>
         </Link>
       ))} */}
-    </Breadcrumb>
+      </Breadcrumb>
+    </div>
+
     // <Breadcrumbs aria-label="breadcrumb"  className={classes.breadcrumb_main}>
     //   <Link href="/" as="/">
     //     <LinkStyle color="inherit" className={classes.breadcrumb_main_link}>
