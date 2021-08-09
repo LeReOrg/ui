@@ -23,11 +23,7 @@ const CardProductType = ({ info }) => {
             width={285}
             height={160}
           />
-          <Typography
-            className={classes.content}
-            align="center"
-            variant="subtitle1"
-          >
+          <Typography className={classes.content} align="center">
             {info && info.name}
           </Typography>
         </a>

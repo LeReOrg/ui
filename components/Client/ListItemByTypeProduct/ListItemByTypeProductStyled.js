@@ -6,21 +6,31 @@ const styles = (theme) => ({
     },
   },
   interested_title: {
-    fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 30,
-    [theme.breakpoints.down("sm")]: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
       fontSize: 20,
-      display: "none",
+      display: "block",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 25,
+    },
+    [theme.breakpoints.up("xl")]: {
+      fontSize: 30,
     },
   },
   title_main: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 15,
-    [theme.breakpoints.down("sm")]: {
-      paddingBottom: 15,
+    paddingTop: 5,
+    paddingBottom: 15,
+    [theme.breakpoints.up("md")]: {
+      paddingTop: 5,
+      paddingBottom: 0,
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingTop: 10,
     },
   },
   mobile_mode_filter: {
@@ -33,9 +43,12 @@ const styles = (theme) => ({
     },
   },
   typeProduct_content: {
-    paddingTop: 34,
-    [theme.breakpoints.down("sm")]: {
-      paddingTop: 0,
+    paddingTop: 0,
+    [theme.breakpoints.up("md")]: {
+      paddingTop: 15,
+    },
+    [theme.breakpoints.up("xl")]: {
+      paddingTop: 30,
     },
   },
 });

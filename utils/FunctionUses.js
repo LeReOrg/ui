@@ -10,7 +10,7 @@ const splitAt = (index) => (x) => [x.slice(0, index), x.slice(index)];
 // Check mobile device
 function isMobileDevice() {
   const theme = useTheme();
-  const isMobileXs = useMediaQuery(theme.breakpoints.down("xs"), {
+  const isMobileXs = useMediaQuery(theme.breakpoints.down("md"), {
     defaultMatches: true,
   });
   return isMobileXs;

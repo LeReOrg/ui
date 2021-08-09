@@ -8,7 +8,7 @@ import PaginationRounded from "../../../utils/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import faSlidersH from "@fortawesome/fontawesome-free-solid/faSlidersH";
 import { makeStyles } from "@material-ui/core/styles";
-// import FilterItemMobile from "../FilterItem/FilterItemMobile";
+import FilterItemMobile from "../FilterItem/FilterItemMobile";
 import styles from "./ListItemByTypeProductStyled";
 import { useDetailCategory } from "../../../hooks/useCategories";
 import { useRouter } from "next/router";
@@ -18,17 +18,21 @@ const ListItemByTypeProduct = ({ listProduct }) => {
   const router = useRouter();
   const [filter, setFilter] = useRecoilState(filterState);
 
-  const { data: categoryData, isError, isSuccess } = useDetailCategory(
-    router.query.index
-  );
+  const {
+    data: categoryData,
+    isError,
+    isSuccess,
+  } = useDetailCategory(router.query.index);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const renderCards = () =>
-    listProduct?.docs?.filter(item => item.quantity > 0).map((items, index) => (
-      <Grid item lg={3} xs={6} key={index}>
-        <CardProduct item={items} itemByType={true} />
-      </Grid>
-    ));
+    listProduct?.docs
+      ?.filter((item) => item.quantity > 0)
+      .map((items, index) => (
+        <Grid item md={6} lg={4} xs={6} xl={3} key={index}>
+          <CardProduct item={items} itemByType={true} />
+        </Grid>
+      ));
   const [displayFilter, setDisplayFilter] = useState(false);
   const showFilter = () => {
     setDisplayFilter(true);
@@ -55,7 +59,7 @@ const ListItemByTypeProduct = ({ listProduct }) => {
 
         <Grid
           container
-          spacing={isMobileDevice() ? 4 : 8}
+          spacing={isMobileDevice() ? 2 : 4}
           className={classes.typeProduct_content}
         >
           {listProduct?.docs?.length > 0 ? (
@@ -74,12 +78,13 @@ const ListItemByTypeProduct = ({ listProduct }) => {
         />
       )}
 
-      {/* {isMobileDevice() ? (
+      {isMobileDevice() ? (
         <FilterItemMobile
           onChangeDisplay={onChangeDisplay}
-          display={displayFilter}
+          displayFilter={displayFilter}
+          productByCate={listProduct?.docs}
         />
-      ) : null} */}
+      ) : null}
     </div>
   );
 };

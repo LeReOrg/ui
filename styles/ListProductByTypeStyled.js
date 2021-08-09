@@ -3,10 +3,7 @@ const styles = (theme) => ({
     marginTop: 2,
     backgroundColor: "white",
     [theme.breakpoints.up("md")]: {
-      margin: "0 10px 0 10px",
-    },
-    [theme.breakpoints.up("lg")]: {
-      margin: "0 20px 0 20px",
+      margin: 0,
     },
     [theme.breakpoints.up("xl")]: {
       maxWidth: 1188,
@@ -17,7 +14,14 @@ const styles = (theme) => ({
     },
   },
   main_list_container: {
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 26,
+    margin: 0,
+    [theme.breakpoints.up("md")]: {},
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: 20,
+      paddingRight: 36,
+    },
   },
   main_filter: {
     [theme.breakpoints.down("sm")]: {

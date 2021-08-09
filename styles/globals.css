@@ -84,7 +84,7 @@ a {
   text-decoration: none !important;
 }
 * {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Nunito Sans" !important;
 }
 /* make sure to set some focus styles for accessibility */
 :focus {

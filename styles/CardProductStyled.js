@@ -10,18 +10,22 @@ const styles = (theme) => ({
     },
   },
   content: {
-    paddingTop: 16,
-    fontSize: 16,
-    fontWeight: "normal",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 14,
-      paddingTop: 10,
+    fontSize: 14,
+    textTransform: "capitalize",
+    [theme.breakpoints.up("md")]: {
+      fontSize: 16,
+      lineHeight: "22px",
     },
   },
   price_item: {
     color: "#2F80ED",
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
+    lineHeight: "20px",
+    [theme.breakpoints.up("md")]: {
+      fontSize: 16,
+      lineHeight: "22px",
+    },
   },
   linkTypeProduct: {
     color: "#111E16",

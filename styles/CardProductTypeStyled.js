@@ -6,15 +6,15 @@ const styles = (theme) => ({
     },
   },
   content: {
-    paddingTop: 16,
-    fontSize: 24,
-    [theme.breakpoints.down("md")]: {
+    fontSize: 14,
+    color: "#111E16",
+    textTransform: "capitalize",
+    [theme.breakpoints.down("lg")]: {
       fontSize: 18,
-      paddingTop: 4,
     },
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 14,
-      paddingTop: 4,
+    [theme.breakpoints.down("xl")]: {
+      fontSize: 24,
+      lineHeight: "32px",
     },
   },
   linkTypeProduct: {

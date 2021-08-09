@@ -32,7 +32,7 @@ const ListProductByType = (props) => {
     <>
       <BreadCrumb listBreadCrumb={productByCate?.docs} />
       <div className={classes.main_list}>
-        <Grid container className={classes.main_list_container}>
+        <Grid container className={classes.main_list_container} spacing={2}>
           <Grid item lg={3} md={3} className={classes.main_filter}>
             <FilterItem productByCate={productByCate?.docs} />
           </Grid>
