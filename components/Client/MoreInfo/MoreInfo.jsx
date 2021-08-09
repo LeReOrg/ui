@@ -5,8 +5,10 @@ import { green, purple } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./MoreInfoStyled";
 import InfoImage from "../../../assets/info.png";
+import MoreInfoBackGround from "../../../assets/BG_Gradient.png";
+import MoreInfoBackGroundMobile from "../../../assets/moreInfoMobile.png";
+
 const useStyles = makeStyles(styles);
-import Image from "next/image";
 const StyledButton = withStyles((theme) => ({
   root: {
     backgroundColor: "#2FAF62",
@@ -15,12 +17,13 @@ const StyledButton = withStyles((theme) => ({
     color: theme.palette.getContrastText(purple[500]),
     height: 48,
     padding: "12px 24px",
+    boxShadow: "none",
     "&:hover": {
       backgroundColor: green[700],
     },
   },
   label: {
-    textTransform: "capitalize",
+    textTransform: "initial",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -30,32 +33,23 @@ const MoreInfo = () => {
   const classes = useStyles();
   return (
     <div className={classes.info_main}>
-      <div className={classes.imageBackGround}>
+      <div style={{ position: "relative" }}>
+        <img src={MoreInfoBackGround} className={classes.imageBackGround} />
+        <img
+          src={MoreInfoBackGroundMobile}
+          className={classes.imageBackGroundMobile}
+        />
         <div className={classes.background_info__itemContent}>
-          <Typography
-            component={"div"}
-            className={classes.typography}
-            variant={"body2"}
-          >
-            <Box className={classes.box}>
-              <Box
-                fontSize={30}
-                className={classes.info_tittle}
-                fontWeight="fontWeightBold"
-              >
-                Bạn có đồ cần cho thuê?
-              </Box>
-              <Box fontSize={16}>
-                Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản
-                phẩm bạn không dùng tới, tại sao không nhỉ?
-              </Box>
-              <Box pt={4} className={classes.more_info}>
-                <StyledButton variant="contained" color="primary">
-                  Tìm hiểu thêm
-                </StyledButton>
-              </Box>
-            </Box>
-          </Typography>
+          <Box className={classes.info_tittle}>Bạn có đồ cần cho thuê?</Box>
+          <Box className={classes.info_subTittle}>
+            Thêm một nguồn thu nhập hấp dẫn và ổn định từ chính những sản phẩm
+            bạn không dùng tới, tại sao không nhỉ?
+          </Box>
+          <Box className={classes.more_info}>
+            <StyledButton variant="contained" color="primary">
+              Tìm hiểu thêm
+            </StyledButton>
+          </Box>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "next/link";
 import styles from "./FooterStyled";
+import image_logo from "../../../assets/logo.jpeg";
 
 const Footer = () => {
   const useStyles = makeStyles(styles);
@@ -9,7 +10,7 @@ const Footer = () => {
   return (
     <footer className={classes.footer_main}>
       <div className={classes.footer_content}>
-        <div className={classes.footer_logo}></div>
+        <img src={image_logo} alt="logo" className={classes.footer_logo} />
         <div className={classes.footer_contact}>
           <div className={classes.footer_phone}>
             Phone: <span style={{ fontWeight: "bold" }}>+84 123 4567 99</span>

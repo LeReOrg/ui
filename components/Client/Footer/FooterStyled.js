@@ -2,7 +2,7 @@ import image_logo from "../../../assets/logo.png";
 
 const styles = (theme) => ({
   footer_main: {
-    backgroundColor: "#F3F4F3",
+    backgroundColor: "white",
     position: "absolute",
     width: "100%",
     bottom: 0,
@@ -10,58 +10,59 @@ const styles = (theme) => ({
   footer_content: {
     display: "flex",
     justifyContent: "space-between",
-    maxWidth: 1188,
-    margin: "auto",
-    paddingTop: 28,
-    paddingBottom: 28,
-    [theme.breakpoints.down("xs")]: {
-      flexDirection: "column",
-      paddingTop: 24,
-      paddingLeft: 23,
-      paddingBottom: 12,
+    flexDirection: "column",
+    paddingTop: 24,
+    paddingLeft: 23,
+    paddingBottom: 12,
+    [theme.breakpoints.up("md")]: {
+      paddingTop: 28,
+      paddingBottom: 28,
+      flexDirection: "row",
+      alignItems: "center",
+      margin: "0 16px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      margin: "0 30px",
+      // flexDirection: "column",
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1188,
+      margin: "auto",
     },
   },
   footer_logo: {
-    width: 24,
-    height: 24,
-    backgroundSize: "contain",
-    backgroundImage: `url(${image_logo})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    [theme.breakpoints.down("xs")]: {
-      width: 18,
-      height: 18,
-      marginBottom: 8,
-    },
+    width: 40,
+    height: 40,
   },
   footer_contact: {
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
-      flexDirection: "column",
-      alignItems: "unset",
-      paddingBottom: 6,
+    flexDirection: "column",
+    alignItems: "unset",
+    paddingBottom: 6,
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
     },
   },
   footer_phone: {
-    fontSize: "bold",
-    paddingRight: 12,
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: 0,
+    paddingLeft: 0,
+    [theme.breakpoints.up("md")]: {
+      paddingRight: 12,
     },
   },
   footer_mail: {
-    fontSize: "bold",
-    paddingLeft: 12,
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: 0,
+    paddingLeft: 0,
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: 12,
     },
   },
   footer_term: {
-    color: "#111E16",
     fontSize: 12,
     fontWeight: "bold",
+    "& a": {
+      color: "#111E16",
+    },
   },
 });
 

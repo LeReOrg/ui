@@ -14,6 +14,36 @@ const styles = (theme) => ({
       height: 240,
     },
   },
+  emailBoxContainer: {
+    padding: "24px 20px",
+    backgroundColor: "#ffffff",
+    "& input": {
+      width: "100%",
+      border: "none",
+      fontSize: 13,
+      lineHeight: "15px",
+      letterSpacing: "-0.02em",
+      fontWeight: "400",
+    },
+    "& hr": {
+      height: 1,
+      backgroundColor: "#E7E9E8",
+      marginTop: 15,
+      marginBottom: 15,
+    },
+    "& span": {
+      color: "#5D5FEF",
+    },
+  },
+  checkedIcon: {
+    display: "flex",
+    alignItems: "center",
+    "& p": {
+      fontWeight: "400",
+      fontSize: 13,
+      lineHeight: "15px",
+    },
+  },
   imageInfo: {
     position: "relative",
     zIndex: 2,
@@ -38,9 +68,21 @@ const styles = (theme) => ({
     display: "flex",
   },
   typography: {
-    margin: "auto",
-    marginLeft: 80,
-    maxWidth: 420,
+    marginLeft: 16,
+    marginRight: 16,
+    marginTop: 35,
+    marginBottom: 35,
+    [theme.breakpoints.up("md")]: {
+      maxWidth: 550,
+      margin: "auto",
+    },
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: 420,
+      marginLeft: 50,
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginLeft: 80,
+    },
   },
   background_info__main: {},
   background_info__itemContent: {
@@ -55,21 +97,25 @@ const styles = (theme) => ({
     },
   },
   info_tittle: {
-    fontStyle: "normal",
-    fontSize: 30,
-    lineHeight: "38px",
-
+    fontSize: 20,
+    fontWeight: "bold",
     color: "#ffffff",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 20,
+    lineHeight: "24px",
+    [theme.breakpoints.up("md")]: {
+      fontSize: 30,
+      lineHeight: "38px",
     },
   },
   subTitle: {
     fontSize: 13,
     letterSpacing: "-0.02em",
     color: "#ffffff",
-    fontFamily: "'Work Sans', sans-serif !important",
     lineHeight: "15px",
+    letterSpacing: "-0.02em",
+    marginBottom: 16,
+    [theme.breakpoints.up("md")]: {
+      fontSize: 16,
+    },
   },
   hr: {
     backgroundColor: "#ffffff",
@@ -80,8 +126,9 @@ const styles = (theme) => ({
     width: 105,
   },
   more_info: {
-    [theme.breakpoints.down("xs")]: {
-      paddingTop: 20,
+    paddingTop: 10,
+    [theme.breakpoints.up("md")]: {
+      paddingTop: 15,
     },
   },
 });

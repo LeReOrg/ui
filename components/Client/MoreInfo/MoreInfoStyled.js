@@ -21,13 +21,21 @@ const styles = (theme) => ({
     },
   },
   imageBackGround: {
-    height: 280,
+    height: "100%",
     width: "100%",
-    background: `url(${MoreInfoBackGround}) no-repeat`,
-    backgroundSize: "cover",
-    position: "relative",
-    [theme.breakpoints.down("xs")]: {
-      backgroundImage: `url(${MoreInfoBackGroundMobile})`,
+    display: "none",
+    borderRadius: 8,
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
+  },
+  imageBackGroundMobile: {
+    height: 240,
+    width: "100%",
+    display: "block",
+    borderRadius: 8,
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
   imageInfo: {
@@ -57,19 +65,23 @@ const styles = (theme) => ({
   },
   background_info__itemContent: {
     position: "absolute",
-    top: "25%",
-    left: 72,
-    maxWidth: "30%",
-
-    [theme.breakpoints.down("md")]: {
-      top: 50,
-      left: 16,
-      maxWidth: "50%",
+    top: 26,
+    left: 16,
+    maxWidth: 250,
+    [theme.breakpoints.up("md")]: {
+      top: 20,
+      left: 40,
+      maxWidth: 360,
     },
-    [theme.breakpoints.down("xs")]: {
-      top: 45,
-      left: 16,
-      maxWidth: "100%",
+    [theme.breakpoints.up("lg")]: {
+      top: 25,
+      left: 50,
+      maxWidth: 400,
+    },
+    [theme.breakpoints.up("xl")]: {
+      top: 58,
+      left: 72,
+      maxWidth: 414,
     },
   },
   background_info__itemImage: {
@@ -78,13 +90,33 @@ const styles = (theme) => ({
     },
   },
   info_tittle: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 20,
+    fontWeight: "bold",
+    fontSize: 20,
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 30,
+    },
+  },
+  info_subTittle: {
+    fontSize: 14,
+    marginTop: 8,
+    maxWidth: 200,
+    [theme.breakpoints.up("md")]: {
+      maxWidth: "unset",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 16,
     },
   },
   more_info: {
-    [theme.breakpoints.down("xs")]: {
+    paddingTop: 20,
+    [theme.breakpoints.up("md")]: {
       paddingTop: 20,
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingTop: 20,
+    },
+    [theme.breakpoints.up("xl")]: {
+      paddingTop: 40,
     },
   },
 });
