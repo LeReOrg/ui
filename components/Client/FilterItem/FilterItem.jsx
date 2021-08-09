@@ -11,7 +11,6 @@ const FilterItem = ({ productByCate }) => {
   const classes = useStyled();
   const [filter, setFilter] = useRecoilState(filterState);
   const listPlaces = [];
-  let listPlacesDuplicate;
   const handleFilters = (filters, cate) => {
     if (cate === "place") {
       if (filters.length > 0) {
@@ -40,12 +39,6 @@ const FilterItem = ({ productByCate }) => {
       listPlaces.push(item.address);
     });
   }
-  if (listPlaces.length > 0) {
-    listPlacesDuplicate = listPlaces.filter(
-      (value, index, array) =>
-        array.findIndex((t) => t.district === value.district) === index
-    );
-  }
   return (
     <div className={classes.filter_main_desktop}>
       <CollapseRadio
@@ -58,7 +51,7 @@ const FilterItem = ({ productByCate }) => {
       <CollapseCheckbox
         initState={true}
         title="Địa điểm"
-        list={listPlacesDuplicate}
+        list={listPlaces}
         handleFilters={(filters) => handleFilters(filters, "place")}
       />
     </div>

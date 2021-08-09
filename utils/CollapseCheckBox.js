@@ -85,28 +85,33 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
       nameDistrict: newDistrict,
     }));
   };
-
   const renderList = () =>
     listItems &&
-    listItems.slice(0, itemShow).map((value) => (
-      <FormControlLabel
-        key={value._id}
-        control={
-          <GreenCheckbox
-            checked={stateCollapse.checked.indexOf(value._id) !== -1}
-            onChange={(e, checkValue) =>
-              handleToggle(value._id, value.district)
-            }
-            name="checkedG"
-          />
-        }
-        label={
-          <Box fontSize={14} component="div" fontWeight="normal">
-            {value.district}
-          </Box>
-        }
-      ></FormControlLabel>
-    ));
+    listItems
+      .slice(0, itemShow)
+      .filter(
+        (value, index, array) =>
+          array.findIndex((t) => t.district === value.district) === index
+      )
+      .map((value) => (
+        <FormControlLabel
+          key={value._id}
+          control={
+            <GreenCheckbox
+              checked={stateCollapse.checked.indexOf(value._id) !== -1}
+              onChange={(e, checkValue) =>
+                handleToggle(value._id, value.district)
+              }
+              name="checkedG"
+            />
+          }
+          label={
+            <Box fontSize={14} component="div" fontWeight="normal">
+              {value.district}
+            </Box>
+          }
+        ></FormControlLabel>
+      ));
 
   return (
     <div className="collapse_items_wrapper">
