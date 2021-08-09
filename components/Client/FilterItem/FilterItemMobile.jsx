@@ -14,6 +14,7 @@ const FilterItemMobile = ({
 }) => {
   const [filter, setFilter] = useRecoilState(filterState);
   const listPlaces = [];
+  let listPlacesDuplicate;
   const [display, setDisplay] = useState(false);
   const useStyled = makeStyles(styles);
   const classes = useStyled({
@@ -53,6 +54,12 @@ const FilterItemMobile = ({
       listPlaces.push(item.address);
     });
   }
+  if (listPlaces.length > 0) {
+    listPlacesDuplicate = listPlaces.filter(
+      (value, index, array) =>
+        array.findIndex((t) => t.district === value.district) === index
+    );
+  }
   const hideModel = () => {
     setDisplay(false);
     onChangeDisplay();
@@ -76,7 +83,7 @@ const FilterItemMobile = ({
         <CollapseCheckbox
           initState={true}
           title="Địa điểm"
-          list={listPlaces}
+          list={listPlacesDuplicate}
           handleFilters={(filters) => handleFilters(filters, "place")}
         />
       </div>
