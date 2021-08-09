@@ -41,7 +41,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
     }
   }, []);
   useEffect(() => {
-    if (listItems.length == 0) {
+    if (listItems?.length == 0) {
       setListItem(list);
     }
   }, [list]);
@@ -50,7 +50,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
   }, [stateCollapse.nameDistrict]);
   const showMore = () => {
     if (itemShow === 5) {
-      setItemShow(listItems.length);
+      setItemShow(listItems?.length);
     } else {
       setItemShow(5);
     }
@@ -144,7 +144,7 @@ const CollapseCheckbox = ({ initState, handleFilters, list, title }) => {
             Hiển thị thêm
           </p>
         )}
-        {listItems.length === itemShow && (
+        {listItems && listItems.length === itemShow && (
           <p
             style={{
               fontWeight: "bold",
