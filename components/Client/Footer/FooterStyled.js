@@ -15,6 +15,7 @@ const styles = (theme) => ({
     paddingLeft: 23,
     paddingBottom: 12,
     [theme.breakpoints.up("md")]: {
+      paddingLeft: 0,
       paddingTop: 28,
       paddingBottom: 28,
       flexDirection: "row",

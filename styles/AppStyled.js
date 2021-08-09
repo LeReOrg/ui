@@ -1,6 +1,6 @@
 const styles = (theme) => ({
   page_container: {
-    paddingBottom: 80,
+    paddingBottom: 150,
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       paddingBottom: 130,
