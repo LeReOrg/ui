@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { showModalAddProduct } from "../../../lib/recoil-root";
+import { showModalAddProductState } from "../../../lib/recoil-root";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -8,18 +8,30 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import styles from "./ModalStyled";
 import Link from "next/link";
 const AddProductModal = () => {
-  const [showModalAddCart, setShowModalAddCart] =
-    useRecoilState(showModalAddProduct);
+  const [showModalAddCart, setShowModalAddCart] = useRecoilState(
+    showModalAddProductState
+  );
+  const [test, setTest] = useState(false);
+  useEffect(() => {
+    if (showModalAddCart) {
+      setTest(true);
+    }
+  }, [showModalAddCart]);
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const handleClose = () => {
-    setShowModalAddCart(false);
+  const handleClose = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (test) {
+      setShowModalAddCart(false);
+    }
   };
+  console.log(showModalAddCart);
   return (
     <>
-      <ClickAwayListener onClickAway={handleClose}>
-        <div>
-          {showModalAddCart && (
+      {showModalAddCart && (
+        <ClickAwayListener onClickAway={(e) => handleClose(e)}>
+          <div>
             <div className={classes.addProductModalContainer}>
               <a className={classes.closeButton} onClick={handleClose}>
                 <CloseOutlinedIcon />
@@ -44,9 +56,9 @@ const AddProductModal = () => {
                 </a>
               </Link>
             </div>
-          )}
-        </div>
-      </ClickAwayListener>
+          </div>
+        </ClickAwayListener>
+      )}
     </>
   );
 };

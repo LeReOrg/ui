@@ -13,7 +13,7 @@ import { isMobileDevice } from "../../../utils/FunctionUses";
 import {
   cartState,
   addCart,
-  showModalAddProduct,
+  showModalAddProductState,
 } from "../../../lib/recoil-root";
 import { useRecoilState } from "recoil";
 
@@ -34,8 +34,9 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     category,
     quantity,
   } = detailsProduct;
-  const [showModalAddCart, setShowModalAddCart] =
-    useRecoilState(showModalAddProduct);
+  const [showModalAddCart, setShowModalAddCart] = useRecoilState(
+    showModalAddProductState
+  );
   let arrayImages = [];
   images.map((item, index) => {
     let objectImages = {};
