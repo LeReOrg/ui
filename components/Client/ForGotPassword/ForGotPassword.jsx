@@ -49,14 +49,14 @@ const ForGotPasswordPage = () => {
   };
 
   return (
-    <div className={classes.main_page_login}>
+    <div className={classes.main_page_forGotPassWord}>
       <Grid container spacing={2}>
-        <Grid item lg={6} md={6} sm={6} className={classes.main_page_image}>
+        <Grid item lg={6} className={classes.main_page_image}>
           <div className={classes.main_page_background}>
             <img src={BackGroundLogin} />
           </div>
         </Grid>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={12} xs={12}>
           <div className={classes.main_page_content}>
             <div className={classes.main_page_contentTitle}>Quên mật khẩu</div>
             {showCode ? (

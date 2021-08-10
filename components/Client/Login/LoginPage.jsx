@@ -111,12 +111,12 @@ const LoginPage = () => {
   return (
     <div className={classes.main_page_login}>
       <Grid container spacing={2}>
-        <Grid item lg={6} md={6} sm={6} className={classes.main_page_image}>
+        <Grid item lg={6} className={classes.main_page_image}>
           <div className={classes.main_page_background}>
             <img src={BackGroundLogin} />
           </div>
         </Grid>
-        <Grid item lg={6} md={6} xs={12}>
+        <Grid item lg={6} md={12} xs={12}>
           <div className={classes.main_page_content}>
             <div className={classes.main_page_contentTitle}>Đăng nhập</div>
             <form onSubmit={handleSubmit(loginHandle)}>
@@ -162,7 +162,8 @@ const LoginPage = () => {
                   <Box
                     textAlign="right"
                     fontWeight="bold"
-                    fontSize={16}
+                    fontSize={14}
+                    lineHeight="20px"
                     color="#2F80ED"
                     mb={2}
                   >

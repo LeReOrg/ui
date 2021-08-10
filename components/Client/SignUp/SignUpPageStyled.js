@@ -1,28 +1,42 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
 const styles = (theme) => ({
-  main_page_login: {
-    width: "70%",
-    margin: "30px auto",
+  main_page_signup: {
+    marginTop: 24,
     borderRadius: 8,
+    marginLeft: 16,
+    marginRight: 16,
     display: "flex",
     justifyContent: "center",
-    [theme.breakpoints.down("md")]: {
-      width: "90%",
+    [theme.breakpoints.up("md")]: {
+      margin: "auto",
+      maxWidth: "60%",
+      marginTop: 25,
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginTop: 30,
+      maxWidth: "100%",
+      marginRight: 30,
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1188,
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   main_page_content: {
-    width: "50%",
-    [theme.breakpoints.down("lg")]: {
+    width: "100%",
+    [theme.breakpoints.up("lg")]: {
       width: "70%",
     },
-    [theme.breakpoints.down("md")]: {
-      width: "100%",
+    [theme.breakpoints.up("xl")]: {
+      width: "65%",
     },
   },
   main_page_image: {
-    [theme.breakpoints.down(960)]: {
-      display: "none",
+    display: "none",
+    [theme.breakpoints.up("lg")]: {
+      display: "block",
     },
   },
   main_page_background: {
@@ -32,16 +46,19 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 24,
     paddingBottom: 24,
+    lineHeight: "32px",
   },
   emailTitle: {
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 14,
+    lineHeight: "20px",
   },
   passwordTitle: {
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 14,
+    lineHeight: "20px",
   },
   emailFormLogin: {
     border: "1px solid #C3C7C5",

@@ -1,28 +1,42 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
 const styles = (theme) => ({
-  main_page_login: {
-    width: "70%",
-    margin: "30px auto",
+  main_page_forGotPassWord: {
+    marginTop: 24,
     borderRadius: 8,
+    marginLeft: 16,
+    marginRight: 16,
     display: "flex",
     justifyContent: "center",
-    [theme.breakpoints.down("md")]: {
-      width: "90%",
+    [theme.breakpoints.up("md")]: {
+      margin: "auto",
+      maxWidth: "60%",
+      marginTop: 25,
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginTop: 30,
+      maxWidth: "100%",
+      marginRight: 30,
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1188,
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   main_page_content: {
-    width: "50%",
-    [theme.breakpoints.down("lg")]: {
+    width: "100%",
+    [theme.breakpoints.up("lg")]: {
       width: "70%",
     },
-    [theme.breakpoints.down("md")]: {
-      width: "100%",
+    [theme.breakpoints.up("xl")]: {
+      width: "65%",
     },
   },
   main_page_image: {
-    [theme.breakpoints.down(960)]: {
-      display: "none",
+    display: "none",
+    [theme.breakpoints.up("lg")]: {
+      display: "block",
     },
   },
   reLogin: {
