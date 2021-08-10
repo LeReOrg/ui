@@ -1,9 +1,9 @@
 const styles = (theme) => ({
   page_container: {
-    paddingBottom: 150,
+    paddingBottom: 180,
     width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      paddingBottom: 130,
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: 160,
     },
   },
   over_play: {

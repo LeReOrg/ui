@@ -92,17 +92,74 @@ const styles = (theme) => ({
     height: "215px",
     objectFit: "fill",
   },
+  quantity_restWebMode: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
+  },
+  timeRentWebMode: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
+  timeRentMobileMode: {
+    display: "block",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  priceRent: {
+    display: "flex",
+    paddingBottom: 10,
+    borderBottom: "1px solid #E7E9E8",
+    alignItems: "center",
+    justifyContent: "space-between",
+    [theme.breakpoints.up("md")]: {
+      justifyContent: "flex-start",
+      paddingBottom: 0,
+      borderBottom: "unset",
+    },
+  },
+  priceRentFirst: {
+    display: "flex",
+    alignItems: "center",
+  },
+  priceDeposit: {
+    display: "flex",
+    paddingBottom: 10,
+    paddingTop: 10,
+    borderBottom: "1px solid #E7E9E8",
+    alignItems: "center",
+    justifyContent: "space-between",
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: 0,
+      justifyContent: "flex-start",
+      paddingTop: 0,
+      borderBottom: "unset",
+    },
+  },
   prices: {
     color: "#2FAF62",
     fontSize: 16,
     lineHeight: "22px",
     fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 20,
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: "column",
+    paddingBottom: 10,
+    paddingTop: 10,
+    // borderBottom: "1px solid #E7E9E8",
     order: 1,
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+      marginTop: 20,
+      marginBottom: 20,
+      paddingBottom: 0,
+      paddingTop: 0,
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
     "& .priceLogo": {
       background: `url(${PriceLogo})`,
       width: 24,
@@ -131,11 +188,22 @@ const styles = (theme) => ({
     "& hr": {
       marginTop: 10,
       marginBottom: 20,
+      borderTop: "1px solid #C3C7C5",
+      display: "none",
+      [theme.breakpoints.up("md")]: {
+        display: "block",
+      },
     },
   },
   lable: {
     display: "flex",
     alignItems: "center",
+    paddingBottom: 10,
+    borderBottom: "1px solid #E7E9E8",
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: 0,
+      borderBottom: "unset",
+    },
     "& p": {
       fontSize: 14,
       fontWeight: "normal",
@@ -167,8 +235,13 @@ const styles = (theme) => ({
     fontWeight: "bold",
   },
   quantity_space: {
-    marginTop: "2%",
+    marginTop: 15,
     display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    [theme.breakpoints.up("md")]: {
+      marginTop: 5,
+    },
   },
   hire_time_space: {
     marginTop: "12px",
@@ -179,7 +252,7 @@ const styles = (theme) => ({
     color: "#111E16",
     "& span": {
       fontSize: 16,
-      fontWeight: "normal",
+      fontWeight: "bold",
       color: "#111E16",
     },
   },
@@ -189,9 +262,39 @@ const styles = (theme) => ({
     alignItems: "flex-end",
   },
   hire_time: {
-    fontSize: 16,
     fontWeight: "bold",
+    fontSize: 16,
     color: "#111E16",
+    display: "flex",
+    alignItems: "center",
+    marginTop: 0,
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    borderBottom: "1px solid #E7E9E8",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+      paddingBottom: 0,
+      borderBottom: "unset",
+    },
+  },
+  quantityRestMobile: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#111E16",
+    display: "flex",
+    alignItems: "center",
+    paddingTop: 10,
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    borderBottom: "1px solid #E7E9E8",
+  },
+  quantityMobile: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#111E16",
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottom: "1px solid #E7E9E8",
   },
   hire_time_sub: {
     fontSize: 12,
@@ -230,7 +333,19 @@ const styles = (theme) => ({
     fontWeight: "bold",
     color: "#111E16",
     lineHeight: "22px",
-    padding: "5px 16px",
+    padding: "5px 32px",
+    [theme.breakpoints.up("md")]: {
+      padding: "5px 16px",
+    },
+  },
+  timeCalendarMobileMode: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#111E16",
+    display: "flex",
+    alignItems: "center",
+    paddingTop: 10,
+    justifyContent: "space-between",
   },
   addressProduct: {
     textAlign: "right",
@@ -250,9 +365,12 @@ const styles = (theme) => ({
     },
   },
   quantityItemContent: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
   },
   formControl: {
     marginTop: theme.spacing(1),

@@ -109,16 +109,14 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
       border: 0,
       color: theme.palette.getContrastText(purple[500]),
       height: 48,
-      [theme.breakpoints.down("sm")]: {
-        width: "100%",
-      },
+      boxShadow: "none",
       padding: "9px 16px",
       "&:hover": {
-        backgroundColor: green[700],
+        backgroundColor: "#2FAF62",
       },
     },
     label: {
-      textTransform: "capitalize",
+      textTransform: "initial",
       fontSize: 16,
       lineHeight: "22px",
       fontWeight: "bold",
@@ -193,20 +191,23 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
               Đăng bởi: <b className={classes.poster}>{user.displayName}</b>
             </Typography>
           </Box>
-
           <Typography className={classes.titleDetailInfo} align="left">
             {name && name}
           </Typography>
           <div className={classes.priceandtypeproduct}>
             <Box className={classes.prices}>
-              <Box display="flex" alignItems="center">
-                <div className="priceLogo"></div>
-                <p>Giá thuê:</p>
+              <Box className={classes.priceRent}>
+                <div className={classes.priceRentFirst}>
+                  <div className="priceLogo"></div>
+                  <p>Giá thuê:</p>
+                </div>
                 {price?.toLocaleString("en-US")}đ/ngày
               </Box>
-              <Box display="flex" alignItems="center">
-                <div className="depositpriceLogo"></div>
-                <p>Đặt cọc:</p>
+              <Box className={classes.priceDeposit}>
+                <div className={classes.priceRentFirst}>
+                  <div className="depositpriceLogo"></div>
+                  <p>Đặt cọc:</p>
+                </div>
                 {depositPrice?.toLocaleString("en-US")}vnđ
               </Box>
             </Box>
@@ -228,93 +229,120 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
               </Box>
             </Box>
           </div>
-
-          <hr style={{ borderTop: "1px solid #C3C7C5" }} />
-          <div className="quantity_web">
-            <Box className={classes.quantityItemContent}>
-              <Box>
-                <Typography className={classes.quantity_title} align="left">
-                  Số lượng:
-                </Typography>
-                <Box className={classes.quantity_space}>
-                  <RemoveCircleOutlineSharpIcon
-                    className={
-                      quantityItem == 1
-                        ? classes.button_color_minus_1
-                        : classes.button_color_minus
-                    }
-                    onClick={handleDecreaseQuantity}
-                  />
-                  <b className={classes.quantity}>{quantityItem}</b>
-                  <AddCircleOutlineSharpIcon
-                    className={
-                      quantityItem == quantity
-                        ? classes.button_color_minus_1
-                        : classes.button_color_minus
-                    }
-                    onClick={handleIncreaseQuantity}
-                  />
-                </Box>
-              </Box>
-              <Box>
-                <Typography className={classes.quantity_title} align="right">
-                  Địa chỉ hàng
-                </Typography>
-                <Box className={classes.addressProduct}>
-                  <p>{address && address.street}</p>
-                  <p>
-                    {address && address.ward} ,{address && address.district},
-                    {address && address.province}
-                  </p>
-                </Box>
-              </Box>
-            </Box>
-            <Box mb={2}>
-              <Typography className={classes.quantity_title}>
-                Số lượng còn lại: <span>{quantity}</span>
+          <hr />
+          <Box className={classes.quantityItemContent}>
+            <Box>
+              <Typography className={classes.quantity_title} align="left">
+                Số lượng:
               </Typography>
+              <Box className={classes.quantity_space}>
+                <RemoveCircleOutlineSharpIcon
+                  className={
+                    quantityItem == 1
+                      ? classes.button_color_minus_1
+                      : classes.button_color_minus
+                  }
+                  onClick={handleDecreaseQuantity}
+                />
+                <b className={classes.quantity}>{quantityItem}</b>
+                <AddCircleOutlineSharpIcon
+                  className={
+                    quantityItem == quantity
+                      ? classes.button_color_minus_1
+                      : classes.button_color_minus
+                  }
+                  onClick={handleIncreaseQuantity}
+                />
+              </Box>
             </Box>
-          </div>
-          {/* <div className="quantity_mobile">
-            <Grid container>
-              <Grid item lg={6} md={6} xs={6}>
-                <Typography className={classes.quantity_title} align="left">
-                  Số lượng:
-                </Typography>
-              </Grid>
-              <Grid item lg={6} md={6} xs={6}>
-                <div className={classes.quantity_space} align="right">
-                  <RemoveCircleOutlineSharpIcon
-                    className={classes.button_color_minus}
-                    onClick={handleDecreaseQuantity}
+            <Box>
+              <Typography className={classes.quantity_title} align="right">
+                Địa chỉ hàng
+              </Typography>
+              <Box className={classes.addressProduct}>
+                <p>{address && address.street}</p>
+                <p>
+                  {address && address.ward} ,{address && address.district},
+                  {address && address.province}
+                </p>
+              </Box>
+            </Box>
+          </Box>
+          <Box mb={2} className={classes.quantity_restWebMode}>
+            <Typography className={classes.quantity_title}>
+              Số lượng còn lại: <span>{quantity}</span>
+            </Typography>
+          </Box>
+          <Box className={classes.timeRentMobileMode}>
+            <Box>
+              <Box className={classes.hire_time}>
+                <p>Min days:</p> <p>{shortestHiredDays} ngày</p>
+              </Box>
+            </Box>
+            <Box className={classes.hire_time}>
+              <Box fontWeight="bold">Yêu cầu giấy tờ</Box>
+              <Box mt={2}>{renderRequire()}</Box>
+            </Box>
+            <Box className={classes.quantityRestMobile}>
+              <p>Số lượng còn lại:</p> <p>{quantity}</p>
+            </Box>
+
+            <Box className={classes.quantityMobile}>
+              <Typography className={classes.quantity_title} align="left">
+                Số lượng:
+              </Typography>
+              <Box className={classes.quantity_space}>
+                <RemoveCircleOutlineSharpIcon
+                  className={
+                    quantityItem == 1
+                      ? classes.button_color_minus_1
+                      : classes.button_color_minus
+                  }
+                  onClick={handleDecreaseQuantity}
+                />
+                <b className={classes.quantity}>{quantityItem}</b>
+                <AddCircleOutlineSharpIcon
+                  className={
+                    quantityItem == quantity
+                      ? classes.button_color_minus_1
+                      : classes.button_color_minus
+                  }
+                  onClick={handleIncreaseQuantity}
+                />
+              </Box>
+            </Box>
+            <Box>
+              <Box className={classes.timeCalendarMobileMode}>
+                <Box>Thời gian thuê:</Box>
+                {totalDays && (
+                  <Box className={classes.totalDate}>{totalDays} ngày</Box>
+                )}
+              </Box>
+              <div className={classes.hire_time_space}>
+                <Box className={classes.hire_time_width}>
+                  <DateRangePicker
+                    block
+                    format="DD-MM-YYYY"
+                    onChange={(value) => getValueDatePiker(value)}
+                    placeholder="Chọn ngày thuê"
+                    disabledDate={beforeToday()}
+                    showOneCalendar={true}
+                    showWeekNumbers={false}
+                    size="lg"
+                    isoWeek
+                    ranges={[]}
                   />
-                  <b className={classes.quantity}>{quantityItem}</b>
-                  <AddCircleOutlineSharpIcon
-                    className={classes.button_color_plus}
-                    onClick={handleIncreaseQuantity}
-                  />
-                </div>
-              </Grid>
-              <div className={classes.button_cart}>
-                <Box>
-                  <StyledButton
-                    onClick={() => addToCart(itemAdd)}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Chọn vào giỏ hàng
-                  </StyledButton>
                 </Box>
               </div>
-            </Grid>
-          </div> */}
-          <Grid container>
-            <Grid item lg={5}>
+            </Box>
+          </Box>
+          <Grid container spacing={1} className={classes.timeRentWebMode}>
+            <Grid item lg={5} md={5}>
               <Typography className={classes.hire_time} align="left">
                 Thời gian thuê:
               </Typography>
               <Typography className={classes.hire_time_sub} align="left">
-                Chọn ngày
+                Chọn ngày thuê
               </Typography>
               <div className={classes.hire_time_space}>
                 <Box className={classes.hire_time_width}>
@@ -332,7 +360,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                 </Box>
               </div>
             </Grid>
-            <Grid item lg={4}>
+            <Grid item lg={4} md={4}>
               <Typography className={classes.hire_time} align="left">
                 Min days: {shortestHiredDays} ngày
               </Typography>
@@ -341,7 +369,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
                 <Box className={classes.totalDate}>{totalDays} ngày</Box>
               )}
             </Grid>
-            <Grid item lg={3} className={classes.requireItems}>
+            <Grid item lg={3} md={3} className={classes.requireItems}>
               <Typography className={classes.hire_time}>
                 Yêu cầu giấy tờ
               </Typography>
@@ -351,7 +379,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
           {moreThanMinDate && (
             <p>Vui lòng chọn số ngày thuê nhiều hơn {shortestHiredDays} ngày</p>
           )}
-          <hr style={{ borderTop: "1px solid #C3C7C5" }} />
+          <hr />
           <div className={classes.button_cart}>
             <Box>
               <StyledButton
