@@ -7,9 +7,9 @@ const styles = (theme) => ({
     [theme.breakpoints.up("md")]: {
       padding: "20px 40px",
     },
-    [theme.breakpoints.up("xl")]: {
-      padding: "40px 80px",
-    },
+    // [theme.breakpoints.up("xl")]: {
+    //   padding: "40px 80px",
+    // },
   },
   main_list_related: {
     marginTop: "1%",

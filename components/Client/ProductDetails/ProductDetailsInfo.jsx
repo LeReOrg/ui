@@ -176,7 +176,7 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
           <ImageGallery
             showNav={false}
             showPlayButton={false}
-            autoPlay={true}
+            autoPlay={false}
             slideDuration={2000}
             items={arrayImages}
             slideOnThumbnailOver={false}
@@ -319,8 +319,9 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
               <div className={classes.hire_time_space}>
                 <Box className={classes.hire_time_width}>
                   <DateRangePicker
+                    format="DD-MM-YYYY"
                     onChange={(value) => getValueDatePiker(value)}
-                    placeholder="Chọn ngày"
+                    placeholder="Chọn ngày thuê"
                     disabledDate={beforeToday()}
                     showOneCalendar={true}
                     showWeekNumbers={false}
