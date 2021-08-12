@@ -60,10 +60,27 @@ const styles = (theme) => ({
     },
   },
   main_shipping: {
-    margin: "30px auto",
-    maxWidth: 1440,
-    [theme.breakpoints.down("xs")]: {
-      margin: "10px auto",
+    marginTop: 24,
+    borderRadius: 8,
+    marginLeft: 16,
+    marginRight: 16,
+    [theme.breakpoints.up("md")]: {
+      margin: "auto",
+      maxWidth: "100%",
+      marginTop: 20,
+      marginRight: 20,
+      marginLeft: 20,
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginTop: 30,
+      maxWidth: "100%",
+      marginRight: 10,
+      marginLeft: 10,
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1188,
+      marginLeft: "auto",
+      marginRight: "auto",
     },
     "& h1": {
       fontSize: 20,
@@ -83,6 +100,7 @@ const styles = (theme) => ({
   },
   main_shipping__contentLeft: {
     border: "1px solid #C3C7C5",
+    backgroundColor: "#ffffff",
     borderRadius: 8,
     padding: 24,
     [theme.breakpoints.down("xs")]: {
@@ -92,6 +110,7 @@ const styles = (theme) => ({
   },
   main_shipping__contentBottom: {
     border: "1px solid #C3C7C5",
+    backgroundColor: "#ffffff",
     borderRadius: 8,
     padding: 24,
     marginTop: 24,
@@ -133,6 +152,7 @@ const styles = (theme) => ({
   main_shipping__contentRight: {
     border: "1px solid #C3C7C5",
     borderRadius: 8,
+    backgroundColor: "#ffffff",
     maxWidth: 315,
     padding: 15,
     marginBottom: 8,

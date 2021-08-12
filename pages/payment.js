@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import { Box, Button } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { customCurrency } from "../utils/FunctionUses";
-import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
 import styles, { theme } from "../styles/ShippingStyled";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
@@ -22,7 +21,6 @@ import { useRouter } from "next/router";
 const Payment = (props) => {
   const [cart, setCart] = useRecoilState(cartState);
   const user = useRecoilValue(userState);
-  console.log(user)
   const [items, setItems] = useState([]);
   const totalPrice = useRecoilValue(cartTotal);
   const [transportValue, setTransportValue] = useState(0);
@@ -46,8 +44,8 @@ const Payment = (props) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const router = useRouter();
-  const { mutate, isLoading , data } = useMakeOrder();
-  useEffect(() => {})
+  const { mutate, isLoading, data } = useMakeOrder();
+  useEffect(() => {});
   const paymentAccess = () => {
     const params = {
       orders: items,
@@ -56,8 +54,8 @@ const Payment = (props) => {
     };
     mutate(params);
     setCart([]);
-    router.push("/paymentSuccess",{
-      params : data
+    router.push("/paymentSuccess", {
+      params: data,
     });
   };
   const totalPayment = parseInt(transportValue) + parseInt(totalPrice);

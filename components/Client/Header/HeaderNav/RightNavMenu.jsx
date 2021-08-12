@@ -43,7 +43,7 @@ const RightNavMenu = ({ updateOpen }) => {
             className={classes.showLogin}
           >
             {user && <span className={classes.logoAccount}></span>}
-            <a>{user && user ? user.displayName : "Tài khoản"}</a>
+            <a>{user && user ? user.user.displayName : "Tài khoản"}</a>
             {isHovering ? !user ? <ShowLogin /> : <AccountList /> : null}
           </li>
         ) : (
