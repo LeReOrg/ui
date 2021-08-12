@@ -7,35 +7,35 @@ import { useRecoilState } from "recoil";
 import { cartState } from "../lib/recoil-root";
 // import { addItem, removeItem } from "../store/action/cart_actions";
 const SelectBoxCart = (props) => {
-  const { numberDate, quantity } = props;
+  const { quantity } = props;
   const [cart, setCart] = useRecoilState(cartState);
 
   const useStyles = makeStyles((theme) => ({
     removeIcon: {
       background: "transparent",
       boxShadow: "none",
-      width: 36,
-      height: 36,
+      width: 24,
+      height: 24,
+      minHeight: 24,
+      marginRight: 0,
       border: "1px solid #E7E9E8",
-      [theme.breakpoints.down("xs")]: {
-        width: 24,
-        height: 24,
-        minHeight: 24,
-        marginRight: 15,
+      [theme.breakpoints.up("lg")]: {
+        width: 36,
+        height: 36,
       },
     },
     addIcon: {
       background: "transparent",
       boxShadow: "none",
-      width: 36,
-      height: 36,
+      width: 24,
+      height: 24,
+      minHeight: 24,
+      marginLeft: 0,
       border: "1px solid #E7E9E8",
       color: "#2FAF62",
-      [theme.breakpoints.down("xs")]: {
-        width: 24,
-        height: 24,
-        minHeight: 24,
-        marginLeft: 15,
+      [theme.breakpoints.up("lg")]: {
+        width: 36,
+        height: 36,
       },
     },
     disabled: {
@@ -43,7 +43,6 @@ const SelectBoxCart = (props) => {
       pointerEvents: "none",
     },
     itemSelect: {
-      paddingBottom: 10,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -82,7 +81,7 @@ const SelectBoxCart = (props) => {
         >
           <RemoveIcon />
         </Fab>
-        {quantity} món
+        {quantity}
         <Fab
           className={classes.addIcon}
           aria-label="add"

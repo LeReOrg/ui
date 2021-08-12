@@ -4,12 +4,10 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-import AddAddressMobile from "../components/Client/Shipping/AddAddressMobile";
 import styles, { theme } from "../styles/ShippingStyled";
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
-  cartState,
   changeAddressState,
   listAddressState,
   userState,
@@ -20,7 +18,6 @@ import { useAddressUser, useGetAddressUser } from "../hooks/useAddress";
 import AddressItem from "../utils/AddressItem";
 
 const Shipping = () => {
-  const cart = useRecoilValue(cartState);
   const [proviceName, setProviceName] = useState();
   const [districtName, setDistrictName] = useState();
   const [wardName, setWardName] = useState();
@@ -38,21 +35,20 @@ const Shipping = () => {
   const { data: addresItem } = useGetAddressUser();
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
   useEffect(() => {
-    if (user == "") router.push("/login");
+    if (user === "") router.push("/login");
     return () => {
       setChangeAddress(false);
     };
   }, []);
-  console.log(user);
-  console.log(addresItem);
-
   useEffect(() => {
-    if (addresItem?.docs?.length > 0 && !changeAddress) {
-      setUser((preState) => ({ ...preState, address: addresItem }));
-      router.push("/payment");
-      setOpenAddProduct(false);
-    }else{
-      setUser((preState) => ({ ...preState, address: addresItem }));
+    if (user !== "") {
+      if (addresItem?.docs?.length > 0 && !changeAddress) {
+        setUser((preState) => ({ ...preState, address: addresItem }));
+        router.push("/payment");
+        setOpenAddProduct(false);
+      } else {
+        setUser((preState) => ({ ...preState, address: addresItem }));
+      }
     }
   }, [addresItem]);
   useEffect(() => {

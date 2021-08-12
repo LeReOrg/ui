@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CartItem from "../utils/CartItem";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import Link from "next/link";
 import styles from "../styles/CartStyled";
 import { useRecoilValue, useRecoilState } from "recoil";
@@ -11,7 +11,7 @@ import { cartState, cartTotal } from "../lib/recoil-root";
 import { userState } from "../lib/recoil-root";
 import { getLayout } from "../container/MainLayout";
 import { theme } from "../styles/ShippingStyled";
-const Cart = (props) => {
+const Cart = () => {
   const [cart, setCart] = useRecoilState(cartState);
   const { user } = useRecoilValue(userState);
   const totalPrice = useRecoilValue(cartTotal);
@@ -27,14 +27,14 @@ const Cart = (props) => {
           {cart.length !== 0 ? (
             <div className={classes.main_cart__content}>
               <Grid container className={classes.root} spacing={2}>
-                <Grid item lg={9} xs={12}>
+                <Grid item xl={8} lg={8} md={12} xs={12}>
                   <div className={classes.main_cart__info}>
                     <div className={classes.main_cart__infoItem}>
                       {renderItemCart()}
                     </div>
                   </div>
                 </Grid>
-                <Grid item lg={3} xs={12}>
+                <Grid item xl={4} lg={4} md={12} xs={12}>
                   <div className={classes.main_cart__summary}>
                     <div className={classes.main_cart__summaryContent}>
                       <div className={classes.main_cart__provisionalTotal}>

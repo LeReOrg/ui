@@ -9,12 +9,14 @@ const ProductRelated = ({ detailsProduct }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const [test, setTest] = useState(false);
-  const { data: relatedItem, isLoading, isSuccess } = useProductByCategory(
-    detailsProduct?.category?._id
-  );
+  const {
+    data: relatedItem,
+    isLoading,
+    isSuccess,
+  } = useProductByCategory(detailsProduct?.category?._id);
   const renderRelatedItem = () =>
     relatedItem?.docs?.map((item, index) => (
-      <Grid item lg={3} xs={6}>
+      <Grid key={index} item lg={3} xs={6}>
         <CardProduct item={item} itemByType={true} />
       </Grid>
     ));

@@ -17,6 +17,7 @@ const AccountList = () => {
       router.push("/");
     });
   };
+  console.log(currentUser);
   const classes = useStyled();
   return (
     <div className={classes.mainShow}>
@@ -41,7 +42,7 @@ const AccountList = () => {
             </Link>
           </div>
 
-          {currentUser?.user.isHirer && (
+          {currentUser?.user?.isHirer && (
             <>
               <div className={classes.registerContentButton}>
                 <Link
