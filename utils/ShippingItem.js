@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Button, Box } from "@material-ui/core";
 import styles from "../styles/ShippingItemStyled";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import Image from "next/image";
 
 const ShippingItem = ({ item }) => {
@@ -36,7 +33,7 @@ const ShippingItem = ({ item }) => {
     <>
       <div className={classes.cartBody}>
         <Grid container spacing={2} className={classes.cartContainer}>
-          <Grid item xl={4} xs={3}>
+          <Grid item xl={4} lg={4} xs={12} md={12}>
             <Box display="flex">
               <Image
                 src={image.url}
@@ -50,24 +47,30 @@ const ShippingItem = ({ item }) => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xl={4} xs={3}>
+          <Grid item xl={5} lg={5} xs={12} md={6}>
             <Box>
               <Box>
-                {startDay} - {endDay}
+                {startDay} - {endDay} | {totalDays} ngày
               </Box>
-              <Box className={classes.cartName}>{totalDays} ngày</Box>
             </Box>
           </Grid>
-          <Grid item xl={4} lg={9} xs={9} className={classes.infoContent}>
-            <Typography className={classes.infoItem}>
+          <Grid
+            item
+            xl={3}
+            lg={3}
+            xs={12}
+            md={6}
+            className={classes.infoContent}
+          >
+            <Typography className={classes.infoItemPrice}>
               <span>
                 {price?.toLocaleString("en-US")}
                 đ/ngày
               </span>
             </Typography>
-            <Typography className={classes.infoItem}>
+            <Typography className={classes.infoItemDeposit}>
               <span>
-                {depositPrice?.toLocaleString("en-US")}
+                Cọc: {depositPrice?.toLocaleString("en-US")}
                 đ/ngày
               </span>
             </Typography>

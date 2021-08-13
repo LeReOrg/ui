@@ -99,24 +99,34 @@ const styles = (theme) => ({
     marginLeft: 4,
   },
   main_shipping__contentLeft: {
-    border: "1px solid #C3C7C5",
     backgroundColor: "#ffffff",
-    borderRadius: 8,
-    padding: 24,
-    [theme.breakpoints.down("xs")]: {
+    border: "none",
+    padding: 0,
+    [theme.breakpoints.up("md")]: {
       border: "none",
-      padding: 0,
+      borderRadius: 0,
+    },
+    [theme.breakpoints.up("lg")]: {
+      border: "1px solid #C3C7C5",
+      borderRadius: 8,
+      padding: 16,
+    },
+    [theme.breakpoints.up("xl")]: {
+      padding: 24,
     },
   },
   main_shipping__contentBottom: {
-    border: "1px solid #C3C7C5",
     backgroundColor: "#ffffff",
-    borderRadius: 8,
-    padding: 24,
-    marginTop: 24,
-    [theme.breakpoints.down("xs")]: {
-      border: "none",
-      padding: 0,
+    marginTop: 8,
+    border: "none",
+    padding: 10,
+    marginBottom: 8,
+    [theme.breakpoints.up("md")]: {
+      border: "1px solid #C3C7C5",
+      borderRadius: 8,
+      padding: 24,
+      marginTop: 16,
+      marginBottom: 16,
     },
   },
   main_shipping__contentLeftInfo: {
@@ -150,14 +160,14 @@ const styles = (theme) => ({
     },
   },
   main_shipping__contentRight: {
-    border: "1px solid #C3C7C5",
-    borderRadius: 8,
     backgroundColor: "#ffffff",
-    maxWidth: 315,
+    border: "none",
     padding: 15,
     marginBottom: 8,
-    [theme.breakpoints.down("xs")]: {
-      border: "none",
+    [theme.breakpoints.up("md")]: {
+      maxWidth: 315,
+      borderRadius: 8,
+      border: "1px solid #C3C7C5",
     },
     "& p": {
       fontWeight: "bold",
@@ -191,7 +201,11 @@ const styles = (theme) => ({
     fontSize: 13,
   },
   main_shipping__contentRightButton: {
-    maxWidth: 315,
+    // width: "100%",
+    maxWidth: "100%",
+    [theme.breakpoints.up("md")]: {
+      maxWidth: 315,
+    },
   },
   addressItems: {
     marginLeft: "-20px",
@@ -212,7 +226,6 @@ const theme = createTheme({
         fontWeight: "bold",
         width: "100%",
         fontSize: 16,
-        maxWidth: 350,
         textTransform: "capitalize",
         "&:hover": {
           background: "#2FAF62",

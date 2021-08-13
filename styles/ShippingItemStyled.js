@@ -1,5 +1,8 @@
 const styles = (theme) => ({
   nameItem: {
+    fontWeight: "bold",
+    fontSize: 16,
+    lineHeight: "22px",
     //   color: "#111E16 !important",
   },
   cartBody: {
@@ -24,19 +27,34 @@ const styles = (theme) => ({
       display: "none",
     },
   },
-  infoItem: {
+  infoItemPrice: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    "& span": {
+      fontWeight: "bold",
+      fontSize: 16,
+      lineHeight: "22px",
+    },
+  },
+  infoItemDeposit: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 10,
     "& span": {
-      fontWeight: "bold",
+      // fontWeight: "bold",
+      [theme.breakpoints.up("lg")]: {
+        fontSize: 14,
+        lineHeight: "20px",
+        color: "#888E8A",
+      },
     },
   },
   infoContent: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    alignItems: "flex-end",
   },
   depositMoney: {
     textAlign: "right",

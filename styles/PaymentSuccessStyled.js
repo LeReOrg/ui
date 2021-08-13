@@ -4,7 +4,7 @@ import { createTheme } from "@material-ui/core/styles";
 const styles = (theme) => ({
   paymentSuccess_main: {
     margin: "80px auto 180px auto",
-    maxWidth: 1440,
+    maxWidth: 1188,
     textAlign: "center",
     [theme.breakpoints.down("xs")]: {
       marginTop: 34,

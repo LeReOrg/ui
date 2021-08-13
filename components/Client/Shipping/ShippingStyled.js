@@ -25,22 +25,7 @@ const styles = (theme) => ({
   main_paymentType__selectContent: {
     paddingLeft: 12,
   },
-  main_recipent: {
-    [theme.breakpoints.down("xs")]: {
-      padding: 0,
-    },
-    "& h1": {
-      fontSize: 20,
-      fontStyle: "normal",
-      fontWeight: "bold",
-      marginBottom: 0,
-    },
-    "& p": {
-      fontStyle: "normal",
-      fontWeight: "normal",
-      fontSize: 14,
-    },
-  },
+
   main_recipent__totalNumber: {
     fontStyle: "normal",
     fontWeight: "normal",
