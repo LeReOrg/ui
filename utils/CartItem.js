@@ -23,7 +23,6 @@ const CartItem = ({ item }) => {
   } = item;
 
   const [cart, setCart] = useRecoilState(cartState);
-  console.log(item);
   let startDateFormat = formDate?.slice(0, 10);
   let startDay = `${startDateFormat.substr(-2, 2)}/${startDateFormat.substr(
     -5,

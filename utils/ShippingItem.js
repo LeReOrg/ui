@@ -8,16 +8,35 @@ import styles from "../styles/ShippingItemStyled";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import Image from "next/image";
 
-const ShippingItem = ({ item, addItem }) => {
-  const { name, price, coc, quantity, image } = item.item;
+const ShippingItem = ({ item }) => {
+  console.log(item);
+  const {
+    name,
+    price,
+    depositPrice,
+    quantity,
+    image,
+    toDate,
+    formDate,
+    totalDays,
+  } = item.item;
+  let startDateFormat = formDate?.slice(0, 10);
+  let startDay = `${startDateFormat.substr(-2, 2)}/${startDateFormat.substr(
+    -5,
+    2
+  )}/${startDateFormat.substr(0, 4)}`;
+  let endDateFormat = toDate?.slice(0, 10);
+  let endDay = `${endDateFormat.substr(-2, 2)}/${endDateFormat.substr(
+    -5,
+    2
+  )}/${endDateFormat.substr(0, 4)}`;
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-
   return (
     <>
       <div className={classes.cartBody}>
         <Grid container spacing={2} className={classes.cartContainer}>
-          <Grid item lg={3} xs={3}>
+          <Grid item xl={4} xs={3}>
             <Box display="flex">
               <Image
                 src={image.url}
@@ -31,20 +50,29 @@ const ShippingItem = ({ item, addItem }) => {
               </Box>
             </Box>
           </Grid>
-          <Grid item lg={9} xs={9} className={classes.infoContent}>
+          <Grid item xl={4} xs={3}>
+            <Box>
+              <Box>
+                {startDay} - {endDay}
+              </Box>
+              <Box className={classes.cartName}>{totalDays} ngày</Box>
+            </Box>
+          </Grid>
+          <Grid item xl={4} lg={9} xs={9} className={classes.infoContent}>
             <Typography className={classes.infoItem}>
               <span>
                 {price?.toLocaleString("en-US")}
                 đ/ngày
               </span>
             </Typography>
+            <Typography className={classes.infoItem}>
+              <span>
+                {depositPrice?.toLocaleString("en-US")}
+                đ/ngày
+              </span>
+            </Typography>
           </Grid>
         </Grid>
-        {coc ? (
-          <Box className={classes.depositMoney}>
-            <span>Cọc: {parseInt(coc).toLocaleString("en-US")}đ</span>
-          </Box>
-        ) : null}
       </div>
     </>
   );

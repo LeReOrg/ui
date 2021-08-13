@@ -1,18 +1,13 @@
 const styles = (theme) => ({
-  root: {
-    maxWidth: 345,
-    [theme.breakpoints.down("xs")]: {
-      height: 72,
-    },
-  },
   content: {
     fontSize: 14,
     color: "#111E16",
+    lineHeight: "20px",
     textTransform: "capitalize",
-    [theme.breakpoints.down("lg")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: 18,
     },
-    [theme.breakpoints.down("xl")]: {
+    [theme.breakpoints.up("xl")]: {
       fontSize: 24,
       lineHeight: "32px",
     },

@@ -116,7 +116,7 @@ const styles = (theme) => ({
   cartBody: {
     display: "flex",
     alignItems: "center",
-    margin: 0,
+    padding: 0,
     [theme.breakpoints.up("lg")]: {
       padding: "20px 10px",
     },

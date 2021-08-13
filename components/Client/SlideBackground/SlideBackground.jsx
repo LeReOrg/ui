@@ -15,13 +15,14 @@ const SlideBackground = () => {
   return (
     <div className={classes.rootBackGround} id="background">
       {!isMobile ? (
-        <Image src={BackGround} width={1920} height={700} layout="responsive" />
+        <Image src={BackGround} width={1366} height={640} quality={100} />
       ) : (
         <Image
           src={BackGroundMobile}
-          width={375}
-          height={375}
+          width={360}
+          height={360}
           layout="responsive"
+          quality={100}
         />
       )}
       {/* <Search /> */}
