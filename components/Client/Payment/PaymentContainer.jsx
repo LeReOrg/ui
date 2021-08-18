@@ -24,7 +24,6 @@ const PaymentContainer = (props) => {
   const [transportValue, setTransportValue] = useState(0);
   // const totalItem = useRecoilValue(cartTotalItem);
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
-  console.log(user);
   useEffect(() => {
     if (cart) {
       cart.map((item) => {

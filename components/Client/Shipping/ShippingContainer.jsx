@@ -18,11 +18,7 @@ import {
   useGetAddressUser,
 } from "../../../hooks/useAddress";
 import AddressItem from "../../../utils/AddressItem";
-function arraymove(arr, fromIndex, toIndex) {
-  var element = arr[fromIndex];
-  arr.splice(fromIndex, 1);
-  arr.splice(toIndex, 0, element);
-}
+import { arraymove } from "../../../utils/FunctionUses";
 const ShippingContainer = () => {
   const [proviceName, setProviceName] = useState();
   const [districtName, setDistrictName] = useState();
@@ -39,7 +35,7 @@ const ShippingContainer = () => {
   const [user, setUser] = useRecoilState(userState);
   const router = useRouter();
   const { data: addresItem } = useGetAddressUser();
-  let testa = [];
+  let filterAddress = [];
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
   useEffect(() => {
     if (user === "") router.push("/login");
@@ -53,17 +49,16 @@ const ShippingContainer = () => {
       } else {
         addresItem?.docs?.map((item, index) => {
           if (item.isDefaultAddress) {
-            testa.push(item);
-            arraymove(testa, index, 0);
+            filterAddress.push(item);
+            arraymove(filterAddress, index, 0);
           } else {
-            testa.push(item);
+            filterAddress.push(item);
           }
         });
         setUser((preState) => ({ ...preState, address: testa }));
       }
     }
   }, [addresItem]);
-  console.log(user);
   useEffect(() => {
     if (listAddress !== "") {
       const cityName = listAddress?.city?.filter(
