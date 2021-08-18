@@ -24,7 +24,7 @@ const PaymentContainer = (props) => {
   const [transportValue, setTransportValue] = useState(0);
   // const totalItem = useRecoilValue(cartTotalItem);
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
-
+  console.log(user);
   useEffect(() => {
     if (cart) {
       cart.map((item) => {
@@ -90,13 +90,12 @@ const PaymentContainer = (props) => {
               </Box>
               <div>
                 <div className={classes.main_shipping__contentRightUser}>
-                  <p>{user.address?.docs[0]?.fullName}</p>
-                  <p>{user.address?.docs[0]?.phoneNumber}</p>
+                  <p>{user?.address[0]?.fullName}</p>
+                  <p>{user?.address[0]?.phoneNumber}</p>
                 </div>
                 <div className={classes.main_shipping__contentRightUserSub}>
-                  {user.address?.docs[0]?.street}, {user.address?.docs[0]?.ward}
-                  , {user.address?.docs[0]?.district},
-                  {user.address?.docs[0]?.district}
+                  {user?.address[0]?.street}, {user?.address[0]?.ward},{" "}
+                  {user?.address[0]?.district}, {user?.address[0]?.district}
                 </div>
               </div>
             </Box>

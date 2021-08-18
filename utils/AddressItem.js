@@ -21,14 +21,14 @@ function PaperComponent(props) {
 const AddressItem = ({ item }) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled({
-    default: item.isDefaultAddress,
+    default: item?.isDefaultAddress,
   });
   const router = useRouter();
 
   const user = useRecoilValue(userState);
   const [open, setOpen] = useState(false);
   const { mutate: deleteAddressUser } = useDeleteAddressUser();
-  const { mutate: setDefaultAddress } = useAddressUser();
+  const { mutate: setDefaultAddress, data } = useAddressUser();
 
   const deleteAddress = () => {
     const params = {
@@ -58,12 +58,12 @@ const AddressItem = ({ item }) => {
     <Box className={classes.addressItemContainer}>
       <Box className={classes.addressItemName}>
         {item.fullName}
-        {item.isDefaultAddress && (
+        {item?.isDefaultAddress && (
           <p style={{ color: "rgb(0, 153, 0)", fontSize: 11 }}>Mặc định</p>
         )}
       </Box>
       <Box className={classes.addressItemAddress}>
-        Địa chỉ: {item.street},{item.ward},{item.district},{item.province}
+        Địa chỉ: {item.street}, {item.ward}, {item.district}, {item.province}
       </Box>
       <Box className={classes.addressItemTelephone}>
         Điện thoại: {item.phoneNumber}

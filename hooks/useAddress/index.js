@@ -15,18 +15,31 @@ const useGetAddressUser = () => {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   return useQuery(
     ["categoryDetail", String(currentUser.token)],
-    getAddressUser
+    getAddressUser,
+    {
+      refetchOnWindowFocus: false,
+      refetchInterval: false,
+      refetchIntervalInBackground: false,
+    }
   );
 };
 const updateAddressUser = async (params) => {
-  const { data } = await axios.patch(`${config.api}/users/addresses`, params, {
-    headers: { Authorization: `Bearer ${params.token}` },
-  });
+  const { data } = await axios.patch(
+    `${config.api}/users/addresses/${params.id}`,
+    {
+      isDefaultAddress: params.isDefaultAddress,
+    },
+    {
+      headers: { Authorization: `Bearer ${params.token}` },
+    }
+  );
   return data;
 };
 const useAddressUser = () => {
   return useMutation(updateAddressUser, {
-    onSuccess: async (data) => {},
+    onSuccess: async (data) => {
+      console.log(data);
+    },
     onError: async (error) => {
       console.log(error, "there was an error");
     },
