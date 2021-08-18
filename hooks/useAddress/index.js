@@ -32,6 +32,20 @@ const useAddressUser = () => {
     },
   });
 };
+const createAddressUser = async (params) => {
+  const { data } = await axios.post(`${config.api}/users/addresses`, params, {
+    headers: { Authorization: `Bearer ${params.token}` },
+  });
+  return data;
+};
+const useCreateAddressUser = () => {
+  return useMutation(createAddressUser, {
+    onSuccess: async (data) => {},
+    onError: async (error) => {
+      console.log(error, "there was an error");
+    },
+  });
+};
 const deleteAddressUser = async (params) => {
   console.log(params);
   const { data } = await axios.delete(
@@ -57,4 +71,6 @@ export {
   getAddressUser,
   useDeleteAddressUser,
   deleteAddressUser,
+  useCreateAddressUser,
+  createAddressUser,
 };

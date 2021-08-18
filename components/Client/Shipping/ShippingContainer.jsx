@@ -13,7 +13,10 @@ import {
   userState,
 } from "../../../lib/recoil-root";
 import { useRouter } from "next/router";
-import { useAddressUser, useGetAddressUser } from "../../../hooks/useAddress";
+import {
+  useCreateAddressUser,
+  useGetAddressUser,
+} from "../../../hooks/useAddress";
 import AddressItem from "../../../utils/AddressItem";
 
 const ShippingContainer = () => {
@@ -25,7 +28,7 @@ const ShippingContainer = () => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const { register, handleSubmit, watch, errors } = useForm();
-  const { mutate, isLoading, data } = useAddressUser();
+  const { mutate, isLoading, data } = useCreateAddressUser();
   let province = watch("province");
   let district = watch("district");
   let ward = watch("ward");
