@@ -1,15 +1,19 @@
 import backIcon from "../assets/backIcon.svg";
 const styles = (theme) => ({
   main_customerProfile: {
-    maxWidth: 1440,
-    margin: "60px auto",
-    marginTop: 90,
-    flexGrow: 1,
-    [theme.breakpoints.between("sm", "md")]: {
-      width: "95%",
+    marginTop: 2,
+    [theme.breakpoints.up("md")]: {
+      margin: "80px 10px 0 10px",
     },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
+    [theme.breakpoints.up("lg")]: {
+      margin: "80px 20px 0 20px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 1188,
+      marginLeft: "auto",
+      marginRight: "auto",
+      marginTop: 80,
+      marginBottom: 40,
     },
   },
   customerInfo: {
@@ -34,6 +38,7 @@ const styles = (theme) => ({
     fontWeight: "bold",
     fontSize: 24,
     lineHeight: "32px",
+    marginBottom: 20,
   },
   backButton: {
     fontStyle: "normal",

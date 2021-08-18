@@ -24,7 +24,7 @@ const ShippingContainer = () => {
   const [listAddress, setListAddress] = useRecoilState(listAddressState);
   const useStyled = makeStyles(styles);
   const classes = useStyled();
-  const { register, handleSubmit, watch, setValue, errors } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
   const { mutate, isLoading, data } = useAddressUser();
   let province = watch("province");
   let district = watch("district");
@@ -35,9 +35,6 @@ const ShippingContainer = () => {
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
   useEffect(() => {
     if (user === "") router.push("/login");
-    return () => {
-      setChangeAddress(false);
-    };
   }, []);
   useEffect(() => {
     if (user !== "") {

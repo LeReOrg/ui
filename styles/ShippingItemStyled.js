@@ -54,7 +54,10 @@ const styles = (theme) => ({
   infoContent: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-end",
+    alignItems: "flex-start",
+    [theme.breakpoints.up("md")]: {
+      alignItems: "flex-end",
+    },
   },
   depositMoney: {
     textAlign: "right",

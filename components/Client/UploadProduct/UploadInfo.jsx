@@ -289,7 +289,7 @@ const UploadInfo = ({
           </Box>
         </Grid>
       </Grid>
-      <Checkbox>Sử dụng địa chỉ cho những lần sau</Checkbox>
+      {/* <Checkbox>Sử dụng địa chỉ cho những lần sau</Checkbox> */}
     </>
   );
 };

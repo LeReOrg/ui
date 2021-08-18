@@ -55,14 +55,15 @@ const ProfileLayout = ({ children }) => {
         <Grid container spacing={4}>
           <Grid
             item
-            lg={2}
-            md={3}
+            xl={3}
+            lg={3}
+            md={4}
             className={classes.main_customerProfileContent}
           >
             <SideBarCustomer />
           </Grid>
 
-          <Grid item lg={10} md={9}>
+          <Grid item xl={9} lg={9} md={8}>
             <Box display="flex" justifyContent="space-between">
               <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
               {router.pathname === "/account/customer/view/[index]" && (

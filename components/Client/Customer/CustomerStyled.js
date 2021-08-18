@@ -6,21 +6,6 @@ import PurChase from "../../../assets/purchase.svg";
 import PurChaseActive from "../../../assets/purchase_active.svg";
 import Ring from "../../../assets/ring.svg";
 const styles = (theme) => ({
-  main_customerProfile: {
-    maxWidth: 1440,
-    margin: "60px auto",
-    marginTop: 90,
-    flexGrow: 1,
-    [theme.breakpoints.between("sm", "md")]: {
-      width: "95%",
-    },
-    // [theme.breakpoints.between("md", "lg")]: {
-    //   width: "90%",
-    // },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-    },
-  },
   tabContainer: {
     margin: " 0 30px",
   },
