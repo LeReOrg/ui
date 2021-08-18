@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 import styles from "../styles/AddressItemStyled";
 import { makeStyles } from "@material-ui/core/styles";
-import { useDeleteAddressUser } from "../hooks/useAddress";
+import { useDeleteAddressUser, useAddressUser } from "../hooks/useAddress";
 import { userState } from "../lib/recoil-root";
 import { useRecoilValue } from "recoil";
 import {
@@ -14,22 +14,28 @@ import {
   Paper,
   DialogTitle,
 } from "@material-ui/core";
+import { useRouter } from "next/router";
 function PaperComponent(props) {
   return <Paper {...props} />;
 }
 const AddressItem = ({ item }) => {
   const useStyled = makeStyles(styles);
-  const classes = useStyled();
+  const classes = useStyled({
+    default: item.isDefaultAddress,
+  });
+  const router = useRouter();
+
   const user = useRecoilValue(userState);
   const [open, setOpen] = useState(false);
-  const { mutate } = useDeleteAddressUser();
-  console.log(item);
+  const { mutate: deleteAddressUser } = useDeleteAddressUser();
+  const { mutate: setDefaultAddress } = useAddressUser();
+
   const deleteAddress = () => {
     const params = {
       id: item._id,
       token: user.token,
     };
-    mutate(params);
+    deleteAddressUser(params);
     setOpen(false);
   };
   const handleClickOpen = () => {
@@ -39,9 +45,23 @@ const AddressItem = ({ item }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleDefaultAddress = () => {
+    const params = {
+      id: item._id,
+      token: user.token,
+      isDefaultAddress: true,
+    };
+    setDefaultAddress(params);
+    router.push("/payment");
+  };
   return (
     <Box className={classes.addressItemContainer}>
-      <Box className={classes.addressItemName}>{item.fullName}</Box>
+      <Box className={classes.addressItemName}>
+        {item.fullName}
+        {item.isDefaultAddress && (
+          <p style={{ color: "rgb(0, 153, 0)", fontSize: 11 }}>Mặc định</p>
+        )}
+      </Box>
       <Box className={classes.addressItemAddress}>
         Địa chỉ: {item.street},{item.ward},{item.district},{item.province}
       </Box>
@@ -49,7 +69,12 @@ const AddressItem = ({ item }) => {
         Điện thoại: {item.phoneNumber}
       </Box>
       <Box className={classes.addressItemAction}>
-        <Box className={classes.addressItemAction1}>Giao đến địa chỉ này</Box>
+        <Box
+          className={classes.addressItemAction1}
+          onClick={handleDefaultAddress}
+        >
+          Giao đến địa chỉ này
+        </Box>
         <Box className={classes.addressItemAction2}>Sửa</Box>
         <Box className={classes.addressItemAction2} onClick={handleClickOpen}>
           Xóa

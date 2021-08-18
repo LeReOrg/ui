@@ -19,7 +19,7 @@ const useGetAddressUser = () => {
   );
 };
 const updateAddressUser = async (params) => {
-  const { data } = await axios.post(`${config.api}/users/addresses`, params, {
+  const { data } = await axios.patch(`${config.api}/users/addresses`, params, {
     headers: { Authorization: `Bearer ${params.token}` },
   });
   return data;
