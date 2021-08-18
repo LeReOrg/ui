@@ -49,7 +49,6 @@ const Info = () => {
                 <hr />
                 <Box className={classes.checkedIcon}>
                   <Checkbox
-                    defaultChecked
                     color="primary"
                     inputProps={{ "aria-label": "secondary checkbox" }}
                   />

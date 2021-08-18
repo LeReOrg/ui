@@ -6,7 +6,6 @@ import styles from "../styles/ShippingItemStyled";
 import Image from "next/image";
 
 const ShippingItem = ({ item }) => {
-  console.log(item);
   const {
     name,
     price,

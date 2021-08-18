@@ -19,6 +19,7 @@ import {
 } from "../../../hooks/useAddress";
 import AddressItem from "../../../utils/AddressItem";
 import { arraymove } from "../../../utils/FunctionUses";
+import { isEmpty } from "lodash";
 const ShippingContainer = () => {
   const [proviceName, setProviceName] = useState();
   const [districtName, setDistrictName] = useState();
@@ -37,25 +38,24 @@ const ShippingContainer = () => {
   const { data: addresItem } = useGetAddressUser();
   let filterAddress = [];
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
+  console.log(changeAddress);
   useEffect(() => {
     if (user === "") router.push("/login");
   }, []);
   useEffect(() => {
     if (user !== "") {
+      addresItem?.docs?.map((item, index) => {
+        if (item.isDefaultAddress) {
+          filterAddress.push(item);
+          arraymove(filterAddress, index, 0);
+        } else {
+          filterAddress.push(item);
+        }
+      });
+      setUser((preState) => ({ ...preState, address: filterAddress }));
       if (addresItem?.docs?.length > 0 && !changeAddress) {
-        setUser((preState) => ({ ...preState, address: addresItem }));
         router.push("/payment");
         setOpenAddProduct(false);
-      } else {
-        addresItem?.docs?.map((item, index) => {
-          if (item.isDefaultAddress) {
-            filterAddress.push(item);
-            arraymove(filterAddress, index, 0);
-          } else {
-            filterAddress.push(item);
-          }
-        });
-        setUser((preState) => ({ ...preState, address: testa }));
       }
     }
   }, [addresItem]);
@@ -75,6 +75,7 @@ const ShippingContainer = () => {
       setWardName(wardItem);
     }
   }, [province, district, ward]);
+  console.log(addresItem);
   const shippingPayment = (data) => {
     const params = data;
     params.token = user.token;
@@ -84,11 +85,19 @@ const ShippingContainer = () => {
     mutate(params);
     router.push("/payment");
   };
+  console.log(user);
+  const renderAddressItem = () => {
+    if (!changeAddress) {
+      return addresItem?.docs?.map((item, index) => (
+        <AddressItem item={item} key={index} />
+      ));
+    } else {
+      return user.address.map((item, index) => (
+        <AddressItem item={item} key={index} />
+      ));
+    }
+  };
 
-  const renderAddressItem = () =>
-    user?.address?.map((item, index) => (
-      <AddressItem item={item} key={index} />
-    ));
   return (
     <div className={classes.main_shipping}>
       <Box>

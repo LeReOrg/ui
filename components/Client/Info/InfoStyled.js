@@ -38,6 +38,7 @@ const styles = (theme) => ({
   checkedIcon: {
     display: "flex",
     alignItems: "center",
+    marginLeft: "-10px",
     "& p": {
       fontWeight: "400",
       fontSize: 13,

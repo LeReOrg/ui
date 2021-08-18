@@ -165,7 +165,6 @@ const styles = (theme) => ({
     padding: 15,
     marginBottom: 8,
     [theme.breakpoints.up("md")]: {
-      maxWidth: 315,
       borderRadius: 8,
       border: "1px solid #C3C7C5",
     },

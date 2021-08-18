@@ -41,6 +41,7 @@ const PaymentContainer = (props) => {
   const useStyled = makeStyles(styles);
   const classes = useStyled();
   const router = useRouter();
+  console.log(user);
   const { mutate, isLoading, data } = useMakeOrder();
   useEffect(() => {});
   const paymentAccess = () => {
@@ -64,7 +65,7 @@ const PaymentContainer = (props) => {
     <div className={classes.main_shipping}>
       <Grid container spacing={2} className={classes.main_shipping__rootLeft}>
         <>
-          <Grid item lg={8} md={7} xs={12}>
+          <Grid item lg={9} md={7} xs={12}>
             <Box className={classes.main_shipping__contentLeft}>
               <RecipentItems cartItem={cart} />
             </Box>
@@ -76,7 +77,7 @@ const PaymentContainer = (props) => {
               <PaymentType />
             </Box>
           </Grid>
-          <Grid item lg={4} md={5} xs={12}>
+          <Grid item lg={3} md={5} xs={12}>
             <Box className={classes.main_shipping__contentRight}>
               <Box className={classes.main_shipping__contentRightFirstRow}>
                 <p>Giao tới</p>
