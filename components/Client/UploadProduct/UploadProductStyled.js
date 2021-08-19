@@ -28,11 +28,12 @@ const styles = (theme) => ({
     },
   },
   uploadMain_Info: {
-    border: "1px solid rgba(0, 0, 0, 0.15)",
     marginBottom: 16,
+    border: "none",
     backgroundColor: "#ffffff",
     [theme.breakpoints.up("md")]: {
-      border: "none",
+      border: "1px solid rgba(0, 0, 0, 0.15)",
+
       marginBottom: 24,
       borderRadius: "8px",
     },
@@ -46,7 +47,7 @@ const styles = (theme) => ({
     },
   },
   uploadMain_InfoContent: {
-    padding: "30px 15px",
+    padding: "10px 15px",
     [theme.breakpoints.up("md")]: {
       padding: "30px 15px 15px 15px",
     },
@@ -245,7 +246,6 @@ const styles = (theme) => ({
     color: "#ffffff",
     background: "#2FAF62",
     borderRadius: 4,
-    maxWidth: 105,
     maxHeight: 40,
     textAlign: "center",
     cursor: "pointer",

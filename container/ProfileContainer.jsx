@@ -4,7 +4,6 @@ import { getLayout as getSiteLayout } from "./MainLayout";
 import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SideBarCustomer from "../components/Client/Customer/SideBarCustomer";
-import CustomerMobile from "../components/Client/Customer/CustomerMobile";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
 
@@ -51,8 +50,8 @@ const ProfileLayout = ({ children }) => {
   }, [isMobile]);
   return (
     <div className={classes.main_customerProfile}>
-      {!isMobile ? (
-        <Grid container spacing={4}>
+      <Grid container spacing={4}>
+        {!isMobile && (
           <Grid
             item
             xl={3}
@@ -62,27 +61,21 @@ const ProfileLayout = ({ children }) => {
           >
             <SideBarCustomer />
           </Grid>
+        )}
+        <Grid item xl={9} lg={9} md={8}>
+          <Box display="flex" justifyContent="space-between">
+            <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
+            {router.pathname === "/account/customer/view/[index]" && (
+              <div className={classes.backButton} onClick={() => router.back()}>
+                <div className={classes.backButtonIcon}></div>
+                Lịch sử đơn hàng
+              </div>
+            )}
+          </Box>
 
-          <Grid item xl={9} lg={9} md={8}>
-            <Box display="flex" justifyContent="space-between">
-              <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
-              {router.pathname === "/account/customer/view/[index]" && (
-                <div
-                  className={classes.backButton}
-                  onClick={() => router.back()}
-                >
-                  <div className={classes.backButtonIcon}></div>
-                  Lịch sử đơn hàng
-                </div>
-              )}
-            </Box>
-
-            <Box className={classes.customerProcessInfo}>{children}</Box>
-          </Grid>
+          <Box className={classes.customerProcessInfo}>{children}</Box>
         </Grid>
-      ) : (
-        <CustomerMobile />
-      )}
+      </Grid>
     </div>
   );
 };

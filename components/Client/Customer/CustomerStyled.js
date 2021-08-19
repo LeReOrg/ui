@@ -106,18 +106,6 @@ const styles = (theme) => ({
       padding: "3px 5px",
     },
   },
-  main_customerProfileMobile: {
-    width: "70%",
-    margin: "0 auto",
-    textAlign: "center",
-    [theme.breakpoints.between("sm", "md")]: {
-      width: "90%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-    },
-  },
-  main_customerProfileActionMobile: {},
   tabInfo: {
     border: "1px solid #E7E9E8",
     borderRadius: 8,

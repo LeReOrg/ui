@@ -1,15 +1,14 @@
 import React from "react";
 import { getLayout } from "../container/MainLayout";
 import dynamic from "next/dynamic";
-
-const ForgotPassWordWithNoSSR = dynamic(
-  () => import("../components/Client/ForGotPassword/ForGotPassword"),
+const CustomerMobileWithNoSSR = dynamic(
+  () => import("../components/Client/Customer/CustomerMobile"),
   { ssr: false }
 );
 const ForgotPassWord = () => {
   return (
     <>
-      <ForgotPassWordWithNoSSR />
+      <CustomerMobileWithNoSSR />
     </>
   );
 };

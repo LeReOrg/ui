@@ -473,6 +473,11 @@ textarea {
   display: block;
   background-color: #f3f4f3;
 }
+@media screen and (max-width: 767px) {
+  .container-fluid {
+    background-color: white;
+  }
+}
 button:focus {
   outline: none !important;
 }

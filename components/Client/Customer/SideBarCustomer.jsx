@@ -63,13 +63,15 @@ const SideBarCustomer = () => {
       <Box component="div" className={classes.customerInfo}>
         <Box component="div" className={classes.customerInfoImage}>
           {currentUser && (
-             <img
-             src={currentUser?.user?.avatar || defaultAvatar}
-             className={classes.customerImage}
-           />
+            <img
+              src={currentUser?.user?.avatar || defaultAvatar}
+              className={classes.customerImage}
+            />
           )}
         </Box>
-        <p className={classes.customerInfo_title}>{router?.query.name}</p>
+        <p className={classes.customerInfo_title}>
+          {currentUser?.user?.displayName}
+        </p>
         <hr
           style={{
             background: "rgba(0, 0, 0, 0.09)",

@@ -9,7 +9,7 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../../../lib/recoil-root";
 import CloseIcon from "@material-ui/icons/Close";
 import { useMediaQuery } from "react-responsive";
-import { auth, logOut } from "../../../../firebase/firenase.utils";
+import { auth } from "../../../../firebase/firenase.utils";
 
 const RightNavMenu = ({ updateOpen }) => {
   const useStyled = makeStyles(styles);
@@ -70,63 +70,14 @@ const RightNavMenu = ({ updateOpen }) => {
                 <li>
                   <Link
                     href={{
-                      pathname: "/account/customer/profile",
+                      pathname: "/customer",
                     }}
                   >
                     <div className={classes.registerButton}>
-                      Tài khoản của tôi
+                      Quản lý tài khoản
                     </div>
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href={{
-                      pathname: `/account/customer/purchase`,
-                    }}
-                  >
-                    <div className={classes.registerButton}>
-                      Đơn hàng của tôi
-                    </div>
-                  </Link>
-                </li>
-
-                {user?.user?.isHirer && (
-                  <>
-                    <li>
-                      <Link
-                        href={{
-                          pathname: `/account/lease/order`,
-                        }}
-                      >
-                        <div className={classes.registerButton}>
-                          Quản lý cho thuê
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href={{
-                          pathname: `/account/lease/summary`,
-                        }}
-                      >
-                        <div className={classes.registerButton}>
-                          Thống kê doanh thu
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href={{
-                          pathname: `/account/lease/product`,
-                        }}
-                      >
-                        <div className={classes.registerButton}>
-                          Quản lý sản phẩm
-                        </div>
-                      </Link>
-                    </li>
-                  </>
-                )}
                 <li>
                   <div
                     className={classes.loginButton}
