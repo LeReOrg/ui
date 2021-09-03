@@ -38,7 +38,6 @@ const ShippingContainer = () => {
   const { data: addresItem } = useGetAddressUser();
   let filterAddress = [];
   const [changeAddress, setChangeAddress] = useRecoilState(changeAddressState);
-  console.log(changeAddress);
   useEffect(() => {
     if (user === "") router.push("/login");
   }, []);
@@ -75,17 +74,18 @@ const ShippingContainer = () => {
       setWardName(wardItem);
     }
   }, [province, district, ward]);
-  console.log(addresItem);
   const shippingPayment = (data) => {
     const params = data;
     params.token = user.token;
     params.province = proviceName[0]?.name;
     params.ward = wardName[0]?.name;
     params.district = districtName[0]?.name;
+    params.isDefaultAddress = true;
     mutate(params);
     router.push("/payment");
   };
   console.log(user);
+  console.log(addresItem);
   const renderAddressItem = () => {
     if (!changeAddress) {
       return addresItem?.docs?.map((item, index) => (

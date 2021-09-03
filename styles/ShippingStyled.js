@@ -13,6 +13,9 @@ const styles = (theme) => ({
       },
     },
   },
+  main_cart__totalButton: {
+    maxWidth: 350,
+  },
   main_recipent__summaryProvisional: {
     display: "flex",
     justifyContent: "space-between",

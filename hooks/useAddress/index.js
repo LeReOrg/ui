@@ -3,6 +3,7 @@ import axios from "axios";
 import config from "../../config";
 import { useRecoilState } from "recoil";
 import { userState } from "../../lib/recoil-root";
+import { clone } from "lodash";
 
 const getAddressUser = async (params) => {
   const { data } = await axios.get(`${config.api}/users/addresses`, {
@@ -52,8 +53,13 @@ const createAddressUser = async (params) => {
   return data;
 };
 const useCreateAddressUser = () => {
+  const [currentUser, setCurrentUser] = useRecoilState(userState);
   return useMutation(createAddressUser, {
-    onSuccess: async (data) => {},
+    onSuccess: async (data) => {
+      let addressItems = clone(currentUser.address);
+      addressItems.unshift(data);
+      setCurrentUser((preState) => ({ ...preState, address: addressItems }));
+    },
     onError: async (error) => {
       console.log(error, "there was an error");
     },

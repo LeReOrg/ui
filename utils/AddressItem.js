@@ -4,7 +4,8 @@ import styles from "../styles/AddressItemStyled";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDeleteAddressUser, useAddressUser } from "../hooks/useAddress";
 import { userState } from "../lib/recoil-root";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
+import { clone } from "lodash";
 import {
   Button,
   Dialog,
@@ -25,11 +26,10 @@ const AddressItem = ({ item }) => {
   });
   const router = useRouter();
 
-  const user = useRecoilValue(userState);
+  const [user, setUser] = useRecoilState(userState);
   const [open, setOpen] = useState(false);
   const { mutate: deleteAddressUser } = useDeleteAddressUser();
   const { mutate: setDefaultAddress, data } = useAddressUser();
-
   const deleteAddress = () => {
     const params = {
       id: item._id,
@@ -51,7 +51,16 @@ const AddressItem = ({ item }) => {
       token: user.token,
       isDefaultAddress: true,
     };
+    let addressItems = clone(user.address);
+    let stringToFilter = item._id; //this for filter
+    addressItems.unshift(
+      addressItems.splice(
+        addressItems.findIndex((item) => item._id === stringToFilter),
+        1
+      )[0]
+    );
     setDefaultAddress(params);
+    setUser((preState) => ({ ...preState, address: addressItems }));
     router.push("/payment");
   };
   return (

@@ -13,8 +13,15 @@ const styles = (theme) => ({
     alignItems: "center",
   },
   tabInfobody: {
-    padding: "24px 18px 27px 18px",
-    borderBottom: "1px solid #F3F4F3",
+    // padding: "24px 18px 27px 18px",
+
+    [theme.breakpoints.up("lg")]: {
+      padding: "20px 10px",
+      borderBottom: "1px solid #F3F4F3",
+    },
+    [theme.breakpoints.up("xl")]: {
+      padding: "24px 18px 27px 18px",
+    },
   },
   tabInfo_contentLeftInfo: {
     maxWidth: 305,
@@ -48,18 +55,24 @@ const styles = (theme) => ({
     cursor: "pointer",
   },
   tabInfo: {
-    border: "1px solid #888E8A",
-    borderRadius: 5,
     marginTop: 20,
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
-      border: "none",
-      padding: 0,
+    border: "none",
+    padding: 0,
+    border: "1px solid #888E8A",
+    [theme.breakpoints.up("lg")]: {
+      borderRadius: 5,
     },
-    "&:first-child": {
-      marginTop: 40,
-    },
+    // "&:first-child": {
+    //   marginTop: 10,
+    //   [theme.breakpoints.up("lg")]: {
+    //     marginTop: 30,
+    //   },
+    //   [theme.breakpoints.up("xl")]: {
+    //     marginTop: 40,
+    //   },
+    // },
   },
   tabInfo_contentLeft: {
     display: "flex",
@@ -82,11 +95,14 @@ const styles = (theme) => ({
     textAlign: "center",
   },
   quantityNumber: {
-    borderLeft: "1px solid #E7E9E8",
-    borderRight: "1px solid #E7E9E8",
+    // border: "none",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    [theme.breakpoints.up("lg")]: {
+      borderLeft: "1px solid #E7E9E8",
+      borderRight: "1px solid #E7E9E8",
+    },
   },
   tabInfo_contentRightpile: {
     fontSize: 14,
@@ -126,6 +142,12 @@ const styles = (theme) => ({
   },
   buttonActions: {
     padding: "10px 18px 10px 18px",
+    [theme.breakpoints.up("lg")]: {
+      padding: 10,
+    },
+    [theme.breakpoints.up("xl")]: {
+      padding: "10px 18px 10px 18px",
+    },
   },
   buttonActions_ContentIcon: {
     background: `url(${IconStatus})`,

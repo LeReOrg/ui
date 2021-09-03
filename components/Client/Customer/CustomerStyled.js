@@ -6,12 +6,24 @@ import PurChase from "../../../assets/purchase.svg";
 import PurChaseActive from "../../../assets/purchase_active.svg";
 import Ring from "../../../assets/ring.svg";
 const styles = (theme) => ({
-  tabContainer: {
-    margin: " 0 30px",
-  },
   customerInfoContainer: {
-    padding: "30px",
-    maxWidth: "600px",
+    padding: 10,
+    maxWidth: "100%",
+    [theme.breakpoints.up("md")]: {
+      padding: "30px",
+      maxWidth: "600px",
+    },
+  },
+  boxContainer: {
+    // [theme.breakpoints.up("md")]: {
+    //   padding: 24,
+    // },
+    [theme.breakpoints.up("lg")]: {
+      padding: 12,
+    },
+    [theme.breakpoints.up("xl")]: {
+      padding: 24,
+    },
   },
   emailFormLogin: {
     maxWidth: "400px",
@@ -98,12 +110,9 @@ const styles = (theme) => ({
     fontSize: 16,
     fontWeight: "500",
     minWidth: 140,
-    [theme.breakpoints.between("md", "lg")]: {
-      padding: "3px 5px",
-    },
+
     [theme.breakpoints.between("sm", "md")]: {
       minWidth: 120,
-      padding: "3px 5px",
     },
   },
   tabInfo: {

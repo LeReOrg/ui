@@ -27,15 +27,6 @@ const UploadSuccessPage = () => {
       ? (requiredLicenses3 = "Bằng lái")
       : (requiredLicenses3 = "");
   }
-
-  useEffect(() => {
-    let background = document.getElementById("container-fluid");
-    background.classList.add("customerPage");
-    return () => {
-      background.classList.remove("customerPage");
-    };
-  }, []);
-
   const useStyled = makeStyles(styles);
   const classes = useStyled({ lengh: productAddDetail?.discounts?.length });
   const onSubmit = (data) => {};

@@ -9,7 +9,6 @@ import RemoveCircleOutlineSharpIcon from "@material-ui/icons/RemoveCircleOutline
 import ImageGallery from "react-image-gallery";
 import { DateRangePicker } from "rsuite";
 import styles from "./ProductDetailsStyled";
-import { isMobileDevice } from "../../../utils/FunctionUses";
 import {
   cartState,
   addCart,
@@ -62,13 +61,6 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
     user: user,
     totalDays: totalDays,
   });
-  useEffect(() => {
-    let background = document.getElementById("container-fluid");
-    background.classList.add("customerPage");
-    return () => {
-      background.classList.remove("customerPage");
-    };
-  }, []);
   useEffect(() => {
     setItemAdd((preState) => ({
       ...preState,

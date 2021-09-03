@@ -91,7 +91,7 @@ const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
         )}
       </Grid>
       <Grid className={classes.tabInfobody} container>
-        <Grid item lg={5} md={5}>
+        <Grid item lg={5} md={6}>
           <div className={classes.tabInfo_contentLeft}>
             <div className={classes.tabInfo_contentLeftImage}>
               <Image src={detail.thumbnail.url} height={88} width={88} />
@@ -104,12 +104,12 @@ const CardOrderItem = ({ item, deleteOrder, confirmOrder, customerTab }) => {
             </div>
           </div>
         </Grid>
-        <Grid item lg={3} md={4} className={classes.quantityNumber}>
+        <Grid item lg={2} md={6} className={classes.quantityNumber}>
           <div className={classes.tabInfo_contentRightQuantity}>
             Số lượng: {detail.quantity}
           </div>
         </Grid>
-        <Grid item lg={4} md={4}>
+        <Grid item lg={5} md={12}>
           <div className={classes.tabInfo_contentRight}>
             <div className={classes.tabInfo_contentRightTotal}>
               <div className={classes.tabInfo_contentRightAmount}>

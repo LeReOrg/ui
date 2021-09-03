@@ -77,13 +77,6 @@ const UploadProduct = () => {
     }
   }, [name, description, categoryId, depositPrice, price, imageList]);
   useEffect(() => {
-    let background = document.getElementById("container-fluid");
-    background.classList.add("customerPage");
-    return () => {
-      background.classList.remove("customerPage");
-    };
-  }, []);
-  useEffect(() => {
     let price_product_format = customCurrency(price);
     let depositPrice_format = customCurrency(depositPrice);
     setValue("price", price_product_format);

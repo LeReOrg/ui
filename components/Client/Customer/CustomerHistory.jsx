@@ -10,30 +10,7 @@ import OrderStatus from "../OrderStatus/OrderStatus";
 import { useOrderLessorAndLesse } from "../../../hooks/useOrder";
 import { userState } from "../../../lib/recoil-root";
 import { useRecoilValue } from "recoil";
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <>{children}</>
-        </Box>
-      )}
-    </div>
-  );
-}
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
-  };
-}
+
 const CustomerHistory = (props) => {
   const tabValue = [
     {
@@ -71,6 +48,28 @@ const CustomerHistory = (props) => {
   ];
   const useStyles = makeStyles(styles);
   const classes = useStyles();
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`full-width-tabpanel-${index}`}
+        aria-labelledby={`full-width-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box className={classes.boxContainer}>{children}</Box>
+        )}
+      </div>
+    );
+  }
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
   const theme = useTheme();
   const user = useRecoilValue(userState);
   const [filter, setFilter] = useState({
@@ -148,8 +147,9 @@ const CustomerHistory = (props) => {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          variant={props.isMobile ? "scrollable" : "fullWidth"}
+          // variant={props.isMobile ? "scrollable" : "fullWidth"}
           scrollButtons="auto"
+          variant="scrollable"
         >
           {renderTab()}
         </Tabs>

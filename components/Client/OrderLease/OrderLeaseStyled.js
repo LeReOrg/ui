@@ -1,7 +1,4 @@
 const styles = (theme) => ({
-  tabContainer: {
-    margin: " 0 30px",
-  },
   rootTab: {
     textTransform: "none",
     fontSize: 16,

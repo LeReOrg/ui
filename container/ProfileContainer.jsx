@@ -37,20 +37,9 @@ const ProfileLayout = ({ children }) => {
     }
   }, [router]);
   const isMobile = useMediaQuery("(max-width:767px)");
-  useEffect(() => {
-    let background = document.getElementById("container-fluid");
-    if (!isMobile) {
-      background.classList.add("customerPage");
-    } else {
-      background.classList.remove("customerPage");
-    }
-    return () => {
-      background.classList.remove("customerPage");
-    };
-  }, [isMobile]);
   return (
     <div className={classes.main_customerProfile}>
-      <Grid container spacing={4}>
+      <Grid container spacing={!isMobile ? 4 : 2}>
         {!isMobile && (
           <Grid
             item
@@ -62,7 +51,7 @@ const ProfileLayout = ({ children }) => {
             <SideBarCustomer />
           </Grid>
         )}
-        <Grid item xl={9} lg={9} md={8}>
+        <Grid item xl={9} lg={9} md={8} xs={12}>
           <Box display="flex" justifyContent="space-between">
             <h1 className={classes.customerTiltlePage}>{titlePage}</h1>
             {router.pathname === "/account/customer/view/[index]" && (
