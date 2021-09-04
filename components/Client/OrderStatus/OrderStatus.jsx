@@ -3,10 +3,12 @@ import { useRecoilValue } from "recoil";
 import { useCancelOrder, useConfirmOrder } from "../../../hooks/useOrder";
 import { userState } from "../../../lib/recoil-root";
 import CardOrderItem from "../../../utils/CardOrderItem";
-
+import { useRouter } from "next/router";
 const OrderAllItems = ({ orders, customerTab }) => {
-  console.log(orders);
-
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
   const user = useRecoilValue(userState);
 
   const { mutate: cancelOrder } = useCancelOrder();
@@ -25,6 +27,7 @@ const OrderAllItems = ({ orders, customerTab }) => {
     params.token = user.token;
     confirmOrder(params);
     alert("Đơn hàng đã được xác nhận");
+    refreshData();
   };
   const renderItems = () =>
     orders?.docs?.map((item) => (

@@ -134,12 +134,20 @@ const ProductDetailsInfo = ({ detailsProduct }) => {
         values[0].getMonth() + 1 > 10
           ? values[0].getMonth() + 1
           : `0${values[0].getMonth() + 1}`
-      }-${values[0].getDate()}`;
+      }-${
+        values[0].getDate() > 10
+          ? `${values[0].getDate()}`
+          : `0${values[0].getDate()}`
+      }`;
       const toFormat = `${values[1].getFullYear()}-${
         values[1].getMonth() + 1 > 10
           ? values[1].getMonth() + 1
           : `0${values[1].getMonth() + 1}`
-      }-${values[1].getDate()}`;
+      }-${
+        values[1].getDate() > 10
+          ? `${values[1].getDate()}`
+          : `0${values[1].getDate()}`
+      }`;
       const totalDate =
         (values[1].getTime() - values[0].getTime()) / (1000 * 3600 * 24);
       setTotalDays(totalDate);

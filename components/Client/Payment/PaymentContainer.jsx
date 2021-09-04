@@ -47,7 +47,7 @@ const PaymentContainer = (props) => {
   const paymentAccess = () => {
     const params = {
       orders: items,
-      addressId: user.address.docs[0]._id,
+      addressId: user.address[0]._id,
       token: user.token,
     };
     mutate(params);
